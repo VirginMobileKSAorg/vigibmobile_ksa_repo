@@ -43,7 +43,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" show="false" value="enc:system.encryption.key.v1:RKIwH8YRK4o0CXOwu5bJjJktKCOvwJPqySi2bIzp"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" show="false" value="enc:system.encryption.key.v1:pJ0DMPGnVbFPwypcbAfaWBxmy2PdrS2Wj+29YsBb"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
@@ -78,7 +78,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="USER" show="false" value="&quot;&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" show="false" value="enc:system.encryption.key.v1:8qw93wn2sLToXJ9wl3zg2CcAMOFw1IEo22AA9LK1"/>
+    <elementParameter field="PASSWORD" name="PASS" show="false" value="enc:system.encryption.key.v1:uIK90fZHNpoRyqhaSMmv9VYWOf0gKn33EgNvt2Ia"/>
     <elementParameter field="FILE" name="DBFILE" show="false" value="&quot;&quot;"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" show="false" value="&quot;&quot;"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" show="false" value="&quot;&quot;"/>
@@ -110,6 +110,7 @@
   </parameters>
   <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/Projects/Virgin Mobile/Nobill/ADJUSTMENTRECORD/TXExportBase_ADJUSTMENTRECORD_20230504000505_20230504001017_456839.csv&quot;"/>
     <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
@@ -324,6 +325,7 @@
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
     <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
@@ -378,7 +380,7 @@
         <mapperTableEntries expression="row1.adjustmentreasonname " name="adjustmentreasonname" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.adjustmentreasonproductname " name="adjustmentreasonproductname" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.source " name="source" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;,row1.adjustmenttime)); " name="adjustmenttime" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;,&quot;20230504000505&quot;)); " name="adjustmenttime" nullable="true" type="id_String"/>
         <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;,row1.localadjustmenttime)) " name="localadjustmenttime" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.accountnum " name="accountnum" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row1.msisdn " name="msisdn" nullable="true" type="id_Integer"/>
@@ -437,6 +439,7 @@
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -613,8 +616,16 @@
       <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="288">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="String f = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;,&quot;20230504000505&quot;));&#10;&#10;System.out.println(f); "/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_1"/>
+  </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="adjustment_record_cleaned" lineStyle="0" metaname="adjustment_record_cleaned" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tLogRow_1">
@@ -627,6 +638,7 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="adjustment_record_cleaned"/>
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tLogRow_1" offsetLabelX="0" offsetLabelY="0" source="tLogRow_1" target="tFileOutputDelimited_1">
@@ -642,17 +654,17 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_abd8c920-a8f6-4c38-ba3e-aca8e6c548a0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TfFvL3eh877TAGROcjEDX9fD0kjF6uuGORUA6SFwqMTf9x4PwJvTjD4QbuQQx0hYbEW8XXhSVmmu&#13;
-77GqGRPWfQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6bcbc50b-a934-45c4-b37f-b1aa5ee6e423"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PJpjHoxlQpb8GawlEAj/g14BdUG5f/KePmSUis0m94mI5Z7tPWban7OofD0oh/H5tH+SaMdxY25B&#13;
-JgnCDopFUg==</DigestValue></Reference></SignedInfo><SignatureValue>Xr1KhZkDSMegDo8yf25E3k4qpjt7u/Bm9Amshsv3kgt+ySzvKTTHmLh5lH6oylZUjjGy80sk8VMD&#13;
-1ZCFT/HSiGYeu+ybU3NGAeA+ja8JLoug/viMAuD1uuE1FqPceRoEJxKjvY90NWmoSjPHH84R2+zB&#13;
-h18uKAqNN5DK/jyeL15DYkWEO377rREKGzuVeVvpqWNH+1Bj2QMQEeSrxnZe6Rx+SGPm/bNaYwGT&#13;
-BMnh0lTjnVcHzIuL25QTUurcY6cZE8YPWEIep/0XprzMxE4V5xLMJ/K4fPdQxie0u42Kjb5awmp0&#13;
-MQmLBmdnQvr3NBFBZuYcsjKs690u7S+mEYRBlg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6da9d06d-cc86-44f0-91fe-5b4db4e8a479"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>AdjIejMF+V9b6rrBkL7U9L6Qbr05GJGoFvuvPSryRxyxU0x9s8Pb3BVSfr2XFiOqd3JZNZ9oS5gA&#13;
+isjtaReDvA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_799e503c-7dbb-4c48-aead-61ef0d248c21"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dikY1Mdz/E9m6EQX3qIexR/PiKGOmk4n1ligmmJOUatXUbL+0iT4kn/BQ7J/TugIeGL5x5b7t09J&#13;
+X1W9t57M5g==</DigestValue></Reference></SignedInfo><SignatureValue>Zp+CYMJ9IutUSWznqUgGTERmVlpVFfVi+jfu+iUWuLXVc1H8v6j6DEiNIURsmVN4g19/byeHG9Fk&#13;
+z4wu5eLUUA1zNEn9Pzu4N3jhEnBpiKu0J7vKSt/D/TaRv00+DJhQOr53+UbEinOK8uU2NhEYx23L&#13;
+bLAAdCSg1PWNCHZjR7Y5k7ThA3C8TJ2NlgrGUo8ALgVUkscCyo6eepMZFqTxTnokZPyBLoHCOjgT&#13;
+QxWOfzIvsGreSOf2kRBcBcbCmFuFeUXfTWfFyXbCqVdtIMUYW1fD6QhomL/kLdiJ4RTkAxGkvTJW&#13;
++z3WYklp8YN4RqhaotN9U8MqeYywWX5+7yQ+NA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -674,4 +686,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6bcbc50b-a934-45c4-b37f-b1aa5ee6e423" Target="#_abd8c920-a8f6-4c38-ba3e-aca8e6c548a0"><Timestamp>2023-06-13 07:19:08</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_799e503c-7dbb-4c48-aead-61ef0d248c21" Target="#_6da9d06d-cc86-44f0-91fe-5b4db4e8a479"><Timestamp>2023-06-13 07:22:16</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
