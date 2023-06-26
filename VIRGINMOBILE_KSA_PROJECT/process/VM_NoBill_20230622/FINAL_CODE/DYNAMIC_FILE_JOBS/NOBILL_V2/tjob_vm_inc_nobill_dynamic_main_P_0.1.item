@@ -1202,48 +1202,6 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_9"/>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="32" posY="-832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_10"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String cnt_string = ((String)globalMap.get(&quot;tSystem_3_OUTPUT&quot;));&#10;String count = cnt_string.replaceAll( &quot;(?&lt;=\\s)(\\S+)&quot;, &quot;&quot; );&#10;context.source_count = Long.parseLong(count.replaceAll(&quot;\\s+$&quot;, &quot;&quot;)) ;&#10;&#10;//System.out.println(&quot;context.source_count :- &quot;+context.source_count);&#10;&#10;&#10;&#10;//regex expression to get the size of the source file&#10;&#10;String string = ((String)globalMap.get(&quot;tSystem_1_OUTPUT&quot;));&#10;String size = string.replaceAll( &quot;(?&lt;=\\s)(\\S+)&quot;, &quot;&quot; );&#10;context.file_size = size.replaceAll(&quot;\\s+$&quot;, &quot;&quot;) ;&#10;System.out.println(&quot;context.file_size: &quot;+context.file_size);&#10;&#10;&#10;context.talend_jobname = jobName ;&#10;&#10;&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;System.out.println(&quot;start_time: &quot;+context.start_time);&#10;&#10;context.start_time_main_job=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;&#10;&#10;&#10;context.file_seq_no = Integer.parseInt(context.file_name.substring(24,context.file_name.indexOf(&quot;.csv&quot;)));&#10;System.out.println(&quot;context.file_seq_no:- &quot; +context.file_seq_no);&#10;&#10;&#10;&#10;System.out.println(context.talend_jobname +&quot; started at&quot;+ context.start_time);&#10;System.out.println(&quot;SOURCE SYSTEM Name is &quot;+ context.source_system );&#10;System.out.println(&quot;FILE LOADED  is &quot;+ context.file_name );&#10;System.out.println(&quot;RAWDATA PATH is &quot;+ context.rawdata_path );&#10;System.out.println(&quot;TRANSIENT PATH is &quot;+ context.transient_path );&#10;&#10;context.year=TalendDate.formatDate(&quot;yyyy&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.year :&quot;+context.year);&#10;context.month=TalendDate.formatDate(&quot;MM&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.month :&quot;+context.month);&#10;context.yearmonth=TalendDate.formatDate(&quot;YYYYMM&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.yearmonth :&quot;+context.yearmonth);&#10;context.yearmonthdate=TalendDate.formatDate(&quot;yyyyMMdd&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.yearmonthdate :&quot;+context.yearmonthdate);&#10;&#10;context.target_object_name = context.object_name+&quot;_&quot;+context.SEQNO+&quot;_&quot;+context.yearmonthdate+&quot;.csv&quot; ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;System.out.println(&quot;RAW PATH FULL: &quot;+context.rawdata_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.year+&quot;/&quot;+context.yearmonth+&quot;/&quot;+context.yearmonthdate+&quot;/&quot;+context.file_name);&#10;&#10;System.out.println(&quot;TRANSIENT PATH FULL: &quot;+context.transient_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.SEQNO+&quot;_&quot;+context.yearmonthdate+&quot;.csv&quot;);&#10;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);&#10;&#10;System.out.println(&quot;context.DOMAIN :- &quot;+context.DOMAIN);&#10;System.out.println(&quot;context.TABLE :- &quot;+context.TABLE);&#10;System.out.println(&quot;context.VERSION :- &quot;+context.VERSION);&#10;System.out.println(&quot;context.PERIODSTART :- &quot;+context.PERIODSTART);&#10;System.out.println(&quot;context.PERIODEND :- &quot;+context.PERIODEND);&#10;System.out.println(&quot;context.SEQNO :- &quot;+context.SEQNO);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="LABEL" value="load context"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_10"/>
-  </node>
-  <node componentName="tSystem" componentVersion="0.101" offsetLabelX="3" offsetLabelY="37" posX="-256" posY="-1056">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_1"/>
-    <elementParameter field="CHECK" name="ROOTDIR" value="true"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEDIRECTORY&quot;))"/>
-    <elementParameter field="RADIO" name="USE_SINGLE_COMMAND" value="true"/>
-    <elementParameter field="MEMO_JAVA" name="COMMAND" value="&quot;du -h &quot;+context.file_name"/>
-    <elementParameter field="RADIO" name="USE_ARRAY_COMMAND" value="false"/>
-    <elementParameter field="TABLE" name="ARRAY_COMMAND" show="false">
-      <elementValue elementRef="VALUE" value="&quot;grep -i DOMAIN TXExportBase_VOUCHERREFILLHISTORY_20230504015400_20230504015758_411924.csv&quot;"/>
-    </elementParameter>
-    <elementParameter field="CLOSED_LIST" name="OUTPUT" value="OUTPUT_TO_CONSOLE_AND_RETRIVE_OUTPUT"/>
-    <elementParameter field="CLOSED_LIST" name="ERROROUTPUT" value="OUTPUT_TO_CONSOLE_AND_RETRIVE_OUTPUT"/>
-    <elementParameter field="TABLE" name="PARAMS"/>
-    <elementParameter field="TEXT" name="LABEL" value="source file size"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tSystem_1"/>
-  </node>
-  <node componentName="tSystem" componentVersion="0.101" offsetLabelX="3" offsetLabelY="37" posX="-256" posY="-832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_3"/>
-    <elementParameter field="CHECK" name="ROOTDIR" value="true"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEDIRECTORY&quot;))"/>
-    <elementParameter field="RADIO" name="USE_SINGLE_COMMAND" value="true"/>
-    <elementParameter field="MEMO_JAVA" name="COMMAND" value="&quot;wc -l &quot;+context.file_name"/>
-    <elementParameter field="RADIO" name="USE_ARRAY_COMMAND" value="false"/>
-    <elementParameter field="TABLE" name="ARRAY_COMMAND" show="false">
-      <elementValue elementRef="VALUE" value="&quot;grep -i DOMAIN TXExportBase_VOUCHERREFILLHISTORY_20230504015400_20230504015758_411924.csv&quot;"/>
-    </elementParameter>
-    <elementParameter field="CLOSED_LIST" name="OUTPUT" value="OUTPUT_TO_CONSOLE_AND_RETRIVE_OUTPUT"/>
-    <elementParameter field="CLOSED_LIST" name="ERROROUTPUT" value="OUTPUT_TO_CONSOLE_AND_RETRIVE_OUTPUT"/>
-    <elementParameter field="TABLE" name="PARAMS"/>
-    <elementParameter field="TEXT" name="LABEL" value="source count"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tSystem_3"/>
-  </node>
   <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tFileInputRaw_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputRaw_1" target="tFileOutputRaw_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
@@ -1268,13 +1226,9 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="context.parallel_thread_count"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_6" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_6" target="tFileInputDelimited_1">
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_6" offsetLabelX="0" offsetLabelY="0" source="tJava_6" target="tFileInputDelimited_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.file_header_flag.contains(&quot;Y&quot;)"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If9"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_6" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_6" target="tSystem_1">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.file_header_flag.contains(&quot;N&quot;)"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If10"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tJava_7">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk8"/>
@@ -1398,17 +1352,6 @@
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileDelete_2" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_2" target="tDBRow_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk32"/>
-  </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_10" offsetLabelX="0" offsetLabelY="0" source="tJava_10" target="tRunJob_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk29"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tSystem_1" offsetLabelX="0" offsetLabelY="0" source="tSystem_1" target="tSystem_3">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tSystem_1_EXIT_VALUE&quot;)) ==0"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If11"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tSystem_3" offsetLabelX="0" offsetLabelY="0" source="tSystem_3" target="tJava_10">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tSystem_3_EXIT_VALUE&quot;)) ==0"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If12"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
@@ -1629,28 +1572,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_10"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_3"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fefb2192-9d22-4884-947d-b31442624116"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2Mhhq2FEy/WR4v0c7pDltNfD8RU0HFA002otabLv4qSIfFtKqewPByC8aMyHhs7pd2KOjR3k2HPn&#13;
-nQ8cg8s0mQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ad73c103-d68d-49d2-b85c-3cd1630f10f2"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ST0LR2Q/nLHaNoClTdGJBvusmyeBm0etuGXYCbTGZdTNrYEQleb7PjOr/sUaLRRXHat6f/xpF/Lc&#13;
-2okqPasEgQ==</DigestValue></Reference></SignedInfo><SignatureValue>WC8UuafwbGBsbtwgICZ8KCat+0nm0DX9T2SbgCShc6AV+Vt3OJcK7MfCjHPdG9lLtrwAwggTHyDa&#13;
-b6RXKg4f2ttNguwlhyd24qvUnABggR4zjdUM5Ks7GWpHBqOy84xYESvrNbvulREwRHb/2alw9pNC&#13;
-a5gwJuSCTLvzOkCi4Kx+yHXfBgjRVOrisq8aLwyLs/sPCtYgrk4efrf+3CDj4g5ehxSq/MGYIHZk&#13;
-i3qU07HQwilgeWe4lx9iO3ewYFL5/hqVxxdu+lbTYuOnNYXK2Wlm8JlWDOVrT90u8KOu6bTg1Ehj&#13;
-9XCpm7aznYFvYHop+RM3GXgmfaHJG3Czdg+ixQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a250e0cb-90a3-4d11-92fa-77d8239352d5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>el1yTiV924s0bjVI7HP0gCk340VvaVNLVRWqBjRrtKONtrIRrdw9cAI6h9b9I0OxMPc87EMvLEqm&#13;
+Ffa0dMMOFg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fb203396-b8ff-4c7a-ae9c-0e00dfd35aa4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>3q7+p0vwDGweJIISHywMSooU/M/Ip8Hd2hbaSwzbNRDywTMmCXo/NeDxvVQCT8dxS4Q3WPF8jc/C&#13;
+Lbi222XtdA==</DigestValue></Reference></SignedInfo><SignatureValue>j75UlMuNGf6VB+nRfFp7TNvQJn1j6s1sgDZQATElXYa6QUNj5VHeSPw8YGpvXv2Q3pxErS0kfl3I&#13;
+cv7WZJSnANdPXAq+wmz8lW3WFzZqd20iMIeafJ344V38rPtx1fDC5EcSA0paRdiGeAuuzQIT2nX4&#13;
+zkRPJmtsNYrq/QxUOWXWNGat9mnbTsG6/o0Oj4Riq+EEAiNLAaMkHGnBKNF1C8jbE8jqoMIZ4xKh&#13;
+fPTo9bRTnrhLfCBp31sH7Xm82K69kgY1jZiFGCccyvuFYyvKzyWHQK1gvhji4oqMJm8koZprTtdn&#13;
+jUB2j3CGJSEcSPPSMG28qOg9GmhuM+jNyTHSFQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1672,4 +1600,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ad73c103-d68d-49d2-b85c-3cd1630f10f2" Target="#_fefb2192-9d22-4884-947d-b31442624116"><Timestamp>2023-06-23 05:58:37</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fb203396-b8ff-4c7a-ae9c-0e00dfd35aa4" Target="#_a250e0cb-90a3-4d11-92fa-77d8239352d5"><Timestamp>2023-06-26 06:23:40</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
