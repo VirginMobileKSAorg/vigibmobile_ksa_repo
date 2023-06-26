@@ -46,7 +46,7 @@
       <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
       <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
       <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
-      <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" show="false" value="enc:system.encryption.key.v1:z7q54J8RRZsHjleL6GGA4EpbLLpNK1NXIR2kwpMC"/>
+      <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" show="false" value="enc:system.encryption.key.v1:r5T3Z/ccgZZtwJ6hmNENB1lIy4/181BmRDDBzdYZ"/>
       <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
       <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
       <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
@@ -89,7 +89,7 @@
       <elementParameter field="TEXT" name="DBNAME" value="context.vm_vertica_Database"/>
       <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vm_vertica_Schema"/>
       <elementParameter field="TEXT" name="USER" value="context.vm_vertica_Login"/>
-      <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:mUUrh295QKFRmOA9+WfOVmnqYjewVNHE/4pkiqUjj7o9LEQ7gmrm447L77+YtQCcEXsq+BGtsw=="/>
+      <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:EFo5kmw9PbNTCOvsUiTdQgdJakPPX2YAlsTICRuPg4SOfN7+Xmk10PdlUkixEsWkJhvUOdjlhQ=="/>
       <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
       <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
       <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
@@ -144,6 +144,33 @@
       <elementParameter field="TEXT" name="LABEL" value="context_file_vertica.txt"/>
       <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
       <metadata connector="FLOW" name="tFileOutputDelimited_1">
+        <column comment="" key="false" length="-1" name="CONTEXT_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+        <column comment="" key="false" length="-1" name="CONTEXT_VALUE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      </metadata>
+    </node>
+    <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="0">
+      <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+      <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+      <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+      <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+      <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+      <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+      <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+      <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+      <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+      <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+      <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+      <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+      <elementParameter field="TABLE" name="LENGTHS" show="false">
+        <elementValue elementRef="SCHEMA_COLUMN" value="CONTEXT_NAME"/>
+        <elementValue elementRef="LENGTH" value="10"/>
+        <elementValue elementRef="SCHEMA_COLUMN" value="CONTEXT_VALUE"/>
+        <elementValue elementRef="LENGTH" value="10"/>
+      </elementParameter>
+      <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+      <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+      <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+      <metadata connector="FLOW" name="tLogRow_1">
         <column comment="" key="false" length="-1" name="CONTEXT_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
         <column comment="" key="false" length="-1" name="CONTEXT_VALUE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       </metadata>
@@ -219,7 +246,7 @@
       <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tContextLoad_2"/>
       <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning"/>
       <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning"/>
-      <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false"/>
+      <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="true"/>
       <elementParameter field="CHECK" name="DISABLE_ERROR" value="false"/>
       <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="true"/>
       <elementParameter field="CHECK" name="DISABLE_INFO" value="true"/>
@@ -245,8 +272,8 @@
     <node componentName="tContextLoad" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="-128">
       <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tContextLoad_1"/>
       <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning"/>
-      <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning"/>
-      <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false"/>
+      <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Info"/>
+      <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="true"/>
       <elementParameter field="CHECK" name="DISABLE_ERROR" value="false"/>
       <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="true"/>
       <elementParameter field="CHECK" name="DISABLE_INFO" value="true"/>
@@ -255,34 +282,6 @@
       <metadata connector="FLOW" name="tContextLoad_1">
         <column defaultValue="" key="false" length="255" name="key" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
         <column defaultValue="" key="false" length="255" name="value" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      </metadata>
-    </node>
-    <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="0">
-      <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
-      <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-      <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
-      <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
-      <elementParameter field="RADIO" name="VERTICAL" value="false"/>
-      <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
-      <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
-      <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
-      <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
-      <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
-      <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
-      <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
-      <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
-      <elementParameter field="TABLE" name="LENGTHS" show="false">
-        <elementValue elementRef="SCHEMA_COLUMN" value="CONTEXT_NAME"/>
-        <elementValue elementRef="LENGTH" value="10"/>
-        <elementValue elementRef="SCHEMA_COLUMN" value="CONTEXT_VALUE"/>
-        <elementValue elementRef="LENGTH" value="10"/>
-      </elementParameter>
-      <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
-      <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
-      <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-      <metadata connector="FLOW" name="tLogRow_1">
-        <column comment="" key="false" length="-1" name="CONTEXT_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-        <column comment="" key="false" length="-1" name="CONTEXT_VALUE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       </metadata>
     </node>
     <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tFileOutputDelimited_1">
@@ -302,7 +301,6 @@
     </connection>
     <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tFileOutputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileOutputDelimited_1" target="tLogRow_1">
       <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-      <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
       <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
     </connection>
     <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tFileInputDelimited_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_2" target="tJavaRow_2">
@@ -343,11 +341,6 @@
       <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
       <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
     </subjob>
-    <subjob>
-      <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
-      <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-      <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-    </subjob>
     <jobletNodes componentName="OUTPUT" componentVersion="0.1" offsetLabelX="0" offsetLabelY="0" posX="992" posY="128">
       <elementParameter field="TEXT" name="UNIQUE_NAME" value="OUTPUT_1"/>
       <elementParameter field="CHECK" name="STARTABLE" show="false" value="false"/>
@@ -378,13 +371,13 @@
     </jobletNodes>
   </model:JobletProcess>
   <TalendProperties:ByteArray/>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_17d411a7-d078-476d-a159-53fb1cf010e4"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TR7HdvHCwImts7zAta8a3GXjS7HhIOxfxdn3XOtHeItYudU6JqvAeEHy3xffkkH8IZTlg9llLF1W&#13;
-suuDUAfthg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_444e4b44-20a1-47b1-8233-5386119322c6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2erGtGNVesp1/MK8Oz7jsF54Tp8cL1tVR3CNMK6axvF2+Gz+4OQsF9Mxo/R2OGVKEiVnbpu8ybP/&#13;
-1JDzQIJqQA==</DigestValue></Reference></SignedInfo><SignatureValue>PhwgGvZKBgHnmnDc5paI6JOzENDZ123vAR1GCMa8n8GLq0pm6Sn2D35ZoT4ctQ6okrHT5/El4lfg&#13;
-bT9np4xXuqpsKfFTFFoeHBK1eKuCR6MW0UOwKJMLJXEEk7hgY2A1ili1Geng/+SVFsLI+0UjiQGe&#13;
-3806v1cY6CJVBzXDQ6GSl6r1WZ9JCetJyrYQFn3FoksTzGaap5stSKThGO9ZQC2UVLHAT+zfAqy8&#13;
-uWG2+8lly5/zsl8E7w41dPrkDbcx6UECkM+D4/wI0HwhE1o3rEqfImbfx3Fxsi0JOCJNeh1Cfww2&#13;
-Hu3A6g4LyuXARjsMRy0AuZwxvFWJOQZPquWk0g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_868236fc-0975-44c2-b2ac-a5707292112f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HTEgN+18XWm4c9aIDWsdjcP1/r2FkLhqGU6IMKwxPLOz8d88pVKHOn29rDibcd/h9CwxUGJAVsB4&#13;
+HUxS8AIIIQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e1311fe3-c9c6-40dd-8964-c2200f64cb11"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>puSqatZGvwmwU4h9+KR96G22BLkcLcm6zR1YEcDO913QLD/CAG8t5POomr+sPO1BTVmgcWWyWSbm&#13;
+h/4zbf9W2g==</DigestValue></Reference></SignedInfo><SignatureValue>AgCFFhXvgIJ74j5Mc/hP3gOHyK31NvlfvGlZhUJESnkfEBxUnoMxxYvI9U3Fe4l7cW0ZNvWuiaXu&#13;
+IwfAt8Q119upxK5moqKIlVBDCB7ChmkaEbCaDVA6LgdKhvfMJVO15TEZ9X2muyWVtHbMpSWSlPhc&#13;
+pvq8yZ+EbivAntnYMuUqSnv4XmiBF1PfVoN+RuwgXTmHl4oARFJ6YcD5kKbwn3uM2h70xePfGOCu&#13;
+K9KlIRmrGatPeTjjFx5f6iUE9oyhqc+E1LfosJv4GGvbAzXkraNHuB+Kgb4GtdZZBaALJYte7yIL&#13;
+4RwlCaZx9G38OcUA37ppPcEtuid8oQiopltjFg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -406,4 +399,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_444e4b44-20a1-47b1-8233-5386119322c6" Target="#_17d411a7-d078-476d-a159-53fb1cf010e4"><Timestamp>2023-06-26 13:01:34</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></xmi:XMI>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e1311fe3-c9c6-40dd-8964-c2200f64cb11" Target="#_868236fc-0975-44c2-b2ac-a5707292112f"><Timestamp>2023-06-26 13:23:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></xmi:XMI>
