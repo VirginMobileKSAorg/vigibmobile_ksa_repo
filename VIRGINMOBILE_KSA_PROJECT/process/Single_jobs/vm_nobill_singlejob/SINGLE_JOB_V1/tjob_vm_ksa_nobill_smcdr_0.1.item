@@ -131,7 +131,7 @@
     <contextParameter comment="" internalId="_OU3vZBAkEe6sdpvkpHR7Ww" name="fileCount" prompt="fileCount?" promptNeeded="false" repositoryContextId="built-in" type="id_Long" value="0"/>
     <contextParameter comment="" internalId="_OU3vZRAkEe6sdpvkpHR7Ww" name="batchFileThreshold" prompt="batchFileThreshold?" promptNeeded="false" repositoryContextId="built-in" type="id_Long" value="10"/>
     <contextParameter comment="" internalId="_OU3vZhAkEe6sdpvkpHR7Ww" name="s3_bkp_dir" prompt="s3_bkp_dir?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/opt/s3_uploads/SRC_BKP_DIR/"/>
-    <contextParameter comment="" internalId="_6b4dkBDlEe6eBfRbphSfGg" name="file_header_flag" prompt="file_header_flag?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="N"/>
+    <contextParameter comment="" internalId="_6b4dkBDlEe6eBfRbphSfGg" name="file_header_flag" prompt="file_header_flag?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
     <contextParameter comment="" internalId="_uS6_QBG3Ee6i94YZOQt1Lg" name="filename" prompt="filename?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
     <contextParameter comment="" internalId="_HfnWgBKPEe6i94YZOQt1Lg" name="cleansed_path" prompt="cleansed_path?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
     <contextParameter comment="" internalId="_HfnWgRKPEe6i94YZOQt1Lg" name="cleansed_landing_path" prompt="cleansed_landing_path?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
@@ -1358,6 +1358,8 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="FILE_ROW_LIMIT"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="FILE_HEADER_FLAG"/>
+      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="SKIP_FOOTER_CNT"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
@@ -1373,12 +1375,13 @@
       <column comment="" key="false" length="-1" name="FILE_HEADER_CNT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="FILE_FOOTER_CNT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="FILE_ROW_LIMIT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FILE_HEADER_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="SKIP_FOOTER_CNT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="-96" posY="-1984">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.active_flag = input_row.ACTIVE_FLAG;&#10;context.object_name = input_row.OBJECT_NAME;&#10;context.source_system = input_row.SOURCE_SYSTEM;&#10;context.src_file_path = input_row.SOURCE_PATH;&#10;context.load_area = input_row.LOAD_AREA;&#10;context.file_header_cnt = input_row.FILE_HEADER_CNT;&#10;context.file_footer_cnt = input_row.FILE_FOOTER_CNT;&#10;context.file_row_limit = input_row.FILE_ROW_LIMIT;&#10;context.skip_footer_cnt = input_row.SKIP_FOOTER_CNT;&#10;&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.active_flag = input_row.ACTIVE_FLAG;&#10;context.object_name = input_row.OBJECT_NAME;&#10;context.source_system = input_row.SOURCE_SYSTEM;&#10;context.src_file_path = input_row.SOURCE_PATH;&#10;context.load_area = input_row.LOAD_AREA;&#10;context.file_header_cnt = input_row.FILE_HEADER_CNT;&#10;context.file_footer_cnt = input_row.FILE_FOOTER_CNT;&#10;context.file_row_limit = input_row.FILE_ROW_LIMIT;&#10;context.file_header_flag = input_row.FILE_HEADER_FLAG;&#10;context.skip_footer_cnt = input_row.SKIP_FOOTER_CNT;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_3">
@@ -1391,6 +1394,7 @@
       <column comment="" key="false" length="-1" name="FILE_HEADER_CNT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="FILE_FOOTER_CNT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="FILE_ROW_LIMIT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="FILE_HEADER_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="SKIP_FOOTER_CNT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
@@ -2456,6 +2460,9 @@
       <elementValue elementRef="TRACE_COLUMN" value="ACTIVE_FLAG"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="FILE_HEADER_FLAG"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row8"/>
@@ -3514,13 +3521,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9d7319e4-198d-4f9b-878c-62ca47415260"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>j2hp4/xSV5wE22zSIrJgtFItQdEKOrrprnLXAQT57rMkct3g9GU1ugkVrJmko5XXeX+5pmgs5cXS&#13;
-yMjnBTSn5w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4ff9a47f-37d6-489a-9b4d-38c8818d2ca7"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HIx6XMJsDfpSjTfM+U+uY3horwzwFepvYFtUMkD1VY6NdI+Q72I5X++7J31tYhn8fiiyHb7NDI4U&#13;
-tHGsgy6PFw==</DigestValue></Reference></SignedInfo><SignatureValue>Op2budHuDmi8OdpBcCcgIuuE/b0onUoT9uyjMwxGUhSOQxifxet6oxvoZ2kHkU4SJNqyOi2suOPs&#13;
-rrggGx1BMT28LOikUx19NNvN2jPaxEyI7NU6ftoAp8Y4qGUucWXMrIYhR0ph4L0lm1vOThwY8JzX&#13;
-9a8ViKvxLPdOLnnQZbtO4HlKBUbR3i6/UH3EfsKHS02RjuCevxVnanicw7+SOl/bPsE+BjF2JTA6&#13;
-W3E2Ol6c+bqftpRN6vH0fSBstvGoOXNGWCyHkA1M0ioGeJC6vmp3aFJawDgO6XtEm5iZdbsEB/Ke&#13;
-MzsZabtGuBdZZiEhp5MTBoXkaG6RgoyIKBjluA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_deedb9b7-9e32-49fa-afae-19c180e8aa07"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>C15r8Cb6Ni4WeIVCtaT0fM1bkiOtsBHfuwyRvgYauBB+0KO2YA5S105M3qwvkbGEC3Cb9GUYMGfJ&#13;
+ikyEheFg6A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6ed89ee5-d4d3-41c3-9f44-22a69b433f01"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>z258rrpp6G2lXEfdb7H9c20Hv93bGKVsqlVxKntRdqcT3EyKCWhmohMXZ5isSDaMErb06rod5Q3H&#13;
+xPig2+2yOw==</DigestValue></Reference></SignedInfo><SignatureValue>JKUMWGW6szI4m9p9FdFgbh351Zw6Z93+0e/CtipGqHOum8hq1At+VPRDO1m7YKXLRCLgIds6FrDL&#13;
+klf3OPFHBN+abGYf2C34JgW/XfWiZRwPyqPvSUd37fa5dq1KS8/uSwbsH3bHdg7jiAfxnCA/rIpg&#13;
+ydsDH0LnSedEJWwfovOkT222GqtXuoluQMkNZeQE3V/SRKhtuKiIOH54zNnIsXFNVpgsQCItKQ9z&#13;
+RvSdG4aVbGwpCidblFIfuIUqRfPVmZOF5p955S2NmiQVTtj88zjPpMJMyHoEs4lmmh3FZ9W8DiWY&#13;
+lvt09SsvNOa39ozsG1VG5+evcv1mwiV0BiTpIQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -3542,4 +3549,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4ff9a47f-37d6-489a-9b4d-38c8818d2ca7" Target="#_9d7319e4-198d-4f9b-878c-62ca47415260"><Timestamp>2023-06-30 09:24:56</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6ed89ee5-d4d3-41c3-9f44-22a69b433f01" Target="#_deedb9b7-9e32-49fa-afae-19c180e8aa07"><Timestamp>2023-06-30 09:29:39</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
