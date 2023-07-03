@@ -596,19 +596,19 @@
       <column comment="12" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.uuid" name="uuid" type="id_String"/>
         <mapperTableEntries expression="row4.historytypekey" name="historytypekey" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.tstamp)) " name="tstamp" type="id_String"/>
+        <mapperTableEntries expression="row4.tstamp== null || String.valueOf(row4.tstamp)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.tstamp)) " name="tstamp" type="id_String"/>
         <mapperTableEntries expression="row4.username" name="username" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.accountnum" name="accountnum" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.additionalinfo" name="additionalinfo" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.propertytypename" name="propertytypename" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.source" name="source" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.subscriptionproperty" name="subscriptionproperty" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.tstamp)) " name="localtstamp" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.tstamp== null || String.valueOf(row4.tstamp)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.tstamp)) " name="localtstamp" nullable="true" type="id_String"/>
         <mapperTableEntries expression="TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.auditkey_sufix; " name="insert_audit_key" nullable="true" type="id_String"/>
         <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1))); " name="filesequenceid" nullable="true" type="id_Long"/>
       </outputTables>
@@ -1551,45 +1551,36 @@
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_4" offsetLabelX="0" offsetLabelY="0" source="tJava_4" target="tRunJob_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
   </connection>
-  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
-  </connection>
-  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
+  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row11"/>
+  </connection>
+  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
   </connection>
   <connection connectorName="REJECT" label="row9" lineStyle="0" metaname="tSchemaComplianceCheck_1" offsetLabelX="0" offsetLabelY="0" source="tSchemaComplianceCheck_1" target="tFileOutputDelimited_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row9"/>
   </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_5" target="tFileCopy_1">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;))&gt;0 ||&#10;((Integer)globalMap.get(&quot;tFileOutputDelimited_3_NB_LINE&quot;))&gt;0"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_5" target="tFileDelete_3">
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_5" target="tFileDelete_3">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;))==0 &amp;&amp;&#10;((Integer)globalMap.get(&quot;tFileOutputDelimited_3_NB_LINE&quot;))==0"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If2"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_5" target="tFileCopy_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;))&gt;0 ||&#10;((Integer)globalMap.get(&quot;tFileOutputDelimited_3_NB_LINE&quot;))&gt;0"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileCopy_1" offsetLabelX="0" offsetLabelY="0" source="tFileCopy_1" target="tFileDelete_4">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_4" target="tJava_5">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk12"/>
-  </connection>
-  <connection connectorName="REJECT" label="row7" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_4" target="tFileOutputDelimited_5">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
-  </connection>
-  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_4" target="tSchemaComplianceCheck_2">
+  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_4" target="tSchemaComplianceCheck_2">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="newColumn4"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -1634,6 +1625,15 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
+  </connection>
+  <connection connectorName="REJECT" label="row7" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_4" target="tFileOutputDelimited_5">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_4" target="tJava_5">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk12"/>
   </connection>
   <connection connectorName="REJECT" label="row8" lineStyle="0" metaname="tSchemaComplianceCheck_2" offsetLabelX="0" offsetLabelY="0" source="tSchemaComplianceCheck_2" target="tFileOutputDelimited_4">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -1762,13 +1762,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f8c57d2d-eb15-43f8-a041-95bd7794a631"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>yNTMqTXThS6ajmgbdhBcAF6hZj37O8MTbvML64e6iEhB1kZ13Zh3W2w6LTwSxXkIMiupEjMrV1c4&#13;
-nze1O7zc7w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0ce0dc65-caf8-49bb-a554-d674759d03ab"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>r67se8rdozzjEwvfy28ytcT0SfkVI7QrQV0eGKUkjIhi6xn/f3L/drgvEM+FqAflKxE03oOr9OEU&#13;
-Yj6m0UlVzg==</DigestValue></Reference></SignedInfo><SignatureValue>lo92/uM2Srn7jFmxFVzkKhO0N1dYFApHRLj1C57OpbFiLXoUR6gyvj0rz7/Rtp6YkK2xCUofeZnK&#13;
-njUwRq3gfLqSNppWA6fgrnmmTORd4UsxY/aN6FCrQy9yTj1ZyQpHazaHBRQTe80tl8ODdlPxCDxJ&#13;
-Lb20Pn9aE/igE7vNwn/QQNRRn+EvygtDOPiUYHwfJT090tPwDfzjGDwtMRxCFWmj7IIVDGoLHzxy&#13;
-yZYTgyADrI+swMXfBBApGd/aaM/GYrzdcXZ+tGfa0pX4o2muaz2MmStsopVQ++A2mu9DSgezc7RJ&#13;
-iHF3+boyaQupVgNTGCHpOx/77vAguEXtqXjS+A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_28d00c5f-07ea-4172-834c-beb67df40eb4"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qk29YzvuvT/PKaUICBV5UPZljFfDkLWZguihT0mUFkyyqn0tiuXlgYRA3UaXgJFHt7i3v/v/B48t&#13;
+mNjnZCQJpA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_43d9fb1c-7067-455c-b880-b841b596e438"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5Xeflr8/4UgWhGBx355wm9afQsiu5DJL19i5u2JCT2f574nervUrlRolC/hRsXrK1Qyr2chAbrXW&#13;
+yz4HonSEgg==</DigestValue></Reference></SignedInfo><SignatureValue>H5X/iPNMbVHu+knuQTzny41kKl+WjF9w+GqBsDS4ShTvjkhm+h8tJc9hwt93sjICpkVSTevUtcXg&#13;
+HdOEPUfskK4f7S9MjmhQjhhoaXpXFuL+GrvqV4K14+mGttx29u2PXAMAHhOW0KdKFUpB/Q2rF6K7&#13;
+LYo8fbFVViQyPqQ1QhnmSdeylngMtIdVCKM6b9RHPt+/vByta0vvx3IJ9IOMWUsfoYv/1+Sbs8Xn&#13;
+GiOge1iImijc+z6H7sVYpi2wFH1+5dNHLYlkz8t+F9D9N2Okr39s64L1ehiy43En8W8cq7DNpzJ5&#13;
+kEAbUh+p1TA1IkAnN2V1xF+ImmkjrjCg+Pmiog==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1790,4 +1790,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0ce0dc65-caf8-49bb-a554-d674759d03ab" Target="#_f8c57d2d-eb15-43f8-a041-95bd7794a631"><Timestamp>2023-06-29 13:23:24</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_43d9fb1c-7067-455c-b880-b841b596e438" Target="#_28d00c5f-07ea-4172-834c-beb67df40eb4"><Timestamp>2023-07-03 06:01:30</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
