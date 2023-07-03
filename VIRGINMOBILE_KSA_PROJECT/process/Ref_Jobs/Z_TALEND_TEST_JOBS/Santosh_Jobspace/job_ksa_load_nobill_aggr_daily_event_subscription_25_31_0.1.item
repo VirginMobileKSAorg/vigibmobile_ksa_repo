@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="KSA_PROD" framework="" jobType="Standard" xmi:version="2.0">
+  <context confirmationNeeded="false" name="KSA_NONPROD">
+    <contextParameter comment="" internalId="_y4Q0RrksEeqLfP5Yr4khFQ" name="vLoadDate" prompt="vLoadDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_UvNo8CltEeu_p7MHlaY6vg" name="vLoadNextDate" prompt="vLoadNextDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="yyyyMMdd" internalId="_y4Q0R7ksEeqLfP5Yr4khFQ" name="vStartDate" prompt="vStartDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20201130"/>
+    <contextParameter comment="yyyyMMdd" internalId="_y4Q0SLksEeqLfP5Yr4khFQ" name="vEndDate" prompt="vEndDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20201130"/>
+    <contextParameter comment="" internalId="_y4Q0SbksEeqLfP5Yr4khFQ" name="vDays" prompt="vDays?" promptNeeded="false" repositoryContextId="built-in" type="id_Long" value=""/>
+    <contextParameter comment="" internalId="_QfL4APsnEeqpvq2-MlUrbg" name="tempFileLocation" prompt="tempFileLocation?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="D:/Talend/ETL/"/>
+    <contextParameter comment="" internalId="_Eu2LQP79EeqDZp96P6IGmQ" name="ftp_destination_location" prompt="ftp_destination_location?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/tenant1/cdr/DWH_cdr"/>
+    <contextParameter comment="" internalId="_mZ3qUIfgEeyaTe_wDLEm9w" name="connection_sftp_host" prompt="connection_sftp_host?" promptNeeded="false" repositoryContextId="_9Rz4ENYiEeqJFahltXmrVg" type="id_String" value="10.4.95.97"/>
+    <contextParameter comment="" internalId="_mZ3qUYfgEeyaTe_wDLEm9w" name="connection_sftp_ftp_password" prompt="connection_sftp_ftp_password?" promptNeeded="false" repositoryContextId="built-in" type="id_Password" value="enc:system.encryption.key.v1:W4264UgIG/9M7oHGbBbKArE7YmG2qY4m9WYIY99CV0jcT0Uw"/>
+    <contextParameter comment="" internalId="_mZ3qUofgEeyaTe_wDLEm9w" name="connection_sftp_ftp_port" prompt="connection_sftp_ftp_port?" promptNeeded="false" repositoryContextId="built-in" type="id_Integer" value="22"/>
+    <contextParameter comment="" internalId="_mZ3qU4fgEeyaTe_wDLEm9w" name="connection_sftp_ftp_username" prompt="connection_sftp_ftp_username?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="customer"/>
+    <contextParameter comment="" internalId="_mZ4RYIfgEeyaTe_wDLEm9w" name="connection_alerts_cc" prompt="connection_alerts_cc?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_mZ4RYYfgEeyaTe_wDLEm9w" name="connection_alerts_from" prompt="connection_alerts_from?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="etlalerts@beyond.one"/>
+    <contextParameter comment="" internalId="_mZ4RYofgEeyaTe_wDLEm9w" name="connection_alerts_to" prompt="connection_alerts_to?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="santosh.kurakula@beyond.one,jibesh.biswas@beyond.one"/>
+    <contextParameter comment="" internalId="_mZ4RY4fgEeyaTe_wDLEm9w" name="connection_alerts_host" prompt="connection_alerts_host?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="smtp.office365.com"/>
+    <contextParameter comment="" internalId="_mZ4RZIfgEeyaTe_wDLEm9w" name="connection_alerts_password" prompt="connection_alerts_password?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_Password" value="enc:system.encryption.key.v1:H/fdSaKUXvpZuS7YLNfKK99gW0/17UkTeta8uy+5dWlOi7w7"/>
+    <contextParameter comment="" internalId="_mZ4RZYfgEeyaTe_wDLEm9w" name="connection_alerts_port" prompt="connection_alerts_port?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="587"/>
+    <contextParameter comment="" internalId="_mZ4RZofgEeyaTe_wDLEm9w" name="connection_alerts_username" prompt="connection_alerts_username?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="etlalerts@beyond.one"/>
+    <contextParameter comment="" internalId="_mZ4RZ4fgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_mZ4RaIfgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Login" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Login?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="talend"/>
+    <contextParameter comment="" internalId="_mZ4RaYfgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Password" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Password?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_Password" value="enc:system.encryption.key.v1:bNvFjljan3P6NW/dpaqkhV5UFvYdvjNPkDO5XYNYDn/o2aXYsPaXlYVcf4s="/>
+    <contextParameter comment="" internalId="_mZ4RaofgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Database" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Database?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="ksa_db_prod"/>
+    <contextParameter comment="" internalId="_mZ4Ra4fgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Schema" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Schema?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_mZ4RbIfgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Port" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Port?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="_mZ4RbYfgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Server" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Server?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="10.4.93.10"/>
+  </context>
+  <context confirmationNeeded="false" name="KSA_PROD">
+    <contextParameter comment="" internalId="_y4Q0RrksEeqLfP5Yr4khFQ" name="vLoadDate" prompt="vLoadDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_UvmDcCltEeu_p7MHlaY6vg" name="vLoadNextDate" prompt="vLoadNextDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="yyyyMMdd" internalId="_y4Q0R7ksEeqLfP5Yr4khFQ" name="vStartDate" prompt="vStartDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20200102"/>
+    <contextParameter comment="yyyyMMdd" internalId="_y4Q0SLksEeqLfP5Yr4khFQ" name="vEndDate" prompt="vEndDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20200102"/>
+    <contextParameter comment="" internalId="_y4Q0SbksEeqLfP5Yr4khFQ" name="vDays" prompt="vDays?" promptNeeded="false" repositoryContextId="built-in" type="id_Long" value=""/>
+    <contextParameter comment="" internalId="_QfL4AfsnEeqpvq2-MlUrbg" name="tempFileLocation" prompt="tempFileLocation?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="D:/Talend/ETL/"/>
+    <contextParameter comment="" internalId="_Eu5OkP79EeqDZp96P6IGmQ" name="ftp_destination_location" prompt="ftp_destination_location?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/tenant1/cdr/DWH_cdr"/>
+    <contextParameter comment="" internalId="_mZ4RbofgEeyaTe_wDLEm9w" name="connection_sftp_host" prompt="connection_sftp_host?" promptNeeded="false" repositoryContextId="_9Rz4ENYiEeqJFahltXmrVg" type="id_String" value="10.4.95.97"/>
+    <contextParameter comment="" internalId="_mZ4Rb4fgEeyaTe_wDLEm9w" name="connection_sftp_ftp_password" prompt="connection_sftp_ftp_password?" promptNeeded="false" repositoryContextId="built-in" type="id_Password" value="enc:system.encryption.key.v1:uhWV8GZzUWBgUKxoSrHMP+UtEh92mrIaYGKPoja1W7repQUU"/>
+    <contextParameter comment="" internalId="_mZ4RcIfgEeyaTe_wDLEm9w" name="connection_sftp_ftp_port" prompt="connection_sftp_ftp_port?" promptNeeded="false" repositoryContextId="built-in" type="id_Integer" value="22"/>
+    <contextParameter comment="" internalId="_mZ4RcYfgEeyaTe_wDLEm9w" name="connection_sftp_ftp_username" prompt="connection_sftp_ftp_username?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="customer"/>
+    <contextParameter comment="" internalId="_mZ4RcofgEeyaTe_wDLEm9w" name="connection_alerts_cc" prompt="connection_alerts_cc?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_mZ4Rc4fgEeyaTe_wDLEm9w" name="connection_alerts_from" prompt="connection_alerts_from?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="etlalerts@beyond.one"/>
+    <contextParameter comment="" internalId="_mZ4RdIfgEeyaTe_wDLEm9w" name="connection_alerts_to" prompt="connection_alerts_to?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="santosh.kurakula@beyond.one,jibesh.biswas@beyond.one"/>
+    <contextParameter comment="" internalId="_mZ4RdYfgEeyaTe_wDLEm9w" name="connection_alerts_host" prompt="connection_alerts_host?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="smtp.office365.com"/>
+    <contextParameter comment="" internalId="_mZ4RdofgEeyaTe_wDLEm9w" name="connection_alerts_password" prompt="connection_alerts_password?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_Password" value="enc:system.encryption.key.v1:Ux2MIe9jvkCMfJX2S7P+O5iSALLvRTZaFlbS6JdQfu2w6CmT"/>
+    <contextParameter comment="" internalId="_mZ4Rd4fgEeyaTe_wDLEm9w" name="connection_alerts_port" prompt="connection_alerts_port?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="587"/>
+    <contextParameter comment="" internalId="_mZ4ReIfgEeyaTe_wDLEm9w" name="connection_alerts_username" prompt="connection_alerts_username?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="etlalerts@beyond.one"/>
+    <contextParameter comment="" internalId="_mZ4ReYfgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_mZ4ReofgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Login" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Login?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="talend"/>
+    <contextParameter comment="" internalId="_mZ4Re4fgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Password" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Password?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_Password" value="enc:system.encryption.key.v1:5Waqr6WmX1B+bZ1KgwAySv7ZV9Ll6HtMWci6uV+m497YZ6EJw5HUIBjO/SU="/>
+    <contextParameter comment="" internalId="_mZ4RfIfgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Database" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Database?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="ksa_db_prod"/>
+    <contextParameter comment="" internalId="_mZ4RfYfgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Schema" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Schema?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_mZ4RfofgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Port" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Port?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="_mZ4Rf4fgEeyaTe_wDLEm9w" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Server" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Server?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="10.4.93.10"/>
+  </context>
+  <context confirmationNeeded="false" name="LOCALHOST">
+    <contextParameter comment="" internalId="_y4Q0RrksEeqLfP5Yr4khFQ" name="vLoadDate" prompt="vLoadDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_UvmDcCltEeu_p7MHlaY6vg" name="vLoadNextDate" prompt="vLoadNextDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="yyyyMMdd" internalId="_y4Q0R7ksEeqLfP5Yr4khFQ" name="vStartDate" prompt="vStartDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20200102"/>
+    <contextParameter comment="yyyyMMdd" internalId="_y4Q0SLksEeqLfP5Yr4khFQ" name="vEndDate" prompt="vEndDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20200102"/>
+    <contextParameter comment="" internalId="_y4Q0SbksEeqLfP5Yr4khFQ" name="vDays" prompt="vDays?" promptNeeded="false" repositoryContextId="built-in" type="id_Long" value=""/>
+    <contextParameter comment="" internalId="_QfL4AfsnEeqpvq2-MlUrbg" name="tempFileLocation" prompt="tempFileLocation?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="D:/Talend/ETL/"/>
+    <contextParameter comment="" internalId="_Eu5OkP79EeqDZp96P6IGmQ" name="ftp_destination_location" prompt="ftp_destination_location?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/tenant1/cdr/DWH_cdr"/>
+    <contextParameter comment="" internalId="_mZ4Rb4fgEeyaTe_wDLEm9w" name="connection_sftp_ftp_password" prompt="connection_sftp_ftp_password?" promptNeeded="false" repositoryContextId="built-in" type="id_Password" value="enc:system.encryption.key.v1:ZNhb7ueZ4Fk/4vqrdh0JhIBDuT/xIrKvrDfyuAMv5smeBBcJ"/>
+    <contextParameter comment="" internalId="_mZ4RcIfgEeyaTe_wDLEm9w" name="connection_sftp_ftp_port" prompt="connection_sftp_ftp_port?" promptNeeded="false" repositoryContextId="built-in" type="id_Integer" value="22"/>
+    <contextParameter comment="" internalId="_mZ4RcYfgEeyaTe_wDLEm9w" name="connection_sftp_ftp_username" prompt="connection_sftp_ftp_username?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="customer"/>
+    <contextParameter comment="" internalId="_RyNJsJSMEeyPX5WHsqZDVw" name="connection_alerts_cc" prompt="connection_alerts_cc?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_RyNJsZSMEeyPX5WHsqZDVw" name="connection_alerts_from" prompt="connection_alerts_from?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="etlalerts@beyond.one"/>
+    <contextParameter comment="" internalId="_RyNJspSMEeyPX5WHsqZDVw" name="connection_alerts_to" prompt="connection_alerts_to?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="santosh.kurakula@beyond.one,jibesh.biswas@beyond.one"/>
+    <contextParameter comment="" internalId="_RyNJs5SMEeyPX5WHsqZDVw" name="connection_alerts_host" prompt="connection_alerts_host?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="smtp.office365.com"/>
+    <contextParameter comment="" internalId="_RyNJtJSMEeyPX5WHsqZDVw" name="connection_alerts_password" prompt="connection_alerts_password?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_Password" value="enc:system.encryption.key.v1:B9/AzpXfdH7w6lwEuPnr3KXcLmnYzlCZCLA053lIUGiXAQuj"/>
+    <contextParameter comment="" internalId="_RyNJtZSMEeyPX5WHsqZDVw" name="connection_alerts_port" prompt="connection_alerts_port?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="587"/>
+    <contextParameter comment="" internalId="_RyNJtpSMEeyPX5WHsqZDVw" name="connection_alerts_username" prompt="connection_alerts_username?" promptNeeded="false" repositoryContextId="_ZoACQO4kEeq-ApwxYUJThQ" type="id_String" value="etlalerts@beyond.one"/>
+    <contextParameter comment="" internalId="_RyNJt5SMEeyPX5WHsqZDVw" name="VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_RyNJuJSMEeyPX5WHsqZDVw" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Login" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Login?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="talend"/>
+    <contextParameter comment="" internalId="_RyNJuZSMEeyPX5WHsqZDVw" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Password" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Password?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_Password" value="enc:system.encryption.key.v1:WOZeIGHaERZli/OXZJRFblbk/oMghmsJQ4D8b+0nidDmRQmhigFTKRl7hnE="/>
+    <contextParameter comment="" internalId="_RyNJupSMEeyPX5WHsqZDVw" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Database" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Database?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="ksa_db_prod"/>
+    <contextParameter comment="" internalId="_RyNJu5SMEeyPX5WHsqZDVw" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Schema" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Schema?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_RyNJvJSMEeyPX5WHsqZDVw" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Port" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Port?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="_RyNJvZSMEeyPX5WHsqZDVw" name="VERTICA_KSA_ONPREM_10_4_93_10__context_Server" prompt="VERTICA_KSA_ONPREM_10_4_93_10__context_Server?" promptNeeded="false" repositoryContextId="_E4pHsNcBEeqw89y4bs4Q4A" type="id_String" value="10.4.93.10"/>
+    <contextParameter comment="" internalId="_RyNJvpSMEeyPX5WHsqZDVw" name="connection_sftp_host" prompt="connection_sftp_host?" promptNeeded="false" repositoryContextId="_9Rz4ENYiEeqJFahltXmrVg" type="id_String" value="10.4.95.97"/>
+  </context>
+  <parameters>
+    <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
+    <elementParameter field="TEXT" name="JOB_RUN_VM_ARGUMENTS" show="false" value="{&quot;JOB_RUN_VM_ARGUMENTS&quot;:[&quot;-Xms4096M&quot;,&quot;-Xmx4096M&quot;]}"/>
+    <elementParameter field="CHECK" name="JOB_RUN_VM_ARGUMENTS_OPTION" show="false" value="true"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="128"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
+    <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_VERSION" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_KERBEROS" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_PRINCIPAL" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_USERNAME" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_GROUP" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_USE_KEYTAB" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_KT_PRINCIPAL" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_KEY_TAB" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_OO_KERBEROS" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_END_POINT" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_JOB_TRACKER_ENDPOINT" show="false" value=""/>
+    <elementParameter field="TEXT" name="OOZIE_END_POINT" show="false" value=""/>
+    <elementParameter field="CHECK" name="IMPLICITCONTEXT_USE_PROJECT_SETTINGS" show="false" value="true"/>
+    <elementParameter field="CHECK" name="STATANDLOG_USE_PROJECT_SETTINGS" show="false" value="true"/>
+    <elementParameter field="CHECK" name="MULTI_THREAD_EXECATION" value="true"/>
+    <elementParameter field="TEXT" name="PARALLELIZE_UNIT_SIZE" value="25000"/>
+    <elementParameter field="CHECK" name="IMPLICIT_TCONTEXTLOAD" value="false"/>
+    <elementParameter field="RADIO" name="FROM_FILE_FLAG_IMPLICIT_CONTEXT" show="false" value="false"/>
+    <elementParameter field="RADIO" name="FROM_DATABASE_FLAG_IMPLICIT_CONTEXT" show="false" value="false"/>
+    <elementParameter field="FILE" name="IMPLICIT_TCONTEXTLOAD_FILE" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="OVERRIDE_ENCODING_FLAG" show="false" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="OVERRIDE_ENCODING_IN_EXTRA" show="false" value="ISO-8859-15"/>
+    <elementParameter field="TECHNICAL" name="OVERRIDE_ENCODING_IN_EXTRA:ENCODING_TYPE" show="false" value="ISO-8859-15"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE_IMPLICIT_CONTEXT" show="false" value=""/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION_IMPLICIT_CONTEXT" show="false" value=""/>
+    <elementParameter field="TEXT" name="URL_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR_IMPLICIT_CONTEXT" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="HOST_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="PORT_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" show="false" value="enc:system.encryption.key.v1:tWYeNk09xppFeKsst7o/7ZopEAtRkPkKIVtUnM8l"/>
+    <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" show="false" value="Warning"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" show="false" value="Warning"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" show="false" value="false"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" show="false" value="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" show="false" value="false"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" show="false" value="false"/>
+    <elementParameter field="CHECK" name="ON_STATCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_LOGCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_METERCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_CONSOLE_FLAG" show="false" value="false"/>
+    <elementParameter field="CHECK" name="ON_FILES_FLAG" show="false" value="false"/>
+    <elementParameter field="DIRECTORY" name="FILE_PATH" show="false" value="&quot;D:/VirgnMobile_TalendStudio/workspace_731_20200323/.metadata&quot;"/>
+    <elementParameter field="TEXT" name="FILENAME_STATS" show="false" value="&quot;stats_file.txt&quot;"/>
+    <elementParameter field="TEXT" name="FILENAME_LOGS" show="false" value="&quot;logs_file.txt&quot;"/>
+    <elementParameter field="TEXT" name="FILENAME_METTER" show="false" value="&quot;meter_file.txt&quot;"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="ISO-8859-15"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" show="false" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="ON_DATABASE_FLAG" show="false" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE" show="false" value="tJDBCOutput"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" show="false" value="ORACLE_12"/>
+    <elementParameter field="TEXT" name="URL" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="HOST" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="PORT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="DATASOURCE" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="PROPERTIES" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="USER" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" show="false" value="enc:system.encryption.key.v1:HBW6vmvI3+mBGJ9QeMkCZQnPu2F1FvKh0CvBZLf9"/>
+    <elementParameter field="FILE" name="DBFILE" show="false" value="&quot;&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE_STATS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE_LOGS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE_METER" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="CATCH_RUNTIME_ERRORS" show="false" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_USER_ERRORS" show="false" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_USER_WARNING" show="false" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_REALTIME_STATS" show="false" value="false"/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_HEADERID" show="false" value=""/>
+    <elementParameter field="CHECK" name="HEADER_ENABLED" show="false" value="false"/>
+    <elementParameter field="TEXT" name="HEADER_LIBRARY" show="false" value=""/>
+    <elementParameter field="TEXT" name="HEADER_CODE" show="false" value=""/>
+    <elementParameter field="TEXT" name="HEADER_IMPORT" show="false" value=""/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_FOOTERID" show="false" value=""/>
+    <elementParameter field="CHECK" name="FOOTER_ENABLED" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FOOTER_LIBRARY" show="false" value=""/>
+    <elementParameter field="TEXT" name="FOOTER_CODE" show="false" value=""/>
+    <elementParameter field="TEXT" name="FOOTER_IMPORT" show="false" value=""/>
+    <routinesParameter id="_uCmdUC3gEemv8rRsunnDIQ" name="DQTechnical"/>
+    <routinesParameter id="_uCZB8i3gEemv8rRsunnDIQ" name="DataMasking"/>
+    <routinesParameter id="_uCquwC3gEemv8rRsunnDIQ" name="DataOperation"/>
+    <routinesParameter id="_uCfvoC3gEemv8rRsunnDIQ" name="DataQualityDependencies"/>
+    <routinesParameter id="_uCcsUC3gEemv8rRsunnDIQ" name="DataQuality"/>
+    <routinesParameter id="_uCjaAC3gEemv8rRsunnDIQ" name="DqStringHandling"/>
+    <routinesParameter id="_uCtyEC3gEemv8rRsunnDIQ" name="Mathematical"/>
+    <routinesParameter id="_uCyDgC3gEemv8rRsunnDIQ" name="Numeric"/>
+    <routinesParameter id="_uC0fwC3gEemv8rRsunnDIQ" name="Relational"/>
+    <routinesParameter id="_uDFlgC3gEemv8rRsunnDIQ" name="SQLike"/>
+    <routinesParameter id="_uC3jEC3gEemv8rRsunnDIQ" name="StringHandling"/>
+    <routinesParameter id="_uC7NcC3gEemv8rRsunnDIQ" name="TalendDataGenerator"/>
+    <routinesParameter id="_uC9CoC3gEemv8rRsunnDIQ" name="TalendDate"/>
+    <routinesParameter id="_uDCiMC3gEemv8rRsunnDIQ" name="TalendStringUtil"/>
+    <routinesParameter id="_uDAF8C3gEemv8rRsunnDIQ" name="TalendString"/>
+  </parameters>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="-32" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//context.vStartDate = &quot;2019-01-03&quot;;&#10;//context.vEndDate = &quot;2019-01-03&quot;;&#10;&#10;if(context.vStartDate.equals(null) || context.vStartDate.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;context.vStartDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;if(context.vEndDate.equals(null) || context.vEndDate.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;context.vEndDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;&#10;//System.out.println(&quot;Start Date : &quot;+ context.vStartDate);&#10;//System.out.println(&quot;End Date : &quot;+ context.vEndDate);&#10;&#10;&#10;context.vDays = TalendDate.diffDateIgnoreDST(TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.vEndDate),TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.vStartDate) , &quot;dd&quot;);&#10;&#10;//System.out.println(&quot;No:of Days : &quot; + context.vDays);&#10;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="calculate days in range to run in loop"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_1"/>
+  </node>
+  <node componentName="tLoop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="-32" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_1"/>
+    <elementParameter field="RADIO" name="FORLOOP" value="true"/>
+    <elementParameter field="RADIO" name="WHILELOOP" value="false"/>
+    <elementParameter field="TEXT" name="FROM" value="0"/>
+    <elementParameter field="TEXT" name="TO" value="context.vDays.intValue()"/>
+    <elementParameter field="TEXT" name="STEP" value="1"/>
+    <elementParameter field="CHECK" name="INCREASE" value="true"/>
+    <elementParameter field="TEXT" name="DECLARATION" show="false" value="int i=0"/>
+    <elementParameter field="TEXT" name="CONDITION" show="false" value="i&lt;10"/>
+    <elementParameter field="TEXT" name="ITERATION" show="false" value="i++"/>
+    <elementParameter field="TEXT" name="LABEL" value="loop through date range"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;&#10;context.vLoadDate = TalendDate.addDate(context.vStartDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;);&#10;context.vLoadNextDate = TalendDate.addDate(context.vStartDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;))+1, &quot;dd&quot;);&#10; &#10;System.out.println(&quot;vLoadDate: &quot; + context.vLoadDate);&#10;&#10;System.out.println(&quot;vLoadNextDate: &quot; + context.vLoadNextDate);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="set load date"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_2"/>
+  </node>
+  <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_2"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_bfgcUNcAEeqw89y4bs4Q4A"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="HOST" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Server"/>
+    <elementParameter field="TEXT" name="PORT" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Schema"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
+    <elementParameter field="TEXT" name="USER" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Login"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:p6VkcAqcUvdvVwU4Men4rtoNXmwvWiqVScLEGk8oBXiS12s2kAKVhe7E6H+iRDdFbWUqTIB9LsBUW0uRd+JvbVaWrgHb/GzQtTeeFHvPhbv4UWc="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;delete from ksa_stg.nobill_aggr_daily_event_subscription where start_date = to_date('&quot;+context.vLoadDate+&quot;','YYYYMMDD'); &quot;"/>
+    <elementParameter field="CLOSED_LIST" name="USE_NB_LINE" value="NONE"/>
+    <elementParameter field="LABEL" name="USE_NB_LINE_NOTE" value="* Only used if the query is an insert, an update or a delete."/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" show="false" value=""/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="TEXT" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="delete for load date"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tDBRow_2"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_1"/>
+    <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
+    <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="((Integer)globalMap.get(&quot;tDBRow_2_NB_LINE_DELETED&quot;))"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="20000"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJobLog_1"/>
+  </node>
+  <node componentName="tVerticaInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;10.4.32.25&quot;"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_prod&quot;"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;stg&quot;"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:/rNmwWSDundFIDnFmzmMHT1QIl7sWBcX6NIHkKzmAUZmA7KmaQrB8YJpLuw="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT&#13;&#10;&#9;ad_source,&#13;&#10;&#9;start_date,&#13;&#10;&#9;end_date,&#13;&#10;&#9;ad_subscription_type_id,&#13;&#10;&#9;ad_accountnum,&#13;&#10;&#9;ad_msisdn,&#13;&#10;&#9;ad_imsi,&#13;&#10;&#9;ad_call_direction_id,&#13;&#10;&#9;ad_calltype,&#13;&#10;&#9;ad_terminationreason,&#13;&#10;&#9;ad_mobilecountrycode,&#13;&#10;&#9;ad_mobilenetworkcode,&#13;&#10;&#9;ad_cell_site_id,&#13;&#10;&#9;ad_service_type_id,&#13;&#10;&#9;ad_country_operator_id,&#13;&#10;&#9;ad_origzone_id,&#13;&#10;&#9;ad_termzone_id,&#13;&#10;&#9;ad_eventid,&#13;&#10;&#9;ad_counter_type_id,&#13;&#10;&#9;event_validity,&#13;&#10;&#9;ad_transaction_key,&#13;&#10;&#9;ad_total_gross_revenue_time_based_daily,&#13;&#10;&#9;ad_total_received_revenue_time_based_daily&#13;&#10;FROM&#13;&#10;&#9;stg.nobill_aggr_daily_event_subscription&#13;&#10;where &#13;&#10;start_date =  to_date('&quot;+context.vLoadDate+&quot;','YYYYMMDD'); &quot;"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_source"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="start_date"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="end_date"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_subscription_type_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_accountnum"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_msisdn"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_imsi"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_call_direction_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_calltype"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_terminationreason"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_mobilecountrycode"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_mobilenetworkcode"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_cell_site_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_service_type_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_country_operator_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_origzone_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_termzone_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_eventid"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_counter_type_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="event_validity"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_transaction_key"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_total_gross_revenue_time_based_daily"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_total_received_revenue_time_based_daily"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tDBInput_1">
+      <column comment="" defaultValue="" key="true" length="19" name="ad_source" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="start_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="end_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_subscription_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_accountnum" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_msisdn" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_imsi" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_call_direction_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_calltype" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_terminationreason" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilecountrycode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilenetworkcode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_cell_site_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_service_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_country_operator_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_origzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_termzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_eventid" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_counter_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="event_validity" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="150" name="ad_transaction_key" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_gross_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_received_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="704" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_O56xEJdsEeuX0vve5hw-gg-tMap_1-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="true"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="LEVENSHTEIN" show="false" value="0"/>
+    <elementParameter field="TEXT" name="JACCARD" show="false" value="0"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="out1">
+      <column comment="" defaultValue="" key="true" length="19" name="ad_source" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="start_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="end_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_subscription_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_accountnum" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_msisdn" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_imsi" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_call_direction_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_calltype" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_terminationreason" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilecountrycode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilenetworkcode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_cell_site_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_service_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_country_operator_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_origzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_termzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_eventid" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_counter_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="event_validity" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="150" name="ad_transaction_key" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_gross_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_received_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties/>
+      <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
+      <outputTables name="out1" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="row1.ad_source" name="ad_source" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.start_date" name="start_date" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="row1.end_date" name="end_date" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="row1.ad_subscription_type_id" name="ad_subscription_type_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_accountnum" name="ad_accountnum" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_msisdn" name="ad_msisdn" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_imsi" name="ad_imsi" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_call_direction_id" name="ad_call_direction_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_calltype" name="ad_calltype" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_terminationreason" name="ad_terminationreason" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_mobilecountrycode" name="ad_mobilecountrycode" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_mobilenetworkcode" name="ad_mobilenetworkcode" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_cell_site_id" name="ad_cell_site_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_service_type_id" name="ad_service_type_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_country_operator_id" name="ad_country_operator_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_origzone_id" name="ad_origzone_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_termzone_id" name="ad_termzone_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_eventid" name="ad_eventid" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ad_counter_type_id" name="ad_counter_type_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.event_validity" name="event_validity" nullable="true" type="id_Float"/>
+        <mapperTableEntries expression="row1.ad_transaction_key" name="ad_transaction_key" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.ad_total_gross_revenue_time_based_daily" name="ad_total_gross_revenue_time_based_daily" nullable="true" type="id_Float"/>
+        <mapperTableEntries expression="row1.ad_total_received_revenue_time_based_daily" name="ad_total_received_revenue_time_based_daily" nullable="true" type="id_Float"/>
+      </outputTables>
+      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="ad_source" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="start_date" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="end_date" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="ad_subscription_type_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_accountnum" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_msisdn" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_imsi" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_call_direction_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_calltype" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_terminationreason" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_mobilecountrycode" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_mobilenetworkcode" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_cell_site_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_service_type_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_country_operator_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_origzone_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_termzone_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_eventid" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ad_counter_type_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="event_validity" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="ad_transaction_key" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ad_total_gross_revenue_time_based_daily" nullable="true" type="id_Float"/>
+        <mapperTableEntries name="ad_total_received_revenue_time_based_daily" nullable="true" type="id_Float"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="896" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_bfgcUNcAEeqw89y4bs4Q4A"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
+    <elementParameter field="TEXT" name="HOST" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Server"/>
+    <elementParameter field="TEXT" name="PORT" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_Login"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ZM40B4A0NVVk3iiA6y0tps+Vryu9UcyrMO15GGfKnQqVrv4PnbXbl0oBqgnG5YeT8Hb+DHbF0r6DrRnkUbBjCwQrHbK8MhLWesIjD8/okUd/lcw="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;ksa_stg.nobill_aggr_daily_event_subscription&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
+    <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="context.VERTICA_KSA_ONPREM_10_4_93_10__context_AdditionalParams"/>
+    <elementParameter field="CHECK" name="USE_ALTERNATE_SCHEMA" show="false" value="false"/>
+    <elementParameter field="TEXT" name="ALTERNATE_SCHEMA" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="ABORT_ON_ERROR" show="false" value="false"/>
+    <elementParameter field="TEXT" name="REJECT_MAX" show="false" value=""/>
+    <elementParameter field="FILE" name="EXCEPTIONS_PATH" show="false" value=""/>
+    <elementParameter field="TEXT" name="EXCEPTIONS_NODE" show="false" value=""/>
+    <elementParameter field="FILE" name="REJECTED_DATA" show="false" value=""/>
+    <elementParameter field="TEXT" name="REJECTED_NODE" show="false" value=""/>
+    <elementParameter field="CHECK" name="NO_COMMIT" show="false" value="true"/>
+    <elementParameter field="TEXT" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000"/>
+    <elementParameter field="CHECK" name="BATCH_MODE" value="true"/>
+    <elementParameter field="LABEL" name="NOTE" value="(Not compatible with reject links)"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" value="10000"/>
+    <elementParameter field="TABLE" name="ADD_COLS"/>
+    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="false"/>
+    <elementParameter field="TABLE" name="FIELD_OPTIONS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_source"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="start_date"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="end_date"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_subscription_type_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_accountnum"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_msisdn"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_imsi"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_call_direction_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_calltype"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_terminationreason"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_mobilecountrycode"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_mobilenetworkcode"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_cell_site_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_service_type_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_country_operator_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_origzone_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_termzone_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_eventid"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_counter_type_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="event_validity"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_transaction_key"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_total_gross_revenue_time_based_daily"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ad_total_received_revenue_time_based_daily"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
+    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
+    <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tDBOutput_1">
+      <column comment="" defaultValue="" key="true" length="19" name="ad_source" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="start_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="end_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_subscription_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_accountnum" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_msisdn" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_imsi" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_call_direction_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_calltype" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_terminationreason" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilecountrycode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilenetworkcode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_cell_site_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_service_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_country_operator_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_origzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_termzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_eventid" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_counter_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="event_validity" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="150" name="ad_transaction_key" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_gross_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_received_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" defaultValue="" key="true" length="19" name="ad_source" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="start_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="end_date" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_subscription_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_accountnum" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_msisdn" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_imsi" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_call_direction_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_calltype" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_terminationreason" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilecountrycode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_mobilenetworkcode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_cell_site_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_service_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_country_operator_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_origzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_termzone_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_eventid" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="ad_counter_type_id" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="event_validity" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="150" name="ad_transaction_key" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_gross_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="ad_total_received_revenue_time_based_daily" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="8" offsetLabelY="0" source="tJava_1" target="tLoop_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tJava_2">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tDBRow_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBRow_2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tDBRow_2" target="tJobLog_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBRow_2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tDBRow_2" target="tDBInput_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk4"/>
+  </connection>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tDBOutput_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="end_date"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="event_validity"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_service_type_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_call_direction_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_total_received_revenue_time_based_daily"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_mobilecountrycode"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_counter_type_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_eventid"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_transaction_key"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_msisdn"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_accountnum"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_source"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_subscription_type_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_calltype"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_total_gross_revenue_time_based_daily"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_terminationreason"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_mobilenetworkcode"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_cell_site_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_imsi"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_country_operator_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_origzone_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ad_termzone_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="start_date"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
+  </connection>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="TEXT" name="SUBJOB_TITLE" value="Set start and end date"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="128;255;128"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_1"/>
+    <elementParameter field="TEXT" name="SUBJOB_TITLE" value="Iterate through dates"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="128;255;128"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_46440da0-270a-49fa-922e-5be7f4313ec8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rH7NXrXib/eWW93fc8tw3C+xxLr3aZXdGQ2UnDmtpX4GJQIHD3hkyKir8ZwgaL5fihufIEY2ojuY&#13;
+sfzYfMsOWw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6502b503-70bb-4eb8-be76-974eaa869f08"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>htOqoroqD9flTjVqirccWVEppoEgYZm8zAQ4yYxRVB7aabfwZo0WTXpMEZ8pKjwfs2/OrNS3NnYa&#13;
+e6Q+vKQqDQ==</DigestValue></Reference></SignedInfo><SignatureValue>DlFnVKw/YbJiORzXg9JS3vdDeUXH1cu7HKxCOafCPNPdkIFMc9TwoClms3I4cgF3HMTqcd66IOPx&#13;
+gxvJBmqFcN0axArr9YtpZLx3XisBCg+wmqx3aENwtSMfJQX85LcN2n0WAZW1+DTaS5ca/z1vwLhm&#13;
+ACY4lLs+S5U2SXk6Tf7sW3Ddn5pIJQKtbyWVUODtMSMl++ThE1MvBxARYeb87LhF/SUtXS6uNwB7&#13;
+D8E7bdVucEmxS9diI9uHk7l9B2uVw0650GlmHJ3EU4I/ujsmZ2Ij5IcJFtfeZuE6PPcnFp/tJ5Yg&#13;
+f+7jZZPVHYK7Mq/MIFuEWC36RADXM5zupLPRqQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
+VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
+QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
+YWxlbmQgQ29kZSBTaWduaW5nIGNlcnRpZmljYXRlMQwwCgYDVQQLDANSJkQxFDASBgNVBAoTC1Rh&#13;
+bGVuZCBJbmMuMQ4wDAYDVQQHEwVQYXJpczEOMAwGA1UECBMFUGFyaXMxCzAJBgNVBAYTAkZSMIIB&#13;
+IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp5TMF8BmRt8dY51t9kIDdDkoOKVVytJN2gn2&#13;
+DhMGi8hzpUofNDykJDhe9SPqyJdGZ6o/h7laTA0/CivKyPT1OJQ9E2gMHKs8cTZM/cO2w0Atlqkl&#13;
+alIxepol0DNnUtmECVBqdnVsJesfmdoeptxgJAtxYbquFsTsrATNY2cscXpwmOca/Ewip48WQLFx&#13;
+e5s067jaIsAQGRIqpIup3bOtWBySrtImJ40lQCPeEcl96qzkv3utaVaNc3ukkhYkCDbMbK8NVd1B&#13;
+CVeeIBAe+n/SdpHH20o+6eIiZecsBGDLwlTYrFvuVqAa6xI7y8Vdz6irjPAVBEtG/iOc782aJ/lZ&#13;
+TwIDAQABo3UwczAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEF&#13;
+BQcDAzAdBgNVHQ4EFgQUGdfzQEbjQnANq28sfhEMTx+rsOcwHwYDVR0jBBgwFoAU530Lcvy1gZnG&#13;
+gCvZLOyCczK1qPcwDQYJKoZIhvcNAQELBQADggIBAEr22wnaQwZm2dhbUCqD+qZpTq2AF/tzxqAM&#13;
+eL/CiTjPbTblS4SNNwCKvTgMe9ucpUbenXmK7xE+DU9dN4om+t3VHbkOLQVyuLcd2WGsy7ZGwRvA&#13;
+f+TFwLbwjyTukOGm6Sd1qyZgvCPzBsKnft6vscvGy2yEpmFCeHJyBP8pvchg607zguRdNbkGYZXw&#13;
+G6jNipAbTtzdPTFKKr1bEf0sUGqMrlZIMPjflh2Vewu8ImNdX5IZdvBD6DdFVOC5wqV6u+W9ukE/&#13;
+mXZxDBYNl2AF7FTh04ucEVN3mHv7m2L0uFvUlhxchcagJhJsdQG+A0LVCemHbp6CSNQJx02KxqUG&#13;
+hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13;
+WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
+gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
+qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6502b503-70bb-4eb8-be76-974eaa869f08" Target="#_46440da0-270a-49fa-922e-5be7f4313ec8"><Timestamp>2023-07-03 10:19:59</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
