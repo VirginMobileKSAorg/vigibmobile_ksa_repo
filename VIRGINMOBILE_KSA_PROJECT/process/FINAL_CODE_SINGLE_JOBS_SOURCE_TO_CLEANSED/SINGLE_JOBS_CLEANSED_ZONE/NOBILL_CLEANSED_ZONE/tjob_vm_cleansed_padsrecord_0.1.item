@@ -701,7 +701,7 @@
       <column comment="2" key="false" length="32" name="firstreferenceid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="3" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="50" name="ano" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="5" key="false" length="255" name="imsi" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="5" key="false" length="255" name="imsi" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="6" key="false" length="25" name="subscriberip" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="7" key="false" length="50" name="subscriberipv6" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="8" key="false" length="19" name="ggsnchargingid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
@@ -757,7 +757,7 @@
       <column comment="2" key="false" length="32" name="firstreferenceid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="3" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="50" name="ano" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="5" key="false" length="255" name="imsi" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="5" key="false" length="255" name="imsi" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="6" key="false" length="25" name="subscriberip" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="7" key="false" length="50" name="subscriberipv6" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="8" key="false" length="19" name="ggsnchargingid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
@@ -828,7 +828,7 @@
     <metadata connector="FLOW" name="out">
       <column comment="1" key="false" length="32" name="internalreferenceid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="32" name="firstreferenceid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="3" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="3" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
       <column comment="4" key="false" length="50" name="ano" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="5" key="false" length="15" name="imsi" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
       <column comment="6" key="false" length="25" name="subscriberip" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
@@ -890,9 +890,9 @@
       <outputTables name="out" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.internalreferenceid" name="internalreferenceid" type="id_String"/>
         <mapperTableEntries expression="row4.firstreferenceid" name="firstreferenceid" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row4.seqno" name="seqno" type="id_String"/>
+        <mapperTableEntries expression="row4.seqno == null ? null ||row4.seqno == &quot;&quot;? null:Long.parseLong(row4.seqno) " name="seqno" type="id_Long"/>
         <mapperTableEntries expression="row4.ano" name="ano" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row4.imsi" name="imsi" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row4.imsi == null ? null ||row4.imsi == &quot;&quot;? null:Long.parseLong(row4.imsi) " name="imsi" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.subscriberip" name="subscriberip" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.subscriberipv6" name="subscriberipv6" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.ggsnchargingid " name="ggsnchargingid" nullable="true" type="id_String"/>
@@ -951,7 +951,7 @@
         <mapperTableEntries name="firstreferenceid" nullable="true" type="id_String"/>
         <mapperTableEntries name="seqno" type="id_String"/>
         <mapperTableEntries name="ano" nullable="true" type="id_String"/>
-        <mapperTableEntries name="imsi" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="imsi" nullable="true" type="id_String"/>
         <mapperTableEntries name="subscriberip" nullable="true" type="id_String"/>
         <mapperTableEntries name="subscriberipv6" nullable="true" type="id_String"/>
         <mapperTableEntries name="ggsnchargingid" nullable="true" type="id_String"/>
@@ -1038,7 +1038,7 @@
     <metadata connector="FLOW" name="tFileOutputDelimited_1">
       <column comment="1" key="false" length="32" name="internalreferenceid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="32" name="firstreferenceid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="3" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="3" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
       <column comment="4" key="false" length="50" name="ano" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="5" key="false" length="15" name="imsi" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
       <column comment="6" key="false" length="25" name="subscriberip" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
@@ -2721,7 +2721,12 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_1" target="tFileDelete_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
+  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
+  </connection>
+  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="termzone"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -2932,11 +2937,6 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row11"/>
   </connection>
-  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
-  </connection>
   <connection connectorName="REJECT" label="row9" lineStyle="0" metaname="tSchemaComplianceCheck_1" offsetLabelX="0" offsetLabelY="0" source="tSchemaComplianceCheck_1" target="tFileOutputDelimited_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
@@ -3111,13 +3111,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d9c68660-4f06-45d6-a008-af6c6042b268"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>tGhgpMWKhXk+6ETDBMlf87VgpV2a+y04JQIEN0i93qtnqRwdP05Xx2Q1O8W12MIDqVAnpq+DKNNl&#13;
-YIguQERJoQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1f1a9644-4514-45fa-a5b8-9c6415e42fa7"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ns0Z7Kv6pF1mQq5JOR9vS/qlxZSh/01k4ojf9GGoKyN2u/w45T8cl2am73TqyfR0Q6rqfiLzrG/5&#13;
-5a4FWFgUuQ==</DigestValue></Reference></SignedInfo><SignatureValue>YY+9rsqqUZGCEgoLadM6wx9Cy/q91uux9UVE91LgrQREg/9c3hFbhuka1Vh4Pd4qnn23non2UA7h&#13;
-DCokV5mgQF6lsIwY+gHKFvfYKNpbBuAnGtpxYASqlJRJdneAyI9lKI+XVwsoUJ6Z+J4R6UnQsWBZ&#13;
-sWo3NQMiPQAuK9Wdh8rcCA/TJsw4gjvjGUqofp3BzfM71Q2ryp+di7s88nl1lK2gl+zp+9oGYKe7&#13;
-ar79F3RYo/vK3B946IRYYr5l8xYxj7+dae5TbAyCW6jZVByk+E/TKCV0fDWUFKy1zGCgptf6aWqI&#13;
-TlXD5JECbHchWF11lJMOk+IQ6XvqtxlW4AU5Kw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8f8d3bdd-0562-4401-b346-3b1a63f45238"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>XCKZaDzh6zDJgoZE9uSnMJQn3Oyv4TDVlz1HzEL2osITTwCTe0zBUCjXxFag/6CJytwghcuk8+tV&#13;
+q+zEokTamw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_67b19e30-1797-41bf-9691-f5f14cd0c73d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7wHQhgpqDuWKpD0UFj7iUi9GJR5AkJlRhmRJ3RageZ1JS+JO1PhWNQnSRojQ+cqrxTjId6Ac+fX1&#13;
+uaGd9JscqQ==</DigestValue></Reference></SignedInfo><SignatureValue>O/xs0wqi1YR/oTpFAMKrwKwHj4fBAVWtOvucsXxH56PHNlmE37iCm0urRtQvyRmjjbqDxeelYBUo&#13;
+NDqgnvgTGpF7ENysUrQPmK/RBeXH6Ifs9befbj/QIfYjmExGIclblF8HjUAlWgwcQRK5zP36TXy+&#13;
+U3VME6ViqI45EWFYl/30/+FM73seHefXNHDPkmH16FeZwwJSy9b/kTC+AcpOkbab6J8ysTBLeTWs&#13;
+aInzDBuvpkMwFxytchjKRHCArUzHbXLIEP3xW4nd2iNSN5EVKvjZOLiehzKbuYa1qQDSYsb/dNW3&#13;
+rRGoOqih8KNk4DjEYDqBa+y3h4IzWGM7J31wBg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -3139,4 +3139,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1f1a9644-4514-45fa-a5b8-9c6415e42fa7" Target="#_d9c68660-4f06-45d6-a008-af6c6042b268"><Timestamp>2023-07-07 13:16:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_67b19e30-1797-41bf-9691-f5f14cd0c73d" Target="#_8f8d3bdd-0562-4401-b346-3b1a63f45238"><Timestamp>2023-07-17 08:48:04</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
