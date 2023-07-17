@@ -723,7 +723,7 @@
       <column comment="24" key="false" length="255" name="rateplanid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="25" key="false" length="255" name="rateplanname" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="26" key="false" length="255" name="deviations" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="27" defaultValue="" key="false" length="255" name="accountnum" nullable="true" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="27" key="false" length="255" name="accountnum" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="28" defaultValue="" key="false" length="255" name="cost" nullable="true" pattern="" precision="0" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="29" defaultValue="" key="false" length="255" name="initialcost" nullable="true" pattern="" precision="0" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="30" defaultValue="" key="false" length="255" name="minutecost" nullable="true" pattern="" precision="0" sourceType="" type="id_Float" usefulColumn="true"/>
@@ -779,7 +779,7 @@
       <column comment="24" key="false" length="255" name="rateplanid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="25" key="false" length="255" name="rateplanname" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="26" key="false" length="255" name="deviations" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="27" defaultValue="" key="false" length="255" name="accountnum" nullable="true" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="27" key="false" length="255" name="accountnum" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="28" defaultValue="" key="false" length="255" name="cost" nullable="true" pattern="" precision="0" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="29" defaultValue="" key="false" length="255" name="initialcost" nullable="true" pattern="" precision="0" sourceType="" type="id_Float" usefulColumn="true"/>
       <column comment="30" defaultValue="" key="false" length="255" name="minutecost" nullable="true" pattern="" precision="0" sourceType="" type="id_Float" usefulColumn="true"/>
@@ -906,15 +906,15 @@
         <mapperTableEntries expression="row4.locationAreaCode" name="locationAreaCode" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.cellIdentity" name="cellIdentity" type="id_String"/>
         <mapperTableEntries expression="row4.calltype" name="calltype" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row4.creationtime== null || String.valueOf(row4.creationtime)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.creationtime)) " name="creationtime" type="id_String"/>
-        <mapperTableEntries expression="row4.starttime== null || String.valueOf(row4.starttime)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.starttime)) " name="starttime" type="id_String"/>
-        <mapperTableEntries expression="row4.localstarttime== null || String.valueOf(row4.localstarttime)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.localstarttime)) " name="localstarttime" type="id_String"/>
+        <mapperTableEntries expression="row4.creationtime== null || String.valueOf(row4.creationtime)== &quot;&quot;? null : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.creationtime)) " name="creationtime" type="id_String"/>
+        <mapperTableEntries expression="row4.starttime== null || String.valueOf(row4.starttime)== &quot;&quot;? null : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.starttime)) " name="starttime" type="id_String"/>
+        <mapperTableEntries expression="row4.localstarttime== null || String.valueOf(row4.localstarttime)== &quot;&quot;? null : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.localstarttime)) " name="localstarttime" type="id_String"/>
         <mapperTableEntries expression="row4.duration" name="duration" type="id_Long"/>
         <mapperTableEntries expression="row4.chargedduration" name="chargedduration" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.rateplanid" name="rateplanid" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.rateplanname" name="rateplanname" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.deviations" name="deviations" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row4.accountnum" name="accountnum" type="id_Long"/>
+        <mapperTableEntries expression="row4.accountnum== null || String.valueOf(row4.accountnum)== &quot;&quot;? null :Long.parseLong(row4.accountnum) " name="accountnum" type="id_Long"/>
         <mapperTableEntries expression="row4.cost" name="cost" type="id_Float"/>
         <mapperTableEntries expression="row4.initialcost" name="initialcost" nullable="true" type="id_Float"/>
         <mapperTableEntries expression="row4.minutecost" name="minutecost" nullable="true" type="id_Float"/>
@@ -944,7 +944,7 @@
         <mapperTableEntries expression="row4.recordtags" name="recordtags" nullable="true" type="id_String"/>
         <mapperTableEntries expression="TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_ETL&quot;; " name="insert_audit_key" nullable="true" type="id_String"/>
         <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1))); " name="filesequenceid" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression="row4.creationtime== null || String.valueOf(row4.creationtime)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.creationtime)) " name="localcreationtime" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.creationtime== null || String.valueOf(row4.creationtime)== &quot;&quot;? null : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.creationtime)) " name="localcreationtime" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
         <mapperTableEntries name="internalreferenceid" nullable="true" type="id_String"/>
@@ -973,7 +973,7 @@
         <mapperTableEntries name="rateplanid" nullable="true" type="id_String"/>
         <mapperTableEntries name="rateplanname" nullable="true" type="id_String"/>
         <mapperTableEntries name="deviations" nullable="true" type="id_String"/>
-        <mapperTableEntries name="accountnum" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="accountnum" nullable="true" type="id_String"/>
         <mapperTableEntries name="cost" nullable="true" type="id_Float"/>
         <mapperTableEntries name="initialcost" nullable="true" type="id_Float"/>
         <mapperTableEntries name="minutecost" nullable="true" type="id_Float"/>
@@ -1863,13 +1863,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f3feeba1-2e6d-4fdf-bd4a-7b36f448eea8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>B6CaGn5SDuvb62yMhOYID3z+ynT6jGpGdAga5LsXkypK99uIk0oUBovejxUZpwTb8SNa1ySkPne+&#13;
-L0rjtwu23w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ef729072-7e08-477d-ab4c-148d7da1ab8d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>UHKppsZnw5W/SRRPnzyElH7r8v1JqDnYxyFr4sUxjryJ0B10d72jjh1Vw1EVF528TFgFlGtN5EBa&#13;
-i1G6QfaGXg==</DigestValue></Reference></SignedInfo><SignatureValue>UWl8Ym7tdQ5mCj6+TmhYeNo4STky9hBHRDyMTTFLGmDYln59tX+CpctFCRBgB/dvVbOFvTOnISTu&#13;
-fjBVbifrRXYAUYko9D50X51htneVGpFXCwv9NsGXhG5fNLmN4cu50pxC7uSFbJRO80+eoff08gFm&#13;
-EjIZzuzy+HJZdPOQ78oxQCxBi8CuYAClKTudFHhqTqRRoBqQWTg2QVE53J1pn5jAcHSjbJ/u6scF&#13;
-KzWEs9QAKrFlAasSORNor1QuBMVqsiSfD8wP1vGdJ3d1nJ4J3EUscZ2LWLc8qpFIKNTLSGadwMNu&#13;
-5LTNjPfbzygRVog6MR51T/5cA4RL/TWIOSyYEQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e91d8b5f-4a46-4875-bcff-9e230f93b79d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>sxXw5Aauhkd/sHzsHARGy6DRg0j85QQt4iMCp7t+ttzXfXEBiz7GMfq4VmiDa/72nJEcwtYPGMdn&#13;
+0NA831Pd0Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1e744e75-698c-4c54-8d97-01f0227e01c8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zsdFfwEdtGAg09DVyGmhTpA7My+GOgk70xYbTSQ350Fk6oZvVxR3sXJ/ppF73f5m35LyIQKuZ7PB&#13;
+MCxsMX+SJA==</DigestValue></Reference></SignedInfo><SignatureValue>fC1ZMrYzpEmMrFthOze4SwfT5oUOn4oTma/jwZM/3eSOeEZXJYi7t2iN/BgY2guE3snV9y2ccHpd&#13;
+SAwyrgDx1SuRCvuz7llXODry5V8MQi/x47IC8sOvQCwzL9hlzls/AsXeahlO2ZHAfNuFmi2AwEzO&#13;
+M7N/tebpRxfT1kv53E4TjWsvBR3UETKFkZTo0RR3dBegAt5qJYTRBch6rJSvoHHj4TBn0ijdfcf5&#13;
+mtkLXoXdU/cgXq3+ZCAedHKu7Dy6CxAbuNiitQgntj8x+Sx3pUjWwfm4S8AABnyG+lwRPk7hMpt9&#13;
+9RVX5Ds09ykilXGFmdIFi0h5Lqg9hBPlXb3zbA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1891,4 +1891,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ef729072-7e08-477d-ab4c-148d7da1ab8d" Target="#_f3feeba1-2e6d-4fdf-bd4a-7b36f448eea8"><Timestamp>2023-07-17 07:59:54</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1e744e75-698c-4c54-8d97-01f0227e01c8" Target="#_e91d8b5f-4a46-4875-bcff-9e230f93b79d"><Timestamp>2023-07-17 08:23:43</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
