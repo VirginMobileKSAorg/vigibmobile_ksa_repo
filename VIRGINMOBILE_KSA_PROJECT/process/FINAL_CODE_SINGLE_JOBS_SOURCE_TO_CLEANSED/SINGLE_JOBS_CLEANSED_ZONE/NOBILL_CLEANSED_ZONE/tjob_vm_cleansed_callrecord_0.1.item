@@ -699,7 +699,7 @@
     <metadata connector="FLOW" label="metadata" name="tFileInputDelimited_2">
       <column comment="1" key="false" length="255" name="internalreferenceid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="255" name="firstreferenceid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="3" defaultValue="" key="false" length="255" name="seqno" nullable="true" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="3" key="false" length="255" name="seqno" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="255" name="callreferencenumber" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="5" key="false" length="255" name="ano" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="6" key="false" length="255" name="bno" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -755,7 +755,7 @@
     <metadata connector="REJECT" label="metadata" name="REJECT">
       <column comment="1" key="false" length="255" name="internalreferenceid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="255" name="firstreferenceid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="3" defaultValue="" key="false" length="255" name="seqno" nullable="true" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="3" key="false" length="255" name="seqno" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="255" name="callreferencenumber" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="5" key="false" length="255" name="ano" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="6" key="false" length="255" name="bno" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -885,18 +885,18 @@
       <column comment="57" key="false" length="-1" name="localcreationtime" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.internalreferenceid" name="internalreferenceid" type="id_String"/>
         <mapperTableEntries expression="row4.firstreferenceid" name="firstreferenceid" type="id_String"/>
-        <mapperTableEntries expression="row4.seqno" name="seqno" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row4.seqno== null || row4.seqno.equals(&quot;&quot;) ? null : Long.parseLong(row4.seqno) " name="seqno" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.callreferencenumber" name="callreferencenumber" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.ano" name="ano" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.bno" name="bno" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.cno" name="cno" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.receiveddestinationno" name="receiveddestinationno" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row4.imsi" name="imsi" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row4.imsi  == null? null : row4.imsi.equals(&quot;&quot;) ? null : Long.parseLong(row4.imsi) " name="imsi" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.otherpartyserviceproviderid" name="otherpartyserviceproviderid" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.callingcardserialno" name="callingcardserialno" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.callingcardnumberseries" name="callingcardnumberseries" nullable="true" type="id_String"/>
@@ -949,7 +949,7 @@
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
         <mapperTableEntries name="internalreferenceid" nullable="true" type="id_String"/>
         <mapperTableEntries name="firstreferenceid" nullable="true" type="id_String"/>
-        <mapperTableEntries name="seqno" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="seqno" nullable="true" type="id_String"/>
         <mapperTableEntries name="callreferencenumber" nullable="true" type="id_String"/>
         <mapperTableEntries name="ano" nullable="true" type="id_String"/>
         <mapperTableEntries name="bno" nullable="true" type="id_String"/>
@@ -1863,13 +1863,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ecd5e191-95f0-4e47-a060-c9f21660944b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>02bRu+QkXRxov/AE7xDEurziEcWhB6R3VbUOjjgGX1TgvYW7MJnkk8aoJsCEGQCiVppKN2APKrZx&#13;
-4VcEJ1NLWw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3a8625f3-d5db-41f5-8df5-f9cf8b813a25"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ptH+EdWh1E27BnSOKZrUsmTH9NgOHADbvnOD4KqZ47idt1oeyaIvurAIh9kmWI5YNV0gvBfQZrSb&#13;
-KFzU6epp5A==</DigestValue></Reference></SignedInfo><SignatureValue>NDXJR/VaSNRNbFtOBSVnvzfhNvyGseM3XmUP+V2Gpgn+tnrASAveIm0ec/cqqsSg4w2UZMETuzzr&#13;
-WvseXEDY7zucd8X1cOctN0GSy0lYKnXdTXseqC4F7QatE9/EczBb1ej9G+4pZ7/N9TbdKfZ/KD1b&#13;
-stfs7EldsyLNXJae37wbBVCJ5nRQLLZw2DZD2c4V24YoK3UZ9lBfKUtc2XlTuXNcZlLGEYO3t+m2&#13;
-S1TZcyP0MA36wCk1BHVy2LdioUdEc+bLvPRuuy2H2/VtzVc/q/Pu/87a5Kj3UlMya7KIEo9VKcUi&#13;
-pzpZBaGSFI6+x6z+e5et9QcbU0GuFCglg86WUg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8656e309-0144-4d68-9ea7-9f3107f685c2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>J1urAPm+Hdz9jb4Towhp1ULB9wWsF6o1EFBZl0EZz4loHtlCWygGQWIQY934D6q6JTam8T0e+zz1&#13;
+DbcheFDzZg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_9fa6b485-571e-4d18-a495-d3e7573ee263"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rEsLDzmYzzdzTN8FXY48rCY78lkKANfMHsTrRalScKpye2sRf30axIyj1CUvktBvTs342+JYDUwv&#13;
+pQbU6XblaQ==</DigestValue></Reference></SignedInfo><SignatureValue>fLF5muCXvH2t4LNB+Y07hngAo1ydUAm5udPsgUihphDJ6380oSpDI/Qgem3E6S3HFgUhq7qDnT3I&#13;
+u9aDqY+BAzTdDfFsR6+nYbn54zxEc/oeosT2nlD7QnU3vRl8hlqUpSpRiFjHW4RVvRuHRF67jqny&#13;
+QLn84kKD5J1kAiVOmki/pwIr6bqccd53kboaOTbhUjltDy7KtsMIYSAbSPYsLflYKF+knuGtVJKS&#13;
+RQbiuWctbF+4lKJ8nhhs13Sgl6oVuYG6mdpEt3ed9FCWPcaBTR1P1UXEJXsIa+FhB+JfesnV0EWy&#13;
+JuMyTgmO0mNyx+a8+G/N28cpQQ5t6NuiEDOugg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1891,4 +1891,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3a8625f3-d5db-41f5-8df5-f9cf8b813a25" Target="#_ecd5e191-95f0-4e47-a060-c9f21660944b"><Timestamp>2023-07-07 13:43:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_9fa6b485-571e-4d18-a495-d3e7573ee263" Target="#_8656e309-0144-4d68-9ea7-9f3107f685c2"><Timestamp>2023-07-17 07:58:37</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
