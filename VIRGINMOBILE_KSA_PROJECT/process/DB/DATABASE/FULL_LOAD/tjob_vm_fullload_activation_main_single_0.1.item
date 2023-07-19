@@ -1370,6 +1370,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1408" posY="1216">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_6"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_size = context.to_be_calculated;&#10;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;); &#10;context.source_count = new Long((Integer)globalMap.get(&quot;tDBInput_1_NB_LINE&quot;));&#10;context.target_count = new Long(((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;)));&#10;context.insert_count = new Long(((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;)));&#10;context.update_count = new Long(0);&#10;System.out.println(&quot;context.source_count is &quot;+ context.source_count);&#10;System.out.println(&quot;context.target_countis &quot;+ context.target_count );&#10;System.out.println(&quot;context.target_object_name  is ---------- &quot;+ context.target_object_name );&#10;if(context.source_count.equals(context.target_count)) {&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_success ;&#10;&#9;context.error_msg = context.error_msg_success;&#10;}&#10;else {&#10;&#9;context.task_status = context.task_status_failed;&#10;&#9;context.error_code = context.error_code_validation ;&#10;&#9;context.error_msg = context.error_msg_validation;&#10;}&#10;if(context.source_count.equals(new Long(0))){&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_extractzero ;&#10;&#9;context.error_msg = context.error_msg_extractzero;&#10;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set final context values"/>
@@ -1378,6 +1379,7 @@
   </node>
   <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1408" posY="1408">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_4"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
     <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
@@ -1412,6 +1414,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1728" posY="1216">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_7"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_size = context.to_be_calculated;&#10;context.task_status = context.task_status_failed;&#10;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;); &#10;&#10;//Error Message&#9;&#10;if(!(((String)globalMap.get(&quot;tDBInput_1_ERROR_MESSAGE&quot;)).equals(null)||((String)globalMap.get(&quot;tFileList_1_ERROR_MESSAGE&quot;)).equals(&quot;&quot;))){&#10;&#9;context.error_msg = context.error_msg_extract; &#10;&#9;context.error_code = context.error_code_extract;&#10;&#9;&#10;}&#10;else if(!(((String)globalMap.get(&quot;tFileOutputDelimited_2_ERROR_MESSAGE&quot;)).equals(null)||((String)globalMap.get(&quot;tFileOutputDelimited_2_ERROR_MESSAGE&quot;)).equals(&quot;&quot;)))&#9;{&#10;&#9;context.error_msg = context.error_msg_load; &#10;&#9;context.error_code = context.error_code_load;&#10;}&#9;&#10;else{&#10;&#9;context.error_msg = context.error_msg_extractload;&#10;&#9;context.error_code = context.error_code_extractload;&#10;}&#9;&#10;//Source Count&#9;&#10;if(((Integer)globalMap.get(&quot;tDBInput_1_NB_LINE&quot;))!=null)&#9;&#9;&#10;&#9;context.source_count =  new Long(((Integer)globalMap.get(&quot;tFileInputDelimited_3_NB_LINE&quot;)));&#10;else&#10;&#9;context.source_count =  new Long(0);&#10;//Target Count&#9;&#10;if(((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;))!=null)&#9;&#10;&#9;context.target_count =  new Long(((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;)));&#10;else&#10;context.target_count = new Long(0);&#9;&#10;context.insert_count = new Long(0);&#10;context.update_count = new Long(0);&#10;context.reject_count = new Long(0);&#10;context.delete_count = new Long(0);&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set final context values"/>
@@ -1420,6 +1423,7 @@
   </node>
   <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1728" posY="1408">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_5"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
     <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
@@ -1447,11 +1451,13 @@
   </node>
   <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="1728">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPostjob_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TEXT" name="LABEL" value="run at the end"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1216" posY="1728">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
     <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Completed execution of Object and inserting into RESTART INDICATOR if success: &quot;+context.object_name"/>
@@ -1462,6 +1468,7 @@
   </node>
   <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1504" posY="1728">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value="tDBConnection_1"/>
@@ -1497,6 +1504,7 @@
   </node>
   <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1824" posY="1728">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_3"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
     <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Completed execution of Object: &quot;+context.object_name"/>
@@ -1507,6 +1515,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1408" posY="1568">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_8"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="//context.talend_jobname = jobName ;&#10;context.file_size = &quot;&quot;;&#10;if(!context.task_status.equals(context.task_status_failed)){&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;&#9;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;&#9;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;);    &#10;&#9;context.error_code = context.error_code_success ;&#10;&#9;context.error_msg = context.error_msg_success;&#10;&#9;context.source_count = new Long(0);&#10;&#9;context.target_count = new Long(0);&#10;&#9;context.insert_count = new Long(0);&#10;&#9;context.update_count = new Long(0);&#10;&#9;context.reject_count = new Long(0);&#10;&#9;context.delete_count = new Long(0);&#10;&#9;&#10;}&#10; context.source_system=&quot;talendjob&quot;;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="Set dynamic value for main job"/>
@@ -1515,6 +1524,7 @@
   </node>
   <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1728" posY="1568">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_6"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
     <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
@@ -1542,6 +1552,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="1568">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_9"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_size = &quot;&quot;;&#10;context.task_status = context.task_status_failed;&#10;context.error_code = context.error_code_subjob;&#10;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;);  &#10;context.error_msg = context.error_msg + &quot; &quot; +context.error_msg_subjob + &quot;4&quot;;&#10;context.source_count =  new Long(0);&#10;context.target_count =  new Long(0);&#10;context.insert_count = new Long(0);&#10;context.update_count = new Long(0);&#10;context.reject_count = new Long(0);&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set final context values"/>
@@ -1550,6 +1561,7 @@
   </node>
   <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1216" posY="1568">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_4"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
     <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Failed execution of Subjob for File Count 4&quot;"/>
@@ -1817,9 +1829,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="extract"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBInput_3" offsetLabelX="0" offsetLabelY="0" source="tDBInput_3" target="tJava_6">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk12"/>
   </connection>
   <connection connectorName="SUBJOB_ERROR" label="OnSubjobError" lineStyle="4" metaname="tDBInput_3" offsetLabelX="0" offsetLabelY="0" source="tDBInput_3" target="tJava_7">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobError1"/>
   </connection>
   <connection connectorName="FLOW" label="rawzone" lineStyle="0" metaname="rawzone" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tFileOutputDelimited_2">
@@ -2141,31 +2155,40 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="trans"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_6" offsetLabelX="0" offsetLabelY="0" source="tJava_6" target="tRunJob_4">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk11"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_4" offsetLabelX="0" offsetLabelY="0" source="tRunJob_4" target="tJava_8">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk16"/>
   </connection>
   <connection connectorName="SUBJOB_ERROR" label="OnSubjobError" lineStyle="4" metaname="tRunJob_4" offsetLabelX="0" offsetLabelY="0" source="tRunJob_4" target="tJava_9">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobError2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_7" offsetLabelX="0" offsetLabelY="0" source="tJava_7" target="tRunJob_5">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk13"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tJobLog_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJobLog_2" offsetLabelX="0" offsetLabelY="0" source="tJobLog_2" target="tDBRow_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.task_status.equals(context.task_status_success)"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBRow_1" offsetLabelX="0" offsetLabelY="0" source="tDBRow_1" target="tJobLog_3">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk14"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_8" offsetLabelX="0" offsetLabelY="0" source="tJava_8" target="tRunJob_6">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk15"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_9" offsetLabelX="0" offsetLabelY="0" source="tJava_9" target="tJobLog_4">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk17"/>
   </connection>
   <subjob>
@@ -2310,13 +2333,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c53e8865-c401-4afa-b827-e6b357451256"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Tpb7O7wcWvhgOwbgOJF4ZG8f3F9SrBfR9I7phSaoCfGRmObtZL41qBw2crOELNu220Ku5N1b6uTk&#13;
-gpk76A0W8A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2b508157-b8ed-4c37-be88-fd8c16759e35"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BxB+FnDaC8mPmticts1uEjohkgTOOGK2pvc7ZLVwk9JJ4EBFk3piNW3h/KsXMnU1zX2Ao9ML8Dl0&#13;
-9TDZA8soUg==</DigestValue></Reference></SignedInfo><SignatureValue>Stky8I2+P+FROc/rjSxnw0KDH1XET6g0/6hZEd4cwNHy3KPob3vTCscQgeO04JXrpeXNnvydmvGO&#13;
-DQIFO1XZDobcs264zerZ5wMv1d1ruMfFKCUTR9PXBObyQ4FuUM7C5coDMZiDH5q2XT7qH2WQ4gMf&#13;
-thjp/cjUbC3+nUXghwGso4KndtdRdIHcyVXyAG+Di7D0rRRm738SrDjrd9563tYONuC+oeiI7mfa&#13;
-xVti0KhXBPpiMs5+reAb4l7Fv4HJI+u3v9JgSWD09IJ/r3tsJerPIeHNf6Gz8h66YQrOu20/A9XR&#13;
-Mom0QRG6qZK7ZMzLDfag1CD0lmCukF/W6L6TbQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_52707c4c-911a-4e95-9cf7-47c4dd1f7089"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nwM3s8JW7T8M+u92l2aZxENuB8Rb2S5RaEeFQGnTQiuLn3JhMqQloHPHCdrI0Mq36EjLM00sPrDp&#13;
+yH6H7FES1w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6dcd19e1-023c-4e8e-b6ff-d109116d3b75"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Xmto0vU1pMlVGJdT3ViXK/iWCvPp9OVhmuIj6A7rdxgZGLqk+5gKsJH4LhcSskyLKeImBiGI9j6z&#13;
+AvGxsaJpVQ==</DigestValue></Reference></SignedInfo><SignatureValue>S/6lio4XjPJMwIsXUaYbKgHUt1uYVRqBymjicqO5Je5ByxOEutoOC4KtPpdwr30I2Lf+kYWwxlAA&#13;
+FBCsAOfbRrYgrxns4KEyJN+hf2Ggv9afW7WnlMGGNmHwu8h9/qfsTsH0ZTc/yxCZ70Le2vq39cx1&#13;
+YeMMUnlkpLQdPygPtCPiK8pQaM2e5+vpjV9u6gfhJF/PHXnERc/d/PsAnArasB60NKy/MG/EBqKq&#13;
+kbrTjb7yCAzfjv8cLraA3Cos8z4lrv4fIwgHHqImy1IN0+N9pDCQPETxaoPO30EZF/AL0zdDsqeM&#13;
+iPpcWFVlyiN0OvdrfKX9gQQvxQFQt9EoZRKesw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2338,4 +2361,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2b508157-b8ed-4c37-be88-fd8c16759e35" Target="#_c53e8865-c401-4afa-b827-e6b357451256"><Timestamp>2023-07-19 13:54:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6dcd19e1-023c-4e8e-b6ff-d109116d3b75" Target="#_52707c4c-911a-4e95-9cf7-47c4dd1f7089"><Timestamp>2023-07-19 14:00:10</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
