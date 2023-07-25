@@ -367,7 +367,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT TOP 2&#13;&#10;&#9;CUSTOMER.ENTITY_CODE as SFM_DEALER_CODE,&#13;&#10;&#9;MAX(GROUPS.NAME) as SFM_DEALER_DISTRICT,&#13;&#10;&#9;MAX(GROUPS.NAME) as SFM_DEALER_BRAND&#13;&#10;FROM&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP_ASSIGNED_ENTITY] CUSTOMER,&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP] GROUPS&#13;&#10;WHERE &#13;&#10;&#9;ENTITY_CLASS = 'com.emeint.server.msales.crm.customer.persistent.model.Customer'&#13;&#10;&#9;AND CUSTOMER.GROUP_ID = GROUPS.GROUP_ID&#13;&#10;&#9;AND UNIQUE_CODE LIKE 'CU_DISTRICT_CLASS%'&#13;&#10;&#9;OR UNIQUE_CODE LIKE 'CU_BRAND_TYPE_CLASS_CODE%'&#13;&#10;GROUP BY&#13;&#10;&#9;CUSTOMER.ENTITY_CODE;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT TOP 2&#13;&#10;&#9;CUSTOMER.ENTITY_CODE as SFM_DEALER_CODE,&#13;&#10;&#9;MAX(GROUPS.NAME) as SFM_DEALER_DISTRICT,&#13;&#10;&#9;--MAX(GROUPS.NAME) as SFM_DEALER_BRAND&#13;&#10;FROM&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP_ASSIGNED_ENTITY] CUSTOMER,&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP] GROUPS&#13;&#10;WHERE &#13;&#10;&#9;ENTITY_CLASS = 'com.emeint.server.msales.crm.customer.persistent.model.Customer'&#13;&#10;&#9;AND CUSTOMER.GROUP_ID = GROUPS.GROUP_ID&#13;&#10;&#9;AND UNIQUE_CODE LIKE 'CU_DISTRICT_CLASS%'&#13;&#10;&#9;--OR UNIQUE_CODE LIKE 'CU_BRAND_TYPE_CLASS_CODE%'&#13;&#10;GROUP BY&#13;&#10;&#9;CUSTOMER.ENTITY_CODE;&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -382,15 +382,12 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_DISTRICT"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_BRAND"/>
-      <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <metadata connector="FLOW" name="tDBInput_1">
       <column comment="" key="false" length="-1" name="SFM_DEALER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="SFM_DEALER_DISTRICT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SFM_DEALER_BRAND" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="576" posY="576">
@@ -411,8 +408,6 @@
       <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_DISTRICT"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_BRAND"/>
-      <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
@@ -420,7 +415,6 @@
     <metadata connector="FLOW" name="tLogRow_1">
       <column comment="" key="false" length="-1" name="SFM_DEALER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="SFM_DEALER_DISTRICT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SFM_DEALER_BRAND" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBConnection_2" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_2" target="tJava_2">
@@ -519,13 +513,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2f87ed4e-71e8-4d1a-9f6a-4a6f6fb4d0d0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>y1+8jL9hW5kGHN6vUnKMGaCQ/0L3W3rvdGEdqBEatoaDxiTtiGzOt3oSXPetrZvjsf1U5g9yVhaJ&#13;
-Hll9mDf93A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a0be85a2-f8b0-43ae-a062-80d72f75ac80"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2dgA+twgTFdgrs2woNz5CHI/qIzQObPDDhDXAlyAUr7iLl+Vq8Fg3DVBeDBCULvDOPaRArt6K7jq&#13;
-d7DhnlOskQ==</DigestValue></Reference></SignedInfo><SignatureValue>mpBCLITw/FjVmzjzJTYWW16+EIauDBvRcp82XlTmL9MjiHwLEi9cpxesqrPqZHex0lH66m7WbYya&#13;
-TtifMG0lJhG6ntYL8dM1SQrNrD/VnpXmZWQ1pGstHgFbOOpX6oPjUM3tGm6oUGGlgJh5TvQogLKJ&#13;
-Y+ksH8ts2895j5wgaGK7sBy2UsLt57Ex2SUgxhKmXncF5ljECIzrLobIEjidIIC1PN0x1Fx0plOC&#13;
-az6vMuwMJCIx0x6Dr9ssDlvYUA6LLtmkBkTqdqnyDzPer7c4JOor9gYbW/na+IK722N0KcjlpOx6&#13;
-V4IcY/eTatvvC5cOkTl1WYAmBP5qBRnhJibcqQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3f0617a1-ea39-4b21-b3f8-ea2ad77e06b4"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zXXal6Q9peCReEzom4n9GEE/QA8J36YtV5Ty+7gkBRKJ3lLCCT905Zbk8M5JQ9oFG1L5Bz7tUPjy&#13;
+JMwB8EeAlg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e0f0d077-ca74-4e2c-8019-0ceedb1c0f3a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>o+yHSuXYyREuzUE2ccovLy5XyVFwgJxNLV7pdm3i1Zj7MYydtS4D5XsyQxorlu7zFGjmpbYgxCaW&#13;
+Dk3XGn27Ng==</DigestValue></Reference></SignedInfo><SignatureValue>Zbd1dloOlAoQvUiG3rHyfYTsIFVsrzcWTmBMVFekJ0Ql19HyEposB2w5T6XV5AyM7PPqbtp7wxEJ&#13;
+IJDoAnJWj2PqBUqKgO38sMeot+JW4WJhz2HGAk0hfFFqzqOEV9vugDSAHjPwt3QBhqRx67jhXntA&#13;
+RB0ckFp6vc0PrqANvKEt1QinVBZIyVUqlHqNmBhpbEf/uCdc6RyJlB960HS8QCdMB/dbynsGxwCc&#13;
+6s0ot7qmDiAwNsKiFaPWgmv4q+vpUFUt3a2cf58MwyIox9mClnZZNtzqAXHyiamiOwK3aeqCXLdb&#13;
+rmntTWku7YjSAYEYp5JrSKT732LzuM+toJ/pyA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -547,4 +541,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a0be85a2-f8b0-43ae-a062-80d72f75ac80" Target="#_2f87ed4e-71e8-4d1a-9f6a-4a6f6fb4d0d0"><Timestamp>2023-07-25 06:06:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e0f0d077-ca74-4e2c-8019-0ceedb1c0f3a" Target="#_3f0617a1-ea39-4b21-b3f8-ea2ad77e06b4"><Timestamp>2023-07-25 06:07:55</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
