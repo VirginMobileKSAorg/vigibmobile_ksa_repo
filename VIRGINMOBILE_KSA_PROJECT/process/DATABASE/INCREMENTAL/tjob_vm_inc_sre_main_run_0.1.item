@@ -776,9 +776,6 @@
     <metadata connector="FLOW" name="trans">
       <column comment="" key="false" length="-1" name="dynamicCol" nullable="true" originalDbColumnName="CUST_PROF_ID" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Dynamic" usefulColumn="true"/>
     </metadata>
-    <metadata connector="FLOW" label="inc_test" name="inc_test">
-      <column comment="" key="false" length="-1" name="dynamicCol" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" type="id_Dynamic" usefulColumn="true"/>
-    </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
@@ -788,15 +785,12 @@
       <outputTables name="trans" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="extract.dynamicCol" name="dynamicCol" nullable="true" type="id_Dynamic"/>
       </outputTables>
-      <outputTables name="inc_test" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="extract.dynamicCol " name="dynamicCol" nullable="true" type="id_Dynamic"/>
-      </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="extract" sizeState="INTERMEDIATE">
         <mapperTableEntries name="dynamicCol" nullable="true" type="id_Dynamic"/>
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="224">
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_2"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" show="false" value="context.TRANSIENT_PATH+&quot;/&quot;+context.SOURCE_SYSTEM+&quot;/&quot;+context.OBJECT_NAME+&quot;/&quot;+context.OBJECT_NAME+&quot;.txt&quot;"/>
@@ -864,60 +858,6 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileOutputDelimited_1">
       <column comment="" key="false" length="-1" name="dynamicCol" nullable="true" originalDbColumnName="CUST_PROF_ID" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Dynamic" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="736" posY="320">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
-    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
-    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="HOST" value="context.vm_vertica_Server"/>
-    <elementParameter field="TEXT" name="PORT" value="context.vm_vertica_Port"/>
-    <elementParameter field="TEXT" name="DBNAME" value="context.vm_vertica_Database"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vm_vertica_Schema"/>
-    <elementParameter field="TEXT" name="USER" value="context.vm_vertica_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:pnXg5ZTL17dwusb9qhVonTxNt8ios7wg4WZulkKRgecPoyZu0iZbPBpUZyi1JvFz4fRmT7mrog=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;test_inc&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE"/>
-    <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
-    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_OR_UPDATE"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
-    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
-    <elementParameter field="TEXT" name="PROPERTIES" value="context.vm_vertica_AdditionalParams"/>
-    <elementParameter field="CHECK" name="USE_ALTERNATE_SCHEMA" show="false" value="false"/>
-    <elementParameter field="TEXT" name="ALTERNATE_SCHEMA" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="ABORT_ON_ERROR" show="false" value="false"/>
-    <elementParameter field="TEXT" name="REJECT_MAX" show="false" value=""/>
-    <elementParameter field="FILE" name="EXCEPTIONS_PATH" show="false" value=""/>
-    <elementParameter field="TEXT" name="EXCEPTIONS_NODE" show="false" value=""/>
-    <elementParameter field="FILE" name="REJECTED_DATA" show="false" value=""/>
-    <elementParameter field="TEXT" name="REJECTED_NODE" show="false" value=""/>
-    <elementParameter field="CHECK" name="NO_COMMIT" show="false" value="true"/>
-    <elementParameter field="TEXT" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
-    <elementParameter field="TEXT" name="COMMIT_EVERY" value="100"/>
-    <elementParameter field="CHECK" name="BATCH_MODE" show="false" value="true"/>
-    <elementParameter field="LABEL" name="NOTE" show="false" value="(Not compatible with reject links)"/>
-    <elementParameter field="TEXT" name="BATCH_SIZE" show="false" value="100"/>
-    <elementParameter field="TABLE" name="ADD_COLS"/>
-    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="false"/>
-    <elementParameter field="TABLE" name="FIELD_OPTIONS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="dynamicCol"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
-    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
-    <elementParameter field="CHECK" name="CREATE_PROJECTION" value="true"/>
-    <metadata connector="FLOW" label="inc_test" name="tDBOutput_1">
-      <column comment="" key="false" length="-1" name="dynamicCol" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" type="id_Dynamic" usefulColumn="true"/>
-    </metadata>
-    <metadata connector="REJECT" label="inc_test" name="REJECT">
-      <column comment="" key="false" length="-1" name="dynamicCol" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" type="id_Dynamic" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1600" posY="800">
@@ -1064,10 +1004,6 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="trans"/>
   </connection>
-  <connection connectorName="FLOW" label="inc_test" lineStyle="0" metaname="inc_test" offsetLabelX="0" offsetLabelY="0" outputId="3" source="tMap_1" target="tDBOutput_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="inc_test"/>
-  </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBRow_2" offsetLabelX="0" offsetLabelY="0" source="tDBRow_2" target="tJobLog_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk12"/>
   </connection>
@@ -1163,13 +1099,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d8b56149-1acb-4363-b331-1555e044af2a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>3qzzkewFKU9Jk3VUI0TQnCDIJmE4phKyOyd62na/Z5PgyZSNz9ELwHV5FoqMCAZrx1EWn/AJLrMa&#13;
-Qrnk+W+bZw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3ca0cfbe-190b-4351-9920-9773b550289c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aoKAWh30Tn5NycG5x/M97ry4/pHFhgzHkQvKOn6IL1+NkOh/q1bblIDNVHr7Cni5vQqjaG4Wjbb5&#13;
-qXzCnjysrA==</DigestValue></Reference></SignedInfo><SignatureValue>B6YZnMDYHRhxxmBHzuwlJz2NzTBqOEuerAvYN5bPXzWM0ZA04AtaTuRvWBJpYdHLJKaMbtRq77/V&#13;
-ZFBnCZEXEMD6DnWN/C6d0wvLJruzK9pmQIG74gxX8KnQWngJ2ro54Za8EKbBh4pRp7GaY71Dsxd9&#13;
-5y5+0ZHwqVDH69HkecPUOLTCGZuxxX2my8nnWLOjzQmL7xOmzns2dhbB7gdsWFusaviIYoS3Wed0&#13;
-wMly8QXQqdkZt7wgDOq+72NoR6u7v9wcW0OD3xahG4kyPxdA3VsnEg9H465/lDoAy3utvev4S5ZW&#13;
-j28Tu3lRkBOPTulL3SWED3vVMIRCcFS7Irc+zg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_68dcc1ba-ba69-4842-a6d5-a1b8a8bb3222"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Qfwys+jrc/U6CpZq25iZL7KPyLMNj9iEHJU6Yy+W1NxpgMho8FG79oW2+AJ1A107+LpVSwnpZBtP&#13;
+hzln2ayOSQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3aaed196-7e56-426b-960e-0d411b3ebf5c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ReENL5hYC3HcT+89O41uhTCxijT0I0KBQMz6gSQ55dccpiFIxjOcXWCxSrAeSV/HoMBWnWopR0LI&#13;
+W/M/jYtq4g==</DigestValue></Reference></SignedInfo><SignatureValue>GNzEbeztBtgyy5T1HpP9+2duz4IEk8/fwe9eYZsdukqgs/5elZQLACi3CY+KQcG5xqCowySaDcAT&#13;
+IOoFWvmvXPRwLMFsVdYlxsPL8kbiXUXUQtbGMa4t+xvLXxeTLgg/Nmrlf//ZsMANKSZg8/RHHYte&#13;
+2fgJiz7SHyp5vPrVQ+eovio+2o3sV7hDCq57qWPLGKuGKxCJS9uXBwJiRsE0g7XtKmt3WBz8uvGW&#13;
+PHC7nA2OijsJYpmXnwW2X1H7yXYvD1XVmutuWzBsYrzzH4KpZSy9wwDPOiSk81R73VlzvK5KjqAQ&#13;
+Un8s/+DXQSZamRZH0zij3FnjcNEfAGm3z2QKMw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1191,4 +1127,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3ca0cfbe-190b-4351-9920-9773b550289c" Target="#_d8b56149-1acb-4363-b331-1555e044af2a"><Timestamp>2023-07-25 05:48:33</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3aaed196-7e56-426b-960e-0d411b3ebf5c" Target="#_68dcc1ba-ba69-4842-a6d5-a1b8a8bb3222"><Timestamp>2023-07-25 06:25:39</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
