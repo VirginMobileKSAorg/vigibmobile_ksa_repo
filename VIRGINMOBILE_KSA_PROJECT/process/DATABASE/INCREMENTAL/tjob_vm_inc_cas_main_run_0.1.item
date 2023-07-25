@@ -718,20 +718,11 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.talend_jobname = jobName;&#10;System.out.println(&quot;START_TIME: &quot;+context.start_time);&#10;&#10;&#10;&#10;//Deduct the refresh period from the incremental value&#10;if(context.start_incremental_value.equals(null) || context.start_incremental_value.equals(&quot;&quot;))&#10;context.start_incremental_value = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.addDate(context.curr_incremental_value, &quot;yyyy-MM-dd HH:mm:ss&quot;, -(context.refresh_period), &quot;dd&quot;)));&#10;&#10;System.out.println(&quot;START_INCREMENTAL_VALUE is &quot;+context.start_incremental_value);&#10;&#10;context.end_incremental_value = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss&quot;);&#10;System.out.println(&quot;END_INCREMENTAL_VALUE is &quot;+context.end_incremental_value);&#10;&#10;context.next_incremental_value = context.end_incremental_value;&#10;System.out.println(&quot;NEXT_INCREMENTAL_VALUE is &quot;+context.next_incremental_value);&#10;&#10;// Modify ETRACT_QUERY TO FILTER RECORDS BASED ON START AND END INCREMENTAL VALUES&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_start_incr_value,context.start_incremental_value);&#10;&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_end_incr_value,context.end_incremental_value);&#10;context.replace_start_incr_value = context.curr_incremental_value;&#10;System.out.println(&quot;curr_incremental_value is &quot;+context.replace_start_incr_value);&#10;&#10;&#10;System.out.println(&quot;EXTRACT QUERY: &quot;+context.extract_query);&#10;&#10;&#10;System.out.println(&quot;MAX Incremnetal Date: &quot;+context.incremental_date_column);&#10;&#10;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.talend_jobname = jobName;&#10;System.out.println(&quot;START_TIME: &quot;+context.start_time);&#10;&#10;&#10;context.active_flag.equals(&quot;Y&quot;))&#10;&#10;//Deduct the refresh period from the incremental value&#10;if(context.start_incremental_value.equals(null) || context.start_incremental_value.equals(&quot;&quot;))&#10;context.start_incremental_value = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.addDate(context.curr_incremental_value, &quot;yyyy-MM-dd HH:mm:ss&quot;, -(context.refresh_period), &quot;dd&quot;)));&#10;&#10;System.out.println(&quot;START_INCREMENTAL_VALUE is &quot;+context.start_incremental_value);&#10;&#10;context.end_incremental_value = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss&quot;);&#10;System.out.println(&quot;END_INCREMENTAL_VALUE is &quot;+context.end_incremental_value);&#10;&#10;context.next_incremental_value = context.end_incremental_value;&#10;System.out.println(&quot;NEXT_INCREMENTAL_VALUE is &quot;+context.next_incremental_value);&#10;&#10;// Modify ETRACT_QUERY TO FILTER RECORDS BASED ON START AND END INCREMENTAL VALUES&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_start_incr_value,context.start_incremental_value);&#10;&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_end_incr_value,context.end_incremental_value);&#10;context.replace_start_incr_value = context.curr_incremental_value;&#10;System.out.println(&quot;curr_incremental_value is &quot;+context.replace_start_incr_value);&#10;&#10;&#10;System.out.println(&quot;EXTRACT QUERY: &quot;+context.extract_query);&#10;&#10;&#10;System.out.println(&quot;MAX Incremnetal Date: &quot;+context.incremental_date_column);&#10;&#10;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set context values"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_1">
-      <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-256">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.active_flag = input_row.ACTIVE_FLAG;"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_1">
       <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
@@ -1686,17 +1677,13 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tRunJob_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tJavaRow_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tRunJob_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.active_flag.equals(&quot;Y&quot;)&#10;"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="-50" offsetLabelY="-5" source="tJava_1" target="tDBConnection_1">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk9"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tRunJob_1">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.active_flag.contains(&quot;Y&quot;)"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If2"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tJobLog_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
@@ -2336,13 +2323,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1bcf18f7-c920-4500-9684-0d551150f0a5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>JFCUj/YZqrguaBWHkkhp5LdS8P1zrsZ4vpReVhEOBznef+3VHHm4C/P21R7itlbmjdfzXQVX34ik&#13;
-RYQ7EW5NMw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5549050c-68d3-428d-9e37-ec5183d830f4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>GBk3GKj3u4q0GySVUW7W2Nqgf21GOgzhA3vxJC3ZTbfC+jd34CWl0aWgFMpjD2uJBCArGbFFKIqr&#13;
-NvLtBEsjiQ==</DigestValue></Reference></SignedInfo><SignatureValue>BiMBByb8bUsIsD9f9eIubyCQltHhm8KmsLXQAa6FE9tGQ2cqxhbKrO8tUyaics6+VLxPIgdwXQ3I&#13;
-d2WJN/s6Oq54yDl6MuG1yfWWwGz9XKRuKQpjJ7LZBNahRO3/9+B26kDnLOh0lCjOAkRBlv4449ez&#13;
-BVnpZp6N8ikf+PjfU03CrHJp/MyDcTro0XyCGcDBb2cmB/xLVXLIm1PNU8E/YS17USLe6OuC8Pe7&#13;
-pkApDqGTwA8bJcHd6Cv/SrgtDZIkHfUVcXMY7zj8iUILMQ8dlTAFp0snzcA8606N4JRoP71q6c4g&#13;
-iZyzFtT//kk/E0rPCUzBKiWR16g38+5UsQq6Cw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4fd32fbf-e6e5-4ed9-8e2d-4ec239ead01e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+WAYKo/uJYIVs3sJf9TKm5Z1F5zDZFHCnKCnt5G/PaPQZge92dI4eQCMXhXYNu9aRbkayyUMNFhL&#13;
+rP1JnPPDZg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1deba2de-7d98-48fb-bee2-9796a890f341"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HotcYDBtKV5UHt6apB7n3Yyo66pazq67LhFyI0YYWnGy3IQWSg8Is3b1BuPD1HOWzIkEgizVIvbe&#13;
+fFChZvk8Dg==</DigestValue></Reference></SignedInfo><SignatureValue>kU5GH/EIwGNjRP2i8lw2YQHSd0OLc+ukjy9hS0t2MaolSrfmlGZ/sxVrwP6nrc3zYPHNFyVQHadh&#13;
+Fl5GwlC0nL7/etoiPHJYiJ3jSu7Q2UCI8EpxAifcFZvGX6onPcWFvUrzuL+CHYRCtG8ju7vQfNv9&#13;
+/m8epK6UwvKzFwNIsIKf9l8G6WpyW5UmnpPS4CMAptB4cZF080I8P7F29IR73dYquP3Ndrg/qeXf&#13;
+8Ol3Z1KB8oYUgm4vjNwVb5Ztr+IGefWU+CY/uigBDMaynEn52mHUzRS37XW0WM302ywNbTVz7H3b&#13;
+tcE9kwjp3XWweCzC4Ck2mfRNHOCV4mcekDzsAQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2364,4 +2351,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5549050c-68d3-428d-9e37-ec5183d830f4" Target="#_1bcf18f7-c920-4500-9684-0d551150f0a5"><Timestamp>2023-07-25 10:56:29</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1deba2de-7d98-48fb-bee2-9796a890f341" Target="#_4fd32fbf-e6e5-4ed9-8e2d-4ec239ead01e"><Timestamp>2023-07-25 11:08:31</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
