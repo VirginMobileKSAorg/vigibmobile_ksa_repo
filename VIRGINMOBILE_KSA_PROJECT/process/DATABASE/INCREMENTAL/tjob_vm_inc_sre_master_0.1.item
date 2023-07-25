@@ -255,7 +255,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tRunJob_1"/>
   </node>
-  <node componentName="tVerticaInput" componentVersion="0.102" offsetLabelX="16" offsetLabelY="37" posX="288" posY="64">
+  <node componentName="tVerticaInput" componentVersion="0.102" offsetLabelX="16" offsetLabelY="37" posX="480" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
@@ -267,6 +267,8 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vm_vertica_Schema"/>
     <elementParameter field="TEXT" name="USER" value="context.vm_vertica_Login"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:1OLIMJhV5cC/V9AHCqNbdEkjGZndOJZsU+kyaboJY1+HRgKw7VPs/adZ/+cmZEIJ/TJd8EoBaQ=="/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value=""/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
@@ -276,33 +278,10 @@
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
-    <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="ACTIVE_FLAG"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="INCREMENTAL_DATE_COLUMN"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="INCREMENTAL_VALUE"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="REFRESH_PERIOD"/>
-      <elementValue elementRef="TRIM" value="false"/>
-    </elementParameter>
+    <elementParameter field="TABLE" name="TRIM_COLUMN"/>
     <elementParameter field="TEXT" name="LABEL" value="vm_master_info_list"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tDBInput_2">
-      <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="INCREMENTAL_DATE_COLUMN" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="INCREMENTAL_VALUE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="REFRESH_PERIOD" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="64">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.active_flag = input_row.ACTIVE_FLAG;"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_3">
-      <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-    </metadata>
+    <metadata connector="FLOW" name="tDBInput_2"/>
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
@@ -710,39 +689,8 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tJava_5">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk7"/>
   </connection>
-  <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tDBInput_2" offsetLabelX="43" offsetLabelY="-50" source="tDBInput_2" target="tJavaRow_3">
-    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="ACTIVE_FLAG"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="OBJECT_NAME"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="DELETE_QUERY"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="EXTRACT_QUERY"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="SOURCE_SYSTEM"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="INCREMENTAL_VALUE"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="REFRESH_PERIOD"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="INCREMENTAL_DATE_COLUMN"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJavaRow_3" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_3" target="tRunJob_2">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.active_flag.contains(&quot;Y&quot;)"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tRunJob_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk15"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tRunJob_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
@@ -806,7 +754,7 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" source="tJava_5" target="tDBInput_2">
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_5" offsetLabelX="-14" offsetLabelY="15" source="tJava_5" target="tDBInput_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tRunJob_2" offsetLabelX="0" offsetLabelY="0" source="tRunJob_2" target="tJava_3">
@@ -890,13 +838,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c65a264e-b5c0-42bf-9a67-1bda5857925c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dHIOAbHfdn8GPrnUAICqYy0Jcz1g5NH+NvcXot8TVJq6ngJeTHbcjYEsN00pv3UF8gi5mHIThW1z&#13;
-tLwsC0c7JA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_11633396-1fa6-49e4-8b06-be277154523b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>tOzVlgIdfDcLHrrwBcVAeMVRIAjwVpCfJpAz9z9P8Oi5+cZ0yUrQ0oeVWG4pye38X6daqijnfBRm&#13;
-HY3Kpfi/sw==</DigestValue></Reference></SignedInfo><SignatureValue>UidkcA/xv4nYW6F9sM/EhKWeFlcng8LKOotncBhpkv2HJ6iSNeC48h90XKaqww/k76GmvoO3pfL3&#13;
-LpZFTwi6vGIWlnJn50YMnBVS9VDRKaT9i6LDasgIzKeZhotGChO8UufH8PGWA04BD+guWh61U/ar&#13;
-CXwLKSWVr9JUe/PHKtVA7cCJjsSpHya/uZlt42jLWEk05O4dB1r6Q4PHWe1Ig3ValLvp2PV96g3G&#13;
-jI6OPKWvTe3VglJ87GAiljvWW3E8TDaj4AMnlx1NEKP2aop6Za12yrvXERA3bpQnWBLoKwn2/FNL&#13;
-c4p1cAQaGAt/Fu00hhh8tEFcdUJGNkrvRjLwVw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c2f0d5b0-7e0a-474d-8646-3cd152b50d41"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>L3uEld1pNFktAJrb3ngROLDqL/bLxrTGlYjXRO6JRSH5WWWINQgbh7WaaegXRYFmkjPA9XT/QOem&#13;
+zLzxZlZUAA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0ac1ce5b-ec54-4144-8c5d-c6f09ae95859"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>N4K4BMfX6oFhdj38WtMEsgxVAOho0N1CR67ZKkB3bEHecbwfxXyTFkhAK8oZlStNgWhqJnYhvwps&#13;
+AEsS9zZObw==</DigestValue></Reference></SignedInfo><SignatureValue>OtjQ0ZjW2o5sLbYXOpGcXnSes8UVeZ3ouphuKPki7j72pWXA5IkPBPMtzjeqvoUoo9g2sWs6C4h8&#13;
+DwQxaMQSCm272wcceHAKzUwEdI+miJrz6t/kAlr5Nab+8xA0xFJI0GSca1FdDUPCwf2lfuZKpLUL&#13;
+RG0tRMQGmvdjAHDG9s/kbXbDaavWSvvQVbgtHhDLjSZY+ly3GUOQ8A7DXO1Lan+k0NWMFCTvKPpX&#13;
+edAFDG87PUnGnLmYg+wBih8EygoZcs6EwloSIpRlCvhz55ZX+c/Zu1Sift1Yambac7BewI7bmNkV&#13;
+tIfDaGHyTcG+UK9zVK2gos55DgLIFcWNCyIIlQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -918,4 +866,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_11633396-1fa6-49e4-8b06-be277154523b" Target="#_c65a264e-b5c0-42bf-9a67-1bda5857925c"><Timestamp>2023-07-25 10:05:37</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0ac1ce5b-ec54-4144-8c5d-c6f09ae95859" Target="#_c2f0d5b0-7e0a-474d-8646-3cd152b50d41"><Timestamp>2023-07-25 10:43:10</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
