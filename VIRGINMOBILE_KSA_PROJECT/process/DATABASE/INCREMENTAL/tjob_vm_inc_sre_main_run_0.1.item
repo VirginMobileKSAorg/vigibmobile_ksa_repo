@@ -513,7 +513,7 @@
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
     <elementParameter field="TEXT" name="JOB_RUN_VM_ARGUMENTS" show="false" value="{&quot;JOB_RUN_VM_ARGUMENTS&quot;:[&quot;-Xms1024M&quot;,&quot;-Xmx5048M&quot;]}"/>
     <elementParameter field="CHECK" name="JOB_RUN_VM_ARGUMENTS_OPTION" show="false" value="true"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="64"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="384"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
@@ -983,6 +983,7 @@
   </node>
   <node componentName="tVerticaConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="-320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBConnection_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="TEXT" name="HOST" value="context.vm_vertica_Server"/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
@@ -1002,7 +1003,7 @@
   <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value=""/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_2"/>
     <elementParameter field="TEXT" name="HOST" show="false" value="context.connection_mssql_server"/>
     <elementParameter field="CLOSED_LIST" name="DRIVER" show="false" value="JTDS"/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="MSSQL"/>
@@ -1016,7 +1017,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select id, name from employee&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT   top 10000&#13;&#10;a.ID,                                                             &#13;&#10;a.CreatedOn,&#13;&#10;a.SubscriptionTypeId,&#13;&#10;a.IdentityMasterId,&#13;&#10;a.IMSI,&#13;&#10;a.MSISDN,&#13;&#10;a.DistributorCode,&#13;&#10;a.DealerCode,&#13;&#10;a.IsActive,&#13;&#10;a.PaperStatusId,&#13;&#10;a.PaperStatusUpdateDate,&#13;&#10;a.ResumissionDate,&#13;&#10;a.IsFirstCharegableEventReceived ,&#13;&#10;a.FirstChargeableEventReceivedTime,&#13;&#10;a.IsPaperCorrect,&#13;&#10;a.IsCustomerInfoCorrect,&#13;&#10;to_char(LastUpdateDate,'yyyy-mm-ddHH24:MI:ss') LastUpdateDate,&#13;&#10;a.NobillCustomerNo,&#13;&#10;a.NobillAccountNumber,&#13;&#10;a.FormSerial,&#13;&#10;a.ActivationChannel,&#13;&#10;a.QualityGrade,&#13;&#10;a.RejectionReason,&#13;&#10;a.PhysicalFormStatusId,&#13;&#10;a.PhysicalFormSalesReceivedDate,&#13;&#10;a.PhysicalFormReceivedSalesCode,&#13;&#10;a.PhysicalFormOfficeReceivedDate,&#13;&#10;a.PUK ,&#13;&#10;a.ICCID ,&#13;&#10;a.Longitude,&#13;&#10;a.Latitude,&#13;&#10;a.BrandId ,&#13;&#10;a.KitID ,&#13;&#10;a.IsPrimary,&#13;&#10;a.IsVanityActivation,&#13;&#10;a.Receipt_Voucher_Number,&#13;&#10;a.FirstEventReceivedDate,&#13;&#10;a.TerminationDate,&#13;&#10;a.Email,&#13;&#10;a.IdentityVerificationStatusId,&#13;&#10;a.IdentityVerificationStatusUpdateDate,&#13;&#10;a.IsDefault,&#13;&#10;a.CRM_ContactID,&#13;&#10;a.CRM_AccountID,&#13;&#10;a.IsPortInActivation,&#13;&#10;a.IsPortedOut,&#13;&#10;a.IsSelfcareOnboarded,&#13;&#10;a.PortOutDateTime,&#13;&#10;a.IsEsimActivation,&#13;&#10;a.LocationID,&#13;&#10;a.IsDealerAppOnboarded &#13;&#10;FROM&#13;&#10;&#9;Activation.dbo.Activation a&#13;&#10;WHERE  LastUpdateDate &gt; to_date('&quot;+context.replace_start_incr_value+&quot;' ,'yyyy-mm-ddHH24:MI:ss')&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1537,6 +1538,30 @@
       <column comment="51" key="false" length="255" name="IsDealerAppOnboarded" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tMSSqlConnection" componentVersion="0.102" offsetLabelX="-50" offsetLabelY="-82" posX="32" posY="-320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBConnection_2"/>
+    <elementParameter field="CLOSED_LIST" name="DRIVER" value="JTDS"/>
+    <elementParameter field="TEXT" name="HOST" value="context.connection_mssqlcas_server"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="MSSQL"/>
+    <elementParameter field="TEXT" name="PORT" value="context.connection_mssqlcas_port"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.connection_mssqlcas_schema"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.connection_mssqlcas_database"/>
+    <elementParameter field="TEXT" name="USER" value="context.connection_mssqlcas_username"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:5Vu7q1VZaQL1EXi2VAl5jgWin4f/vdghVIrYF+XCYDZxm9Oy9bpJ8nstuvKOm2LGjXumuHlm/ECKWFuWf9G3Xw=="/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="context.connection_mssqlcas_additionalparams"/>
+    <elementParameter field="CHECK" name="USE_SHARED_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="SHARED_CONNECTION_NAME" show="false" value=""/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="ACTIVE_DIR_AUTH" show="false" value="false"/>
+    <elementParameter field="CHECK" name="AUTO_COMMIT" value="false"/>
+    <elementParameter field="CHECK" name="SHARE_IDENTITY_SETTING" value="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="connection_casdb"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="3" offsetLabelY="13" source="tRunJob_1" target="tJava_5">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk11"/>
   </connection>
@@ -1546,10 +1571,11 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tRunJob_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_1" target="tDBConnection_1">
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_1" target="tDBConnection_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk9"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="2" offsetLabelY="-26" outputId="2" source="tJava_1" target="tRunJob_1">
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="2" offsetLabelY="-26" outputId="1" source="tJava_1" target="tRunJob_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk13"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tJobLog_1">
@@ -2085,6 +2111,9 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="copyOftrans"/>
   </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBConnection_2" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_2" target="tJava_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk16"/>
+  </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_1"/>
@@ -2182,13 +2211,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7a50b44f-c110-4723-87ae-37f4b6226060"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PJ6Yqm1cE3sUINABp4QI9vwMhTpkvH1HJQENLYT2ph1p6jJpoSYxaZrw+C2OZf30H4QxmxxiAQY3&#13;
-zH3SdNImiw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3a1b1a75-2f54-4d03-9658-6e72e8bd6466"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>vZtiIxu7rX0sN6H18b1UScZXk5E0e/lZqrSSKorqNoqSmjrvw+Tv0HSxNeRW0Iu91voERd9MvkGZ&#13;
-FqZBzXWsNw==</DigestValue></Reference></SignedInfo><SignatureValue>J/B0iVVw2LQVFF0vd5cqsLBNcNOp5UGExT6f+np4UbiZ2a3M+o9jFQaxMza23qLGL582K15indBy&#13;
-3WaDlLfjjjmTkf5S+NiZA/fGFWsxhss0DoZzLpF/2V5h48442K1P3ietpSYcsmvVTjQIHVz3G0Q5&#13;
-3+Nf99/M8ONrW5QHMDz59qGQ9bz5Y4/3JdMc5PSCr19XTRGpU/wMKjztRVbnJ/1aD9rL7ZzSaXFi&#13;
-nSqcZ5L4EvZW+8briRP9ZFVAXfI5BHl3w365Tfek0yr8E9WM8JiQWinvBwCQJZuprJ45QhJCzd9G&#13;
-7ZeVOK9XRbR1oxPRi7vbiAi3OSoBVMLUOwZM8Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBConnection_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fc08e25b-93d8-46ca-9e30-db525a367bcf"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kN+1XGVpbh78dF2xCyyhaATu6ElnYnI63pZq1qA7e9prG+tJBAYZhoIlfWuXdxinCxulYLpSUedY&#13;
+Ay4J8ag4qQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7a895a68-76a1-492b-887f-560b7630a7e0"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ZlcOLQ6ADOkeyGsZ04cne7h83YqwTpvrmLU0KXLGQMViVY8WRXYy4kAvjaKmQrPikW4iQTyWOaLD&#13;
+UW5AlpV+Ig==</DigestValue></Reference></SignedInfo><SignatureValue>cpXKBbRgczdad1YPb610im8WMJYs7283LB77UQeQj1sg4TJzAIz7IkMr+2vGnys6paL8dQQfEwWE&#13;
+PE7cJMkL5rhaaIyUuNYSSM7WVsg5eeNwTCRZa2O+zrldkVHqLGxZ2Ffm0TAFa0mSAJXQDPqHz2tP&#13;
+c4jVtruC/UujABQY25xX5M1EINL/Tn/3UgniGQ3+VbHusfkzQS2SWhIyn/5uhMbCoZhyBkkKtXrc&#13;
+WQKlE92SycnjYGYiXoqrddq9rMHOOcMCJuz2zEoI7C79NJMlkyaFOW43IBjGkp1JUOu5cOJ7z0qc&#13;
+lp4Zc2IuV7sRg0TvfqKXHwp+NaZspY9FV9N9Yg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2210,4 +2244,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3a1b1a75-2f54-4d03-9658-6e72e8bd6466" Target="#_7a50b44f-c110-4723-87ae-37f4b6226060"><Timestamp>2023-07-25 09:04:24</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7a895a68-76a1-492b-887f-560b7630a7e0" Target="#_fc08e25b-93d8-46ca-9e30-db525a367bcf"><Timestamp>2023-07-25 09:06:13</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
