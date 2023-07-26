@@ -701,6 +701,36 @@
       <column comment="29" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="30" key="false" length="50" name="filesequenceid" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
+    <metadata connector="FLOW" name="db_out">
+      <column comment="1" key="false" length="32" name="referenceid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="2" defaultValue="" key="false" length="50" name="seqno" nullable="false" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="3" key="false" length="255" name="adjustmenttypename" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="4" key="false" length="255" name="adjustmentreasonname" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="5" key="false" length="255" name="adjustmentreasonproductname" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="6" key="false" length="255" name="source" nullable="true" originalDbColumnName="tx_source" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="7" key="false" length="50" name="adjustmenttime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="8" key="false" length="50" name="localadjustmenttime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="9" key="false" length="50" name="accountnum" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="10" key="false" length="50" name="msisdn" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="11" key="false" length="50" name="callingcardserialno" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="12" key="false" length="255" name="callingcardnumberseries" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="13" key="false" length="50" name="otheraccountnum" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="14" defaultValue="" key="false" length="25" name="amount" nullable="true" pattern="" precision="6" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="15" key="false" length="50" name="currency" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="16" key="false" length="255" name="adminname" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="17" key="false" length="50" name="vouchernum" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="18" key="false" length="255" name="vouchertypeid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="19" key="false" length="50" name="voucherpin" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="20" key="false" length="1023" name="additionalinfo" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="21" key="false" length="50" name="accounttypeid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="22" key="false" length="255" name="accounttypename" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="23" key="false" length="255" name="subscriptiontypename" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="24" key="false" length="255" name="accessmethodnamekey" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="25" key="false" length="50" name="status" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="26" defaultValue="" key="false" length="50" name="postbalance" nullable="true" pattern="" precision="6" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="27" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="28" key="false" length="255" name="recordtags" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
@@ -735,6 +765,36 @@
         <mapperTableEntries expression="row4.recordtags " name="recordtags" nullable="true" type="id_String"/>
         <mapperTableEntries expression="//TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object +&#13;&#10;&#13;&#10;&#13;&#10;context.batch_process_date;  " name="batch_process_date" nullable="true" type="id_String"/>
         <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1)));  " name="filesequenceid" nullable="true" type="id_Long"/>
+      </outputTables>
+      <outputTables name="db_out" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="row4.referenceid " name="referenceid" type="id_String"/>
+        <mapperTableEntries expression="row4.seqno " name="seqno" type="id_Long"/>
+        <mapperTableEntries expression="row4.adjustmenttypename " name="adjustmenttypename" type="id_String"/>
+        <mapperTableEntries expression="row4.adjustmentreasonname " name="adjustmentreasonname" type="id_String"/>
+        <mapperTableEntries expression="row4.adjustmentreasonproductname " name="adjustmentreasonproductname" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.source " name="source" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.adjustmenttime " name="adjustmenttime" type="id_String"/>
+        <mapperTableEntries expression="row4.localadjustmenttime " name="localadjustmenttime" type="id_String"/>
+        <mapperTableEntries expression="row4.accountnum " name="accountnum" type="id_String"/>
+        <mapperTableEntries expression="row4.msisdn " name="msisdn" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.callingcardserialno " name="callingcardserialno" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.callingcardnumberseries " name="callingcardnumberseries" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.otheraccountnum " name="otheraccountnum" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.amount " name="amount" nullable="true" type="id_Double"/>
+        <mapperTableEntries expression="row4.currency " name="currency" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.adminname " name="adminname" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.vouchernum " name="vouchernum" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.vouchertypeid " name="vouchertypeid" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.voucherpin " name="voucherpin" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.additionalinfo " name="additionalinfo" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.accounttypeid " name="accounttypeid" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.accounttypename " name="accounttypename" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.subscriptiontypename " name="subscriptiontypename" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.accessmethodnamekey " name="accessmethodnamekey" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.status " name="status" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.postbalance " name="postbalance" nullable="true" type="id_Double"/>
+        <mapperTableEntries expression="row4.subscriptionproperty " name="subscriptionproperty" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.recordtags " name="recordtags" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
         <mapperTableEntries name="referenceid" type="id_String"/>
@@ -783,7 +843,7 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="USER" show="false" value="&quot;&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" show="false" value="enc:system.encryption.key.v1:MKu0gXgacsNUyaGWGTHIYn6IAZsr4lpGL9zZoeKd"/>
-    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
+    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE"/>
     <elementParameter field="LABEL" name="NOTE" value="Warning : this component configuration will automatically generate a commit before bulk insert"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;nobill_tx_adjustmentrecord&quot;"/>
     <elementParameter field="CHECK" name="USE_EXISTING_DYNAMIC" value="false"/>
@@ -808,7 +868,7 @@
     <elementParameter field="CHECK" name="ESCAPE_CHARACTER_OPTION" value="true"/>
     <elementParameter field="TEXT" name="ESCAPE_CHAR" value="&quot;\\&quot;"/>
     <elementParameter field="TEXT" name="FIELDS_TERMINATED_BY" value="&quot;;&quot;"/>
-    <elementParameter field="TEXT" name="NULL_STRING" value="&quot;null&quot;"/>
+    <elementParameter field="TEXT" name="NULL_STRING" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="ENFORCELENGTH_OPTION" value="false"/>
     <elementParameter field="CHECK" name="REJECTMAX_OPTION" value="false"/>
     <elementParameter field="TEXT" name="REJECTMAX_VALUE" show="false" value="&quot;1000&quot;"/>
@@ -818,6 +878,115 @@
     <elementParameter field="FILE" name="EXCEPTION_FILE" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="CID" show="false" value="&quot;&quot;"/>
     <metadata connector="FLOW" name="tDBBulkExec_2">
+      <column comment="1" key="false" length="32" name="referenceid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="2" defaultValue="" key="false" length="50" name="seqno" nullable="false" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="3" key="false" length="255" name="adjustmenttypename" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="4" key="false" length="255" name="adjustmentreasonname" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="5" key="false" length="255" name="adjustmentreasonproductname" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="6" key="false" length="255" name="source" nullable="true" originalDbColumnName="tx_source" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="7" key="false" length="50" name="adjustmenttime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="8" key="false" length="50" name="localadjustmenttime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="9" key="false" length="50" name="accountnum" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="10" key="false" length="50" name="msisdn" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="11" key="false" length="50" name="callingcardserialno" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="12" key="false" length="255" name="callingcardnumberseries" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="13" key="false" length="50" name="otheraccountnum" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="14" defaultValue="" key="false" length="25" name="amount" nullable="true" pattern="" precision="6" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="15" key="false" length="50" name="currency" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="16" key="false" length="255" name="adminname" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="17" key="false" length="50" name="vouchernum" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="18" key="false" length="255" name="vouchertypeid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="19" key="false" length="50" name="voucherpin" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="20" key="false" length="1023" name="additionalinfo" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="21" key="false" length="50" name="accounttypeid" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="22" key="false" length="255" name="accounttypename" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="23" key="false" length="255" name="subscriptiontypename" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="24" key="false" length="255" name="accessmethodnamekey" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="25" key="false" length="50" name="status" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="26" defaultValue="" key="false" length="50" name="postbalance" nullable="true" pattern="" precision="6" sourceType="" type="id_Double" usefulColumn="true"/>
+      <column comment="27" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="28" key="false" length="255" name="recordtags" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="576">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="referenceid"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="seqno"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="adjustmenttypename"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="adjustmentreasonname"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="adjustmentreasonproductname"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="tx_source"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="adjustmenttime"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="localadjustmenttime"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="accountnum"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="msisdn"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="callingcardserialno"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="callingcardnumberseries"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="otheraccountnum"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="amount"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="currency"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="adminname"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="vouchernum"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="vouchertypeid"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="voucherpin"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="additionalinfo"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="accounttypeid"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="accounttypename"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="subscriptiontypename"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="accessmethodnamekey"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="postbalance"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="subscriptionproperty"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="recordtags"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="batch_process_date"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="filesequenceid"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_1">
       <column comment="1" key="true" length="32" name="referenceid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="2" defaultValue="" key="false" length="50" name="seqno" nullable="false" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
       <column comment="3" key="false" length="255" name="adjustmenttypename" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -1592,9 +1761,13 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
-  <connection connectorName="FLOW" label="out2" lineStyle="0" metaname="out2" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tDBBulkExec_2">
+  <connection connectorName="FLOW" label="out2" lineStyle="0" metaname="out2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tLogRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out2"/>
+  </connection>
+  <connection connectorName="FLOW" label="db_out" lineStyle="0" metaname="db_out" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBBulkExec_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="db_out"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBBulkExec_2" offsetLabelX="0" offsetLabelY="0" source="tDBBulkExec_2" target="tJava_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
@@ -1794,13 +1967,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a1cb7cb4-659e-4e1b-b836-b7094dd83639"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ZkiK2FOyhEsRctBye0nwbSI/11X5voJ18CpjyGR57Z+I5fZcAXFxoADVPk/+GtP/gMJ5p5ETFgca&#13;
-oMNGJvwpng==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5f444cef-9cc0-42b0-bf10-fcbd802ed528"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4kpaaJxWYb6+Unl4R63LamGT4Ohzqv7+wP38x0guD15rZaSgQyzhMDvNGWsRj+7kUkFxxYYV5j2k&#13;
-lUjL90bIkw==</DigestValue></Reference></SignedInfo><SignatureValue>WBx9KH10rS9Bf5nHKLo6hadDNkv1oSx2iGnAAMgZ7hj0vWhItbXS3M0A4nljmYTn+UzkKeA74StI&#13;
-ZVAz+rf498R9Sw4UWn+/f+ryRGrwuZ5D61G+T+ZXYLnyCqojSNatrYNHgVBuFl7Up50z7ah1LrUS&#13;
-We1I5+Z1Sy6qMpOPrPdtUIyIDyFlmsg6VNBIDSe88BF3tb0fy95x47fW5myiIGxUneMosjDKOe8n&#13;
-dy77xWUFvgYqQJ9eNUsoVYaKXOSKQ02IUUJr9ZEJPqIulyInZBLxctCKgvTX1DB1UIAqQ+yCXwVP&#13;
-efu4AhsOhAoeDTrGII4ohgD6+Ksbi76fEhcB4w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_bbc7eac0-21d5-4017-a7e2-179682756f90"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QAt6SAHp2DJptFrX3hRfC+MUIQyukF971mUNcwyu7kD4bW9kZUXmfq8owTM9/FK0tf7csptMJHAl&#13;
+gpT2QbBUwA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_154701b9-b010-42e4-8c56-3a3fa2ceef02"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>EuXMd7whJI0MJdDcu4yiWK4+SNqhyr8M+ydmJzfrBsKmr1Xay39eEm2Fvh2dQh8/fIDdZfLKNHSJ&#13;
+OgTWV4TFjA==</DigestValue></Reference></SignedInfo><SignatureValue>iKswicvklR3pXIIw1NoXqJzXnW3p00E9E8E0AoFoOb3dfE6mScm99/BB7Ck9TLjj27Bx25mTB7hZ&#13;
+rX8yQwpsuDsfQqTZDxoJqrWAejAVFBer8rCDxIw1r9BRBgJR2GpxCuZqlFbzkxeRiUlQ/zBuMHzT&#13;
+O7VkSmEpEtA3LIhqDSOKNRHziBzOzfrdh+nT3ed9zCTbzC544tt8n6hZDk1W33nhE5sPHIyhUfaq&#13;
+FxCp632f14uDGGo/YqKUm1Z0wk7hHrcjnMf854S0OJf/654lF6xZVoH46GtAX+uB8FzMzF3ExHlm&#13;
+6XGlxi38OspOuMyy3/R547TZKmRs80OqspeEbA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1822,4 +1995,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5f444cef-9cc0-42b0-bf10-fcbd802ed528" Target="#_a1cb7cb4-659e-4e1b-b836-b7094dd83639"><Timestamp>2023-07-26 11:35:23</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_154701b9-b010-42e4-8c56-3a3fa2ceef02" Target="#_bbc7eac0-21d5-4017-a7e2-179682756f90"><Timestamp>2023-07-26 11:38:51</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
