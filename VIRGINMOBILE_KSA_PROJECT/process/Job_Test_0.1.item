@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:xmi="http://www.omg.org/XMI" defaultContext="KSA_NONPROD" jobType="Standard" xmi:version="2.0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><talendfile:ProcessType xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" defaultContext="KSA_NONPROD" jobType="Standard" xmi:version="2.0">
   <context confirmationNeeded="false" name="KSA_PROD">
     <contextParameter comment="" internalId="_0IouMCFJEe6vpqpAGNg3Rw" name="connection_mssqlcas_port" prompt="connection_mssqlcas_port?" promptNeeded="false" repositoryContextId="_Z1KlwK_BEeqHINiLJgdM9Q" type="id_String" value="1433"/>
     <contextParameter comment="" internalId="_0IouMSFJEe6vpqpAGNg3Rw" name="connection_mssqlcas_schema" prompt="connection_mssqlcas_schema?" promptNeeded="false" repositoryContextId="_Z1KlwK_BEeqHINiLJgdM9Q" type="id_String" value=""/>
@@ -291,7 +291,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_3"/>
   </node>
-  <node componentName="tMSSqlConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="416">
+  <node componentName="tMSSqlConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="480">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBConnection_4"/>
     <elementParameter field="CLOSED_LIST" name="DRIVER" value="JTDS"/>
     <elementParameter field="TEXT" name="HOST" value="context.connection_msales_server"/>
@@ -314,7 +314,7 @@
     <elementParameter field="CHECK" name="SHARE_IDENTITY_SETTING" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="416">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="480">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot; Mysql_MSALES Conection build&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -353,8 +353,9 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_5"/>
   </node>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="544">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="context.test_query"/>
     <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
@@ -402,15 +403,17 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFlowToIterate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="576" posY="544">
+  <node componentName="tFlowToIterate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFlowToIterate_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="DEFAULT_MAP" value="true"/>
     <elementParameter field="TABLE" name="MAP" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFlowToIterate_1"/>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="864" posY="544">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1344" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_4"/>
     <elementParameter field="TEXT" name="HOST" show="false" value="&quot;&quot;"/>
@@ -442,12 +445,14 @@
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_1">
       <column comment="" key="false" length="-1" name="col" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="VARCHAR" type="id_Dynamic" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1120" posY="544">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1600" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -505,6 +510,356 @@
     <elementParameter field="MEMO" name="POLICY" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="640">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_4"/>
+    <elementParameter field="TEXT" name="HOST" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="DRIVER" show="false" value="MSSQL_PROP"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="MSSQL"/>
+    <elementParameter field="TEXT" name="PORT" show="false" value="&quot;1433&quot;"/>
+    <elementParameter field="TEXT" name="DB_SCHEMA" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="USER" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" show="false" value="enc:system.encryption.key.v1:KKEjueNeUynq58QYULsEgziVL6HzN34MCFNkcIC3"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT A.DEALER_CODE,A.DEALER_REGION,&#13;&#10;B.SFM_DEALER_NAME,B.CREATED_DATE,&#13;&#10;C.SFM_STREET_ADDRESS,C.SFM_POSTAL_CODE,&#13;&#10;D.SFM_DEALER_LATITUDE,D.SFM_DEALER_LONGITUDE,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_DISTRICT_CLASS%' THEN E.NAME ELSE NULL END AS SFM_DEALER_DISTRICT,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_BRAND_TYPE_CLASS_CODE%' THEN E.NAME ELSE NULL END AS SFM_DEALER_BRAND,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_BRANDING_CLASS%' THEN E.NAME ELSE NULL END AS SFM_DEALER_BRANDING_CLASS,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_TYPE_CLASS%' THEN E.NAME ELSE NULL END AS SFM_DEALER_OUTLET_TYPE,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_POS_AGREEMENT%' THEN E.NAME ELSE NULL END AS SFM_DEALER_CONTRACT_SIGNED,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE '%PARTNER%' THEN E.NAME ELSE NULL END AS SFM_DEALER_PARTNER,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_CITY%' THEN E.NAME ELSE NULL END AS SFM_DEALER_CITY,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_CHANNEL%' THEN E.NAME ELSE NULL END AS SFM_DEALER_CHANNEL,&#13;&#10;CASE WHEN UNIQUE_CODE LIKE 'CU_CLASS_CLASS%' THEN E.NAME ELSE NULL END AS SFM_DEALER_OUTLET_CLASS,&#13;&#10;F.SFM_SAUDI_ID,&#13;&#10;CASE WHEN  prompt = 'Key Account Manager' THEN G.answer else null end as SFM_KEY_ACCOUNT_MANAGER,&#13;&#10;CASE WHEN prompt = 'Functional Director' THEN G.answer else null end as SFM_FUNCTIONAL_DIRECTOR,&#13;&#10;CASE WHEN prompt = 'Sales Champions' THEN G.answer else null end as SFM_SALES_CHAMPION,&#13;&#10;CASE WHEN prompt = 'Area manager' THEN G.answer else null end as SFM_AREA_MANAGER,&#13;&#10;CASE WHEN prompt = 'Team Leader' THEN G.answer else null end as SFM_TEAM_LEADER,&#13;&#10;H.SFM_CONTACT_PERSON,&#13;&#10;H.SFM_CONTACT_NUMBER,&#13;&#10;I.SFM_ACCOUNT_MANAGER_CODE,&#13;&#10;I.SFM_ACCOUNT_MANAGER_NAME,&#13;&#10;I.SFM_ACCOUNT_MANAGER_VAN_CODE,&#13;&#10;I.SFM_ACCOUNT_MANAGER_VAN_NAME,&#13;&#10;I.SFM_ACCOUNT_MANAGER_VAN_REGION&#13;&#10;&#13;&#10;FROM(&#13;&#10;SELECT&#13;&#10;&#9;CUSTOMER.ENTITY_CODE as DEALER_CODE,&#13;&#10;&#9;MAX(GROUPS.NAME) as DEALER_REGION&#13;&#10;FROM&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP_ASSIGNED_ENTITY] CUSTOMER,&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP] GROUPS&#13;&#10;WHERE &#13;&#10;&#9;ENTITY_CLASS = 'com.emeint.server.msales.crm.customer.persistent.model.Customer'&#13;&#10;&#9;AND  CUSTOMER.GROUP_ID = GROUPS.GROUP_ID&#13;&#10;&#9;AND UNIQUE_CODE LIKE 'CU_REGION_CLASS%'&#13;&#10;GROUP BY&#13;&#10;&#9;CUSTOMER.ENTITY_CODE) A&#13;&#10;&#9;&#13;&#10;&#9;LEFT JOIN (&#13;&#10;&#9;SELECT&#13;&#10;&#9;CODE as SFM_DEALER_CODE,&#13;&#10;&#9;MAX(CUSTOMER_ID) as SFM_CUSTOMER_ID,&#13;&#10;&#9;MAX(NAME) as SFM_DEALER_NAME,&#13;&#10;    MIN(CREATED_DATE) as CREATED_DATE&#13;&#10;FROM&#13;&#10;    msales_2017.dbo.CRM_CUSTOMER&#13;&#10;GROUP BY&#13;&#10;&#9;CODE) B &#13;&#10;&#9;ON A.DEALER_CODE=B.SFM_DEALER_CODE&#13;&#10;&#9;LEFT JOIN (&#13;&#10;&#9;SELECT&#13;&#10;&#9;CUSTOMER_ID as SFM_CUSTOMER_ID,&#13;&#10;&#9;MAX(CUSTOMER_ADDRESS_ID) as SFM_CUSTOMER_ADDRESS_ID,&#13;&#10;&#9;MAX(STREET_ADDRESS) as SFM_STREET_ADDRESS,&#13;&#10;&#9;MAX(POSTAL_CODE) as SFM_POSTAL_CODE,&#13;&#10;&#9;MAX(CITY) as SFM_CITY,&#13;&#10;&#9;MAX(CUSTOMER_ADDRESS_CONTACT_Person) as SFM_CONTACT_PERSON&#13;&#10;FROM&#13;&#10;    msales_2017.dbo.CRM_CUSTOMER_ADDRESS&#13;&#10;GROUP BY&#13;&#10;&#9;CUSTOMER_ID) C&#13;&#10;&#9;ON B.SFM_CUSTOMER_ID=C.SFM_CUSTOMER_ID&#13;&#10;&#9;LEFT JOIN (&#13;&#10;&#9;SELECT&#13;&#10;&#9;ADDRESS_MAP.CUSTOMER_ADDRESS_ID as SFM_CUSTOMER_ADDRESS_ID,&#13;&#10;&#9;MAX(GEOPOINTS.[GEOPOINT_LATITUDE]) as SFM_DEALER_LATITUDE,&#13;&#10;&#9;MAX(GEOPOINTS.[GEOPOINT_LONGITUDE]) as SFM_DEALER_LONGITUDE&#13;&#10;FROM&#13;&#10;&#9;msales_2017.dbo.GPS_CUSTOMER_ADDRESS_GEOZONE ADDRESS_MAP,&#13;&#10;&#9;msales_2017.dbo.GPS_GEOPOINTS GEOPOINTS&#13;&#10;WHERE&#13;&#10;&#9;ADDRESS_MAP.GEOZONE_ID = GEOPOINTS.GEOZONE_ID&#13;&#10;GROUP BY&#13;&#10;&#9;ADDRESS_MAP.CUSTOMER_ADDRESS_ID) D&#13;&#10;&#9;ON C.SFM_CUSTOMER_ADDRESS_ID=D.SFM_CUSTOMER_ADDRESS_ID&#13;&#10;&#9;LEFT JOIN (&#13;&#10;&#9;SELECT&#13;&#10;&#9;CUSTOMER.ENTITY_CODE as SFM_DEALER_CODE,UNIQUE_CODE,&#13;&#10;&#9;MAX(GROUPS.NAME) as NAME&#13;&#10;FROM&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP_ASSIGNED_ENTITY] CUSTOMER,&#13;&#10;&#9;[msales_2017].[dbo].[GR_GROUP] GROUPS&#13;&#10;WHERE &#13;&#10;&#9;ENTITY_CLASS = 'com.emeint.server.msales.crm.customer.persistent.model.Customer'&#13;&#10;&#9;AND CUSTOMER.GROUP_ID = GROUPS.GROUP_ID&#13;&#10;&#9;--AND UNIQUE_CODE LIKE 'CU_DISTRICT_CLASS%'&#13;&#10;GROUP BY&#13;&#10;&#9;CUSTOMER.ENTITY_CODE,UNIQUE_CODE) E&#13;&#10;&#9;ON A.DEALER_CODE=E.SFM_DEALER_CODE&#13;&#10;&#9;LEFT JOIN (&#13;&#10;&#9;select&#13;&#10;&#9;a.code as SFM_DEALER_CODE,&#13;&#10;&#9;d.answer as SFM_SAUDI_ID&#13;&#10;from&#13;&#10;&#9;msales_2017.dbo.CRM_CUSTOMER a&#13;&#10;left join msales_2017.dbo.CRM_CUSTOMER_CF_VALUE b on&#13;&#10;&#9;a.CUSTOMER_ID = b.CUSTOMER_ID&#13;&#10;left join msales_2017.dbo.DC_CUSTOM_FIELD c on&#13;&#10;&#9;b.CUSTOM_FIELD_ID = c.CUSTOM_FIELD_ID&#13;&#10;LEFT JOIN msales_2017.dbo.CRM_CUSTOMER_CF_VALUE_RESPONSE d on&#13;&#10;&#9;b.CUSTOMER_CF_VALUE_ID = d.CUSTOMER_CF_VALUE_ID&#13;&#10;where&#13;&#10;&#9;c.code = 'SAUDI_ID_CODE') F&#13;&#10;&#9;ON A.DEALER_CODE=F.SFM_DEALER_CODE&#13;&#10;LEFT JOIN (&#13;&#10;&#9;&#9;select&#13;&#10;&#9;a.code as SFM_DEALER_CODE,&#13;&#10;&#9;d.answer as answer,c.PROMPT&#13;&#10;from&#13;&#10;&#9;msales_2017.dbo.CRM_CUSTOMER a&#13;&#10;left join msales_2017.dbo.CRM_CUSTOMER_CF_VALUE b on&#13;&#10;&#9;a.CUSTOMER_ID = b.CUSTOMER_ID&#13;&#10;left join msales_2017.dbo.DC_CUSTOM_FIELD c on&#13;&#10;&#9;b.CUSTOM_FIELD_ID = c.CUSTOM_FIELD_ID&#13;&#10;LEFT JOIN msales_2017.dbo.CRM_CUSTOMER_CF_VALUE_RESPONSE d on&#13;&#10;&#9;b.CUSTOMER_CF_VALUE_ID = d.CUSTOMER_CF_VALUE_ID&#13;&#10;--where c.prompt = 'Key Account Manager'&#13;&#10;) G&#13;&#10;on A.DEALER_CODE=G.SFM_DEALER_CODE&#13;&#10;LEFT JOIN (&#13;&#10;select&#13;&#10;&#9;a.code as SFM_DEALER_CODE,&#13;&#10;&#9;e.CUSTOMER_ADDRESS_CONTACT_Person AS SFM_CONTACT_PERSON,&#13;&#10;&#9;e.PHONE1_LOCALNUMBER AS SFM_CONTACT_NUMBER&#13;&#10;from&#13;&#10;&#9;msales_2017.dbo.CRM_CUSTOMER a&#13;&#10;LEFT JOIN msales_2017.dbo.CRM_CUSTOMER_ADDRESS e on &#13;&#10;a.CUSTOMER_ID = e.CUSTOMER_ID) H&#13;&#10;ON A.DEALER_CODE=H.SFM_DEALER_CODE&#13;&#10;LEFT JOIN (&#13;&#10;SELECT &#13;&#10;&#9;SFM_DEALER_CODE,&#13;&#10;&#9;SFM_ACCOUNT_MANAGER_CODE,&#13;&#10;&#9;SFM_ACCOUNT_MANAGER_NAME,&#13;&#10;&#9;SFM_ACCOUNT_MANAGER_VAN_CODE,&#13;&#10;&#9;SFM_ACCOUNT_MANAGER_VAN_NAME,&#13;&#10;&#9;CASE&#13;&#10;&#9;&#9;WHEN SFM_ACCOUNT_MANAGER_VAN_NAME LIKE 'Dammam%' THEN 'Eastern'&#13;&#10;&#9;&#9;WHEN SFM_ACCOUNT_MANAGER_VAN_NAME LIKE 'Riyadh%' THEN 'Central'&#13;&#10;&#9;&#9;WHEN SFM_ACCOUNT_MANAGER_VAN_NAME LIKE 'Jeddah%' THEN 'Western'&#13;&#10;&#9;&#9;ELSE 'Undefined'&#13;&#10;&#9;END SFM_ACCOUNT_MANAGER_VAN_REGION&#13;&#10;FROM (&#13;&#10;(&#13;&#10;SELECT &#13;&#10;&#9;CUSTOMER.CODE as SFM_DEALER_CODE,&#13;&#10;&#9;MAX(CUSTOMER_ADDRESS.CUSTOMER_ADDRESS_ID) CUSTOMER_ADDRESS_ID&#13;&#10;FROM &#13;&#10;&#9;[msales_2017].[dbo].[CRM_CUSTOMER] CUSTOMER,&#13;&#10;&#9;[msales_2017].[dbo].[CRM_CUSTOMER_ADDRESS] CUSTOMER_ADDRESS&#13;&#10;WHERE&#13;&#10;&#9;CUSTOMER.CUSTOMER_ID = CUSTOMER_ADDRESS.CUSTOMER_ID&#13;&#10;GROUP BY&#13;&#10;&#9;CUSTOMER.CODE&#13;&#10;) CUSTOMER_ADDRESS_MAP&#13;&#10;LEFT OUTER JOIN&#13;&#10;(&#13;&#10;SELECT &#13;&#10;&#9;CUSTOMER_ADDRESS.CUSTOMER_ADDRESS_ID CUSTOMER_ADDRESS_ID,&#13;&#10;&#9;MAX(ADDRESS_SALESPERSON.SALES_PERSON_ID) SALES_PERSON_ID&#13;&#10;FROM &#13;&#10;&#9;[msales_2017].[dbo].[CRM_CUSTOMER_ADDRESS] CUSTOMER_ADDRESS,&#13;&#10;&#9;[msales_2017].[dbo].[CRM_CUSTOMER_ADDRESS_SALESPERSONS] ADDRESS_SALESPERSON&#13;&#10;WHERE&#13;&#10;&#9;CUSTOMER_ADDRESS.CUSTOMER_ADDRESS_ID = ADDRESS_SALESPERSON.CUSTOMER_ADDRESS_ID&#13;&#10;GROUP BY&#13;&#10;&#9;CUSTOMER_ADDRESS.CUSTOMER_ADDRESS_ID&#13;&#10;) ADDRESS_SALESPERSON_MAP&#13;&#10;ON&#13;&#10;&#9;CUSTOMER_ADDRESS_MAP.CUSTOMER_ADDRESS_ID = ADDRESS_SALESPERSON_MAP.CUSTOMER_ADDRESS_ID&#13;&#10;LEFT OUTER JOIN&#13;&#10;(&#13;&#10;SELECT&#13;&#10;&#9;SALES_PERSON_ID,&#13;&#10;&#9;MAX(CODE) SFM_ACCOUNT_MANAGER_CODE,&#13;&#10;&#9;MAX(FULL_NAME) SFM_ACCOUNT_MANAGER_NAME,&#13;&#10;&#9;MAX(WAREHOUSE_ID) AS WAREHOUSE_ID&#13;&#10;FROM&#13;&#10;&#9;[msales_2017].[dbo].[CRM_SALES_PERSON]&#13;&#10;GROUP BY&#13;&#10;&#9;SALES_PERSON_ID&#13;&#10;) SALES_PERSON&#13;&#10;ON&#13;&#10;&#9;ADDRESS_SALESPERSON_MAP.SALES_PERSON_ID = SALES_PERSON.SALES_PERSON_ID&#13;&#10;LEFT OUTER JOIN&#13;&#10;(&#13;&#10;SELECT&#13;&#10;&#9;WAREHOUSE_ID,&#13;&#10;&#9;MAX(WAREHOUSE.CODE) as SFM_ACCOUNT_MANAGER_VAN_CODE,&#13;&#10;&#9;MAX(WAREHOUSE.NAME) as SFM_ACCOUNT_MANAGER_VAN_NAME&#13;&#10;FROM&#13;&#10;&#9;[msales_2017].[dbo].[INV_WAREHOUSE] WAREHOUSE&#13;&#10;GROUP BY&#13;&#10;&#9;WAREHOUSE_ID&#13;&#10;) WAREHOUSE&#13;&#10;ON&#13;&#10;&#9;SALES_PERSON.WAREHOUSE_ID = WAREHOUSE.WAREHOUSE_ID&#13;&#10;) I&#13;&#10;ON A.DEALER_CODE=I.SFM_DEALER_CODE&#13;&#10;&#13;&#10;&#13;&#10;&quot;"/>
+    <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="id_MSSQL"/>
+    <elementParameter field="TEXT" name="PROPERTIES" show="false" value="&quot;noDatetimeStringSync=true&quot;"/>
+    <elementParameter field="CHECK" name="ACTIVE_DIR_AUTH" show="false" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="DEALER_CODE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="DEALER_REGION"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_NAME"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_DATE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_STREET_ADDRESS"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_POSTAL_CODE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_LATITUDE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_LONGITUDE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_DISTRICT"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_BRAND"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_BRANDING_CLASS"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_OUTLET_TYPE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_CONTRACT_SIGNED"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_PARTNER"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_CITY"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_CHANNEL"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_OUTLET_CLASS"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_SAUDI_ID"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_KEY_ACCOUNT_MANAGER"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_FUNCTIONAL_DIRECTOR"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_SALES_CHAMPION"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_AREA_MANAGER"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_TEAM_LEADER"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_CONTACT_PERSON"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_CONTACT_NUMBER"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_CODE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_NAME"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_VAN_CODE"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_VAN_NAME"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_VAN_REGION"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
+    <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
+    <metadata connector="FLOW" name="tDBInput_2">
+      <column comment="" key="false" length="-1" name="DEALER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="DEALER_REGION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_STREET_ADDRESS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_POSTAL_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_LATITUDE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_LONGITUDE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_DISTRICT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_BRAND" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_BRANDING_CLASS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_OUTLET_TYPE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CONTRACT_SIGNED" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_PARTNER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CITY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CHANNEL" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_OUTLET_CLASS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_SAUDI_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_KEY_ACCOUNT_MANAGER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_FUNCTIONAL_DIRECTOR" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_SALES_CHAMPION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_AREA_MANAGER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_TEAM_LEADER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_CONTACT_PERSON" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_CONTACT_NUMBER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_REGION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="480" posY="640">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_4NdlsCBxEe6Mlti9JomWeg-tMap_1-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="true"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="LEVENSHTEIN" show="false" value="0"/>
+    <elementParameter field="TEXT" name="JACCARD" show="false" value="0"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="out1">
+      <column comment="" key="false" length="-1" name="DEALER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="DEALER_REGION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_STREET_ADDRESS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_POSTAL_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_LATITUDE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_LONGITUDE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_DISTRICT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_BRAND" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_BRANDING_CLASS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_OUTLET_TYPE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CONTRACT_SIGNED" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_PARTNER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CITY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CHANNEL" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_OUTLET_CLASS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_SAUDI_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_KEY_ACCOUNT_MANAGER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_FUNCTIONAL_DIRECTOR" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_SALES_CHAMPION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_AREA_MANAGER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_TEAM_LEADER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_CONTACT_PERSON" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_CONTACT_NUMBER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_REGION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties shellMaximized="true"/>
+      <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
+      <outputTables name="out1" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="row3.DEALER_CODE " name="DEALER_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.DEALER_REGION " name="DEALER_REGION" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_NAME " name="SFM_DEALER_NAME" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.CREATED_DATE " name="CREATED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="row3.SFM_STREET_ADDRESS " name="SFM_STREET_ADDRESS" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_POSTAL_CODE " name="SFM_POSTAL_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_LATITUDE " name="SFM_DEALER_LATITUDE" nullable="true" type="id_Double"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_LONGITUDE " name="SFM_DEALER_LONGITUDE" nullable="true" type="id_Double"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_DISTRICT " name="SFM_DEALER_DISTRICT" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_BRAND " name="SFM_DEALER_BRAND" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_BRANDING_CLASS " name="SFM_DEALER_BRANDING_CLASS" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_OUTLET_TYPE " name="SFM_DEALER_OUTLET_TYPE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_CONTRACT_SIGNED " name="SFM_DEALER_CONTRACT_SIGNED" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_PARTNER " name="SFM_DEALER_PARTNER" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_CITY " name="SFM_DEALER_CITY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_CHANNEL " name="SFM_DEALER_CHANNEL" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_DEALER_OUTLET_CLASS " name="SFM_DEALER_OUTLET_CLASS" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_SAUDI_ID " name="SFM_SAUDI_ID" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_KEY_ACCOUNT_MANAGER " name="SFM_KEY_ACCOUNT_MANAGER" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_FUNCTIONAL_DIRECTOR " name="SFM_FUNCTIONAL_DIRECTOR" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_SALES_CHAMPION " name="SFM_SALES_CHAMPION" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_AREA_MANAGER " name="SFM_AREA_MANAGER" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_TEAM_LEADER " name="SFM_TEAM_LEADER" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_CONTACT_PERSON " name="SFM_CONTACT_PERSON" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_CONTACT_NUMBER " name="SFM_CONTACT_NUMBER" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="row3.SFM_ACCOUNT_MANAGER_CODE " name="SFM_ACCOUNT_MANAGER_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_ACCOUNT_MANAGER_NAME " name="SFM_ACCOUNT_MANAGER_NAME" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_ACCOUNT_MANAGER_VAN_CODE " name="SFM_ACCOUNT_MANAGER_VAN_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_ACCOUNT_MANAGER_VAN_NAME " name="SFM_ACCOUNT_MANAGER_VAN_NAME" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row3.SFM_ACCOUNT_MANAGER_VAN_REGION " name="SFM_ACCOUNT_MANAGER_VAN_REGION" nullable="true" type="id_String"/>
+      </outputTables>
+      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row3" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="DEALER_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DEALER_REGION" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_NAME" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CREATED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="SFM_STREET_ADDRESS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_POSTAL_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_LATITUDE" nullable="true" type="id_Double"/>
+        <mapperTableEntries name="SFM_DEALER_LONGITUDE" nullable="true" type="id_Double"/>
+        <mapperTableEntries name="SFM_DEALER_DISTRICT" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_BRAND" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_BRANDING_CLASS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_OUTLET_TYPE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_CONTRACT_SIGNED" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_PARTNER" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_CITY" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_CHANNEL" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_DEALER_OUTLET_CLASS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_SAUDI_ID" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_KEY_ACCOUNT_MANAGER" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_FUNCTIONAL_DIRECTOR" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_SALES_CHAMPION" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_AREA_MANAGER" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_TEAM_LEADER" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_CONTACT_PERSON" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_CONTACT_NUMBER" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="SFM_ACCOUNT_MANAGER_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_ACCOUNT_MANAGER_NAME" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_ACCOUNT_MANAGER_VAN_CODE" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_ACCOUNT_MANAGER_VAN_NAME" nullable="true" type="id_String"/>
+        <mapperTableEntries name="SFM_ACCOUNT_MANAGER_VAN_REGION" nullable="true" type="id_String"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="640">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="DEALER_CODE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="DEALER_REGION"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_NAME"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_DATE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_STREET_ADDRESS"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_POSTAL_CODE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_LATITUDE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_LONGITUDE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_DISTRICT"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_BRAND"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_BRANDING_CLASS"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_OUTLET_TYPE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_CONTRACT_SIGNED"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_PARTNER"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_CITY"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_CHANNEL"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_DEALER_OUTLET_CLASS"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_SAUDI_ID"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_KEY_ACCOUNT_MANAGER"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_FUNCTIONAL_DIRECTOR"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_SALES_CHAMPION"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_AREA_MANAGER"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_TEAM_LEADER"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_CONTACT_PERSON"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_CONTACT_NUMBER"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_CODE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_NAME"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_VAN_CODE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_VAN_NAME"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SFM_ACCOUNT_MANAGER_VAN_REGION"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_2">
+      <column comment="" key="false" length="-1" name="DEALER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="DEALER_REGION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_STREET_ADDRESS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_POSTAL_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_LATITUDE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_LONGITUDE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_DISTRICT" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_BRAND" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_BRANDING_CLASS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_OUTLET_TYPE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CONTRACT_SIGNED" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_PARTNER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CITY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_CHANNEL" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_DEALER_OUTLET_CLASS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_SAUDI_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_KEY_ACCOUNT_MANAGER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_FUNCTIONAL_DIRECTOR" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_SALES_CHAMPION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_AREA_MANAGER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_TEAM_LEADER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_CONTACT_PERSON" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_CONTACT_NUMBER" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SFM_ACCOUNT_MANAGER_VAN_REGION" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBConnection_2" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_2" target="tJava_2">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
@@ -526,11 +881,13 @@
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tFlowToIterate_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFlowToIterate_1" offsetLabelX="0" offsetLabelY="0" source="tFlowToIterate_1" target="tDBInput_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tLogRow_1">
@@ -540,7 +897,16 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
+  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tLogRow_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
@@ -606,13 +972,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_dbc70f6a-e8f2-465a-9067-73d9694a9def"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6ra1tksHW1m3s8N9MGnzPepBm4AbtShmJ7n0trFO9D1VpXVBosI1514zmpLRSsIFV2mrHVoDEJ5U&#13;
-TnsfvKXeEw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_832fc7df-c5fa-4e70-94fe-bdfd4f29f6db"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/4ONCQlNM4CGfOpjnxNP/VYhAJIHVpIPRNvjvwx4FtrjrRwm/dNUEXYEy9kOSNWVfAaYl/fctGlj&#13;
-QxccZQILMw==</DigestValue></Reference></SignedInfo><SignatureValue>oQQGGOA5X9vLFtE8M9UslZwgx2v+BccQB8JkA1FkvT/BSxFdLGFOrpXpb0Zn0qaf9qNLrZGPErDt&#13;
-Q/Y9RdJAMxO6c8nGhHAs10ErXUN0Q9zlPb9wv/DujGGS7e1mbEl0qqFtlUmGCoXc4dvekruU5ym+&#13;
-ao+XxRfD2fbphMziJVhYkr40IcVEyjlGPksfBcqR/0L0y8pRMhYm1pbNtYIqJmPEkhyKptnJX8LH&#13;
-qWhBSn2gn//A+zRcRgQTf06wvGukp1FfybsZbIDdzm2DixdCxfaQul2WkQplC10ueBmkT4ETISJE&#13;
-n9h18HJovbtGlZBYutbkEjqfDqOCEhDQ9wmekw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c89571c2-3f23-4e25-97a9-18c4ebccbc1d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>oU1HyBODUnXIKNzoGAylZEKpqvkS5GMvcDUXWjb962AAhAK7oCyQxKyj33tvEXaoI6XzoNaaN18r&#13;
+HdU48uZO9A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5ec1444e-6405-4fdd-816f-cbb081dc0f2d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qMrSHHRn3qKRLaMeayWUibsrKIykxBbFS+mBh9qBYCLPqPPBQcv+jEn7nY5lQOLAo1nAulmWiWVL&#13;
+zRIaKzr8yQ==</DigestValue></Reference></SignedInfo><SignatureValue>JJRd2iGXdlVhetJ5AR+sL2+25pEKxkeebfuPAoMvnRukqKReWXYboJN5q6WW0kGEJ0hUul1EciB8&#13;
+p8XvqibRGxovqHEU69SIKgXN4cP1vsU8iCMdY/b0CW1BCTq6tXrxzadpnAOEAjDHRU6FNbmN+e4/&#13;
+4/K/702nrVXSwiLfJ3km7tmGHDRFaeOx0gNKgRwnqJ8r+IbUhrUKfzdQFK5tOSxNXdUEIsoLC0xK&#13;
+2tJ2Xxj7SuM1mvdF8SwVQZdSzzpAtgPb7+atJOVB8MmuMIekJsaCQE/SefG0Ucs/7J3AvRxLbTRh&#13;
+xO8HmN+yEHuMLlWCLo2IvKXYVesN18kHERbI6A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -634,4 +1005,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_832fc7df-c5fa-4e70-94fe-bdfd4f29f6db" Target="#_dbc70f6a-e8f2-465a-9067-73d9694a9def"><Timestamp>2023-07-25 12:26:51</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5ec1444e-6405-4fdd-816f-cbb081dc0f2d" Target="#_c89571c2-3f23-4e25-97a9-18c4ebccbc1d"><Timestamp>2023-07-27 05:22:32</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
