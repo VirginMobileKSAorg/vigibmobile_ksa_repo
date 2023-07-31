@@ -2,7 +2,7 @@
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" internalId="_xylUMCRnEe61PasUBsZooQ" name="gbq_cred_file" prompt="gbq_cred_file?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="C:\Program Files\GBQ\sa-mobile-app-uat-d6909-6fa455363cc9.json"/>
     <contextParameter comment="" internalId="_xylUMSRnEe61PasUBsZooQ" name="project_id" prompt="project_id?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="sa-mobile-app-uat-d6909"/>
-    <contextParameter comment="" internalId="_GwIbMCx2Ee6SGOODRfEt7w" name="eventdate" prompt="eventdate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20230720"/>
+    <contextParameter comment="" internalId="_GwIbMCx2Ee6SGOODRfEt7w" name="eventdate" prompt="eventdate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -658,7 +658,7 @@
     <elementParameter field="TEXT" name="PROJECT_ID" value="context.project_id"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT *&#13;&#10;FROM `sa-mobile-app-uat-d6909.analytics_231180711.events_&quot;+context.eventdate+&quot;` AS t limit 10;&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT TO_JSON_STRING(t) AS json_output &#13;&#10;FROM `sa-mobile-app-uat-d6909.analytics_231180711.events_&quot;+context.eventdate+&quot;` AS t limit 10;&#13;&#10;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="LARGE"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
     <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
@@ -849,23 +849,23 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tBigQueryInput_4">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
+  </connection>
   <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tLogRow_4">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tBigQueryInput_4">
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tBigQueryInput_3" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_3" target="tJava_1">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
   <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tBigQueryInput_3" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_3" target="tFileOutputDelimited_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
-  </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tBigQueryInput_3" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_3" target="tJava_1">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
   <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tBigQueryInput_4" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_4" target="tLogRow_6">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -961,13 +961,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_85180381-1550-4429-86bf-b9b4ab9b7b56"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DQXS0uERGNJYHt/kZqbLFkCeEeQ9FxubgB8gvOSCDmYSUi7JJNx+zis3ybGVrvapp2Ppx1x6li6Y&#13;
-/EK4QloV2A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_21445d8a-7da6-4ea0-9872-1464f65bfd45"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>OMI8/SOeBJK1StO/6QtUVDKFx9OOBFMWJXYb3wH3BYyB6xyaLoYARCZALtw57ZY/nzFIRz/dL608&#13;
-cogsOBN6Zg==</DigestValue></Reference></SignedInfo><SignatureValue>m8fzW/xLTV0fBV7ybQIH3iYl9Lz4fK8XmcBq0RXe2maJESfLLjF+D5uwNPrM0dzSRRS1qVVQwvE6&#13;
-mOeomeBh5lfH32O35j4DRka8u5WFm9MKI/vOQA+smfqNa0RZDCFiKbPHG9LpmJQNb3rHjAWrn9XA&#13;
-hwaNqPv7lCvbmbOxiO6SkzyVczP9e84VG9o2GherhGo5DqHaI8cZSx+raFMhUQOwMOVY8rcolF+T&#13;
-pjLe+2DvVQY0RGkVZQ7D34S1iZ6Mxd+JooAcEmYGP3ncs9B/RslydQith7+6CijqQG9kXroVKm8l&#13;
-aPinly7DDgiLiSfKMchunkfRaGXx/ZE/+7XZvA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_735a8c04-27f1-4011-ad97-01c79b277ca2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Z5bG8oPRVLJdXaNdyU3rUM0Dgu+PTNzhlDBLAEuq4iJSsThH1Q+Lwfr5caAPTNaRhbRy9vM6HfJz&#13;
+KyTbe5LJVA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3237be28-fb76-489b-9780-112d6ee397b8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rpK+4llSoaKmSoO1WdJjZ2UOknsaP9aFrDkMdaa/ADvsx4VLyOcYJfbFTCFhAifGswwgttoJggRL&#13;
+Oy/PQ8pt2w==</DigestValue></Reference></SignedInfo><SignatureValue>kWXIzMRwMTQqzGUf/JhK5Whq7eGNcCa2/LoaV+5LhRyMNhdGYoqT7dU1kRx0jwQ4Ik0hXxJc5ANp&#13;
+eyj64Uenl2eaN3zgzvcN66fxwWJUtKZEr0WE/Jpzq3gZ24xUMT4hK44Zoh8baKG+gaWyPTWF9XOo&#13;
+2uUdEjgHkutB4zRr6VD0SK40eXHnq2xRpIO7qWvblSl5br6ywM+C7xuvzkIJDGGa8Ycduj3aYvw3&#13;
+dcL7UJAOubwWA14CdhycIQpRJ/xkEa6lQlNW8vhgtqNEDLhBcnV6v/uYqKyUsr/OsIeieIphjWI3&#13;
+5nOCZyh5NAvFQtzQLUJjB6rfE2UdSADrYeM6Xg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -989,4 +989,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_21445d8a-7da6-4ea0-9872-1464f65bfd45" Target="#_85180381-1550-4429-86bf-b9b4ab9b7b56"><Timestamp>2023-07-28 12:37:37</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3237be28-fb76-489b-9780-112d6ee397b8" Target="#_735a8c04-27f1-4011-ad97-01c79b277ca2"><Timestamp>2023-07-31 05:23:47</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
