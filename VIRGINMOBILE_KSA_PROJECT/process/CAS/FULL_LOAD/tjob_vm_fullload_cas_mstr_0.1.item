@@ -611,17 +611,23 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT &#13;&#10;  ACTIVE_FLAG&#13;&#10;FROM &quot;+context.audit_table_master_list+&quot;&#9;&#13;&#10;WHERE &#13;&#10;    SOURCE_SYSTEM ='&quot;+context.source_system+&quot;' &#13;&#10;    AND OBJECT_TYPE='&quot;+context.object_type+&quot;' &#13;&#10;&#9;AND LOAD_TYPE ='&quot;+context.load_type+&quot;'    &#13;&#10;&#9;AND LOAD_AREA='&quot;+context.load_area+&quot;'&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT &#13;&#10; OBJECT_NAME,&#13;&#10;SOURCE_SYSTEM,&#13;&#10;  ACTIVE_FLAG&#13;&#10;FROM &quot;+context.audit_table_master_list+&quot;&#9;&#13;&#10;WHERE &#13;&#10;    ACTIVE_FLAG='Y'&#13;&#10;    AND  SOURCE_SYSTEM ='&quot;+context.source_system+&quot;' &#13;&#10;    AND OBJECT_TYPE='&quot;+context.object_type+&quot;' &#13;&#10;&#9;AND LOAD_TYPE ='&quot;+context.load_type+&quot;'    &#13;&#10;&#9;AND LOAD_AREA='&quot;+context.load_area+&quot;'&#13;&#10;AND OBJECT_NAME NOT IN &#13;&#10;(SELECT &#13;&#10;&#9;OBJECT_NAME&#13;&#10; FROM &quot;+context.audit_table_restart+&quot; &#13;&#10; WHERE &#13;&#10;&#9;BUSINESS_DATE = '&quot;+context.business_date+&quot;' )&quot;&#13;&#10;&quot;"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="OBJECT_NAME"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SOURCE_SYSTEM"/>
+      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ACTIVE_FLAG"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="TEXT" name="LABEL" value="vm_master_info_list"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_2">
+      <column comment="" key="false" length="-1" name="OBJECT_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SOURCE_SYSTEM" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
@@ -807,6 +813,12 @@
       <elementValue elementRef="TRACE_COLUMN" value="ACTIVE_FLAG"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="OBJECT_NAME"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="SOURCE_SYSTEM"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
@@ -911,13 +923,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_17ebf0d0-723c-4779-a5fe-6413439589ce"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lb2H/S/pxScpnc72rFkutaOtJKlZei7m3cfXTN1d74STqk+NvaceEOkr1g2l2CfFPv7vK7CNetM6&#13;
-8JjgLZBE0g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f3e03e48-1a5b-412c-bafb-51db93f138fb"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>drwATnnRGgGuTPWCMq+a4m7u9hGsx8Zs/yy+rpwmEE71kb6P4coLDaawbcloKv8szCTGQpYHEdqB&#13;
-13aZZ1uMIA==</DigestValue></Reference></SignedInfo><SignatureValue>jTVPAiF1ejjSdWLjor/2qO0XBDDVZcq/jo/PT/TBQqJc+ymPh0ENXIwq93SLSpbxdJEpTNS+v1PL&#13;
-w6IEGlg5UeCS/ufWAgO5rZ05bCca5RBtyE/Wlw2Pxd9yh8toCBx1oECtYTTYRimQoyGAdrV0qTmc&#13;
-KBBB+FC9myI3BnsCuskcm4a8UhP4X1HTTKHN9JXzYhSzuha1VS6/JahIHzJzwRMvc36v9NnUe8xG&#13;
-lKRa4LPGymj+y8856wgNrzG1mI6+uzqQNtjrCrOwFT4eftaglMVzHP2fLd+6Gj/FeV9qLzmoMAm/&#13;
-LSmR20PLO8ha1083A3bibQ/wBdD0pfS2WAM+ZA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_df95bb46-f531-442e-b7eb-71a303645d25"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>WpAfqor6Wigtd7Tr8wwwxsVso23NAwoiQLqgcrMMBw0UeaQzpiQLzMEp9VVCVSdnxX4LRfm6/B5I&#13;
+Jx3AYLIgwQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_cb199130-a410-48d1-b9cd-3baea0a1df96"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>JUlEcRp31hqBGKPpZ9xI80A+IhnDdDW/ozRZQ26BFF06aBw9PMTTk4C9hXuiKG6f+sgIOkb0uk8X&#13;
+tMTs3e8Veg==</DigestValue></Reference></SignedInfo><SignatureValue>XuTbbQ8nmgVWADxUWIMQa2v2pqOzXa429aPdeaRGODAKIbyeYRX4VFw+qmVSsg6qgYAOmlshOa34&#13;
+B2R54lJUjyicl8cRBNlGw27fRdRJvBd4QsdZFdqWxdnTjFXHuWsxWk2PVxeSoiMDvpoa7asIjReK&#13;
+uXyORQX228Y/pwfRMZrFt6861HjNhB3T1IqXCWkrOhNfh033daFmwHifFSBVGLAqgl/NbBGFnUuI&#13;
+Vq8L+OSHQv8as/XX6FEc2jnJysSZ6HUE/5SBaG6b1p80IlMIbw+asrHa8mweChgW4VRMebkLxBdY&#13;
+ANrLzgF5L879tQYjDjMh3NO/HMSMp/Esl+xsrw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -939,4 +951,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f3e03e48-1a5b-412c-bafb-51db93f138fb" Target="#_17ebf0d0-723c-4779-a5fe-6413439589ce"><Timestamp>2023-07-31 06:33:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_cb199130-a410-48d1-b9cd-3baea0a1df96" Target="#_df95bb46-f531-442e-b7eb-71a303645d25"><Timestamp>2023-07-31 06:36:32</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
