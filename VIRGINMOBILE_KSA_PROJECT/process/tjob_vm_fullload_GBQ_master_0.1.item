@@ -5,6 +5,7 @@
     <contextParameter comment="" internalId="_KiizICxFEe6SGOODRfEt7w" name="load_date" prompt="load_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20230730"/>
     <contextParameter comment="" internalId="_1lXaADAzEe6_suVboHOf_g" name="start_date" prompt="start_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
     <contextParameter comment="" internalId="_1lXaATAzEe6_suVboHOf_g" name="end_date" prompt="end_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_TnJ2ADBdEe6QU757beCZsA" name="business_date" prompt="business_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20230625"/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -115,61 +116,6 @@
     <routinesParameter id="_NDzMgPI9Ee2OWpcH6cGz6w" name="TalendString"/>
     <routinesParameter id="_WkwwoDTPEeyClv2ll0VUqA" name="date"/>
   </parameters>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="864" posY="256">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
-    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
-    <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
-    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:AFymut8hVZMrrm47Z3UtVAHEJHKabYN1qbb8pxWo"/>
-    <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
-    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="context.gbq_cred_file"/>
-    <elementParameter field="TEXT" name="CLIENT_ID" show="false" value="&quot;&quot;"/>
-    <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:naMC0fWo1d+c/I3X7YXK8zps9opnAClFP3hEEZzD"/>
-    <elementParameter field="TEXT" name="PROJECT_ID" value="context.project_id"/>
-    <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT TO_JSON_STRING(t) AS json_output&#13;&#10;FROM `sa-mobile-app-uat-d6909.analytics_231180711.events_&quot;+context.load_date+&quot;` AS t limit 1000&#13;&#10;&#13;&#10;;&#13;&#10;&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="LARGE"/>
-    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
-    <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
-    <elementParameter field="FILE" name="TOKEN_NAME" show="false" value="&quot;C:/Talend Data Fabric V2/Talend-Studio-20211109_1610-V8.0.1/Talend-Studio-20211109_1610-V8.0.1/workspace/token.properties&quot;"/>
-    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
-    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
-    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
-    <elementParameter field="CHECK" name="USE_CUSTOM_TEMPORARY_DATASET" value="false"/>
-    <elementParameter field="TEXT" name="TEMPORARY_DATASET_NAME" show="false" value="&quot;temp_dataset&quot;"/>
-    <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tBigQueryInput_1">
-      <column comment="" key="false" length="-1" name="dynamicColumn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="STRING" type="id_Dynamic" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1376" posY="256">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
-    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
-    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
-    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
-    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
-    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
-    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
-    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
-    <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="dynamicColumn"/>
-      <elementValue elementRef="LENGTH" value="10"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
-    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tLogRow_1">
-      <column comment="" key="false" length="-1" name="dynamicColumn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="STRING" type="id_Dynamic" usefulColumn="true"/>
-    </metadata>
-  </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="32" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
@@ -504,7 +450,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="0">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//context.object_name = &quot;sre_table&quot;;//This context value is hardcoded but we will pass its value from TAC.&#10;context.object_name = &quot;gr_group_assigned_entity&quot;;&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;if(context.business_date.equals(null) || context.business_date.equals(&quot;&quot;)){&#10;&#9;context.business_date = TalendDate.getDate(&quot;yyyy-MM-dd&quot;);&#10;}&#10;//if(context.vEndDate.equals(null) || context.vEndDate.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;//context.vEndDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyy-MM-dd&quot;), &quot;yyyy-MM-dd&quot;, -1, &quot;dd&quot;);&#10;//}&#10;&#10;//System.out.println(&quot;Start Date : &quot;+ context.vStartDate);&#10;//System.out.println(&quot;End Date : &quot;+ context.vEndDate);&#10;&#10;&#10;context.talend_jobname = jobName ;&#10;&#10;context.start_time_main_job=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;&#10;System.out.println(&quot;context.object_name: &quot; +context.object_name);&#10;System.out.println(&quot;context.business_date: &quot; +context.business_date);&#10;System.out.println(&quot;context.start_time: &quot; +context.start_time);&#10;System.out.println(&quot;context.start_time_main_job: &quot; +context.start_time_main_job);&#10;System.out.println(&quot;context.auditkey: &quot;+context.auditkey);&#10;&#10;//context.stage_id =12;&#10;context.source_system=&quot;talendjob&quot;;&#10;System.out.println(&quot; context.source_system: &quot; + context.source_system);&#10;&#10;context.batch_process_date=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//context.object_name = &quot;sre_table&quot;;//This context value is hardcoded but we will pass its value from TAC.&#10;context.object_name = &quot;event&quot;;&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;if(context.business_date.equals(null) || context.business_date.equals(&quot;&quot;)){&#10;&#9;//context.business_date = TalendDate.getDate(&quot;yyyy-MM-dd&quot;);&#10;&#9;context.business_date = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -2, &quot;dd&quot;);&#10;}&#10;//if(context.vEndDate.equals(null) || context.vEndDate.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;//context.vEndDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyy-MM-dd&quot;), &quot;yyyy-MM-dd&quot;, -1, &quot;dd&quot;);&#10;//}&#10;&#10;//System.out.println(&quot;Start Date : &quot;+ context.vStartDate);&#10;//System.out.println(&quot;End Date : &quot;+ context.vEndDate);&#10;&#10;&#10;context.talend_jobname = jobName ;&#10;&#10;context.start_time_main_job=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;&#10;System.out.println(&quot;context.object_name: &quot; +context.object_name);&#10;System.out.println(&quot;context.business_date: &quot; +context.business_date);&#10;System.out.println(&quot;context.start_time: &quot; +context.start_time);&#10;System.out.println(&quot;context.start_time_main_job: &quot; +context.start_time_main_job);&#10;System.out.println(&quot;context.auditkey: &quot;+context.auditkey);&#10;&#10;//context.stage_id =12;&#10;context.source_system=&quot;talendjob&quot;;&#10;System.out.println(&quot; context.source_system: &quot; + context.source_system);&#10;&#10;context.batch_process_date=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set initial context values"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -546,17 +492,130 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tRunJob_1"/>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="256">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.source_system=&quot;GoogleBigQuery&quot;;&#10;&#10;&#10;System.out.println(&quot;source systrem:&quot;  +context.source_system);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_4"/>
   </node>
-  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tLogRow_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
-  </connection>
+  <node componentName="tVerticaInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="608" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="HOST" value="context.vm_vertica_Server"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
+    <elementParameter field="TEXT" name="PORT" value="context.vm_vertica_Port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.vm_vertica_Database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vm_vertica_Schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.vm_vertica_Login"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:pYp1seG1Clv4EM1TxBlQtoAop8UEwWCzhFocPV8F4+sAag8ih/VLj6BLLFIW6yuUONnx79UA2g=="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT &#13;&#10; OBJECT_NAME,&#13;&#10;SOURCE_SYSTEM,&#13;&#10;  ACTIVE_FLAG&#13;&#10;FROM &quot;+context.audit_table_master_list+&quot;&#9;&#13;&#10;WHERE &#13;&#10;    ACTIVE_FLAG='Y'&#13;&#10;    AND  SOURCE_SYSTEM ='&quot;+context.source_system+&quot;' &#13;&#10;    AND OBJECT_TYPE='&quot;+context.object_type+&quot;' &#13;&#10;&#9;AND LOAD_TYPE ='&quot;+context.load_type+&quot;'    &#13;&#10;&#9;AND LOAD_AREA='&quot;+context.load_area+&quot;'&#13;&#10;AND OBJECT_NAME NOT IN &#13;&#10;(SELECT &#13;&#10;&#9;OBJECT_NAME&#13;&#10; FROM &quot;+context.audit_table_restart+&quot; &#13;&#10; WHERE &#13;&#10;&#9;BUSINESS_DATE = '&quot;+context.business_date+&quot;' )&#13;&#10;&quot;&#13;&#10;&#13;&#10;"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="OBJECT_NAME"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SOURCE_SYSTEM"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ACTIVE_FLAG"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="vm_master_info_list"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tDBInput_2">
+      <column comment="" key="false" length="-1" name="OBJECT_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SOURCE_SYSTEM" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="864" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_2"/>
+    <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
+    <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
+    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_fullload_GBQ_main"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_CONTEXT" value="Default"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_PROCESS" value="VIRGINMOBILE_KSA_PROJECT:_AR5yMDBVEe6QU757beCZsA"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_VERSION" value="Latest"/>
+    <elementParameter field="TEXT" name="CONTEXT_NAME" show="false" value="Default"/>
+    <elementParameter field="CHECK" name="USE_INDEPENDENT_PROCESS" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_CHILD_ERROR" value="true"/>
+    <elementParameter field="CHECK" name="TRANSMIT_WHOLE_CONTEXT" value="true"/>
+    <elementParameter field="TABLE" name="CONTEXTPARAMS"/>
+    <elementParameter field="CHECK" name="PROPAGATE_CHILD_RESULT" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_PARAMETER" value="false"/>
+    <elementParameter field="CHECK" name="TRANSMIT_ORIGINAL_CONTEXT" show="false" value="true"/>
+    <elementParameter field="RADIO" name="USE_CHILD_JVM_SETTING" show="false" value="true"/>
+    <elementParameter field="RADIO" name="USE_CUSTOM_JVM_SETTING" show="false" value="false"/>
+    <elementParameter field="TABLE" name="JVM_ARGUMENTS" show="false"/>
+    <elementParameter field="CHECK" name="USE_DYNAMIC_CONTEXT" value="false"/>
+    <elementParameter field="TEXT" name="DYNAMIC_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="USE_EXTRA_CLASSPATH" show="false" value="false"/>
+    <elementParameter field="TEXT" name="EXTRA_CLASSPATH" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="LABEL" value="tjob_vm_fullload_GBQ_MAIN"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tRunJob_2"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_size = &quot;&quot;;&#10;context.task_status = context.task_status_failed;&#10;context.error_code = context.error_code_subjob;&#10;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;);  &#10;context.error_msg = context.error_msg + &quot; &quot; +context.error_msg_subjob + &quot;4&quot;;&#10;context.source_count =  new Long(0);&#10;context.target_count =  new Long(0);&#10;context.insert_count = new Long(0);&#10;context.update_count = new Long(0);&#10;context.reject_count = new Long(0);&#10;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="set final context values"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_5"/>
+  </node>
+  <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1216" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_2"/>
+    <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
+    <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
+    <elementParameter field="TEXT" name="MESSAGE" value="&quot;Failed execution of Subjob for File Count 4&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="PRIORITY" value="30000"/>
+    <elementParameter field="TEXT" name="LABEL" value="log info"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJobLog_2"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="864" posY="416">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_6"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//context.talend_jobname = jobName ;&#10;context.file_size = &quot;&quot;;&#10;if(!context.task_status.equals(context.task_status_failed)){&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;&#9;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;&#9;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;);    &#10;&#9;context.error_code = context.error_code_success ;&#10;&#9;context.error_msg = context.error_msg_success;&#10;&#9;context.source_count = new Long(0);&#10;&#9;context.target_count = new Long(0);&#10;&#9;context.insert_count = new Long(0);&#10;&#9;context.update_count = new Long(0);&#10;&#9;context.reject_count = new Long(0);&#10;&#9;context.delete_count = new Long(0);&#10;&#9;&#10;}&#10; context.source_system=&quot;talendjob&quot;;&#10;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Set dynamic value for main job"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_6"/>
+  </node>
+  <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="416">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_3"/>
+    <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
+    <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
+    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_CONTEXT" value="Default"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_PROCESS" value="VIRGINMOBILE_KSA_PROJECT:_x6gXgAViEe6ShOVCpvOVVA"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_VERSION" value="Latest"/>
+    <elementParameter field="TEXT" name="CONTEXT_NAME" show="false" value="Default"/>
+    <elementParameter field="CHECK" name="USE_INDEPENDENT_PROCESS" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_CHILD_ERROR" value="true"/>
+    <elementParameter field="CHECK" name="TRANSMIT_WHOLE_CONTEXT" value="true"/>
+    <elementParameter field="TABLE" name="CONTEXTPARAMS"/>
+    <elementParameter field="CHECK" name="PROPAGATE_CHILD_RESULT" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_PARAMETER" value="false"/>
+    <elementParameter field="CHECK" name="TRANSMIT_ORIGINAL_CONTEXT" show="false" value="true"/>
+    <elementParameter field="RADIO" name="USE_CHILD_JVM_SETTING" show="false" value="true"/>
+    <elementParameter field="RADIO" name="USE_CUSTOM_JVM_SETTING" show="false" value="false"/>
+    <elementParameter field="TABLE" name="JVM_ARGUMENTS" show="false"/>
+    <elementParameter field="CHECK" name="USE_DYNAMIC_CONTEXT" value="false"/>
+    <elementParameter field="TEXT" name="DYNAMIC_CONTEXT" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="USE_EXTRA_CLASSPATH" show="false" value="false"/>
+    <elementParameter field="TEXT" name="EXTRA_CLASSPATH" show="false" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="LABEL" value="__PROCESS__"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tRunJob_3"/>
+  </node>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
@@ -618,14 +677,25 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tJava_4">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk7"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_4" offsetLabelX="0" offsetLabelY="0" source="tJava_4" target="tBigQueryInput_1">
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_4" offsetLabelX="0" offsetLabelY="0" source="tJava_4" target="tDBInput_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tRunJob_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="COMPONENT_ERROR" label="OnComponentError" lineStyle="5" metaname="tRunJob_2" offsetLabelX="0" offsetLabelY="0" source="tRunJob_2" target="tJava_5">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentError1"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tRunJob_2" offsetLabelX="0" offsetLabelY="0" source="tRunJob_2" target="tJava_6">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" source="tJava_5" target="tJobLog_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_6" offsetLabelX="0" offsetLabelY="0" source="tJava_6" target="tRunJob_3">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk10"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
@@ -671,13 +741,38 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4717f2f1-13a6-47a5-9617-c89213c1746f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jnz80nOktCdjudSmwcAkVUaj0FEtudltIlbDzLDG0bQGCWhJjs5YqSskLiz3pgpqvZNuII1mSHbk&#13;
-3m+0x4+pIg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e06e1636-caa1-41b1-b3e8-37e40a7d9b27"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9y/5VqSMwzFHmA/dJjY1aiN8whPEM39dLpco0QAyoCS5Xhl3iXlKq6gX8AvOUA95Uja8ciBvh2ng&#13;
-wqK8V38OhA==</DigestValue></Reference></SignedInfo><SignatureValue>BmbtmKUAAUojDAf+xAYI4bjo4Im2CsU2Ul4dM8gxbgjXQSFVH535l63TU6HxHVlmxp8hVXMl/SEf&#13;
-M7iq6FjkzejBgc+0hHabQeNnH5KJhcSHEH8RHinT9vdABDg+iW9Ip/WEsvzXWudZgUXDcLRAbuQq&#13;
-vN3eqGA8UUjuAtXuKOHSLaxtQPTAE7CXLXTMpnAvULPt/94ukMeuWeg94yE0abBeXsRZ7jCyEqDQ&#13;
-XWQvoW+LTupUp4lHjiByWwT4vdAITpwEI/Bl/fDt1fMpOngqwQ8kkxdubA9vS9smk/gsRinjk0Yr&#13;
-ESOJ6b3qV0hE21kCiln7XEdIDfIFxTKhBes8Sg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_6"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_3"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c0a1fcd5-f811-4d4b-a00c-20581bdf2314"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fkmW6W+8nQm103AaEUIP5qmB1g30HEhDz3tMHOun71s2PMO6UHmeIyrl1jcJmIAa5fKT/7k2JyOM&#13;
+EK35cZ3qdQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_20d6a096-c8f9-448d-9f63-226f5a2fed45"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rKUTmC+Qgbieoavf/6684gNIXVDf+H6BTsmzgeHWnVCSTJB9ZRzMBYE/nqsO4ZqKhxQ4EXbEdz40&#13;
+2xsJQD8Oxw==</DigestValue></Reference></SignedInfo><SignatureValue>SCMQYomOI8lfjUKMKXDm5m0BTaSTTyNSq1wGMGhYoIN+gtwX7l6WVOkssRYHtrANv+2Vzmq19Cwz&#13;
+Q4JndWnNfqmoCStHkN2pbWahlWTtkkt+/TMply1vbbnd0GpBoTmfcTBQGZ7io3+qVC2Lxh8zSOwQ&#13;
+YvrdFH1umGk66uhlfS1zQEm1V5JSvptlP6pmHY7HkxGxmqEW65lKgfCY2Fng0Ey+goQJoQ9fxnIC&#13;
+A8c1O+NbtOiLet0Vqyu7aF3J1++gsXRQdCpk8tTSOVx4lGnX286asGg+ymiCFUbl9jfnyGtF5XCC&#13;
+8cD8CSVIeLvTHUg3Ebr1IlPpvPPjVhhpJszHQw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -699,4 +794,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e06e1636-caa1-41b1-b3e8-37e40a7d9b27" Target="#_4717f2f1-13a6-47a5-9617-c89213c1746f"><Timestamp>2023-08-01 10:19:21</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_20d6a096-c8f9-448d-9f63-226f5a2fed45" Target="#_c0a1fcd5-f811-4d4b-a00c-20581bdf2314"><Timestamp>2023-08-01 11:19:40</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
