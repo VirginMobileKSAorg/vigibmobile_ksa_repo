@@ -2,7 +2,9 @@
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" internalId="_Lv14QCw7Ee6SGOODRfEt7w" name="gbq_cred_file" prompt="gbq_cred_file?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/home/om/sa-mobile-app-uat-d6909-6fa455363cc9.json"/>
     <contextParameter comment="" internalId="_Lv14QSw7Ee6SGOODRfEt7w" name="project_id" prompt="project_id?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="sa-mobile-app-uat-d6909"/>
-    <contextParameter comment="" internalId="_KiizICxFEe6SGOODRfEt7w" name="eventdate" prompt="eventdate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20230730"/>
+    <contextParameter comment="" internalId="_KiizICxFEe6SGOODRfEt7w" name="load_date" prompt="load_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20230730"/>
+    <contextParameter comment="" internalId="_1lXaADAzEe6_suVboHOf_g" name="start_date" prompt="start_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_1lXaATAzEe6_suVboHOf_g" name="end_date" prompt="end_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -126,7 +128,7 @@
     <elementParameter field="TEXT" name="PROJECT_ID" value="context.project_id"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT TO_JSON_STRING(t) AS json_output&#13;&#10;FROM `sa-mobile-app-uat-d6909.analytics_231180711.events_&quot;+context.eventdate+&quot;` AS t limit 1000&#13;&#10;&#13;&#10;;&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;SELECT TO_JSON_STRING(t) AS json_output&#13;&#10;FROM `sa-mobile-app-uat-d6909.analytics_231180711.events_&quot;+context.load_date+&quot;` AS t limit 1000&#13;&#10;&#13;&#10;;&#13;&#10;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="LARGE"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
     <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
@@ -146,7 +148,7 @@
   </node>
   <node componentName="tFileOutputJSON" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputJSON_1"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;/opt/s3_uploads/GBQ/Event_date&quot;+context.eventdate+&quot;.json&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;/opt/s3_uploads/GBQ/Eventdate_&quot;+context.load_date+&quot;.json&quot;"/>
     <elementParameter field="CHECK" name="GENERATE_JSON_ARRAY" value="false"/>
     <elementParameter field="TEXT" name="DATABLOCKNAME" value="&quot;data&quot;"/>
     <elementParameter field="CHECK" name="CREATE" value="true"/>
@@ -181,7 +183,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="if(context.eventdate.equals(null) || context.eventdate.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;context.eventdate = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;//if(context.vEndDate.equals(null) || context.vEndDate.equals(&quot;&quot;))&#10;//{&#9;&#10;&#9;//context.vEndDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyy-MM-dd&quot;), &quot;yyyy-MM-dd&quot;, -1, &quot;dd&quot;);&#10;//}&#10;&#10;System.out.println(context.eventdate);&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="if(context.load_date.equals(null) || context.load_date.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;context.load_date = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;//if(context.vEndDate.equals(null) || context.vEndDate.equals(&quot;&quot;))&#10;//{&#9;&#10;&#9;//context.vEndDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyy-MM-dd&quot;), &quot;yyyy-MM-dd&quot;, -1, &quot;dd&quot;);&#10;//}&#10;&#10;System.out.println(context.load_date);&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_2"/>
@@ -207,13 +209,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ed1c153d-4f41-4819-9ee4-ae57dccae410"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>d0X+NtcsQhxDqK4r6y4ffjzQ7SVDZ73MAUkjRJ2yBpdJZWnYH7sYRA4+0PJb58fA+wwah9NnlhIg&#13;
-WBLxD0oJzQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_41fdc617-42d6-4234-807c-4234b8850ac5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>UlgZYe7kKHiGvXrT6itu3SrzrfCn81J06j9/fXIRNt59p7i9JyFe+mCBxbganNNR17L8S6qury5T&#13;
-wG6EqcBOzw==</DigestValue></Reference></SignedInfo><SignatureValue>bG5C+ywcpiMICjGrHKFJJOfTIBUm7Mk2yfzsmkOFh6cupA71EvDObIrEtGICJhEi4apsEToorEKm&#13;
-wfUUTLzbm+/Y5lA6o4tTDm+ZBglDbxr2PvUY34wIRqAMSuNDfAYEARcwOiD3kDHmOPWPDuVphRq3&#13;
-Fpmqx6qtAHs2OMbwMsC9B+zrsep03ZI1gQEXQQ74OHCBgQ3mKs7BPA9CBvKYmU+uYtwhX3NZVOIA&#13;
-dE/7N2uMxhOud6pn1ODL4UHWniip/zZEn/Bt30wBA2FNkCxVYv8fh8LOn+IA6B93KkwsbvM/N++Y&#13;
-2KXbThl9urRXJovJzxvHb8FWQulMTncAito7ZA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9de91c4a-4527-457b-b70a-ae7cfa258eb5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/Q2kXKIREolWMeC5iXPwpUinGVxSOD2UuAbSI6wO0Wh/8OIoqUprX6E7t90HX8CKpoC1X2S+FChv&#13;
+Jh/LOlnXFg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_12311bd8-9902-4fa2-8c67-5ee791c89580"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>YESnBNjwA4oUPRsbwWta8GAKSp6mf/BaZ/Gm0LFaQNI3o8IgML/L5iDJqVjbM2j+IC5x6PLHDN1m&#13;
+gM1zi/p3dQ==</DigestValue></Reference></SignedInfo><SignatureValue>hEPNEtre6w8QOUwwISAzz+NL1f4vnBwBV3lZNMieqKnz9baszP9YcVB3xwJDqp0nJJapk/y3Odwz&#13;
+hr/i0gBoK7tpbGP48bxkoK3Ccm3ErdNsF5md0ABeAFWlqm+IlY0Yf0ej+vptgiBdtDzoDnnF+uiA&#13;
+6LpmRCQWmUx3waSFl4peeeooDtIv3W8owAWcwKGlOsT3TjEq3c+ObhlZrLPOLvwDq+Ug/Jc6qHZ3&#13;
+8obMC30IJYWup3TrcR4TqqAiP90VGaQqrdbN9i5ESnV+wRnodq57g3U6mHr4YDRCWSBdHdRIoYsq&#13;
+2X5VSKILms28jzPLso4RXySWKIVr7Vm2RpjlyA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -235,4 +237,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_41fdc617-42d6-4234-807c-4234b8850ac5" Target="#_ed1c153d-4f41-4819-9ee4-ae57dccae410"><Timestamp>2023-07-31 07:29:28</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_12311bd8-9902-4fa2-8c67-5ee791c89580" Target="#_9de91c4a-4527-457b-b70a-ae7cfa258eb5"><Timestamp>2023-08-01 06:22:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
