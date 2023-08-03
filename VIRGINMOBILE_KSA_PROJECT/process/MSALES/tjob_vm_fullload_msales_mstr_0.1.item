@@ -552,6 +552,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="//context.object_name = &quot;sre_table&quot;;//This context value is hardcoded but we will pass its value from TAC.&#10;context.object_name = &quot;gr_group_assigned_entity&quot;;&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;if(context.business_date.equals(null) || context.business_date.equals(&quot;&quot;)){&#10;&#9;context.business_date = TalendDate.getDate(&quot;yyyy-MM-dd&quot;);&#10;}&#10;&#10;context.talend_jobname = jobName ;&#10;&#10;context.start_time_main_job=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;&#10;System.out.println(&quot;context.object_name: &quot; +context.object_name);&#10;System.out.println(&quot;context.business_date: &quot; +context.business_date);&#10;System.out.println(&quot;context.start_time: &quot; +context.start_time);&#10;System.out.println(&quot;context.start_time_main_job: &quot; +context.start_time_main_job);&#10;System.out.println(&quot;context.auditkey: &quot;+context.auditkey);&#10;&#10;//context.stage_id =12;&#10;context.source_system=&quot;talendjob&quot;;&#10;System.out.println(&quot; context.source_system: &quot; + context.source_system);&#10;&#10;context.batch_process_date=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set initial context values"/>
@@ -560,6 +561,7 @@
   </node>
   <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="-64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
     <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Initiating execution for BUSINESS DATE: &quot;+context.business_date"/>
@@ -569,6 +571,7 @@
   </node>
   <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
     <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_start_audit_dync"/>
@@ -596,6 +599,7 @@
   </node>
   <node componentName="tVerticaInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
@@ -710,6 +714,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.source_system=&quot;msales&quot;;&#10;&#10;&#10;System.out.println(&quot;source systrem:&quot;  +context.source_system);&#10;&#10;context.load_type = &quot;full_load&quot;;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -808,6 +813,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputDelimited_2" offsetLabelX="9" offsetLabelY="1" source="tFileInputDelimited_2" target="tJava_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk4"/>
   </connection>
   <connection connectorName="FLOW" label="row9" lineStyle="0" metaname="tJavaRow_3" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_3" target="tContextLoad_2">
@@ -819,12 +825,15 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_2" target="tJobLog_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk5"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_2" target="tRunJob_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk6"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tJava_5">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk7"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tRunJob_2">
@@ -847,6 +856,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_5" offsetLabelX="-11" offsetLabelY="4" source="tJava_5" target="tDBInput_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_2" offsetLabelX="0" offsetLabelY="0" source="tRunJob_2" target="tJava_3">
@@ -937,13 +947,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8b6ef934-8b45-4b07-9855-8edbc219632e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rOb3UNxFjNqBUp04zfvStC7ogABfouZVZIHQfGJfQ6ZisBVxkrBuJOR9W91mmieWbp/NVS1vKVRX&#13;
-hCZpX4j4DA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d8f8cabe-d9a9-41dc-bfc9-edee1296add4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NN0zEBbQ25Ok7TiX+BVC52KEyZx1ysXRKGmiyqrzYW78/lsz1pdMeoJ7vE64TcHHZTMZph5eW+FT&#13;
-3CrOgbFBgg==</DigestValue></Reference></SignedInfo><SignatureValue>h0WTtkj6UGO7lXdKJQVyioGlz5MYgWtZrvUtcl9txg4d4WOtI7sQPcHW/IYlv9HBwYXJ6G0n0nzg&#13;
-Ze12LVreU3sSTYkibOVJiGL54ghF+x/gBi2HZXz9o6H45+dMMwDQnGez597dIzf+/TmAbW/lRRFa&#13;
-by0DDEY8fvIXvP8I7N0eTrctmKpUC9YSip7fPP7QA3wXBIxuNPmrDMkMMchkfzQRhZYgRRrJdwwe&#13;
-GfMF3cEScxITh8rs1Lswh6i7I56cXf457vtfPZsbmNeKc4V6g4bIFcKsJHs6hYfOvcUzPG4XdsX/&#13;
-iJYgsCwaXrSomPF1BylqLnHY/3xjInUaD50dcg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_09082643-caee-4424-a590-8a58897ab8fc"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>SrR1hCqaHHTh82yl+e8LxJOdcIOiYtuUuOFM7nLEti42w8UO7yWzELnJjDCgV6hlYqh3AGec+eow&#13;
+13pj4k8uEQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8daa5f57-7b61-4e70-a23f-3cc89b91b75c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>pYKfFLw04bFmDvBkhPVrJmG4xFFw6MP/4/1qbwSg0GJpGb4c2St5/560C9xHxEYSgs6QNMZSKVg7&#13;
+0kUdLwUD4g==</DigestValue></Reference></SignedInfo><SignatureValue>Qk7hYA1RDWwWKSh5adHp+eX4Zkar4sH0XrbezwAQPFy6iLWglE0OfUnhGi8XV+wg2vZgwqjyEi5U&#13;
+UFBjlbNpy/aj79zhtn84Ddx/Zep9GcvL1qcAJx6detN544RM0kWK2LnElVkKublUqNOLpbWgvYyD&#13;
+/jGKQNPDWX5c65h3S5hs9Z66lytJ0D6cLj41NIAk4SN19evN7IahsCX0jK7AqltjPPQIu2/YCbJv&#13;
+Mehszjagjkm1GpEpO7WymHm3HdX9BG6+jdqLdsGSo7LuPrPGPeTaYQVxkzvI59rGGCnfiuSYc7PY&#13;
+CfmoEEie2wrhSayYqURejHS7sBtSpUMMRajhmw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -965,4 +975,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d8f8cabe-d9a9-41dc-bfc9-edee1296add4" Target="#_8b6ef934-8b45-4b07-9855-8edbc219632e"><Timestamp>2023-08-03 12:45:09</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8daa5f57-7b61-4e70-a23f-3cc89b91b75c" Target="#_09082643-caee-4424-a590-8a58897ab8fc"><Timestamp>2023-08-03 12:45:31</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
