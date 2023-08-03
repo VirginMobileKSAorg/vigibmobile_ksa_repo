@@ -1052,7 +1052,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select top 100&#13;&#10;r.ID,&#13;&#10;r.Email,&#13;&#10;r.Password,&#13;&#10;r.IDNumber,&#13;&#10;r.PrimaryMSISDN,&#13;&#10;[DateTime],&#13;&#10;r.AcountStatus,&#13;&#10;r.IDType,&#13;&#10;r.AccountType,&#13;&#10;r.CustomerID,&#13;&#10;r.AccountNumber,&#13;&#10;r.IsActive,&#13;&#10;r.ChannelID,&#13;&#10;r.IsSubscribed,&#13;&#10;r.WeightDeliveryQueue,&#13;&#10;r.IsEmailVerified,&#13;&#10;r.DeviceId,&#13;&#10;r.TerminationDate,&#13;&#10;r.TerminationReason,&#13;&#10;r.IsTerminationScheduled,&#13;&#10;r.ScheduledActionDate,&#13;&#10;r.IsPlanPaused,&#13;&#10;r.RefererCode,&#13;&#10;r.AccountStatus,&#13;&#10;r.ProductCode,&#13;&#10;r.TrackingToken,&#13;&#10;r.IsDealerReg,&#13;&#10;r.CustomerEligibililtyID,&#13;&#10;r.IsEmailValidated,&#13;&#10;r.IsLoggedin &#13;&#10;from [VMWSC.Digital].dbo.Registration r &#13;&#10;where cast([DateTime] as [DateTime]) &gt;= convert(Datetime, '&quot;+context.replace_start_incr_value+&quot;');&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select top 100&#13;&#10;ID,&#13;&#10;ChannelID,&#13;&#10;RegID,&#13;&#10;ModuleID,&#13;&#10;ServiceName,&#13;&#10;[DateTime],&#13;&#10;IsSuccess,&#13;&#10;CountableForBlocking&#13;&#10;from scusersaccessinfo&#13;&#10;where cast([DateTime] as [DateTime]) &gt;= convert([Datetime], '&quot;+context.replace_start_incr_value+&quot;');&#13;&#10;&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1065,99 +1065,49 @@
     <elementParameter field="TABLE" name="TRIM_COLUMN">
       <elementValue elementRef="SCHEMA_COLUMN" value="ID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Email"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ChannelID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Password"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="RegID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IDNumber"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ModuleID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="PrimaryMSISDN"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ServiceName"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="DateTime"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AcountStatus"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="IsSuccess"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IDType"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AccountType"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerID"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AccountNumber"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsActive"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ChannelID"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsSubscribed"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="WeightDeliveryQueue"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsEmailVerified"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="DeviceId"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="TerminationDate"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="TerminationReason"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsTerminationScheduled"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ScheduledActionDate"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsPlanPaused"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="RefererCode"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AccountStatus"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ProductCode"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="TrackingToken"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsDealerReg"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerEligibililtyID"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsEmailValidated"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsLoggedin"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CountableForBlocking"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_1">
-      <column comment="" key="true" length="4" name="ID" nullable="false" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="Email" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="Password" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="IDNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="PrimaryMSISDN" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="DateTime" nullable="true" originalLength="8" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AcountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="IDType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="20" name="CustomerID" nullable="true" originalLength="20" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="AccountNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsActive" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ChannelID" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsSubscribed" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="WeightDeliveryQueue" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailVerified" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="DeviceId" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="TerminationDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="TerminationReason" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsTerminationScheduled" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="ScheduledActionDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsPlanPaused" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="RefererCode" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="ProductCode" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="TrackingToken" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsDealerReg" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="CustomerEligibililtyID" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailValidated" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsLoggedin" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="true" length="19" name="ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ChannelID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="19" name="RegID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ModuleID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ServiceName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="DateTime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="IsSuccess" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="CountableForBlocking" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="736" posY="192">
@@ -1175,167 +1125,89 @@
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="raw">
-      <column comment="" key="true" length="4" name="ID" nullable="false" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="Email" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="Password" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="IDNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="PrimaryMSISDN" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="DateTime" nullable="true" originalLength="8" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AcountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="IDType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="20" name="CustomerID" nullable="true" originalLength="20" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="AccountNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsActive" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ChannelID" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsSubscribed" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="WeightDeliveryQueue" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailVerified" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="DeviceId" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="TerminationDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="TerminationReason" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsTerminationScheduled" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="ScheduledActionDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsPlanPaused" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="RefererCode" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="ProductCode" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="TrackingToken" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsDealerReg" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="CustomerEligibililtyID" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailValidated" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsLoggedin" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="true" length="19" name="ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ChannelID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="19" name="RegID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ModuleID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ServiceName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="DateTime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="IsSuccess" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="CountableForBlocking" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
     <metadata connector="FLOW" name="ttransient">
-      <column comment="" key="true" length="4" name="ID" nullable="false" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="Email" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="Password" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="IDNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="PrimaryMSISDN" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="DateTime" nullable="true" originalLength="8" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AcountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="IDType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="20" name="CustomerID" nullable="true" originalLength="20" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="AccountNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsActive" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ChannelID" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsSubscribed" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="WeightDeliveryQueue" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailVerified" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="DeviceId" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="TerminationDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="TerminationReason" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsTerminationScheduled" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="ScheduledActionDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsPlanPaused" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="RefererCode" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="ProductCode" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="TrackingToken" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsDealerReg" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="CustomerEligibililtyID" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailValidated" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsLoggedin" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="true" length="19" name="ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ChannelID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="19" name="RegID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ModuleID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ServiceName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="DateTime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="IsSuccess" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="CountableForBlocking" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="raw" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="row1.ID" name="ID" type="id_Integer"/>
-        <mapperTableEntries expression="row1.Email" name="Email" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.Password" name="Password" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IDNumber" name="IDNumber" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.PrimaryMSISDN" name="PrimaryMSISDN" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.DateTime" name="DateTime" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="row1.AcountStatus" name="AcountStatus" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.IDType" name="IDType" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.AccountType" name="AccountType" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.CustomerID" name="CustomerID" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.AccountNumber" name="AccountNumber" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsActive" name="IsActive" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries expression="row1.ID" name="ID" type="id_Long"/>
         <mapperTableEntries expression="row1.ChannelID" name="ChannelID" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsSubscribed" name="IsSubscribed" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.WeightDeliveryQueue" name="WeightDeliveryQueue" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.IsEmailVerified" name="IsEmailVerified" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.DeviceId" name="DeviceId" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.TerminationDate" name="TerminationDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="row1.TerminationReason" name="TerminationReason" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsTerminationScheduled" name="IsTerminationScheduled" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.ScheduledActionDate" name="ScheduledActionDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="row1.IsPlanPaused" name="IsPlanPaused" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.RefererCode" name="RefererCode" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.AccountStatus" name="AccountStatus" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.ProductCode" name="ProductCode" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.TrackingToken" name="TrackingToken" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsDealerReg" name="IsDealerReg" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.CustomerEligibililtyID" name="CustomerEligibililtyID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.IsEmailValidated" name="IsEmailValidated" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.IsLoggedin" name="IsLoggedin" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries expression="row1.RegID" name="RegID" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ModuleID" name="ModuleID" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.ServiceName" name="ServiceName" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.DateTime" name="DateTime" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="row1.IsSuccess" name="IsSuccess" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries expression="row1.CountableForBlocking" name="CountableForBlocking" nullable="true" type="id_Boolean"/>
       </outputTables>
       <outputTables name="ttransient" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.ID" name="ID" type="id_Integer"/>
-        <mapperTableEntries expression="row1.Email" name="Email" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.Password" name="Password" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IDNumber" name="IDNumber" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.PrimaryMSISDN" name="PrimaryMSISDN" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.DateTime" name="DateTime" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="row1.AcountStatus" name="AcountStatus" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.IDType" name="IDType" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.AccountType" name="AccountType" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.CustomerID" name="CustomerID" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.AccountNumber" name="AccountNumber" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsActive" name="IsActive" nullable="true" type="id_Boolean"/>
         <mapperTableEntries expression="row1.ChannelID" name="ChannelID" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsSubscribed" name="IsSubscribed" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.WeightDeliveryQueue" name="WeightDeliveryQueue" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.IsEmailVerified" name="IsEmailVerified" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.DeviceId" name="DeviceId" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.TerminationDate" name="TerminationDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="row1.TerminationReason" name="TerminationReason" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsTerminationScheduled" name="IsTerminationScheduled" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.ScheduledActionDate" name="ScheduledActionDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="row1.IsPlanPaused" name="IsPlanPaused" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.RefererCode" name="RefererCode" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.AccountStatus" name="AccountStatus" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.ProductCode" name="ProductCode" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.TrackingToken" name="TrackingToken" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.IsDealerReg" name="IsDealerReg" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.CustomerEligibililtyID" name="CustomerEligibililtyID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="row1.IsEmailValidated" name="IsEmailValidated" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries expression="row1.IsLoggedin" name="IsLoggedin" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries expression="row1.RegID" name="RegID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="row1.ModuleID" name="ModuleID" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.ServiceName" name="ServiceName" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.DateTime" name="DateTime" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="row1.IsSuccess" name="IsSuccess" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries expression="row1.CountableForBlocking" name="CountableForBlocking" nullable="true" type="id_Boolean"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
-        <mapperTableEntries name="ID" type="id_Integer"/>
-        <mapperTableEntries name="Email" nullable="true" type="id_String"/>
-        <mapperTableEntries name="Password" nullable="true" type="id_String"/>
-        <mapperTableEntries name="IDNumber" nullable="true" type="id_String"/>
-        <mapperTableEntries name="PrimaryMSISDN" nullable="true" type="id_String"/>
-        <mapperTableEntries name="DateTime" nullable="true" type="id_Date"/>
-        <mapperTableEntries name="AcountStatus" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="IDType" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="AccountType" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="CustomerID" nullable="true" type="id_String"/>
-        <mapperTableEntries name="AccountNumber" nullable="true" type="id_String"/>
-        <mapperTableEntries name="IsActive" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries name="ID" type="id_Long"/>
         <mapperTableEntries name="ChannelID" nullable="true" type="id_String"/>
-        <mapperTableEntries name="IsSubscribed" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries name="WeightDeliveryQueue" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="IsEmailVerified" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries name="DeviceId" nullable="true" type="id_String"/>
-        <mapperTableEntries name="TerminationDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries name="TerminationReason" nullable="true" type="id_String"/>
-        <mapperTableEntries name="IsTerminationScheduled" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries name="ScheduledActionDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries name="IsPlanPaused" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries name="RefererCode" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="AccountStatus" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="ProductCode" nullable="true" type="id_String"/>
-        <mapperTableEntries name="TrackingToken" nullable="true" type="id_String"/>
-        <mapperTableEntries name="IsDealerReg" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries name="CustomerEligibililtyID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="IsEmailValidated" nullable="true" type="id_Boolean"/>
-        <mapperTableEntries name="IsLoggedin" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries name="RegID" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="ModuleID" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ServiceName" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DateTime" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="IsSuccess" nullable="true" type="id_Boolean"/>
+        <mapperTableEntries name="CountableForBlocking" nullable="true" type="id_Boolean"/>
       </inputTables>
     </nodeData>
   </node>
@@ -1371,310 +1243,33 @@
     <elementParameter field="TEXT" name="LABEL" value="rawdata"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileOutputDelimited_3">
-      <column comment="" key="true" length="4" name="ID" nullable="false" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="Email" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="Password" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="IDNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="PrimaryMSISDN" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="DateTime" nullable="true" originalLength="8" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AcountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="IDType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="20" name="CustomerID" nullable="true" originalLength="20" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="AccountNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsActive" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ChannelID" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsSubscribed" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="WeightDeliveryQueue" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailVerified" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="DeviceId" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="TerminationDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="TerminationReason" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsTerminationScheduled" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="ScheduledActionDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsPlanPaused" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="RefererCode" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="ProductCode" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="TrackingToken" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsDealerReg" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="CustomerEligibililtyID" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailValidated" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsLoggedin" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="true" length="19" name="ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ChannelID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="19" name="RegID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ModuleID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ServiceName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="DateTime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="IsSuccess" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="1" name="CountableForBlocking" nullable="true" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
-  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="288">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_2"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
-    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
-    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="HOST" value="context.vertica_target_database_Server"/>
-    <elementParameter field="TEXT" name="PORT" value="context.vertica_target_database_Port"/>
-    <elementParameter field="TEXT" name="DBNAME" value="context.vertica_target_database_Database"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_src_stg&quot;"/>
-    <elementParameter field="TEXT" name="USER" value="context.vertica_target_database_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:QquQGn5Zf2X9HcZ1rRKJAG7ClYkynD+dBbvB1rTLY+PhpHv4ztoAyL9kDcSLXYwR5IHdPdSlu2vnom49hGto4ssZKgE="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;registration_stg&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE_IF_NOT_EXISTS"/>
-    <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
-    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_OR_UPDATE"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:REPOSITORY_SCHEMA_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw - activation"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
-    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
-    <elementParameter field="TEXT" name="PROPERTIES" value="context.vertica_target_database_AdditionalParams"/>
-    <elementParameter field="CHECK" name="USE_ALTERNATE_SCHEMA" show="false" value="false"/>
-    <elementParameter field="TEXT" name="ALTERNATE_SCHEMA" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="ABORT_ON_ERROR" show="false" value="false"/>
-    <elementParameter field="TEXT" name="REJECT_MAX" show="false" value=""/>
-    <elementParameter field="FILE" name="EXCEPTIONS_PATH" show="false" value=""/>
-    <elementParameter field="TEXT" name="EXCEPTIONS_NODE" show="false" value=""/>
-    <elementParameter field="FILE" name="REJECTED_DATA" show="false" value=""/>
-    <elementParameter field="TEXT" name="REJECTED_NODE" show="false" value=""/>
-    <elementParameter field="CHECK" name="NO_COMMIT" show="false" value="true"/>
-    <elementParameter field="TEXT" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
-    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000"/>
-    <elementParameter field="CHECK" name="BATCH_MODE" show="false" value="true"/>
-    <elementParameter field="LABEL" name="NOTE" show="false" value="(Not compatible with reject links)"/>
-    <elementParameter field="TEXT" name="BATCH_SIZE" show="false" value="100"/>
-    <elementParameter field="TABLE" name="ADD_COLS"/>
-    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="false"/>
-    <elementParameter field="TABLE" name="FIELD_OPTIONS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="ID"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Email"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Password"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IDNumber"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="PrimaryMSISDN"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="DateTime"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AcountStatus"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IDType"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AccountType"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerID"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AccountNumber"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsActive"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ChannelID"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsSubscribed"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="WeightDeliveryQueue"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsEmailVerified"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="DeviceId"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="TerminationDate"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="TerminationReason"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsTerminationScheduled"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ScheduledActionDate"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsPlanPaused"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="RefererCode"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="AccountStatus"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ProductCode"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="TrackingToken"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsDealerReg"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerEligibililtyID"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsEmailValidated"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="IsLoggedin"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
-    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
-    <elementParameter field="CHECK" name="CREATE_PROJECTION" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="registration_stg"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tDBOutput_2">
-      <column comment="" key="true" length="4" name="ID" nullable="false" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="Email" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="Password" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="IDNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="PrimaryMSISDN" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="DateTime" nullable="true" originalLength="8" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AcountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="IDType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="20" name="CustomerID" nullable="true" originalLength="20" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="AccountNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsActive" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ChannelID" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsSubscribed" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="WeightDeliveryQueue" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailVerified" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="DeviceId" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="TerminationDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="TerminationReason" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsTerminationScheduled" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="ScheduledActionDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsPlanPaused" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="RefererCode" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="ProductCode" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="TrackingToken" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsDealerReg" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="CustomerEligibililtyID" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailValidated" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsLoggedin" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-    </metadata>
-    <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="true" length="4" name="ID" nullable="false" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="Email" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="Password" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="IDNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="PrimaryMSISDN" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="DateTime" nullable="true" originalLength="8" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AcountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="IDType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountType" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="20" name="CustomerID" nullable="true" originalLength="20" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="AccountNumber" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsActive" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ChannelID" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsSubscribed" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="WeightDeliveryQueue" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailVerified" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="DeviceId" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="TerminationDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="TerminationReason" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsTerminationScheduled" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="ScheduledActionDate" nullable="true" originalLength="8" pattern="&quot;dd-MM-yyyy HH:mm:ss&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsPlanPaused" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="RefererCode" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="AccountStatus" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="150" name="ProductCode" nullable="true" originalLength="150" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="TrackingToken" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsDealerReg" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="4" name="CustomerEligibililtyID" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsEmailValidated" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column comment="" key="false" length="1" name="IsLoggedin" nullable="true" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-320">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.talend_jobname = jobName;&#10;System.out.println(&quot;START_TIME: &quot;+context.start_time);&#10;&#10;//context.incremental_value=context.curr_incremental_value;&#10;&#10;&#10;&#10;&#10;//Deduct the refresh period from the incremental value&#10;if(context.start_incremental_value.equals(null) || context.start_incremental_value.equals(&quot;&quot;))&#10;context.start_incremental_value = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.addDate(context.curr_incremental_value, &quot;yyyy-MM-dd HH:mm:ss&quot;, -(context.refresh_period), &quot;dd&quot;)));&#10;&#10;System.out.println(&quot;START_INCREMENTAL_VALUE is &quot;+context.start_incremental_value);&#10;&#10;context.end_incremental_value = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss&quot;);&#10;System.out.println(&quot;END_INCREMENTAL_VALUE is &quot;+context.end_incremental_value);&#10;&#10;context.next_incremental_value = context.end_incremental_value;&#10;System.out.println(&quot;NEXT_INCREMENTAL_VALUE is &quot;+context.next_incremental_value);&#10;&#10;// Modify ETRACT_QUERY TO FILTER RECORDS BASED ON START AND END INCREMENTAL VALUES&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_start_incr_value,context.start_incremental_value);&#10;&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_end_incr_value,context.end_incremental_value);&#10;&#10;&#10;//System.out.println(&quot;EXTRACT QUERY: &quot;+context.extract_query);&#10;&#10;&#10;//System.out.println(&quot;MAX Incremnetal Date: &quot;+context.incremental_date_column);&#10;&#10;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="LABEL" value="set context values"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_1">
-      <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="992" posY="384">
+  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
@@ -1756,8 +1351,8 @@
     <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="wsc_scusersaccessinfo" name="tDBOutput_1">
-      <column comment="" defaultValue="" key="false" length="19" name="ID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+    <metadata connector="FLOW" name="tDBOutput_1">
+      <column comment="" defaultValue="" key="true" length="19" name="ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="50" name="ChannelID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -1782,8 +1377,8 @@
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
-    <metadata connector="REJECT" label="wsc_scusersaccessinfo" name="REJECT">
-      <column comment="" defaultValue="" key="false" length="19" name="ID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" defaultValue="" key="true" length="19" name="ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="50" name="ChannelID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -1809,6 +1404,16 @@
       </column>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.talend_jobname = jobName;&#10;System.out.println(&quot;START_TIME: &quot;+context.start_time);&#10;&#10;//context.incremental_value=context.curr_incremental_value;&#10;&#10;&#10;&#10;&#10;//Deduct the refresh period from the incremental value&#10;if(context.start_incremental_value.equals(null) || context.start_incremental_value.equals(&quot;&quot;))&#10;context.start_incremental_value = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.addDate(context.curr_incremental_value, &quot;yyyy-MM-dd HH:mm:ss&quot;, -(context.refresh_period), &quot;dd&quot;)));&#10;&#10;System.out.println(&quot;START_INCREMENTAL_VALUE is &quot;+context.start_incremental_value);&#10;&#10;context.end_incremental_value = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss&quot;);&#10;System.out.println(&quot;END_INCREMENTAL_VALUE is &quot;+context.end_incremental_value);&#10;&#10;context.next_incremental_value = context.end_incremental_value;&#10;System.out.println(&quot;NEXT_INCREMENTAL_VALUE is &quot;+context.next_incremental_value);&#10;&#10;// Modify ETRACT_QUERY TO FILTER RECORDS BASED ON START AND END INCREMENTAL VALUES&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_start_incr_value,context.start_incremental_value);&#10;&#10;//context.extract_query = StringHandling.CHANGE(context.extract_query,context.replace_end_incr_value,context.end_incremental_value);&#10;&#10;&#10;//System.out.println(&quot;EXTRACT QUERY: &quot;+context.extract_query);&#10;&#10;&#10;//System.out.println(&quot;MAX Incremnetal Date: &quot;+context.incremental_date_column);&#10;&#10;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="set context values"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_1">
+      <column comment="" key="false" length="-1" name="ACTIVE_FLAG" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="3" offsetLabelY="13" source="tRunJob_1" target="tJava_5">
@@ -2240,6 +1845,21 @@
       <elementValue elementRef="TRACE_COLUMN" value="TerminationReason"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ModuleID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="IsSuccess"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ServiceName"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CountableForBlocking"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="RegID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
@@ -2483,11 +2103,43 @@
       <elementValue elementRef="TRACE_COLUMN" value="TerminationReason"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ModuleID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="IsSuccess"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ServiceName"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CountableForBlocking"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="RegID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="raw"/>
   </connection>
-  <connection connectorName="FLOW" label="ttransient" lineStyle="0" metaname="ttransient" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_2" target="tDBOutput_2">
+  <connection connectorName="FLOW" label="ttransient" lineStyle="0" metaname="ttransient" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_2" target="tDBOutput_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="ModuleID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="IsSuccess"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ServiceName"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CountableForBlocking"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="RegID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="ttransient"/>
   </connection>
@@ -2593,18 +2245,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="128;255;128"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_bf700028-58a1-4ca6-bb4a-538d66405f5d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6obWMltmpxKVYCrqB6VwR9qZT4LZKSXUXROatALNsdchGcleKOpZNV03h28VlIOON4dtClI0wdox&#13;
-7Ci0/wIvVQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_59861ba0-23d7-42ee-a0a3-8baa35830489"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+6ipEhpmyasYKQhR2O7rX5VpuWdSfi75dzh8pElzlYI6XK3YIpWINZDI4RcmGL6DfSjrclcHlBz4&#13;
-WaDNYUo3xg==</DigestValue></Reference></SignedInfo><SignatureValue>dnjFHLfMzmiTaiE41wiyTLwzF7H8qsZisAsrcb8ea+ykeaqgds1UULOOM03pJTfKpG0Y3tiPAkfV&#13;
-JNlLFuQcJrJH4axFXnWaYZQG3AwCpFl2BDBWRx90o7KCYXzD9COAsrcREpewKeObSGgeR4xX3pnU&#13;
-4aG7FicMfHrYE5Dlb6XmUhvTKd9GwSJhPa/uRP+MQud37Jp3v9imUWcqUZQXhNdGXxRXIDaO5i8T&#13;
-M7wRSuBDhK/lr2ZvuNKL5yky9MQjnXtDjJU9PBtrZwe4daZQy8dJbFUkc8Ly5tgpjo9f/pcG/Tgy&#13;
-PWChYjLCM0Iqm1ShIYfGABJFlQr07WF4YRPrqA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_79669a91-a2d7-4cd1-b4a5-dd06ba956e97"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>sdm+s9SgXxfQDGBlY/YH65c+qDHC9MLpPo6r1zmtu8I+m3gNCDAwsOowPrhTw942cLKJmP/aBsm0&#13;
+9cX8mejsjw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8d460721-18f1-41c4-8518-86263351b50d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8P8BqhexuFlc2gifWVp4ke9s/p1hUfuGe6LFEet/Z2Hnar1nj3m2CgHaBQUFNXKPnTgaxs5r2IJ2&#13;
+NUqwQIwAcg==</DigestValue></Reference></SignedInfo><SignatureValue>iNCGqS5brcfJox9r+2XUHW9oK4tJGnKRbFAScYW0GgXJDUlC/nZu+ejgzcjDnbSYJb60Khx1crm6&#13;
+NvGw2joByDBRpSyXExUSuGwpXgTiIKSl3A7wvBMLWPoEz5kMl/btps/GT/iZHWQfTVirPooqQat1&#13;
+o8UUCZnb6tz5Fr3dAHb/nuKGa56Oo/scWOycqYtIfF1rIZq7bLvgWUobiNnydeEXer7sR2AFuIGE&#13;
+ZjKN5qZH0iVqJLEkPJH3HTtvjYpWUI82D/1iJ0oUYCmZw6x19gmR0TMLK8m2v6H9lTUjWCY51e7W&#13;
+BZZTUZAlIFFz9CfkqTCypCnFM29idLha6U8APQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2626,4 +2273,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_59861ba0-23d7-42ee-a0a3-8baa35830489" Target="#_bf700028-58a1-4ca6-bb4a-538d66405f5d"><Timestamp>2023-08-03 14:43:36</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8d460721-18f1-41c4-8518-86263351b50d" Target="#_79669a91-a2d7-4cd1-b4a5-dd06ba956e97"><Timestamp>2023-08-03 14:50:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
