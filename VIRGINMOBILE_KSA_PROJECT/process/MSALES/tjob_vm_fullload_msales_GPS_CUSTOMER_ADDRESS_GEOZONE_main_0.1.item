@@ -777,7 +777,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;&#10;context.talend_jobname = jobName ;&#10;&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;&#10;System.out.println(&quot;start_time: &quot;+context.start_time);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;//context.object_name=&quot;sre_table&quot;;&#10;//context.source_system=&quot;sre&quot;;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);&#10;context.source_system=&quot;msales&quot;;&#10;context.object_name =&quot;GR_GROUP_ASSIGNED_ENTITY&quot;;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;&#10;context.talend_jobname = jobName ;&#10;&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;&#10;System.out.println(&quot;start_time: &quot;+context.start_time);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;//context.object_name=&quot;sre_table&quot;;&#10;//context.source_system=&quot;sre&quot;;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);&#10;context.source_system=&quot;msales&quot;;&#10;context.object_name =&quot;GPS_CUSTOMER_ADDRESS_GEOZONE&quot;;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set context values"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -915,7 +915,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select&#13;&#10;&#9;GROUP_ID&#13;&#10;,&#9;ENTlTY_CLASS&#13;&#10;,&#9;ENTlTY_ID&#13;&#10;,&#9;ENTITY_CODE&#13;&#10;,&#9;ENTITY_NAME&#13;&#10;,&#9;CLASSIFICATION_CODE&#13;&#10;,&#9;templd&#13;&#10;&#9;GROUP_ASSIGNED_ENTITY_ID&#13;&#10;FROM&#13;&#10;&#9;&#9;msales_2017.dbo.GR_GROUP_ASSIGNED_ENTITY&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#13;&#10;&#9;CUSTOMER_ADDRESS_ID&#13;&#10;,&#9;GEOZONE_ID&#13;&#10;,&#9;COMMENTS&#13;&#10;,&#9;CREATED_DATE&#13;&#10;,&#9;LAST_MODIFIED_DATE&#13;&#10;,&#9;CREATED_BY&#13;&#10;,&#9;MODIFIED_BY&#13;&#10;,&#9;templD&#13;&#10;,&#9;CUSTOMER_ADDRESS_GEOZO...&#13;&#10;FROM&#13;&#10;&#9;msales_2017.dbo.GPS_CUSTOMER_ADDRESS_GEOZONE&#13;&#10;&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -926,21 +926,23 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="true"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ADDRESS_ID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CLASS"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="GEOZONE_ID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="COMMENTS"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_DATE"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_NAME"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="LAST_MODIFIED_DATE"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CLASSIFICATION_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_BY"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="tempId"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="MODIFIED_BY"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ASSIGNED_ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="templD"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ADDRESS_GEOZO"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
@@ -948,14 +950,15 @@
     <elementParameter field="TEXT" name="LABEL" value="read MSALES data for the load date"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_3">
-      <column comment="" key="true" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_CLASS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_NAME" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="CLASSIFICATION_CODE" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="GEOZONE_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COMMENTS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="LAST_MODIFIED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MODIFIED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="templD" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_GEOZO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="544" posY="256">
@@ -963,7 +966,7 @@
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
     <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
-    <elementParameter field="IMAGE" name="PREVIEW" value="_u8o0ACoIEe6xFvuZKEKLag-tMap_1-PREVIEW.bmp"/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_DRmpsDJnEe6YvKsGMrIWpQ-tMap_1-PREVIEW.bmp"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="true"/>
     <elementParameter field="CHECK" name="LKUP_PARALLELIZE" show="false" value="false"/>
     <elementParameter field="TEXT" name="LEVENSHTEIN" show="false" value="0"/>
@@ -973,57 +976,62 @@
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="rawzone">
-      <column comment="" key="true" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CLASS" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_NAME" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="CLASSIFICATION_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="GEOZONE_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COMMENTS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="LAST_MODIFIED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MODIFIED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="templD" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_GEOZO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="FLOW" label="activation" name="trans">
-      <column comment="" key="false" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CLASS" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_NAME" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="CLASSIFICATION_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="GEOZONE_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COMMENTS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="LAST_MODIFIED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MODIFIED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="templD" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_GEOZO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="rawzone" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="extract.GROUP_ID " name="GROUP_ID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="extract.ENTITY_CLASS " name="ENTITY_CLASS" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.ENTITY_ID " name="ENTITY_ID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="extract.ENTITY_CODE " name="ENTITY_CODE" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.ENTITY_NAME " name="ENTITY_NAME" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.CLASSIFICATION_CODE " name="CLASSIFICATION_CODE" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.tempId " name="tempId" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="extract.GROUP_ASSIGNED_ENTITY_ID " name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.CUSTOMER_ADDRESS_ID " name="CUSTOMER_ADDRESS_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.GEOZONE_ID " name="GEOZONE_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.COMMENTS " name="COMMENTS" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="extract.CREATED_DATE " name="CREATED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="extract.LAST_MODIFIED_DATE " name="LAST_MODIFIED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="extract.CREATED_BY " name="CREATED_BY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="extract.MODIFIED_BY " name="MODIFIED_BY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="extract.templD " name="templD" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.CUSTOMER_ADDRESS_GEOZO " name="CUSTOMER_ADDRESS_GEOZO" nullable="true" type="id_Integer"/>
       </outputTables>
       <outputTables name="trans" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="extract.GROUP_ID " name="GROUP_ID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="extract.ENTITY_CLASS " name="ENTITY_CLASS" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.ENTITY_ID " name="ENTITY_ID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="extract.ENTITY_CODE " name="ENTITY_CODE" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.ENTITY_NAME " name="ENTITY_NAME" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.CLASSIFICATION_CODE " name="CLASSIFICATION_CODE" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.tempId " name="tempId" nullable="true" type="id_Integer"/>
-        <mapperTableEntries expression="extract.GROUP_ASSIGNED_ENTITY_ID " name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.CUSTOMER_ADDRESS_ID " name="CUSTOMER_ADDRESS_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.GEOZONE_ID " name="GEOZONE_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.COMMENTS " name="COMMENTS" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="extract.CREATED_DATE " name="CREATED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="extract.LAST_MODIFIED_DATE " name="LAST_MODIFIED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="extract.CREATED_BY " name="CREATED_BY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="extract.MODIFIED_BY " name="MODIFIED_BY" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="extract.templD " name="templD" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="extract.CUSTOMER_ADDRESS_GEOZO " name="CUSTOMER_ADDRESS_GEOZO" nullable="true" type="id_Integer"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="extract" sizeState="INTERMEDIATE">
-        <mapperTableEntries name="GROUP_ID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="ENTITY_CLASS" nullable="true" type="id_String"/>
-        <mapperTableEntries name="ENTITY_ID" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="ENTITY_CODE" nullable="true" type="id_String"/>
-        <mapperTableEntries name="ENTITY_NAME" nullable="true" type="id_String"/>
-        <mapperTableEntries name="CLASSIFICATION_CODE" nullable="true" type="id_String"/>
-        <mapperTableEntries name="tempId" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="CUSTOMER_ADDRESS_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="GEOZONE_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="COMMENTS" nullable="true" type="id_String"/>
+        <mapperTableEntries name="CREATED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="LAST_MODIFIED_DATE" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="CREATED_BY" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MODIFIED_BY" nullable="true" type="id_String"/>
+        <mapperTableEntries name="templD" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="CUSTOMER_ADDRESS_GEOZO" nullable="true" type="id_Integer"/>
       </inputTables>
     </nodeData>
   </node>
@@ -1059,14 +1067,15 @@
     <elementParameter field="TEXT" name="LABEL" value="rawdata"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileOutputDelimited_1">
-      <column comment="" key="true" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CLASS" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_NAME" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="CLASSIFICATION_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="GEOZONE_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COMMENTS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="LAST_MODIFIED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MODIFIED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="templD" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_GEOZO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="320">
@@ -1083,7 +1092,7 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vertica_target_database_Schema"/>
     <elementParameter field="TEXT" name="USER" value="context.vertica_target_database_Login"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:CK8bXWTIJCrzwfyWL47Ik6NWoAx4jm/z+uv+FlJxqL6jrrk1pG4k8G4EfYl65BArfA0rtQ8NSIH5MYVKGf3M0KqJkj4="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;GR_GROUP_ASSIGNED_ENTITY_STG&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;GPS_CUSTOMER_ADDRESS_GEOZONE_STG&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
@@ -1109,42 +1118,47 @@
     <elementParameter field="TABLE" name="ADD_COLS"/>
     <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="false"/>
     <elementParameter field="TABLE" name="FIELD_OPTIONS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ADDRESS_ID"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CLASS"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="GEOZONE_ID"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="COMMENTS"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_DATE"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_NAME"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="LAST_MODIFIED_DATE"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CLASSIFICATION_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_BY"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="tempId"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="MODIFIED_BY"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ASSIGNED_ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="templD"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ADDRESS_GEOZO"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
@@ -1156,24 +1170,26 @@
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="activation" name="tDBOutput_1">
-      <column comment="" key="false" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CLASS" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_NAME" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="CLASSIFICATION_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="GEOZONE_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COMMENTS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="LAST_MODIFIED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MODIFIED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="templD" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_GEOZO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="activation" name="REJECT">
-      <column comment="" key="false" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CLASS" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_NAME" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="CLASSIFICATION_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSIGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="GEOZONE_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="COMMENTS" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="LAST_MODIFIED_DATE" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CREATED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="MODIFIED_BY" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="templD" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_GEOZO" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -1424,6 +1440,33 @@
       <elementValue elementRef="TRACE_COLUMN" value="ENTITY_NAME"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="MODIFIED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="GEOZONE_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="templD"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="COMMENTS"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="LAST_MODIFIED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_GEOZO"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="extract"/>
@@ -1589,11 +1632,67 @@
       <elementValue elementRef="TRACE_COLUMN" value="LastUpdateDate"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="MODIFIED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="GEOZONE_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="templD"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="COMMENTS"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="LAST_MODIFIED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_GEOZO"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="rawzone"/>
   </connection>
   <connection connectorName="FLOW" label="trans" lineStyle="0" metaname="trans" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBOutput_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="MODIFIED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="GEOZONE_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="templD"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="COMMENTS"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="LAST_MODIFIED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_GEOZO"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="trans"/>
   </connection>
@@ -1687,13 +1786,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4d911141-b9e7-4741-9d83-b4cebb81d5c6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0MKf9WbtsFrdSyQGPNuqrivDl/pgAIblEeGv+G7SJ51AckufCp+Zpq14aGdbB1YlLy1zLu/cvoIW&#13;
-2aa50rErOQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_9bfaa07a-0b8c-4625-89bc-97af723f39f3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ty5fr9wNtiY4A2ETwvuoGTRrchHfNnll0gT2xrzLXoVtXEUvMgXgtJk5Llg+nsu5gvZQ1ajIurVu&#13;
-/eng/fdFqQ==</DigestValue></Reference></SignedInfo><SignatureValue>NV0jQ9jmYElsHe8Do3x9g+3XuPrPiLNf2PVVv7D/pwNXC0lGhSqv/IeQtOg91n6bWS8pHQqUVbM+&#13;
-7R18qDznxpZ9VkcryhnuxCThSia3a31WKFO5n/TUc9gxYK+lHvs7MlY60ge4GNWGjNX0y3PN6oPT&#13;
-DHbvNRvQc6l7qt4BVpuKOhxjZ5oOFldpqGY4LtK1e+04tjFvFO33RhigHWotGj7C/LzF8DaFk/O2&#13;
-G4DlMb8pOhoUyC0C0d0oHgebtST07UAq1NHdwq2mKVZLof1Tq92I6jL9bbkYXxxgLdzXbm/LCJR6&#13;
-ULwkBkF0IB1oMn/5At0forA1bO9vWJNzxgTROQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_63eff7c5-e30a-42c5-9110-ef3364a06ed0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>IW0yLAa3EJgnEV9uk7wWx7PzO401XNLCtOmXISJAMz9WN2bzsBJnFV+yiMw4IasAytp6KJFikEsm&#13;
+TjkyZtxUcw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_efbb7ea1-ad0f-4cea-95a7-ae0da9b7e3f8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TPtXnn2Pf6Iz25fUO0qxyJdyuZyZHYS504pdp7j0AMn6xEVWa+hsn+fELv6HUzKXeSPe/qPQv3M4&#13;
+BChjk7Oang==</DigestValue></Reference></SignedInfo><SignatureValue>UF0VdbjoeTp8gTwpTw/TIx3AK1eNmRZA4a6lr5zxs5prW9O9zUgipvDjVuNa0rj9WrSAovUAVDYU&#13;
+RwO6g1OEem8hQJHC0wnMrGgPKRTWyMgSeO7EalTAD3eSjINb0jhvjatEcCh6d05W9inl1rN4Ul+6&#13;
+dYdwR+bC5yFZoqw2+8C6hYtOxuD9aGGd8udJP+//5swghFGvB3ylSSJjpmQwT0IGUOg4Rt5vsLhr&#13;
+JHMqVbAU5UqPaa877x2Yoi4yLqraLaqeS6MRkRrEGEmNYaVKZybVx9cSqOKkQW221l/FxcRILVve&#13;
+IIRCEYoL+H8puUoX6f1q6JKaRnhCv8vIPeV6xw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1715,4 +1814,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_9bfaa07a-0b8c-4625-89bc-97af723f39f3" Target="#_4d911141-b9e7-4741-9d83-b4cebb81d5c6"><Timestamp>2023-08-04 01:34:30</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_efbb7ea1-ad0f-4cea-95a7-ae0da9b7e3f8" Target="#_63eff7c5-e30a-42c5-9110-ef3364a06ed0"><Timestamp>2023-08-04 01:42:57</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
