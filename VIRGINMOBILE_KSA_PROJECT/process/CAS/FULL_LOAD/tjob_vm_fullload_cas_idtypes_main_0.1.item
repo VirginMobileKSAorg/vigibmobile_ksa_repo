@@ -935,22 +935,22 @@
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
-    <metadata connector="FLOW" label="idtypes_stg" name="idtypes_stg">
+    <metadata connector="FLOW" label="cas_idtypes" name="cas_idtypes">
       <column comment="" defaultValue="" key="true" length="19" name="ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="80" name="Name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="80" name="Name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="80" name="ForeignName" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="80" name="ForeignName" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="5" name="Code" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="5" name="Code" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="rawzone" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="extract.ID" name="ID" type="id_Long"/>
@@ -958,11 +958,11 @@
         <mapperTableEntries expression="extract.ForeignName" name="ForeignName" type="id_String"/>
         <mapperTableEntries expression="extract.Code" name="Code" type="id_String"/>
       </outputTables>
-      <outputTables name="idtypes_stg" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="extract.ID" name="ID" type="id_Long"/>
-        <mapperTableEntries expression="extract.Name" name="Name" type="id_String"/>
-        <mapperTableEntries expression="extract.ForeignName" name="ForeignName" type="id_String"/>
-        <mapperTableEntries expression="extract.Code" name="Code" type="id_String"/>
+      <outputTables name="cas_idtypes" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="ID" type="id_Long"/>
+        <mapperTableEntries name="Name" type="id_String"/>
+        <mapperTableEntries name="ForeignName" type="id_String"/>
+        <mapperTableEntries name="Code" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="extract" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" type="id_Long"/>
@@ -1018,7 +1018,7 @@
       </column>
     </metadata>
   </node>
-  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="768" posY="384">
+  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw"/>
@@ -1031,8 +1031,8 @@
     <elementParameter field="TEXT" name="DBNAME" value="context.vertica_target_database_Database"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vertica_target_database_Schema"/>
     <elementParameter field="TEXT" name="USER" value="context.vertica_target_database_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:xhRiclLngTG+Fv3yiS1rvqVNMt4fIF3synYVj0djDvsdNHzAIzq1lfb7s3KRTz+04jDKYhlZRsjGUWMWgb7ANNvqOWQ="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="context.target_table"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Gt9AQVt+AsQ22yJ0nluk06fmufYUZq0RJFTXLCDfn2ETEZX/CeW7YuiP9ZqDK8avqta5xe64wcs5iggq4zqw4ABqV/c="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;cas_idtypes&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
@@ -1422,7 +1422,7 @@
   <connection connectorName="SUBJOB_ERROR" label="OnSubjobError" lineStyle="4" metaname="tDBInput_3" offsetLabelX="-6" offsetLabelY="-1" source="tDBInput_3" target="tJava_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobError2"/>
   </connection>
-  <connection connectorName="FLOW" label="rawzone" lineStyle="0" metaname="rawzone" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFileOutputDelimited_1">
+  <connection connectorName="FLOW" label="rawzone" lineStyle="0" metaname="rawzone" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tFileOutputDelimited_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="KitID"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -1677,6 +1677,10 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="rawzone"/>
   </connection>
+  <connection connectorName="FLOW" label="cas_idtypes" lineStyle="0" metaname="cas_idtypes" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBOutput_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="cas_idtypes"/>
+  </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_1"/>
@@ -1759,18 +1763,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b6b320e0-fe24-445e-82d3-a2542b8dedab"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zYpzHEvh+frFFPiGbVTLyDGaijfPgcsuV8jnkVObMhV4i1VYboM2fsjJ1bRyXKo0PYA1hdumP74N&#13;
-sCLWuDiklw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_62ced6a9-05fb-450e-b4a0-541a7c90c9ee"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>tJ0sEvZgdoKteGh1Uq3PBiFMHPjgnl4sNSqNnSY9PphztPQmhuyF73yp7fQmXD7EcdSOrnGYPqV/&#13;
-E8xZkHN29g==</DigestValue></Reference></SignedInfo><SignatureValue>RrcrCQFG0dqbHCuzDnf86QQQ2p55uqoR10FKhruEMGamZQdYEkX/KnVaGlVa2FHz/fpHFFWq4eJ9&#13;
-51l/Ww3jbeLite8h0cC7dUFSQ5LRkWZ6Vh9+LLrDjM2maJ2vAnnKtxtfv8D3qVDvK/rgMY9oalwR&#13;
-co54q8az62W5fT65KHYU03RSpYH+yDmdWQ3HzAp+KkdD/CT7o5DbINkIICD8C63OZV/710UQHjKR&#13;
-eNaFCyJvdU+IdUr08smSKA8MYiufyNHbAjH9/QibI+ExuGcXoIg/6+H8XnMPXb5lfpspUKtU0tEW&#13;
-VFdlGEyrWO0sqRaxC1BcOrD5cVEXtZ+jEareNw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9f724ad3-b3c7-4cff-af93-cd187a582702"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>bCQTdMEJSKXv7UE00y9y8Zx2exixSZ5aqchsId7V8/MPufCENvCaWYq7SOWtLrjD0+qKwEhlzv5b&#13;
+9vKe51i3MA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8551a7d7-7f0f-40a1-8a02-24c9540ae6d8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LS6i46h1saWPKMRWzovuLyhZS2PzxcDx2oVhwr5tl7/1lLuynuS8opgxqKXVbSxZfqzVbkSNlXni&#13;
+qQ1zbyR09w==</DigestValue></Reference></SignedInfo><SignatureValue>iikyMKmaXKwHQ/Hate0bfHb4Wheslvon1sWV9+CANGACK4+0chIOmNT+E6xeesjaL9BxGH+MAQqY&#13;
+dZEkYkPUJeXFNQ/VyEbQ35bXyipiDE6CIydhdQAZSq2LpGow71IYhL+F6dWepd56WR2fDhzk58lT&#13;
+fvrcvJhRqaMtDiHq3h+p2LQJVoXAbVFNzRCTCnuB1UjTcPu7pLY+EeRgXzkC0Z4vr5uGknMTO75k&#13;
+KEyJKUCjkB5hW14ffLRaVgR+FbUHAPQIvfhqU3NhyvYDn1AXnYOiSu2TsPdFWq71/f/vXmNRTfVP&#13;
+jgUjDD7wi1ysp7o4+M2I3ZH5XnkdHuHU13IlYw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1792,4 +1791,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_62ced6a9-05fb-450e-b4a0-541a7c90c9ee" Target="#_b6b320e0-fe24-445e-82d3-a2542b8dedab"><Timestamp>2023-08-04 06:03:03</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8551a7d7-7f0f-40a1-8a02-24c9540ae6d8" Target="#_9f724ad3-b3c7-4cff-af93-cd187a582702"><Timestamp>2023-08-07 08:18:31</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
