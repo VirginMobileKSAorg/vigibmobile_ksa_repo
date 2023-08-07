@@ -1022,26 +1022,26 @@
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
-    <metadata connector="FLOW" label="kitidmapping_stg" name="kitidmapping_stg">
-      <column comment="" key="true" length="50" name="KitID" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+    <metadata connector="FLOW" label="cas_kitidmapping" name="cas_kitidmapping">
+      <column comment="" defaultValue="" key="true" length="50" name="KitID" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="IMSI" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="IMSI" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="" key="false" length="1" name="IsPrimary" nullable="false" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="PUK1" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="PUK1" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="ICCID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="ICCID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="MSISDN" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="MSISDN" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="IMEI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="IMEI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="" key="false" length="50" name="DefectedKitID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -1052,7 +1052,7 @@
       </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="rawzone" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="extract.KitID" name="KitID" type="id_String"/>
@@ -1065,16 +1065,16 @@
         <mapperTableEntries expression="extract.DefectedKitID" name="DefectedKitID" nullable="true" type="id_String"/>
         <mapperTableEntries expression="extract.PromotionID" name="PromotionID" nullable="true" type="id_Long"/>
       </outputTables>
-      <outputTables name="kitidmapping_stg" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="extract.KitID" name="KitID" type="id_String"/>
-        <mapperTableEntries expression="extract.IMSI" name="IMSI" type="id_String"/>
-        <mapperTableEntries expression="extract.IsPrimary" name="IsPrimary" type="id_Boolean"/>
-        <mapperTableEntries expression="extract.PUK1" name="PUK1" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.ICCID" name="ICCID" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.MSISDN" name="MSISDN" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.IMEI" name="IMEI" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.DefectedKitID" name="DefectedKitID" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="extract.PromotionID" name="PromotionID" nullable="true" type="id_Long"/>
+      <outputTables name="cas_kitidmapping" sizeState="INTERMEDIATE">
+        <mapperTableEntries name="KitID" type="id_String"/>
+        <mapperTableEntries name="IMSI" type="id_String"/>
+        <mapperTableEntries name="IsPrimary" type="id_Boolean"/>
+        <mapperTableEntries name="PUK1" nullable="true" type="id_String"/>
+        <mapperTableEntries name="ICCID" nullable="true" type="id_String"/>
+        <mapperTableEntries name="MSISDN" nullable="true" type="id_String"/>
+        <mapperTableEntries name="IMEI" nullable="true" type="id_String"/>
+        <mapperTableEntries name="DefectedKitID" nullable="true" type="id_String"/>
+        <mapperTableEntries name="PromotionID" nullable="true" type="id_Long"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="extract" sizeState="INTERMEDIATE">
         <mapperTableEntries name="KitID" type="id_String"/>
@@ -1163,11 +1163,13 @@
     <elementParameter field="TEXT" name="DBNAME" value="context.vertica_target_database_Database"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vertica_target_database_Schema"/>
     <elementParameter field="TEXT" name="USER" value="context.vertica_target_database_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:RGxKVeP3vYPN7CaCRlkW2Z807IS9+BHoMnmM691XnzV/brHUNoVHaj6S2fnNsTkRk+HCWNBPstn34jOxJ3DpSau5Zxk="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;kitidmapping_stg&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CLEAR"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Tv5hCUycfabqc1kNnmeR/B3byHRVv2ucpJ92lr6Kx26co14JpAhweofshVTgMYSeXXsbGQHQCpGmi6W120JheWuddVM="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;cas_kitidmapping&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA_FLOW:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA_FLOW:REPOSITORY_SCHEMA_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw - cas_kitidmapping"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
     <elementParameter field="TEXT" name="PROPERTIES" value="context.vertica_target_database_AdditionalParams"/>
@@ -1239,7 +1241,7 @@
     <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="kitidmapping_stg" name="tDBOutput_1">
+    <metadata connector="FLOW" label="cas_kitidmapping" name="tDBOutput_1">
       <column comment="" defaultValue="" key="true" length="50" name="KitID" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -1268,26 +1270,26 @@
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
-    <metadata connector="REJECT" label="kitidmapping_stg" name="REJECT">
-      <column comment="" key="true" length="50" name="KitID" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+    <metadata connector="REJECT" label="cas_kitidmapping" name="REJECT">
+      <column comment="" defaultValue="" key="true" length="50" name="KitID" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="IMSI" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="IMSI" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="" key="false" length="1" name="IsPrimary" nullable="false" pattern="" precision="0" sourceType="BOOLEAN" type="id_Boolean" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="PUK1" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="PUK1" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="ICCID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="ICCID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="MSISDN" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="MSISDN" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="IMEI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" defaultValue="" key="false" length="50" name="IMEI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="" key="false" length="50" name="DefectedKitID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -1862,9 +1864,9 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="rawzone"/>
   </connection>
-  <connection connectorName="FLOW" label="kitidmapping_stg" lineStyle="0" metaname="kitidmapping_stg" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBOutput_1">
+  <connection connectorName="FLOW" label="cas_kitidmapping" lineStyle="0" metaname="cas_kitidmapping" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="kitidmapping_stg"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="cas_kitidmapping"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
@@ -1953,13 +1955,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_be55ec87-75b6-4584-b641-b99aac5a9720"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>g9RmMRQlyTyGuAhU2WifssTFK2nhPo3ZL4nu8lJO1gwYU5Itnm47xR6K/362cP5dFQpNbV2gts39&#13;
-sOC/LIMmkA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c6a5e0a7-0e42-4963-966c-34b3a8874f68"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>sP/Ww+ABREosygYHACmkJTSERyiaoaw2nGEBk0f53+08p2NRU3gePmYbte/ajOVvpewtz5SQNuGj&#13;
-Z3vWN6diww==</DigestValue></Reference></SignedInfo><SignatureValue>Pb7kpKDZarA6s246dvyC0e1YcGe9dWTv6ErwdYIXUyyPDlReww9YhmA3K5VAJw7P7Z5BMc/fVWnA&#13;
-Vkkm2mTf1Gr9sPLIIfeMT6C0EPmSdE+4x2kCAEJZkpMgU9ODhxFo0LvBmXRNsw5LR2RdKHkpaXR5&#13;
-UhaxpkYbAyls3osqbFsq0Q31ztJYLbhmE6kvrG3fb3RbdiKI4x9x+b+QcG5vNspQsr5SFbzXLxpa&#13;
-2HnviD/s14lnK/rB1mOtsSNkQwDQCoT7YtfMSur1vzb9lNhMJIQB4FYO2MT4ogU7tRvspEP1ve3i&#13;
-SrOA3jsQmxf+o2VTH8ZzT9G9daRg998Jftd9vQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e6dd25c4-8d66-440d-bb36-03fa72c19eaf"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0HR1s5HVPuxrzNtFaMSwgduNEmU5dVfTAwali6mzvnnbHpLsjsLn0HXc+rHea6x8w4zcptPnp/q7&#13;
+v1uEScjWOw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_17409086-336d-4ffb-81c4-fe5e460450cb"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Kl4xuFabr9FvLZieXkJgwH8kG8Vs3rTsoFk6AY4z2oAQM5jTQNgn7hNNR1lzRX5kr8IytCYxvVKi&#13;
+X982TvV4dg==</DigestValue></Reference></SignedInfo><SignatureValue>PJdqygln4PMHkCr5h2Qa7AuMk4a7h2ZYiN2k+9P9y7wlE1wDV/qg9t5n0MRLSTjROCGKZZuXzrt1&#13;
+1rVJ8kHAbcy8OGT4eO1sN7n4Swj2hR0WhVZD1MDvhRJ09M5G7eKbiEBngH5amyxZgqVVEauxNl3J&#13;
+isQaxAPH4spv51VRG1CnL9ZwdN4RvIb8NqhK4bEbWoM2IbRJ26Z6nwHEZ6me8au7AhybFSZ4Gwz0&#13;
+jUxxdfRUqpu/22OmauQYINIgoTmgLgD1yht1Ie8saOMd1jN4L3YgY59UoEeDlDK2Xtt5KDcM4cgx&#13;
+s6aqV1V8UzUXNE7CtIJlDdLb4nAQxskTdRRayA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1981,4 +1983,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c6a5e0a7-0e42-4963-966c-34b3a8874f68" Target="#_be55ec87-75b6-4584-b641-b99aac5a9720"><Timestamp>2023-08-07 08:55:13</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_17409086-336d-4ffb-81c4-fe5e460450cb" Target="#_e6dd25c4-8d66-440d-bb36-03fa72c19eaf"><Timestamp>2023-08-07 08:58:56</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
