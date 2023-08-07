@@ -936,8 +936,12 @@
     <elementParameter field="TEXT" name="LABEL" value="read MSALES data for the load date"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_3">
-      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="true" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="544" posY="256">
@@ -955,12 +959,12 @@
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="rawzone">
-      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="true" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="FLOW" label="activation" name="trans">
-      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="true" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
@@ -974,7 +978,7 @@
         <mapperTableEntries expression="extract.SALES_PERSON_ID " name="SALES_PERSON_ID" nullable="true" type="id_Integer"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="extract" sizeState="INTERMEDIATE">
-        <mapperTableEntries name="CUSTOMER_ADDRESS_ID" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="CUSTOMER_ADDRESS_ID" type="id_Integer"/>
         <mapperTableEntries name="SALES_PERSON_ID" nullable="true" type="id_Integer"/>
       </inputTables>
     </nodeData>
@@ -1011,33 +1015,31 @@
     <elementParameter field="TEXT" name="LABEL" value="rawdata"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileOutputDelimited_1">
-      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="true" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="320">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
+  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="416">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_2"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_Xo5asDKuEe69ffcCKV1uSg"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="HOST" value="context.vertica_target_database_Server"/>
-    <elementParameter field="TEXT" name="PORT" value="context.vertica_target_database_Port"/>
-    <elementParameter field="TEXT" name="DBNAME" value="context.vertica_target_database_Database"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vertica_target_database_Schema"/>
-    <elementParameter field="TEXT" name="USER" value="context.vertica_target_database_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:CK8bXWTIJCrzwfyWL47Ik6NWoAx4jm/z+uv+FlJxqL6jrrk1pG4k8G4EfYl65BArfA0rtQ8NSIH5MYVKGf3M0KqJkj4="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;GR_GROUP_ASSIGNED_ENTITY_STG&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
-    <elementParameter field="CHECK" name="USE_CASCADE" value="true"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.14&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_dev&quot;"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_src_stg&quot;"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:tly0QABjYNTOZO+bYEq2Q3/01kODPq2srQ5ruc1oWdwngAyXr4YFQWLbE5A="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;CRM_CUSTOMER_ADDRESS_SALESPERSONS_STG&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
+    <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:REPOSITORY_SCHEMA_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw - activation"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
-    <elementParameter field="TEXT" name="PROPERTIES" value="context.vertica_target_database_AdditionalParams"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="USE_ALTERNATE_SCHEMA" show="false" value="false"/>
     <elementParameter field="TEXT" name="ALTERNATE_SCHEMA" show="false" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="ABORT_ON_ERROR" show="false" value="false"/>
@@ -1048,7 +1050,7 @@
     <elementParameter field="TEXT" name="REJECTED_NODE" show="false" value=""/>
     <elementParameter field="CHECK" name="NO_COMMIT" show="false" value="true"/>
     <elementParameter field="TEXT" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
-    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="100"/>
     <elementParameter field="CHECK" name="BATCH_MODE" value="true"/>
     <elementParameter field="LABEL" name="NOTE" value="(Not compatible with reject links)"/>
     <elementParameter field="TEXT" name="BATCH_SIZE" value="100"/>
@@ -1068,16 +1070,16 @@
     </elementParameter>
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
-    <elementParameter field="CHECK" name="CREATE_PROJECTION" value="true"/>
+    <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="activation" name="tDBOutput_1">
-      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+    <metadata connector="FLOW" label="activation" name="tDBOutput_2">
+      <column comment="" key="true" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="activation" name="REJECT">
-      <column comment="" key="false" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="true" length="-1" name="CUSTOMER_ADDRESS_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="SALES_PERSON_ID" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -1509,7 +1511,7 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="rawzone"/>
   </connection>
-  <connection connectorName="FLOW" label="trans" lineStyle="0" metaname="trans" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBOutput_1">
+  <connection connectorName="FLOW" label="trans" lineStyle="0" metaname="trans" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBOutput_2">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_ID"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -1611,13 +1613,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_91a2ff3b-f3f8-44e1-8bb3-a21a86efd4a5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jHssRHZ14k5La+wkEXrxirWFV4SQ5V/wAKEAjbIsS9dsvEXcBRE+I3/VZHtEz5tR80BzxaCTQvW0&#13;
-0YZzyn97vA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dcd93cf7-076f-432a-84f6-c00cd02c6756"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>87W1QqntXLD5Z5RDTp5aspwFj43iUpJJh2WJI3jgFTXDfYU4G0gKCvdyDFzAlCYeNKSLOxBqc4oL&#13;
-BwpeItF43w==</DigestValue></Reference></SignedInfo><SignatureValue>d58xk9+wucs6Dciah+5WluhVrMPbDhpNt/Ywtx60VcmBRXe5WcC6+8M6bK6Yj7oQTZSAP2GLm23f&#13;
-3F5nUOaskeLqWsvIeJWfSUoNaoyMqYO1P4bPUNNqkSbCA2lGhN7NOYApOKeX1dFSU+6tVr+QWxzQ&#13;
-Lq6vfJBaPMW3EEWZnBgO2nQaBMZx7Hr4dQrOwG/5r8c7IxjZWCYQR04S5pvHSm99VP/oTa8hd68p&#13;
-yOd5nWucGQOXEI7fOkdeLukbAG8gxRQNHK7/xFO2BzMy5O3awjdO9O/b0V6rdvyv8blQX+yyXC0k&#13;
-3CbErWptz2PyHm2i+dYqZF9cWsYYWBRea7e18Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ad8a86e9-5378-4e2b-b72d-6e1319839ce1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zH5yJdTChaSHObp0fx19gPlRShpYafFcMeyJBLvMjwd4oiooD2tfX+WTgRvje3Ivhmr3viVq18QC&#13;
+CRTjZgn/UA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ff719ee1-53da-4fdd-a2b5-6d180ada66b2"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hd002wdogPZoBtjcTIDBwd1UzjZK9AUxFfE94uMFvCJQJI+HGbKuy//YCxjzQlFtwU7nzLv29vHZ&#13;
+g5JAGY+sgg==</DigestValue></Reference></SignedInfo><SignatureValue>TYJ9K7VsUDNtCp7R1ajexirXQlY5CKU/bGl4PqGmMd1PyZNNSJkph6c8XiD7RmVSRFZ0q3iFvEbY&#13;
+Q2POWr76dswyXH17SXa0HkBe/Ci+NSb0Lyd8pHPB8ql73rbksT74PvEKJLDbDbXlJiSzBf0In1dO&#13;
+DWVWWpvMnjdttVrd2IwuV3m7gRLKpRwc/AYgPW0NA23wuCBXdRY8ZC1w/Z9qZUgPsGyIfeaAZhwX&#13;
+wek6Vn3afWrZ923M/SrkUuoZIX/8T1rCv2Cb+1m+2Mhn9NoddJ+/yx9DLBPFjrjd/m/FYFBgrvuO&#13;
+gon8rMMXAfb8+5w+t9KO61m9+oMq+5cqn222xA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1639,4 +1641,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dcd93cf7-076f-432a-84f6-c00cd02c6756" Target="#_91a2ff3b-f3f8-44e1-8bb3-a21a86efd4a5"><Timestamp>2023-08-05 01:56:42</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ff719ee1-53da-4fdd-a2b5-6d180ada66b2" Target="#_ad8a86e9-5378-4e2b-b72d-6e1319839ce1"><Timestamp>2023-08-07 04:22:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
