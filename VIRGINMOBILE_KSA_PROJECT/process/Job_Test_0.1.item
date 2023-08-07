@@ -480,6 +480,7 @@
   </node>
   <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="768" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_4"/>
     <elementParameter field="TEXT" name="HOST" show="false" value="&quot;&quot;"/>
@@ -605,6 +606,7 @@
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
     <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
@@ -720,6 +722,7 @@
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1248" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -1437,7 +1440,6 @@
   </node>
   <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_4"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_4"/>
     <elementParameter field="TEXT" name="HOST" show="false" value="&quot;&quot;"/>
@@ -1453,7 +1455,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT GROUP_ID, ENTITY_CLASS, ENTITY_ID, ENTITY_CODE, ENTITY_NAME, CLASSIFICATION_CODE, tempId, GROUP_ASSIGNED_ENTITY_ID&#13;&#10;&#13;&#10;FROM msales_2017.dbo.GR_GROUP_ASSIGNED_ENTITY ;&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT top 1000&#13;&#10;&#9;CUSTOMER_ADDRESS_CF_VALUE&#13;&#10;,&#9;CUSTOM_FIELD_ID&#13;&#10;,&#9;CUSTOMER_ID&#13;&#10;,&#9;COMMENTS&#13;&#10;,&#9;CREATED_DATE&#13;&#10;,&#9;LAST_MODIFIED_DATE&#13;&#10;,&#9;CREATED_BY&#13;&#10;,&#9;MODIFIED_BY&#13;&#10;,   TEMPID&#13;&#10;,   CUSTOMER_CF_VALUE_ID&#13;&#10;FROM msales_2017.dbo.CRM_CUSTOMER_CF_VALUE;&#13;&#10;&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1464,40 +1466,65 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ADDRESS_CF_VALUE"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CLASS"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOM_FIELD_ID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ID"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="COMMENTS"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_NAME"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_DATE"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CLASSIFICATION_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="LAST_MODIFIED_DATE"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="tempId"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_BY"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ASSINGNED_ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="MODIFIED_BY"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="TEMPID"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_CF_VALUE_ID"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_4">
-      <column comment="" key="false" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CLASS" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_NAME" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="CLASSIFICATION_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSINGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="CUSTOMER_ADDRESS_CF_VALUE" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="-1" name="CUSTOM_FIELD_ID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="-1" name="CUSTOMER_ID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="COMMENTS" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="CREATED_DATE" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="LAST_MODIFIED_DATE" nullable="true" pattern=" &quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="CREATED_BY" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="MODIFIED_BY" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="-1" name="TEMPID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="true" length="-1" name="CUSTOMER_CF_VALUE_ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_5"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -1510,35 +1537,61 @@
     <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
     <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
     <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ADDRESS_CF_VALUE"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CLASS"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOM_FIELD_ID"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_ID"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="COMMENTS"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ENTITY_NAME"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_DATE"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CLASSIFICATION_CODE"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="LAST_MODIFIED_DATE"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="tempId"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CREATED_BY"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="GROUP_ASSINGNED_ENTITY_ID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="MODIFIED_BY"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="TEMPID"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CUSTOMER_CF_VALUE_ID"/>
       <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_5">
-      <column comment="" key="false" length="-1" name="GROUP_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CLASS" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="ENTITY_NAME" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="250" name="CLASSIFICATION_CODE" nullable="true" originalLength="250" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tempId" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="GROUP_ASSINGNED_ENTITY_ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="BIGINT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="CUSTOMER_ADDRESS_CF_VALUE" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="-1" name="CUSTOM_FIELD_ID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="-1" name="CUSTOMER_ID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="COMMENTS" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="CREATED_DATE" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="26" name="LAST_MODIFIED_DATE" nullable="true" pattern=" &quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="CREATED_BY" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="MODIFIED_BY" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="false" length="-1" name="TEMPID" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="" key="true" length="-1" name="CUSTOMER_CF_VALUE_ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBConnection_2" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_2" target="tJava_2">
@@ -1557,7 +1610,6 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBConnection_4" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_4" target="tDBInput_4">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk5"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBConnection_5" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_5" target="tJava_5">
@@ -1587,10 +1639,12 @@
   </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="7" source="tDBInput_2" target="tMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
   <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tLogRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tLogCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tLogCatcher_1" target="tLogRow_3">
@@ -1783,9 +1837,38 @@
       <elementValue elementRef="TRACE_COLUMN" value="ENTITY_NAME"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOM_FIELD_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="MODIFIED_BY"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CREATED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_CF_VALUE_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ADDRESS_CF_VALUE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CUSTOMER_ID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="TEMPID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="COMMENTS"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="LAST_MODIFIED_DATE"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
   </connection>
   <subjob>
@@ -1870,13 +1953,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_91637ce2-bdd8-4cc9-a588-b8bdd1f12348"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hRkcammGItdZlJO8k63qxpfP5giKqG4uR6tI9DAP5Zx1Px5MHju4FT1ZscGcut50H5n2NMKQZO+g&#13;
-C43NRO05RQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a00de4a8-4698-46fc-b8f6-2e8615cd7e23"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hJJM0CAZeO24dYk5VRj0K5as8jHq+KZpd04GyGutouHwp3NoEGtYaSf/L7egStgJ3sdfAWdVsDrQ&#13;
-wr5VZMOfng==</DigestValue></Reference></SignedInfo><SignatureValue>dq9/w6qBkfVnd0RhbXYy8QBrROO6P42ddOYXtKySGeVqdwDMWdRSIw/nxb7EEATyviTvjilxsxIg&#13;
-nTLg+M2YuIDRTi1/z0omSOB9dvRTfuUNKJlEpSrH7hwSPi6gY7GWOND4OJTis6pg3S3HKjzlKMuO&#13;
-SG7vL4ssWUg3UoxEPuIKRSxsnjxvDOOkAfPhjdxgTFqzRtIb3mcDGu3SriuBE/XDGMcoqWUQMeWJ&#13;
-AfFL8CV9qULqhlBQcRBOhBg9D3XW5FsspDn5Q0akppKo9uVx2UZ55nlD52sOoA8tVxFRzd4jIYOK&#13;
-G84BeLgzLV/4QDrLKrq4T9EM69arV/+CyIeA4Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_de6c6289-1585-4eee-bf18-985b51fd2e14"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lY9cCZbNDvcvFtuo3RYh5er2+exY/zhyPzCnmgeLC6o12DrN1DKmh5hjw1n1nhaoVY5ZQNu/owWf&#13;
+9FL7HDFKFg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d2a9c0c0-2702-43dd-a15b-fe0f4dcedbbf"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>xhR5wWn2q2u8ltmHgBz2aMJRMoHnIuRgnEKu+4nmVKQLkRYlCt+77Fr+hAu8Qzot4u2Mv1EEcfwj&#13;
+1iUf8ekI4A==</DigestValue></Reference></SignedInfo><SignatureValue>gnZs82YfwaHeUc3ZgkXF4pExWE9lid0pbFzK7cXIEjnXyyvPDYkSvy764d4qd3s5fP3kIcpovXop&#13;
+w01OQNT+gVYz3GDCUSu6RGIeqQQdBryFV4r+aWdeJnAYWdLiW5S+xUiDa9fqX5FMVIPY6Nw3j/zg&#13;
+LRuyMHerccRV9EW2PrOHdY+JLZIODdWaBpRLzpUQQ4oiO5VnlMzwka2mhWv2Npmiq8O1HN0HdzEX&#13;
+S4YqcT8Cs/PFqT7EeMs02AJt+KUUfXAjw1LJyMVTUMr6N6YjPV2dI8I/IKqAgxddMKJCE7sWQ+ZT&#13;
+0Qyy+Iykn3BDe7EEzCTpH0zq3kWzieccenepBQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1898,4 +1981,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a00de4a8-4698-46fc-b8f6-2e8615cd7e23" Target="#_91637ce2-bdd8-4cc9-a588-b8bdd1f12348"><Timestamp>2023-08-07 10:26:10</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d2a9c0c0-2702-43dd-a15b-fe0f4dcedbbf" Target="#_de6c6289-1585-4eee-bf18-985b51fd2e14"><Timestamp>2023-08-07 10:47:24</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
