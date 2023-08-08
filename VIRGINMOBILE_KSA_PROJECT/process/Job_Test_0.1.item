@@ -1455,7 +1455,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT top 1000&#13;&#10;&#9;GEOZONE_lD&#13;&#10;,&#9;GEOPOlNT_LATITUDE&#13;&#10;,&#9;GEOPOlNT_LONGITUDE&#13;&#10;,&#9;GEO_POINT_INDEX&#13;&#10;FROM msales_2017.dbo.GPS_GEOPOINTS;&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT top 1000&#13;&#10;&#9;--GEOZONE_lD,&#13;&#10;&#9;GEOPOlNT_LATITUDE&#13;&#10;,&#9;GEOPOlNT_LONGITUDE&#13;&#10;,&#9;GEO_POINT_INDEX&#13;&#10;FROM msales_2017.dbo.GPS_GEOPOINTS;&#13;&#10;&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1466,8 +1466,6 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="GEOZONE_ID"/>
-      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="GEOPOlNT_LATITUDE"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="GEOPOlNT_LONGITUDE"/>
@@ -1479,9 +1477,6 @@
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_4">
-      <column comment="" defaultValue="" key="true" length="-1" name="GEOZONE_ID" nullable="false" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
       <column comment="" defaultValue="" key="false" length="-1" name="GEOPOlNT_LATITUDE" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -1495,20 +1490,18 @@
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_5"/>
-    <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
-    <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
     <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
     <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
     <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
-    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;"/>
-    <elementParameter field="CHECK" name="PRINT_HEADER" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false"/>
-    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
     <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="GEOZONE_ID"/>
-      <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="GEOPOlNT_LATITUDE"/>
       <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="GEOPOlNT_LONGITUDE"/>
@@ -1520,9 +1513,6 @@
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_5">
-      <column comment="" defaultValue="" key="true" length="-1" name="GEOZONE_ID" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
       <column comment="" defaultValue="" key="false" length="-1" name="GEOPOlNT_LATITUDE" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -1905,13 +1895,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_24521749-e8dd-4c27-b9e0-600ccbc6010d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>1vRhmaIq/tUrsqhTuzC1ZXn7y8sQKxFkghQjuGNmaMAmU6FiTu+6M/3W3KCNvJTNmnWQA/fzqdzO&#13;
-s9jn08+a7g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_979b8ecd-c893-4494-abe7-a101b2c4f8b6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>eLeFE4WvIG5CaoUfsL9IHkJJi1pIMVjWWMeEdJU+rOFPaWRmQGh+xrCzI2XNad4YJ+dl17MEMgMd&#13;
-Fs/zyq4s9g==</DigestValue></Reference></SignedInfo><SignatureValue>MBGZ4Mv4tqhBi48EGoDo3oyH+pA8Er3EylCuqG3FG4JQweW/1MHQtuqRqGXlv/BvNPZWIplv1Ou8&#13;
-dI/7/j2Ub9arU78IH4ifZk1cf+EXbsZG0dKWjaG8FmOIemb0sltMmXw+LcP1BdaS4bjn3bb3Pe8N&#13;
-f428RYTEQzfOFVuDeAVYHTy2jwksInAv+a5ZD3+jPa3giK+35TOVCrJzFj7s7k5sdLeA0BlAzo6p&#13;
-5c155zIDyeixEBaFj+AmehPmP+kvqAupLBWosCRvjbMn7C+5knWmERnstBIdanETCFfMHB9aRMW9&#13;
-LL5pcErHFWwFBhOBVem1UdpX9VZrwCiVFvCwSA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1110c1e3-363d-4d32-8e48-fe532aac4ef2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5C5AouIMHit3x8OlRo8W9KlGEKKd/PZRv+lqJ415ATvCwZTKwbbT33Jt/PiqT0Z21r+LeqlMkQiM&#13;
+eeU/EzCMAg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1b311b16-2014-4811-9f79-6079028f118d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0C0ZpAIvww+QbhYp0rfGeSCHLtM3HUtkkqUyvfsoWjXeCCb+ItkFT5vsE9sAVU0ddxtVms9njjsq&#13;
+ib9gzPBc3Q==</DigestValue></Reference></SignedInfo><SignatureValue>LmFIhTqN/fqJsAqNGBwV05oQlvoR65vYwBB7r7pv45qOB9E45TAcVft75WxYJTDNKM1ep2ZNR1km&#13;
+H1o+jG7H7+Eweu7qx7BVd9NomnG/aPAFBdLHRKpbqjQz7nBxMxYzmFoO1O9dgnsC66GE0Ml6jixj&#13;
+IdvjUh1NaRRpp985x0ls4C3gtF0Ngz6FoMbeyCMNhQHN+mlUkWgpM9EmSb5ZOMM//Iw9mGpzDrk/&#13;
+gHR0ciuiys3jOLW35cICA3xPgS3JnKXywt/ZxsOEKAMUvIaKAPZ20EGauE/rrNiihI23NVhQkEm8&#13;
+DVOqsaBmKSuXsfibeuQB3r+o5+xffhId8YamfA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1933,4 +1923,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_979b8ecd-c893-4494-abe7-a101b2c4f8b6" Target="#_24521749-e8dd-4c27-b9e0-600ccbc6010d"><Timestamp>2023-08-07 10:49:28</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1b311b16-2014-4811-9f79-6079028f118d" Target="#_1110c1e3-363d-4d32-8e48-fe532aac4ef2"><Timestamp>2023-08-08 04:37:08</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
