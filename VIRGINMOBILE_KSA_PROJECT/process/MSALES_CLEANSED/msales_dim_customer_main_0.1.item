@@ -433,7 +433,7 @@
   </parameters>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;&#10;context.object_name = &quot;msales_dim_customers_v2_cleansed&quot;;&#10;context.batch_process_date=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;System.out.println(&quot;start_time: &quot;+context.start_time);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);&#10;context.source_system=&quot;msales&quot;;&#10;System.out.println(context.talend_jobname +&quot; started at&quot;+ context.start_time_main_job);&#10;System.out.println(&quot;SOURCE SYSTEM Name is &quot;+ context.source_system );&#10;System.out.println(&quot;TABLE LOADED  is &quot;+ context.object_name );&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;&#10;context.object_name = &quot;msales_dim_customers_v2_cleansed&quot;;&#10;context.batch_process_date=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;System.out.println(&quot;start_time: &quot;+context.start_time);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);&#10;context.source_system=&quot;msales&quot;;&#10;System.out.println(context.talend_jobname +&quot; started at&quot;+ context.start_time_main_job);&#10;System.out.println(&quot;SOURCE SYSTEM Name is &quot;+ context.source_system );&#10;System.out.println(&quot;TABLE LOADED  is &quot;+ context.object_name );&#10;context.data_load_env&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set context values"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -1375,18 +1375,11 @@
     <elementParameter field="CHECK" name="AUTO_COMMIT" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="-64">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//context.target_object_name =context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;;&#10;//System.out.println(&quot;context.target_object_name  &quot;+ context.target_object_name );"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_2"/>
-  </node>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tRunJob_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tJava_2">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tDBInput_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk5"/>
   </connection>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tMap_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
@@ -1539,9 +1532,6 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBConnection_2" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_2" target="tJava_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tDBInput_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk5"/>
-  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
@@ -1625,18 +1615,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_cb7b277c-b499-4f7d-ab11-ae1f22356cc9"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>JfokrAiecTMSA0UPrsSr0Slxr5PDc/NxP+Rx66rg70ddCsWUEBTIvICawnmLO1QIq4HT28lAW1Eh&#13;
-H37nCLTpzg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f4e972c3-934d-45b0-8561-270d236389e1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>iXNwk+IsX2KS7IF4UXE03yMFv5EgzmPO0TjVxp6oDZdxyj1jxstfG5m0LMBaMRB+gN/+nR2Lm5Z1&#13;
-7Kkpx9jMiA==</DigestValue></Reference></SignedInfo><SignatureValue>BQUhO5p1GILNrHpQ3UofBRMSku4m3uJ5SrEvFinUsyEL+Knu0Ih3XnDkufJuYFfM8lhWQI/umy+G&#13;
-DPiHqUja5hjeC+ogn4MGt+nTyJwrbtOXCGV9Okma8MF8qn9gOvA0BNC3RaG9v6u9iQyY39I/Y5JF&#13;
-WOjoBzUUtcaD4GVb102P9PtjHSXMzOfg7kMsAx18XpfF56U54937UOVF+bA1uLiX0CrSL2kTBJmB&#13;
-/aLwi8abhLZDWaJUQWpZBDx4cY43JhFSKYDHsSiOjrYu98rfW/29UOy5ZyZ+gEySPF/50V4CPfNC&#13;
-XQGj5idOWC8Cd4AuCJQp4+KXGeS4iCJ7dOW4ZQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5c28b914-2d14-4e22-b8c1-d7a7394d168c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>OVl9t3LzBfDgffXG4MIw/uvPO3L1WRkDjqO+OlbFIc8/KhQ9jXhI+anR0tqsPsfX11Jpy8fAYoT+&#13;
+LUqoV86tUw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4baf0442-3512-458f-be5f-3b380ff667bb"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>SwacRnVxeQ/7PsZ35Ll9jKoV15wOwV+oyN85BraIHyeGfvZ0sF4c/6MfBQhFWL7Fzn4t8sBbiVjZ&#13;
+Kb1xahZdNA==</DigestValue></Reference></SignedInfo><SignatureValue>KCmxifSRmqNh1x1B49tJSOmvju0T/eK5ArNZzcXJDHyqcim/mHXV5SxBi8KpKWVaAuJqPkwV+WCM&#13;
+YzlZCZl5BO9hdqho2Dx6ReowDXZD5LySvh4kYy1+0bD5cC8QbAxuyUXc9vKebK5SesSvjEBmvmoO&#13;
+6ZcHQ75uvSS3RDzaf1H0OZKMMmnGkDJB9Y+vLuVflKle3P26cjZU/Bth2XP5U4RpyBQaCfeDVEtQ&#13;
+VRuhRg8BfQkaNTKUXCMJvTL9WjHsLzs9W2hs+6Kb9hesAZajAEmyy+7eZxSnQ2gwv/JKQ6N56FPN&#13;
+/5Czu1X6Kb9nr51BkZC1hGy0X18qkRD2sigcRQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1658,4 +1643,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f4e972c3-934d-45b0-8561-270d236389e1" Target="#_cb7b277c-b499-4f7d-ab11-ae1f22356cc9"><Timestamp>2023-08-10 11:34:51</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4baf0442-3512-458f-be5f-3b380ff667bb" Target="#_5c28b914-2d14-4e22-b8c1-d7a7394d168c"><Timestamp>2023-08-10 12:01:58</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
