@@ -628,6 +628,7 @@
       <column comment="12" key="false" length="-1" name="expirydate" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="13" key="false" length="4" name="isevoucher" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column comment="14" key="false" length="255" name="additionalinfo" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="localtstamp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="batch_process_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
@@ -649,6 +650,7 @@
         <mapperTableEntries expression="row4.expirydate== null || String.valueOf(row4.expirydate)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.expirydate)) " name="expirydate" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.isevoucher" name="isevoucher" nullable="true" type="id_Boolean"/>
         <mapperTableEntries expression="row4.additionalinfo" name="additionalinfo" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.tstamp== null || String.valueOf(row4.tstamp)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.tstamp)) " name="localtstamp" nullable="true" type="id_String"/>
         <mapperTableEntries expression="TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_ETL&quot;; " name="batch_process_date" nullable="true" type="id_String"/>
         <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1))); " name="filesequenceid" nullable="true" type="id_Long"/>
       </outputTables>
@@ -775,6 +777,11 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="localtstamp"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="batch_process_date"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
@@ -806,6 +813,7 @@
       <column comment="12" key="false" length="-1" name="expirydate" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="13" key="false" length="4" name="isevoucher" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column comment="14" key="false" length="255" name="additionalinfo" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="localtstamp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="batch_process_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
@@ -824,6 +832,7 @@
       <column comment="12" key="false" length="-1" name="expirydate" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="13" key="false" length="4" name="isevoucher" nullable="true" originalLength="4" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column comment="14" key="false" length="255" name="additionalinfo" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="localtstamp" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="batch_process_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -1651,6 +1660,9 @@
       <elementValue elementRef="TRACE_COLUMN" value="batch_process_date"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="localtstamp"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
@@ -1957,13 +1969,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4a992d37-86d1-4c42-8a85-261ef8bb51d2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aLrTkLFd11MbWPEYV1z3Jj468zJ9UwoO2U0BWpcBzeOpcRUtXzHIISWH/qsQZaENVXAsRBjSxXDL&#13;
-hNRjLxx+Qg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fb61581e-3e1c-418d-baba-4e0a6ca3c1f6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>akKDHhlYWNqWgdJ/doHymAMySZh26rVH7frv2sNLTvOad7iG2WdzTwVssU7kgAPxaibNEx4Qi7md&#13;
-LVPu/kCIqg==</DigestValue></Reference></SignedInfo><SignatureValue>mJDdw3B/FfBzKSuUtzC2yTX5bAkJwsIekcCQSbPP9iH6UT1d4vJSeAd3tEjD0cjy9IAqEyu54uvX&#13;
-gv3n43pJgDrCgAkBC9UJS1egFo2LpsVLOs7WXHhU3f3hHS1K3iKxcB44tials9irybrgdeYlF3f1&#13;
-mq/EJVlAt+yJghaJz6SQODC+4hlABR0ReccNeeRMNpdkB+qR5n9g1aaW/cmRBwTX80920+n2hHGn&#13;
-0nAlsz6LK3dTwJjyhrlwhHXWCT1ZwbVWJQtZDHsAn4fWkW01o30EcknsGgZqI+zU2s+A4xS+mPpa&#13;
-ZHcWzK0J0P9IE2dSg4f3POgwLGogxST2+lIlnA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9feaac2d-73d0-4d26-a4d5-ddac3fbf93fd"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NSdo1m2aczhOtpXtTSjf6yT3sNpm7VZRP0MZKdMHHHpETd8VpLmu9HofIAFR3Yfsr2AaSFpxDKEH&#13;
+h6YPNYx1vg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dfe48637-72ac-4593-ad10-e38f0cf89776"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RRjpzNqXOcDa5DjMCgHePvzE7g8iA/uvyvQ0/RZDSvUO2ihj3FokaMtEUUB+PaRkxM2ian8RnoR6&#13;
+/wsXhLJR7Q==</DigestValue></Reference></SignedInfo><SignatureValue>A1goKIcQyFbahtJGa6FKn02eIFrOOkQKYcj1WZP6Nr6+nGuH0o+m17mqxuzdY/bnqeCLq+38NnN8&#13;
+6xFsBcA1smgucjuCatYasz5UxVmkmKD3rDgxwnrqV8vXHo2RgdNZrbdDu60VAdlswFQoYGYximVo&#13;
+sOB8+Ywjgqxgo6H1SXjctFciQKLN2912kD+K54HhexNMb8SXUjU+WhMpjAzYyFWdb7SslArggAlO&#13;
+U8oea9RBQwBifWdH27yjermkIZIReL2mKrjHbXTdB6Ss9rNw5wAQsaxUevUnFWWfN/JGXDozmf30&#13;
+bHNrb1Gy2l9LXZn3BdiL/Na2GMwaazyrj0HO1g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1985,4 +1997,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fb61581e-3e1c-418d-baba-4e0a6ca3c1f6" Target="#_4a992d37-86d1-4c42-8a85-261ef8bb51d2"><Timestamp>2023-08-11 07:48:54</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dfe48637-72ac-4593-ad10-e38f0cf89776" Target="#_9feaac2d-73d0-4d26-a4d5-ddac3fbf93fd"><Timestamp>2023-08-11 07:57:42</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
