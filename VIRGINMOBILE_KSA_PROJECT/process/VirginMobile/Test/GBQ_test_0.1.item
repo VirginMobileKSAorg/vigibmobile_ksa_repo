@@ -7,6 +7,13 @@
     <contextParameter comment="" internalId="_w6AB0DBZEe6QU757beCZsA" name="business_date" prompt="business_date?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
     <contextParameter comment="&quot;yyyy-MM-dd&quot;" internalId="_8qh-kDHjEe6Ws-U3G0sWyA" name="v_endDate" prompt="v_endDate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="20230804"/>
     <contextParameter comment="" internalId="_8qh-kTHjEe6Ws-U3G0sWyA" name="v_Days" prompt="v_Days?" promptNeeded="false" repositoryContextId="built-in" type="id_Long" value=""/>
+    <contextParameter comment="" internalId="_R8MBMDgtEe6297mHVWf5SA" name="vertica_target_database_Database" prompt="vertica_target_database_Database?" promptNeeded="false" repositoryContextId="_4jevMC05Ee6YhMTxVrC2Xw" type="id_String" value="ksa_db_dev"/>
+    <contextParameter comment="" internalId="_R8MBMTgtEe6297mHVWf5SA" name="vertica_target_database_Password" prompt="vertica_target_database_Password?" promptNeeded="false" repositoryContextId="_4jevMC05Ee6YhMTxVrC2Xw" type="id_Password" value="enc:system.encryption.key.v1:M9wsUEEJpkmYVBHk1XgnaLgVwKWnVhplRzKAmig06ckZXXRGxA3jHB72"/>
+    <contextParameter comment="" internalId="_R8MBMjgtEe6297mHVWf5SA" name="vertica_target_database_AdditionalParams" prompt="vertica_target_database_AdditionalParams?" promptNeeded="false" repositoryContextId="_4jevMC05Ee6YhMTxVrC2Xw" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_R8MBMzgtEe6297mHVWf5SA" name="vertica_target_database_Port" prompt="vertica_target_database_Port?" promptNeeded="false" repositoryContextId="_4jevMC05Ee6YhMTxVrC2Xw" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="_R8MBNDgtEe6297mHVWf5SA" name="vertica_target_database_Server" prompt="vertica_target_database_Server?" promptNeeded="false" repositoryContextId="_4jevMC05Ee6YhMTxVrC2Xw" type="id_String" value="10.51.15.14"/>
+    <contextParameter comment="" internalId="_R8MBNTgtEe6297mHVWf5SA" name="vertica_target_database_Schema" prompt="vertica_target_database_Schema?" promptNeeded="false" repositoryContextId="_4jevMC05Ee6YhMTxVrC2Xw" type="id_String" value="vm_cleansed"/>
+    <contextParameter comment="" internalId="_R8MBNjgtEe6297mHVWf5SA" name="vertica_target_database_Login" prompt="vertica_target_database_Login?" promptNeeded="false" repositoryContextId="_4jevMC05Ee6YhMTxVrC2Xw" type="id_String" value="dbadmin"/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -281,14 +288,16 @@
   </node>
   <node componentName="tVerticaConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBConnection_1"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.14&quot;"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw"/>
+    <elementParameter field="TEXT" name="HOST" value="context.vertica_target_database_Server"/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
-    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_dev&quot;"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_cleansed&quot;"/>
-    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:bP9E/NvRSLtX9VqS9IymUKPG2NFyfjY/3r8m/A+/twT44KQ3+S3e1J5+tL0="/>
-    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="context.vertica_target_database_Port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.vertica_target_database_Database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.vertica_target_database_Schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.vertica_target_database_Login"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:bCJRHZUXjxvnvb1Zaa5WSjdoksjNh8ZM1Nn6X1C7LcAne4tzfoLKTRtvB5dF9MVGxnMRnqDRtxsXgVLwR+mJWY24kNI="/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="context.vertica_target_database_AdditionalParams"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="USE_SHARED_CONNECTION" value="false"/>
@@ -421,6 +430,9 @@
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tDBConnection_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk7"/>
   </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tDBRow_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk8"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_5"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
@@ -487,13 +499,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4f7a8cb4-00ab-4b2c-9b0c-07c2ddd02a7b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DEUixKhYvXHdGkWW4h4gliyKCxaVgJ5Yp7/OvNLvrUGUdeXw/B8RNV3lrC8rRSyf+NdJ4OvHUDUr&#13;
-GCl7SxeGpA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f8d8d1de-ada8-4c19-b684-4f5ff3c76cd8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>XQRKPOpGsxpcL7m2AWVEb5z0+eHZm301Glq+hKa6wmW8H7O4UT+iVTt88ugagCUTP5dEREW3+KJ2&#13;
-4CEp/nnhDA==</DigestValue></Reference></SignedInfo><SignatureValue>NNoEhfF5YBIuDs03SaT/EnznsjS4izUn53GjuoC0iKF7riVq4WJCZ3iEq6NiyIwahLHsVZRysD6U&#13;
-mmdqqgb1+zO3E7vJ7EgCY0gbfrxUpvpvb5O/Jwkq8OQWILDdgHHm1uOud7sVBnTZacZyzHgX7Qqm&#13;
-I+dAEPEiDWLFhuuBXTJ8iCPMrkRwXUNZPhYh4XRYy4+TGcQXdrmwVPeLVq0Dq6QUr50NBfWzQaHg&#13;
-16CnnG7wD3gifkn3TCudrX0C9oMS/3ompIkel3UF3BWO2e4Ktc2tV/GgizgIk1KMqd1cDU+CZvrW&#13;
-GOZwlgNRNXE8BmKJtUr5if88CipHK51KVqfZYQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f3a57b87-2f3e-414f-b4bf-ce33cf6eac2c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jdBIL9rD7ondBz2KxVCVPX52JYIM8Y/09vp3XPtZhjinUkcThO2WNS0iZQzX657X7Z8aiq33v0yj&#13;
+WuQQ+nIe2w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_bd2c64d7-411c-46b6-b5d4-9ce6bed993a5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>vV7gz8qq/6u+7hpaz/IQsicli9OWDjzvnrqcBgHQiuQHnPXH6XL6Ggv6SnxYC4xvd3GFEbFhbH1T&#13;
+W8Gz7D0b3Q==</DigestValue></Reference></SignedInfo><SignatureValue>M9KVEBTpG0BHSKvwGr55r4NfrpEpIxyB0O27IovhKaeFMoQub0TQtNVTSogeNRd53DHmPrVd6UPe&#13;
+saPkXNCgtAxkJfpmxr2PLnr0mlF7DSE2zJyIyS6eP1NL2ygADI1oeK90FIfbPpwiPZTWISPgUgf8&#13;
+cqa903y9EWALk68Eya+XPEy3zbZ8x3c1NkP7yoWzVBNn5/YrZdiow9k8r+90SFepmeByyObpG6Lp&#13;
+9kzSmcOnBzH0I/cy89XTTOhlryMhiwr6Y9dAo2hlS9bDQYITuIIElpfkVDVrUovSkKPcEXRKjwic&#13;
+AVmJuflRTJE8UG4ZbYtA28U+O7Yx5R71FQxRuA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -515,4 +527,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f8d8d1de-ada8-4c19-b684-4f5ff3c76cd8" Target="#_4f7a8cb4-00ab-4b2c-9b0c-07c2ddd02a7b"><Timestamp>2023-08-11 09:53:36</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_bd2c64d7-411c-46b6-b5d4-9ce6bed993a5" Target="#_f3a57b87-2f3e-414f-b4bf-ce33cf6eac2c"><Timestamp>2023-08-11 09:56:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
