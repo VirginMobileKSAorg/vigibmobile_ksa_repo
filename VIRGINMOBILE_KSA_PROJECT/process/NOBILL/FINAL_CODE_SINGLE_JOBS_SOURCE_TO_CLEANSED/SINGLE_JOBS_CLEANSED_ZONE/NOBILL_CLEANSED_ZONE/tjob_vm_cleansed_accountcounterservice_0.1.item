@@ -92,7 +92,7 @@
     <contextParameter comment="" internalId="_tJuJIQjsEe6_U5AZC_1q2A" name="context_file_path_main" prompt="context_file_path_main?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value="/home/om/contextfile/main_audit_vertica.txt"/>
     <contextParameter comment="" internalId="_tJuJIgjsEe6_U5AZC_1q2A" name="context_initializing_query" prompt="context_initializing_query?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_tJuJIwjsEe6_U5AZC_1q2A" name="yearmonthdate" prompt="yearmonthdate?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
-    <contextParameter comment="" internalId="_tJuJJAjsEe6_U5AZC_1q2A" name="context_file_path" prompt="context_file_path?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/home/om/contextfile/context_file_nobill.txt"/>
+    <contextParameter comment="" internalId="_tJuJJAjsEe6_U5AZC_1q2A" name="context_file_path" prompt="context_file_path?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value="/home/om/contextfile/context_file_nobill.txt"/>
     <contextParameter comment="" internalId="_tJuJJQjsEe6_U5AZC_1q2A" name="file_name" prompt="file_name?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_tJuJJgjsEe6_U5AZC_1q2A" name="vm_vertica_Server" prompt="vm_vertica_Server?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_tJuJJwjsEe6_U5AZC_1q2A" name="vm_vertica_Login" prompt="vm_vertica_Login?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
@@ -131,6 +131,7 @@
     <contextParameter comment="" internalId="_kBavkBDNEe6AsMI7ePoh5A" name="landing_zone" prompt="landing_zone?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/home/om/landing_zone"/>
     <contextParameter comment="" internalId="_mbEBsBr4Ee65IOU4IOObkA" name="cleansed_archival_zone" prompt="cleansed_archival_zone?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value="/opt/s3_uploads/hydrated/cleansed_archival_zone"/>
     <contextParameter comment="" internalId="_mbEBsRr4Ee65IOU4IOObkA" name="batch_process_date" prompt="batch_process_date?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_yWV7YDXoEe6R25bvXKEcVw" name="snapshotdate" prompt="snapshotdate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -524,7 +525,7 @@
       <column comment="" key="false" length="255" name="customerservicename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="countertypename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="snapshotdate" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="insert_audit_key" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
@@ -535,7 +536,7 @@
         <mapperTableEntries expression="row4.customerservicename " name="customerservicename" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.countertypename " name="countertypename" nullable="true" type="id_String"/>
         <mapperTableEntries name="snapshotdate" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_ETL&quot;; " name="insert_audit_key" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_ETL&quot;; " name="batch_process_date" nullable="true" type="id_String"/>
         <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1))); " name="filesequenceid" nullable="true" type="id_Long"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
@@ -545,44 +546,97 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="640">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
-    <elementParameter field="CHECK" name="USESTREAM" value="false"/>
-    <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
-    <elementParameter field="FILE" name="FILENAME" value="context.cleansed_temp_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;"/>
-    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
-    <elementParameter field="CHECK" name="OS_LINE_SEPARATOR_AS_ROW_SEPARATOR" show="false" value="true"/>
-    <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" show="false" value="&quot;\n&quot;"/>
-    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
-    <elementParameter field="CHECK" name="APPEND" value="true"/>
-    <elementParameter field="CHECK" name="INCLUDEHEADER" value="true"/>
-    <elementParameter field="CHECK" name="COMPRESS" show="false" value="false"/>
-    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
-    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
-    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
-    <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
-    <elementParameter field="TEXT" name="ESCAPE_CHAR" show="false" value="&quot;&quot;&quot;"/>
-    <elementParameter field="TEXT" name="TEXT_ENCLOSURE" show="false" value="&quot;&quot;&quot;"/>
-    <elementParameter field="CHECK" name="CREATE" value="true"/>
-    <elementParameter field="CHECK" name="SPLIT" value="false"/>
-    <elementParameter field="TEXT" name="SPLIT_EVERY" show="false" value="1000"/>
-    <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
-    <elementParameter field="TEXT" name="FLUSHONROW_NUM" show="false" value="1"/>
-    <elementParameter field="CHECK" name="ROW_MODE" value="false"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
-    <elementParameter field="CHECK" name="DELETE_EMPTYFILE" value="false"/>
-    <elementParameter field="CHECK" name="FILE_EXIST_EXCEPTION" show="false" value="true"/>
-    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="90"/>
-    <elementParameter field="TEXT" name="LABEL" value="cleansed temp file"/>
+  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="864" posY="640">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_NUsucDHnEe6tvqJWfwIuTA"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.14&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_dev&quot;"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ZkbBHhlOatiZUC2Ule1eHL1btc+kMIdA/eeTsVntYxV2eXlwQMuyUX7ve+o="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nobill_tx_accountcounterservice&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
+    <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="vertica_id"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="USE_ALTERNATE_SCHEMA" show="false" value="false"/>
+    <elementParameter field="TEXT" name="ALTERNATE_SCHEMA" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="ABORT_ON_ERROR" show="false" value="false"/>
+    <elementParameter field="TEXT" name="REJECT_MAX" show="false" value=""/>
+    <elementParameter field="FILE" name="EXCEPTIONS_PATH" show="false" value=""/>
+    <elementParameter field="TEXT" name="EXCEPTIONS_NODE" show="false" value=""/>
+    <elementParameter field="FILE" name="REJECTED_DATA" show="false" value=""/>
+    <elementParameter field="TEXT" name="REJECTED_NODE" show="false" value=""/>
+    <elementParameter field="CHECK" name="NO_COMMIT" show="false" value="true"/>
+    <elementParameter field="TEXT" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="100"/>
+    <elementParameter field="CHECK" name="BATCH_MODE" value="true"/>
+    <elementParameter field="LABEL" name="NOTE" value="(Not compatible with reject links)"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" value="100"/>
+    <elementParameter field="TABLE" name="ADD_COLS"/>
+    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="false"/>
+    <elementParameter field="TABLE" name="FIELD_OPTIONS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="subscriptionnum"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="customerservicename"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="countertypename"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="snapshotdate"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="batch_process_date"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="filesequenceid"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
+    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
+    <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
+    <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileOutputDelimited_1">
+    <metadata connector="FLOW" name="tDBOutput_1">
       <column comment="" key="false" length="19" name="subscriptionnum" nullable="true" originalLength="19" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="customerservicename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="countertypename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="snapshotdate" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="100" name="insert_audit_key" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" key="false" length="19" name="subscriptionnum" nullable="true" originalLength="19" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="customerservicename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="countertypename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="snapshotdate" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="1088">
@@ -639,21 +693,6 @@
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_3"/>
-  </node>
-  <node componentName="tFileInputRaw" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputRaw_2"/>
-    <elementParameter field="FILE" name="FILENAME" value="context.cleansed_temp_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;"/>
-    <elementParameter field="RADIO" name="AS_STRING" value="true"/>
-    <elementParameter field="RADIO" name="AS_BYTEARRAY" value="false"/>
-    <elementParameter field="RADIO" name="AS_INPUTSTREAM" value="false"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="cleansed temp file"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileInputRaw_2">
-      <column defaultValue="" key="false" length="0" name="content" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Object" usefulColumn="true"/>
-    </metadata>
   </node>
   <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="1088">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_1"/>
@@ -1766,98 +1805,45 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_4"/>
   </node>
-  <node componentName="tParallelize" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tParallelize_1"/>
-    <elementParameter field="CLOSED_LIST" name="WAIT_FOR" value="All"/>
-    <elementParameter field="TEXT" name="SLEEPTIME" value="100"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-  </node>
-  <node componentName="tFileInputRaw" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputRaw_3"/>
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="512">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="CHECK" name="USESTREAM" value="false"/>
+    <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
     <elementParameter field="FILE" name="FILENAME" value="context.cleansed_temp_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;"/>
-    <elementParameter field="RADIO" name="AS_STRING" value="true"/>
-    <elementParameter field="RADIO" name="AS_BYTEARRAY" value="false"/>
-    <elementParameter field="RADIO" name="AS_INPUTSTREAM" value="false"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileInputRaw_3">
-      <column defaultValue="" key="false" length="0" name="content" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Object" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tFileOutputRaw" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputRaw_2"/>
-    <elementParameter field="FILE" name="FILENAME" value="context.cleansed_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
+    <elementParameter field="CHECK" name="OS_LINE_SEPARATOR_AS_ROW_SEPARATOR" show="false" value="true"/>
+    <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" show="false" value="&quot;\n&quot;"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
+    <elementParameter field="CHECK" name="APPEND" value="true"/>
+    <elementParameter field="CHECK" name="INCLUDEHEADER" value="true"/>
+    <elementParameter field="CHECK" name="COMPRESS" show="false" value="false"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
+    <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
+    <elementParameter field="TEXT" name="ESCAPE_CHAR" show="false" value="&quot;&quot;&quot;"/>
+    <elementParameter field="TEXT" name="TEXT_ENCLOSURE" show="false" value="&quot;&quot;&quot;"/>
+    <elementParameter field="CHECK" name="CREATE" value="true"/>
+    <elementParameter field="CHECK" name="SPLIT" value="false"/>
+    <elementParameter field="TEXT" name="SPLIT_EVERY" show="false" value="1000"/>
+    <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
+    <elementParameter field="TEXT" name="FLUSHONROW_NUM" show="false" value="1"/>
+    <elementParameter field="CHECK" name="ROW_MODE" value="false"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="cleansed zone file"/>
+    <elementParameter field="CHECK" name="DELETE_EMPTYFILE" value="false"/>
+    <elementParameter field="CHECK" name="FILE_EXIST_EXCEPTION" show="false" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="90"/>
+    <elementParameter field="TEXT" name="LABEL" value="cleansed temp file"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileOutputRaw_2">
-      <column defaultValue="" key="false" length="0" name="content" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Object" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="960" posY="832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_size = context.to_be_calculated;&#10;context.task_status = context.task_status_failed;&#10;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;); &#10;&#10;//Error Message&#9;&#10;if(!(((String)globalMap.get(&quot;tFileList_2_ERROR_MESSAGE&quot;)).equals(null)||((String)globalMap.get(&quot;tFileList_2_ERROR_MESSAGE&quot;)).equals(&quot;&quot;))){&#10;&#9;context.error_msg = context.error_msg_extract; //((String)globalMap.get(&quot;tDBInput_1_ERROR_MESSAGE&quot;));&#10;&#9;context.error_code = context.error_code_extract;&#10;&#9;&#10;}&#10;else if(!(((String)globalMap.get(&quot;tFileOutputRaw_2_ERROR_MESSAGE&quot;)).equals(null)||((String)globalMap.get(&quot;tFileOutputRaw_2_ERROR_MESSAGE&quot;)).equals(&quot;&quot;)))&#9;{&#10;&#9;context.error_msg = context.error_msg_load; //((String)globalMap.get(&quot;tDBOutputBulkExec_1_ERROR_MESSAGE&quot;));&#10;&#9;context.error_code = context.error_code_load;&#10;}&#9;&#10;else{&#10;&#9;context.error_msg = context.error_msg_extractload;&#10;&#9;context.error_code = context.error_code_extractload;&#10;}&#9;&#10;//Source Count&#9;&#10;&#10;&#9;context.source_count =  new Long(0);&#10;//Target Count&#9;&#10;context.target_count = new Long(0);&#9;&#10;context.insert_count = new Long(0);&#10;context.update_count = new Long(0);&#10;context.reject_count = new Long(0);&#10;context.delete_count = new Long(0);&#10;&#10;&#10;"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="LABEL" value="Dynamic values on Fail"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_5"/>
-  </node>
-  <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1184" posY="832">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_3"/>
-    <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
-    <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
-    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
-    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_CONTEXT" value="Default"/>
-    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_PROCESS" value="VIRGINMOBILE_KSA_PROJECT:_x6gXgAViEe6ShOVCpvOVVA"/>
-    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_VERSION" value="Latest"/>
-    <elementParameter field="TEXT" name="CONTEXT_NAME" show="false" value="Default"/>
-    <elementParameter field="CHECK" name="USE_INDEPENDENT_PROCESS" value="false"/>
-    <elementParameter field="CHECK" name="DIE_ON_CHILD_ERROR" value="true"/>
-    <elementParameter field="CHECK" name="TRANSMIT_WHOLE_CONTEXT" value="true"/>
-    <elementParameter field="TABLE" name="CONTEXTPARAMS"/>
-    <elementParameter field="CHECK" name="PROPAGATE_CHILD_RESULT" value="false"/>
-    <elementParameter field="CHECK" name="PRINT_PARAMETER" value="false"/>
-    <elementParameter field="CHECK" name="TRANSMIT_ORIGINAL_CONTEXT" show="false" value="true"/>
-    <elementParameter field="RADIO" name="USE_CHILD_JVM_SETTING" show="false" value="true"/>
-    <elementParameter field="RADIO" name="USE_CUSTOM_JVM_SETTING" show="false" value="false"/>
-    <elementParameter field="TABLE" name="JVM_ARGUMENTS" show="false"/>
-    <elementParameter field="CHECK" name="USE_DYNAMIC_CONTEXT" value="false"/>
-    <elementParameter field="TEXT" name="DYNAMIC_CONTEXT" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="USE_EXTRA_CLASSPATH" show="false" value="false"/>
-    <elementParameter field="TEXT" name="EXTRA_CLASSPATH" show="false" value="&quot;&quot;"/>
-    <elementParameter field="TEXT" name="LABEL" value="tjob_vm_end_audit_dync"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tRunJob_3"/>
-  </node>
-  <node componentName="tFileInputRaw" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="960">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputRaw_4"/>
-    <elementParameter field="FILE" name="FILENAME" value="context.cleansed_temp_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;"/>
-    <elementParameter field="RADIO" name="AS_STRING" value="true"/>
-    <elementParameter field="RADIO" name="AS_BYTEARRAY" value="false"/>
-    <elementParameter field="RADIO" name="AS_INPUTSTREAM" value="false"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileInputRaw_4">
-      <column defaultValue="" key="false" length="0" name="content" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Object" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tFileOutputRaw" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="960">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputRaw_3"/>
-    <elementParameter field="FILE" name="FILENAME" value="context.cleansed_archival_zone+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="Cleansed_archivl_zone"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tFileOutputRaw_3">
-      <column defaultValue="" key="false" length="0" name="content" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Object" usefulColumn="true"/>
+    <metadata connector="FLOW" name="tFileOutputDelimited_1">
+      <column comment="" key="false" length="19" name="subscriptionnum" nullable="true" originalLength="19" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="customerservicename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="countertypename" nullable="true" originalLength="255" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="snapshotdate" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="insert_audit_key" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tjob_vm_contextLoad_joblet_1">
@@ -1897,7 +1883,7 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileInputRaw_2">
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tJava_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk5"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tFileInputDelimited_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_2" target="tMap_1">
@@ -2119,11 +2105,11 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
-  <connection connectorName="FLOW" label="out" lineStyle="0" metaname="out" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFileOutputDelimited_1">
+  <connection connectorName="FLOW" label="out" lineStyle="0" metaname="out" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tDBOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileOutputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileOutputDelimited_1" target="tJava_3">
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBOutput_1" offsetLabelX="0" offsetLabelY="0" source="tDBOutput_1" target="tJava_3">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tFileDelete_1">
@@ -2132,16 +2118,15 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_2" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_2" target="tRunJob_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk6"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputRaw_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputRaw_2" target="tJava_2">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk10"/>
-  </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileInputRaw_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputRaw_2" target="tParallelize_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
-  </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_1" target="tFileDelete_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
+  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
+  </connection>
+  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="termzone"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -2352,11 +2337,6 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row11"/>
   </connection>
-  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
-  </connection>
   <connection connectorName="REJECT" label="row9" lineStyle="0" metaname="tSchemaComplianceCheck_1" offsetLabelX="0" offsetLabelY="0" source="tSchemaComplianceCheck_1" target="tFileOutputDelimited_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
@@ -2370,26 +2350,6 @@
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_4" offsetLabelX="10" offsetLabelY="-13" source="tJava_4" target="tFileList_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk12"/>
-  </connection>
-  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tParallelize_1" target="tFileInputRaw_3">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="Parallelize"/>
-  </connection>
-  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="-2" offsetLabelY="5" outputId="2" source="tParallelize_1" target="tFileInputRaw_4">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="Parallelize"/>
-  </connection>
-  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tFileInputRaw_3" offsetLabelX="0" offsetLabelY="0" source="tFileInputRaw_3" target="tFileOutputRaw_2">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
-  </connection>
-  <connection connectorName="COMPONENT_ERROR" label="OnComponentError" lineStyle="5" metaname="tFileOutputRaw_2" offsetLabelX="0" offsetLabelY="0" source="tFileOutputRaw_2" target="tJava_5">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentError1"/>
-  </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" source="tJava_5" target="tRunJob_3">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
-  </connection>
-  <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tFileInputRaw_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputRaw_4" target="tFileOutputRaw_3">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
@@ -2461,13 +2421,6 @@
   </subjob>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputRaw_2"/>
-    <elementParameter field="TEXT" name="SUBJOB_TITLE" value="uploading file from cleansed temp to S3 cleansed zone folder"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_1"/>
     <elementParameter field="TEXT" name="SUBJOB_TITLE" value="delete landing folder"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
@@ -2479,7 +2432,7 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
   <subjob>
-    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPrejob_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
@@ -2500,37 +2453,17 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tParallelize_1"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputRaw_3"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_3"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputRaw_4"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fef3e996-c029-4ac1-9e5a-2d832d852e3b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>vnMqISHGIXi0fliUK828wsp6SeWEmr4v5nzm6k4VScUYq0UzAcywYaMCsEpjhP9RROFml4+5CzwM&#13;
-WfJP0UhS5g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4d1ab5a0-8635-45f0-9f07-27e10a297e82"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>gGJ9wTRmYxBAflBOhGF2gvJiAg5dMq5yWK1ujmx0loSKS4OKnnW3XO91Qjyc0fmcaxj4OISQlKyO&#13;
-2Jsu+fBtIw==</DigestValue></Reference></SignedInfo><SignatureValue>MqYdQhLWK4hcWDkWtBbPvS5I1ogIEhwS0o7DzmejhM+AejVIkX+4lbIQKea3VaulGdi/CiZhYbkt&#13;
-aYPb6/1GuwXYcI8GlKawDHqKGceYpmNkXxl4RJeCceSVIWC1bpCMoYNu7pFwYBSsolZ2t+1LL+IB&#13;
-api/tTCHFi7iSVSzImxWj/3dNk2WFR5zo3ScZQlIDtKBwEkb2ldB2Z7Ob+a6YQfcVw2eptNfBqWD&#13;
-xWmqlvZydznb+KtmRT1sXrRlHIOykZU6lXr9SSAfkUZNs8qf9D+blJuQNubLsaeuxYNGVOTC1efD&#13;
-t4//Y8PFxPOcNJdUNNRzIm2idh5qWv20awm37w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4582709e-afd7-4b06-8e91-5df6f514f7c8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0vfcHd1OGZGxPnUbIiIM5Fls9orwJYslsakxBFMqBCMGQOeLGvzFqGSLQg7Fe8NTCzRH/uvFCtBa&#13;
+7+QL37Mx2A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a8050dcb-9d62-443f-8779-a40752316e8f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>eyjeqnCfkXn9egQuwyrkUolZ6uiKl9E4X0kEf5ypmZnZLgSThivBeM01G9W+Sj2N+dFrApKo6mdM&#13;
+Ncs6wfXZ9Q==</DigestValue></Reference></SignedInfo><SignatureValue>mtBLpxc8wZxd27u0TMNsh0xHLSRoQ+ZMoSEjypoQLbSPDb4cgtAkOs+4A/7fTrBabjSnhNufrbra&#13;
+Lgvieju/2c8Mxlucrox8rzogxO51tD3bo5DqQKQwQwCiB+cJMNsskS8f9wUm64RRqPkDv7Lqzz6g&#13;
+Rr9xVC4YcuXTzwrSoK47E3mIAA1dQ115zlVLQQ3Mini9g5UxAb9zRdl/MCG5OpRNIRvDcm6cLyf+&#13;
+54QwaY2gvKj92z8Rx2cESrA0/mBwsW/EefBwa9s7acXflohL7i+HI6J7ItNMXF3VNCzp0oucGB7V&#13;
+5w/eouYQRRUCgBSeh1xdCPZaaQb2DZoi2kqUxA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2552,4 +2485,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4d1ab5a0-8635-45f0-9f07-27e10a297e82" Target="#_fef3e996-c029-4ac1-9e5a-2d832d852e3b"><Timestamp>2023-08-10 08:12:32</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a8050dcb-9d62-443f-8779-a40752316e8f" Target="#_4582709e-afd7-4b06-8e91-5df6f514f7c8"><Timestamp>2023-08-11 06:29:34</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
