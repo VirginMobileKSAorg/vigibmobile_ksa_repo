@@ -127,6 +127,7 @@
   </parameters>
   <node componentName="tHiveConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tHiveConnection_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="HADOOP_LIBRARIES" name="HIVE" show="false" value=""/>
     <elementParameter field="CLOSED_LIST" name="DISTRIBUTION" value="SPARK"/>
     <elementParameter field="CLOSED_LIST" name="HIVE_VERSION" value="SPARK_3_2_x"/>
@@ -232,6 +233,7 @@
   </node>
   <node componentName="tLibraryLoad" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLibraryLoad_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MODULE_LIST" name="LIBRARY" value="&quot;mvn:org.talend.libraries/hive-apache-jdbc-0.13.1-9/6.0.0-SNAPSHOT/jar&quot;"/>
     <elementParameter field="TABLE" name="HOTLIBS"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -320,20 +322,19 @@
   </node>
   <node componentName="tSSH" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="608" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSSH_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.11&quot;"/>
     <elementParameter field="TEXT" name="PORT" value="22"/>
     <elementParameter field="TEXT" name="USER" value="&quot;mapr&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_METHOD" value="PASSWORD"/>
     <elementParameter field="PASSWORD" name="PASSWORD" value="enc:system.encryption.key.v1:HXxjVevZEuIGW0Bg2G4QWRu8HBfE/rCNsVpwIwSXrhWkQg=="/>
-    <elementParameter field="CHECK" name="PTY" value="false"/>
+    <elementParameter field="CHECK" name="PTY" value="true"/>
     <elementParameter field="CLOSED_LIST" name="STANDARDOUTPUT" value="TO_CONSOLE"/>
     <elementParameter field="CLOSED_LIST" name="ERROROUTPUT" value="TO_CONSOLE"/>
     <elementParameter field="FILE" name="PRIVATEKEY" show="false" value="&quot;/.ssh/id_dsa&quot;"/>
     <elementParameter field="PASSWORD" name="PASSPHRASE" show="false" value="enc:system.encryption.key.v1:/aRxvx++w7VtvW6sjWRLFWzQVJ1FrfB48OlI6vxC15Msy+1x"/>
-    <elementParameter field="TEXT" name="COMMANDSEPARATOR" value="&quot;;&quot;"/>
+    <elementParameter field="TEXT" name="COMMANDSEPARATOR" show="false" value="&quot;;&quot;"/>
     <elementParameter field="TABLE" name="COMMANDS">
-      <elementValue elementRef="COMMAND" value="&quot;echo Talend Open Studio&quot;"/>
+      <elementValue elementRef="COMMAND" value="hive -e &quot;CREATE TABLE TEST (id INT, name STRING)&quot;"/>
     </elementParameter>
     <elementParameter field="CHECK" name="USE_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="TIMEOUT" show="false" value="60"/>
@@ -342,7 +343,6 @@
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -475,11 +475,11 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tLibraryLoad_1" offsetLabelX="0" offsetLabelY="0" source="tLibraryLoad_1" target="tHiveConnection_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tSSH_2" offsetLabelX="0" offsetLabelY="0" source="tSSH_2" target="tLogRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <subjob>
@@ -527,13 +527,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1237119b-c037-46a3-8367-ffc666b49817"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VvnveD+yG1b3ged8ABILc4pWFJh1pXTcC0ZcyklxMtGT+SzTia4YuCk+9pbuQT16tSLwUs77TUvn&#13;
-Vqd7m6LfMQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_054769a3-f337-4445-8025-134485f5144a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>XelTAb2Hh7ELcD3FbVhSnaY1ETm6Yq7kavsfmIq2RQPYoYfXt8drqh9Be9CDgIs+pZ//RB47eeY/&#13;
-OH7/2AQAWA==</DigestValue></Reference></SignedInfo><SignatureValue>Hpo6WtJQ2vsBT1ljPqeXaAAVQa9ACgp34xM8BEHO3QX/d1mKZAqLVPQ7O5YAQhFxptlc3HDK/Z6O&#13;
-6MFr0uUhLod7GCncRVkExElC4AwW+WjFWom0ddipwfaLeeMtv/qmf/nyu6VxY1X1ULs/koEEX+97&#13;
-QijAk6obB1q/PMWFHv+hhWmbr4DWpslLPJbloJLTnw5LfD4O4HYCoxn3OLCCSaOQq+ImcOSA552O&#13;
-gNA+4c9f619HqkLI1XDqXuzk96IEZhPFPfMn626EO06FfAkYfmrLjy+iclvrqQYogw8XI94Dk4Na&#13;
-weW/tQOweRzJ3yh1FhuEWuNX84WeTzBwj7Jkgg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_acabdc96-1154-4143-a443-6d2cdd35a4cc"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HHRsHBBRfQ2VQ+k7J1CijVZvsKA/RzGPswIOLZD5NBEY2n8YIIkGqQWLcjF15GhpvcmbUiV2v0wu&#13;
+4b8GC9qJJA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_50ccf0e2-9038-45de-86d2-988bf23d4faa"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NVA1A/x1WsHLmm2rkgfxWwV97HJG92Ma/DCqicBjdLt+gLBkKu5Bc/4zVEpCY44RjJ15nX4UMItv&#13;
+ktQbfi/+KA==</DigestValue></Reference></SignedInfo><SignatureValue>htSSi1TeAa1qQ8+937oY/3cM4l0yiUvkvfW9KI1kUIxKYJhAGpDS7kZPjeEfHl36SgDt4o7T67dn&#13;
+Rpmckeol1vur1akFE6dcVb42/1zHhyuGIqgB0upzflhgcz7sSt+MPFsxQMnv5XqW+UcuNwriV+6n&#13;
+iPmKlOS0Ova3++7WyDBvbN1av2iMVMJOS9dHzuPRZr5l8QACYr8T8rlF56jSc3uceUhzkuWi275T&#13;
+y75aTSX6Sp586/9jyRLgOZMXUQ3XPpLt5h/zy1/MpFyH8FR9JnJm93eixfPRqb4nOQ4lx1J0x9UL&#13;
+RpAW5MYuQiMdHRps1H5MF73trc0XERpHcc1YcA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -555,4 +555,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_054769a3-f337-4445-8025-134485f5144a" Target="#_1237119b-c037-46a3-8367-ffc666b49817"><Timestamp>2023-08-14 13:11:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_50ccf0e2-9038-45de-86d2-988bf23d4faa" Target="#_acabdc96-1154-4143-a443-6d2cdd35a4cc"><Timestamp>2023-08-14 13:16:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
