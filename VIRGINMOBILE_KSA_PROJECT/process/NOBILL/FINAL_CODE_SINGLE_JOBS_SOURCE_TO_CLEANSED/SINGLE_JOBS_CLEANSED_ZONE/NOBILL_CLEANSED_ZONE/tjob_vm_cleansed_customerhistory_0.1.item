@@ -563,7 +563,7 @@
       <column comment="11" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.uuid" name="uuid" type="id_String"/>
@@ -592,7 +592,6 @@
   </node>
   <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="672">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
@@ -688,7 +687,7 @@
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="out1" name="tDBOutput_1">
-      <column comment="1" key="false" length="32" name="uuid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="1" key="false" length="32" name="uuid" nullable="false" pattern="" precision="0" sourceType="UUID" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="255" name="historytypekey" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="3" key="false" length="14" name="tstamp" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="255" name="username" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -701,7 +700,7 @@
       <column comment="11" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="out1" name="REJECT">
-      <column comment="1" key="false" length="32" name="uuid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="1" key="false" length="32" name="uuid" nullable="false" pattern="" precision="0" sourceType="UUID" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="255" name="historytypekey" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="3" key="false" length="14" name="tstamp" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="255" name="username" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -1349,15 +1348,15 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_1" target="tFileDelete_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
-  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
-  </connection>
-  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
+  <connection connectorName="FLOW" label="row11" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_3" target="tSchemaComplianceCheck_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row11"/>
+  </connection>
+  <connection connectorName="REJECT" label="row12" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_3" target="tFileOutputDelimited_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row12"/>
   </connection>
   <connection connectorName="REJECT" label="row9" lineStyle="0" metaname="tSchemaComplianceCheck_1" offsetLabelX="0" offsetLabelY="0" source="tSchemaComplianceCheck_1" target="tFileOutputDelimited_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -1371,11 +1370,11 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
   </connection>
-  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tParallelize_1" target="tFileInputRaw_4">
+  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tParallelize_1" target="tFileInputRaw_3">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="Parallelize"/>
   </connection>
-  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tParallelize_1" target="tFileInputRaw_3">
+  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tParallelize_1" target="tFileInputRaw_4">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="Parallelize"/>
   </connection>
@@ -1539,13 +1538,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_82447e08-1dcd-489b-8d0f-d15cb57adfe8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>klopWcn6o4dneMXFFoKfHCCQo77JixpEz5WKpV1F1aUXqKsNT8D/iIP4HDjdRKFRKCgyhAHvXQrf&#13;
-uTmnuwvGhw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_cf0b6ed9-9e7d-43f5-960c-2a5aae2ce2bf"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0METikffvtqsBuMTRlC7zXA9FPSb7BGuI6HXbEbkU4XlEjXa9uxwazQbRCmKjrpQmNQkBBduGobb&#13;
-MzwrEUbiOw==</DigestValue></Reference></SignedInfo><SignatureValue>bE0yQmD6mJZXoKUSie34QHLNAvIw4tRLcecLFOlHXsn/jK6nS16oYM0sKkR+iLiPYwoJ0/DQAZuB&#13;
-NpAfYfB4Q1fVWMa8ZVkOonJOA0P3+tFuXNDZscMPbPKW5ccPGVD8jPClCRVeo95zl4IS9zkLXL4B&#13;
-LiK66NmbU4LsPbAZbazLEHog4vDJddfgUa6LqUSFABjDsaAP1nCHj+iPJ6Tc7PN3NnQoVllS4MMg&#13;
-EjZqRUp+F1o1j1CEAjQwPVEgKC+oCORADxe3i70raxmulJcGWcQNkPVi7OQIzz9h6vDMh5VMt84j&#13;
-widCVgVuSYgU4oVAtI6BwOe67Si7U+3ZrhUmzQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a249a7d3-3f5a-498a-b152-b705f511ce1f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4GVc7Oj0o3qTK9MjZenDiirslyWy2nJWoxVxiX/+EnMMJpjAaik6/fkZlBnH/RtTxmK5Zwtmj2ck&#13;
+QyDdC+rFzw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_24441ae9-a152-4dbf-b0e6-c6edf8f53029"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RUajRFhWBXko5+Bswy51sbZ3CMwjgmTw6NAG4FkkKeFJ/O3IuBeShSaxMVVX0QP5R0JP7oU4kjq6&#13;
+vhmw19QMpQ==</DigestValue></Reference></SignedInfo><SignatureValue>C9bzLLNqDQHKeCVT9pNaSQ9mrEJkqaBg81/aXGHZXQA56+t1DdVzIkOlRkbnBmP3HuH+jN5FGKdF&#13;
+gfoHGFgn1/1z0diT3FwaNy8yNX03HC7LfgWu/u5OJKCuqwbRI9cmwzylY0O0ErkmH7hIDQHCbGm2&#13;
+wCXYQzUvI3Fxpbuvzz8KyTFNKG0qAuzO7pl4jTixE9YdbhdvnCONie16xz2Hbhk/I/q3ZnSkrY9e&#13;
+JhPZyTRESGgP3oyoVwq+CmKFQVlH6mJGFR83kaAsZhLSiy6YzVYfHc3/3v4dtMWl5fwARORW2Rsj&#13;
+KnKbpLTwxcPy1sAGc1cyOcXcKis8rbE+e/V/WQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1567,4 +1566,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_cf0b6ed9-9e7d-43f5-960c-2a5aae2ce2bf" Target="#_82447e08-1dcd-489b-8d0f-d15cb57adfe8"><Timestamp>2023-08-10 08:03:29</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_24441ae9-a152-4dbf-b0e6-c6edf8f53029" Target="#_a249a7d3-3f5a-498a-b152-b705f511ce1f"><Timestamp>2023-08-14 12:07:59</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
