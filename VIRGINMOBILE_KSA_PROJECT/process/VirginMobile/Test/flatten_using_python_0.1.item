@@ -930,20 +930,19 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFlowToIterate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="576">
+  <node componentName="tFlowToIterate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFlowToIterate_1"/>
     <elementParameter field="CHECK" name="DEFAULT_MAP" value="true"/>
     <elementParameter field="TABLE" name="MAP" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFlowToIterate_1"/>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="448">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="576">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="// tJavaRow Component&#10;// Parse the event_params field as a JSON array&#10;JSONArray eventParamsArray = new JSONArray(input_row.event_params);&#10;for (int i = 0; i &lt; eventParamsArray.length(); i++) {&#10;    JSONObject eventParam = eventParamsArray.getJSONObject(i);&#10;    String key = eventParam.getString(&quot;key&quot;);&#10;    JSONObject valueObj = eventParam.getJSONObject(&quot;value&quot;);&#10;    //String stringValue = valueObj.optString(&quot;string_value&quot;);&#10;    int intValue = valueObj.optInt(&quot;int_value&quot;);&#10;    // Extract other values as needed&#10;    &#10;    // Set the extracted values in output_row&#10;    output_row.key = key;&#10;    //output_row.string_value = stringValue;&#10;    output_row.int_value = intValue;&#10;    &#10;    // Emit the flattened row&#10;  // context.write=output_row;&#10;//globalMap.put(&quot;tFlowToIterate_1_CURRENT_VALUE&quot;, output_row);&#10;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_3">
+    <metadata connector="FLOW" name="tJava_2">
       <column comment="" key="false" length="-1" name="key" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="int_value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
@@ -975,12 +974,16 @@
       <column comment="" key="false" length="-1" name="int_value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="576">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="448">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_3"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="// tJavaRow Component&#10;// Parse the event_params field as a JSON array&#10;JSONArray eventParamsArray = new JSONArray(input_row.event_params);&#10;for (int i = 0; i &lt; eventParamsArray.length(); i++) {&#10;    JSONObject eventParam = eventParamsArray.getJSONObject(i);&#10;    String key = eventParam.getString(&quot;key&quot;);&#10;    JSONObject valueObj = eventParam.getJSONObject(&quot;value&quot;);&#10;    //String stringValue = valueObj.optString(&quot;string_value&quot;);&#10;    int intValue = valueObj.optInt(&quot;int_value&quot;);&#10;    // Extract other values as needed&#10;    &#10;    // Set the extracted values in output_row&#10;    output_row.key = key;&#10;    //output_row.string_value = stringValue;&#10;    output_row.int_value = intValue;&#10;    &#10;    // Emit the flattened row&#10;  // context.write=output_row;&#10;//globalMap.put(&quot;tFlowToIterate_1_CURRENT_VALUE&quot;, output_row);&#10;}"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJava_2"/>
+    <metadata connector="FLOW" name="tJavaRow_3">
+      <column comment="" key="false" length="-1" name="key" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="int_value" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
   </node>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSystem_2" offsetLabelX="0" offsetLabelY="0" source="tSystem_2" target="tJava_1">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
@@ -1019,6 +1022,15 @@
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputJSON_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputJSON_1" target="tFlowToIterate_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFlowToIterate_1" offsetLabelX="0" offsetLabelY="0" source="tFlowToIterate_1" target="tJava_2">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tLogRow_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_2"/>
@@ -1065,23 +1077,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_2"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2057512e-9b38-4190-b1b8-b294b08a9cd8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>EU0KcIW4jKqeCoHILAkOzHXYqUW+eXneA0EdH7EQvOSgn1jivmKn8l/befJwrFjSu+4je7WWju1Q&#13;
-12eEz5oupw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a3ee7e2e-f145-4755-9f16-ac603e345b6d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DBX3v7ccvS26CJqtblMKpjKannPP+lGVajzOhZ89zrtR3EOTAB331/NsZo1nu+qV412ds6BCb7G3&#13;
-dEUeoEi1lw==</DigestValue></Reference></SignedInfo><SignatureValue>DN9dvHOeOgYAxV2NXfPiPZxy8Qb9VWqXa3pTjgVHv8Uk2TPTGBemeyPD3NAYFkU09C9OZ/Suy3v3&#13;
-hSBNVlmYJaB6SMqSUUc/FWIw+nQmjTGXwZ1nnw1I0mgUlM4Avc3mPGNMDq0/i7lleZ1ZMGZ6H9w/&#13;
-mthDm2d3vN+MYowJmrRSYp9h/SMBq+g28sgQeH+RaKUc1OexZKiICHIbuKC+0gXihUy+hH9BOufT&#13;
-6MjLtVl6IY8+9neZmHM9WwLNkMwKB0K4bERJ4OGzXs4NndhH1G6etQo0YLDzwiAFhc4CgxO4rS42&#13;
-BPdXzGtDZm9ftLBdYAE0wVJvYtGuvzLyvI+cJw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ac5d2e2d-3d87-4794-bc8e-a3c0d213b98e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>v0TBHxPnxK04Q2WvBHacN5f47Gp/JkP3/T7IR/QtuCfTY7w6jHXEejC0hcK0OGb7Ot3GvmMN1UqU&#13;
+qiLyJwWLZQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_70a96c78-bf81-4277-a1e3-022f02dfe1e3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lMOVjrYyAGDXUA5fzm0ivmR8VlIXdKZ0pwoxakK4K5H5Z+r9gIc067ieBluZoraVdxGCXtpwgFSo&#13;
+EO1J3S1Aqg==</DigestValue></Reference></SignedInfo><SignatureValue>mdZ1TO/iUfbxOQqaC2zBXNc1ZHxLR29Pj/UCqp1WpKeYd38cnY7xRf8/y3hyB/CAf65xbF5rfQAx&#13;
+7n2+70dkauwHnULNepVC/D+sqQfK5HDDE199jJ6Liu5N47QvljbuIzHQPxfmAlDpuJ7vYLhMReQT&#13;
+kXbDwHAS5ucgH/AdIWtRETHENAhLuHpzBJAixYE7IKAfKN90byU7Rb0AklFhLrAi6SfVNTYaua+w&#13;
+x16oq0hzwrijzQgpU23ZXLPXwT7UNnjEnFrQZPVppUobBEv7e3V3SldtjPk1Oc0oAcmPau8wKULL&#13;
+trgpgdo9kKNXHLUz44vFLrpJlGXxRWQtFvXR7Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1103,4 +1105,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a3ee7e2e-f145-4755-9f16-ac603e345b6d" Target="#_2057512e-9b38-4190-b1b8-b294b08a9cd8"><Timestamp>2023-08-16 13:50:58</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_70a96c78-bf81-4277-a1e3-022f02dfe1e3" Target="#_ac5d2e2d-3d87-4794-bc8e-a3c0d213b98e"><Timestamp>2023-08-16 13:51:28</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
