@@ -674,7 +674,7 @@
       </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.eventid" name="eventid" nullable="true" type="id_String"/>
@@ -718,13 +718,13 @@
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.14&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
-    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_dev&quot;"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_cleansed&quot;"/>
-    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ErQ/w3pothL1hfUaJK+UIHWcyzRIsUfHIhZW5gKGgpoj0SC1Eriwe1O2mxE="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nobill_tx_voucherhistory&quot;"/>
+    <elementParameter field="TEXT" name="HOST" value="context.nobill_host"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nobill_port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nobill_database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nobill_schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.nobill_username"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:1KFQA7gH5dPOiFL8fVl8+GcEwv+yfACV0/gt/8Y8o/sX7JlYo1EegBntZtjlrvWLyHSL"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="context.cleansed_table"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
@@ -837,7 +837,7 @@
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
+    <elementParameter field="TEXT" name="LABEL" value="nobill_tx_voucherhistory"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="nobill_tx_voucherhistory" name="tDBOutput_2">
       <column comment="" key="false" length="5000" name="eventid" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -1809,30 +1809,21 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tFileDelete_5">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk6"/>
   </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_5" target="tFileCopy_1">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;))&gt;0 ||&#10;((Integer)globalMap.get(&quot;tFileOutputDelimited_3_NB_LINE&quot;))&gt;0"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_5" target="tFileDelete_3">
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_5" target="tFileDelete_3">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;))==0 &amp;&amp;&#10;((Integer)globalMap.get(&quot;tFileOutputDelimited_3_NB_LINE&quot;))==0"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If2"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_5" target="tFileCopy_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Integer)globalMap.get(&quot;tFileOutputDelimited_2_NB_LINE&quot;))&gt;0 ||&#10;((Integer)globalMap.get(&quot;tFileOutputDelimited_3_NB_LINE&quot;))&gt;0"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileCopy_1" offsetLabelX="0" offsetLabelY="0" source="tFileCopy_1" target="tFileDelete_4">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_4" target="tJava_5">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk12"/>
-  </connection>
-  <connection connectorName="REJECT" label="row7" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_4" target="tFileOutputDelimited_5">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
-  </connection>
-  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_4" target="tSchemaComplianceCheck_2">
+  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileInputDelimited_4" target="tSchemaComplianceCheck_2">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="tstamp"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
@@ -1895,6 +1886,15 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
+  </connection>
+  <connection connectorName="REJECT" label="row7" lineStyle="0" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileInputDelimited_4" target="tFileOutputDelimited_5">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row7"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputDelimited_4" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_4" target="tJava_5">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk12"/>
   </connection>
   <connection connectorName="REJECT" label="row8" lineStyle="0" metaname="tSchemaComplianceCheck_2" offsetLabelX="0" offsetLabelY="0" source="tSchemaComplianceCheck_2" target="tFileOutputDelimited_4">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
@@ -2040,13 +2040,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a1f16a75-1aab-485d-8b3f-cd3686ebdf83"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kWoowk2JJdJzCqIuFwRA1Yt5VFXtXikNMeZO6SUPK/h4UTs/a2WTjauwJVPwWsu0fvCD7kbWL/kU&#13;
-FV+ZiC0b3g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_be78e6b5-be00-45bb-a8ae-5830872f3961"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>KRvgJjpBbdHokTSO1Ck3DNk+REC6awrPSadKAfsNhARgDle48VWi9Ht0+Y4le/G7ipqwlf+z5n2b&#13;
-Ha2ReRMRmA==</DigestValue></Reference></SignedInfo><SignatureValue>on6tsipRdBivvhnaM8zLs5ZvdapH48ChZR0xzItleqwNn/ERtwkR5+fC9IbH7O5yhJ+zgUSPOecL&#13;
-wj9wyZj+EQcB3JGpgSzRXHTzOApVvduc/hcYeyarr1JgVdfNdXo1ErY8s0TIYkw5CAj5loY+dzP0&#13;
-92Ss+JhbR6SVzPdPI/XqdaFea/hMa/S9+K0F9QKd/QcX4uQAcroKl3BoFv9j8BhFEjOQTfWHI7xZ&#13;
-ZJp92fdz5J4kOOpFfa6KmED3bqrFON9dJpEwENrpPn1iVopTf+c4spmjFc+53zaHrzu6bXRdtaHI&#13;
-eK/yeS+yvLePU6OIxe21Xw3tm+SZFYdLw5/8Qw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_acbdab40-9c9d-4453-a8ce-51838b283a34"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>yn6VKKMqWmxDSM9f7Sz9uK4c8eOHrLhlsJcYwxDjbXcmlpOQ4ooMUqoPLL38atRB7d/I1WitBmLj&#13;
+zh1WXOSMuw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1ab2914e-20b3-4bfe-ac9b-f7f2da4123a4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>OaC3Y/vv09gJVOSO5NIxoOFiW75tdZVgV6WG/47J+CLpv0EWPRNIsChXRzE4qjJQ1GNwaLt2kfR1&#13;
+VNXN95AJNQ==</DigestValue></Reference></SignedInfo><SignatureValue>Be4reMrQ0vdJ25fInIJmXo8CvARR6A9Sk5HXoU9lB+mkKoTA5Zj6tZjOu7CzZUialerf2y8I6Rnp&#13;
+3B0CpIFjoegwGyMUsE4wJjyGsXWsX8d0abmhB/kl6M5esjRgnURH3RJfWtBVAM+MfqAmzlrZk5e9&#13;
+KtPuknNusZ8+lxUq6dlx1ESTV27sOrboY8ycPyHV0RhGiqI5fyoWVlY+2r/7ihdD4qPdA37ewYOy&#13;
+bnPgggdNuBvixVONGBa/teWUeoVha1XWzprQQuvYfOKpqpJrv+2PlTwe/Dl5dOlQ/T8b8znXJ4W7&#13;
+H3nDLtrvxr5tz+0wz5xca04YhpLBOrnoRMtwPQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2068,4 +2068,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_be78e6b5-be00-45bb-a8ae-5830872f3961" Target="#_a1f16a75-1aab-485d-8b3f-cd3686ebdf83"><Timestamp>2023-08-16 15:06:50</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1ab2914e-20b3-4bfe-ac9b-f7f2da4123a4" Target="#_acbdab40-9c9d-4453-a8ce-51838b283a34"><Timestamp>2023-08-16 15:21:22</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
