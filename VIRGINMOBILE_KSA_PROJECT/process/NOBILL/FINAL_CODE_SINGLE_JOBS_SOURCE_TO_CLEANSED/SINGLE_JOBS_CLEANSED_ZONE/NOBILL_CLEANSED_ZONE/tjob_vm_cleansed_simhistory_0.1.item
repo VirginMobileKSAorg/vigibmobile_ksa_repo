@@ -131,6 +131,13 @@
     <contextParameter comment="" internalId="_kBavkBDNEe6AsMI7ePoh5A" name="landing_zone" prompt="landing_zone?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/home/om/landing_zone"/>
     <contextParameter comment="" internalId="_h4jmMBsAEe65IOU4IOObkA" name="cleansed_archival_zone" prompt="cleansed_archival_zone?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value="/opt/s3_uploads/hydrated/cleansed_archival_zone"/>
     <contextParameter comment="" internalId="_h4jmMRsAEe65IOU4IOObkA" name="batch_process_date" prompt="batch_process_date?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_ynjBADxHEe6SmqQbRsqGgA" name="nobill_username" prompt="nobill_username?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="dbadmin"/>
+    <contextParameter comment="" internalId="_ynjBATxHEe6SmqQbRsqGgA" name="nobill_schema" prompt="nobill_schema?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="vm_cleansed"/>
+    <contextParameter comment="" internalId="_ynjBAjxHEe6SmqQbRsqGgA" name="nobill_host" prompt="nobill_host?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="10.51.15.14"/>
+    <contextParameter comment="" internalId="_ynjBAzxHEe6SmqQbRsqGgA" name="nobill_port" prompt="nobill_port?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="_ynjBBDxHEe6SmqQbRsqGgA" name="nobill_database" prompt="nobill_database?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="ksa_db_dev"/>
+    <contextParameter comment="" internalId="_ynjBBTxHEe6SmqQbRsqGgA" name="nobill_password" prompt="nobill_password?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="Dbadmin@123!@#"/>
+    <contextParameter comment="" internalId="_ynjBBjxHEe6SmqQbRsqGgA" name="cleansed_table" prompt="cleansed_table?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="nobill_tx_simhistory"/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -586,13 +593,13 @@
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.14&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
-    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_dev&quot;"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_cleansed&quot;"/>
-    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:O0cq3GX4ldfU6cgq6j446r3grfSaqi1gmNq8yjOuN9FigKf0F0cc7bBS530="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nobill_tx_simhistory&quot;"/>
+    <elementParameter field="TEXT" name="HOST" value="context.nobill_host"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nobill_port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nobill_database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nobill_schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.nobill_username"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Jmrm2TFlEEhYoBAXmkZT6IXKmecBPJtY+OuQEZQEYqOykYGvr3ksOGDC7DeHG9v6m9TO"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="context.cleansed_table"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
@@ -670,7 +677,7 @@
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
+    <elementParameter field="TEXT" name="LABEL" value="nobill_tx_simhistory"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="out1" name="tDBOutput_1">
       <column comment="1" key="false" length="36" name="uuid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -1063,13 +1070,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ae9092af-e1ef-4fb9-a8ad-ff0e830ae87f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6prTPRY5+5RqWVcZL6vOC5N0CzsOEk0lmsK7P1on4i/Qt5gF5rmj/mS6bUMoAZvBeAuuFpZy/OVC&#13;
-2y8nJyejyw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6363e187-3020-4685-abfe-108f277dc184"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+qoFAsHVe9LdbiaiwLHGoaNobsAsQIIKX+B+rpH1v8RTbZTeQhGJeUfFHnruavUt+X0yPElGnBac&#13;
-dRytK+BUkw==</DigestValue></Reference></SignedInfo><SignatureValue>lg5vSeAC2sDERPy2/5MpGP7C8czYlQSQXsg52zwxhHrQAOxaC7+T+O/7V+LU8CW07MeI9IHo6Cgy&#13;
-fODHaEEUUe04SGGlqz/s9xwFXzUh/5GgtF/bux//cyL4QMytkSLJpvNhmDdlRMSndQCKpqbUENg7&#13;
-Jl2akmFvzaxdgck9HrMlzcC77etAqulwdaDo7zTwSTvopIG2yZ4qSJ+CSFFC1wwvE8A49ryWQNlL&#13;
-m0/lGVhUZhUiOfvYWmVXwk/EhCMcSHUaXJ+R1R9jt+kUY7Azp1dayG5f/1Sid7d/oV5sScvBi2Jx&#13;
-PO/OL4qasse/cpHm7rbgfidfZ0gsqXPDs1ouRg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a46363fc-7d40-4d9e-98cc-a76bc4fd42eb"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/11n6La8LtMxUyCL9Sh/vFZBVcF8S+sCXkt0JZXq2yR2gFpDb0wq1Y3jXZJAf3HNFpO6qyxDvCq5&#13;
+tqRXL1DoeA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_83770dfa-9d9c-4fd2-8581-1bf62256ae07"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ii+2lqw5lL81EzyFt7lwKUnCDnRu1kHrexXkPsPD/boufcmqIbMsNSWyE3zDm3bFjyb3/1WtJsLF&#13;
+0eilOZHkrw==</DigestValue></Reference></SignedInfo><SignatureValue>CiWVMEem4VTV3Sk7eQocif3o9z9hZhEvOvPliqnNatdI1R/v4z74WaT6Y457eHB2CXD7HyEuO9B6&#13;
+IFbdRAzC0/QaVzBBYe6MRBRo37+PUf6yzTvJQfknKDRYjzc0XV3JvLaBwwPhW9oOa0ekxcp9P3ay&#13;
+tEKM4SlTwdNUXL+kA3pigicLIZQQZ8rpMLoSP765b/R8qy2dToLpx0+ARvmuwrJdtnlGzoGiXKY4&#13;
+/sdfehx5o1G/GSKUo9/or5gzTsec3V9ycxNtptljAZENhZETBpy5PoxLqJvslD53MEyRjNA81G0F&#13;
+XODExHhROXVcd5sLuprmcG0DknlfIXvB2tTixw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1091,4 +1098,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6363e187-3020-4685-abfe-108f277dc184" Target="#_ae9092af-e1ef-4fb9-a8ad-ff0e830ae87f"><Timestamp>2023-08-16 13:51:54</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_83770dfa-9d9c-4fd2-8581-1bf62256ae07" Target="#_a46363fc-7d40-4d9e-98cc-a76bc4fd42eb"><Timestamp>2023-08-16 15:15:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
