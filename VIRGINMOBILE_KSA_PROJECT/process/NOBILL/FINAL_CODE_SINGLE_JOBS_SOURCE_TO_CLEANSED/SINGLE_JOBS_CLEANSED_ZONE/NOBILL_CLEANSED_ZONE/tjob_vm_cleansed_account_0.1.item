@@ -141,6 +141,7 @@
     <contextParameter comment="" internalId="_bJlOxDqnEe6FcJjXQr-GFA" name="nobill_database" prompt="nobill_database?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="ksa_db_dev"/>
     <contextParameter comment="" internalId="_bJlOxTqnEe6FcJjXQr-GFA" name="nobill_password" prompt="nobill_password?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="Dbadmin@123!@#"/>
     <contextParameter comment="" internalId="_N0RikDv8Ee60KqsJxh42jQ" name="cleansed_table" prompt="cleansed_table?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="nobill_tx_account"/>
+    <contextParameter comment="" internalId="_mv0OwDwrEe6SmqQbRsqGgA" name="filesequenceid" prompt="filesequenceid?" promptNeeded="false" repositoryContextId="built-in" type="id_Integer" value=""/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -570,7 +571,7 @@
       <column comment="8" key="false" length="25" name="individuallowerlimit" nullable="true" pattern="" precision="6" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="1000" name="snapshotdate" nullable="true" originalLength="1000" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="1000" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="200" name="filesequenceid" nullable="true" originalLength="200" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="200" name="filesequenceid" nullable="true" originalLength="200" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
@@ -586,7 +587,7 @@
         <mapperTableEntries expression="row4.individuallowerlimit" name="individuallowerlimit" nullable="true" type="id_Float"/>
         <mapperTableEntries expression="context.snapshotdate" name="snapshotdate" nullable="true" type="id_String"/>
         <mapperTableEntries expression="context.batch_process_date" name="batch_process_date" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 23, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 23))); " name="filesequenceid" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="context.filesequenceid " name="filesequenceid" nullable="true" type="id_Integer"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
         <mapperTableEntries name="num" type="id_Long"/>
@@ -707,7 +708,7 @@
       <column comment="8" key="false" length="25" name="individuallowerlimit" nullable="true" pattern="" precision="6" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="1000" name="snapshotdate" nullable="true" originalLength="1000" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="1000" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="200" name="filesequenceid" nullable="true" originalLength="200" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="200" name="filesequenceid" nullable="true" originalLength="200" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column comment="1" key="false" length="19" name="num" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
@@ -720,7 +721,7 @@
       <column comment="8" key="false" length="25" name="individuallowerlimit" nullable="true" pattern="" precision="6" type="id_Float" usefulColumn="true"/>
       <column comment="" key="false" length="1000" name="snapshotdate" nullable="true" originalLength="1000" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="1000" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="200" name="filesequenceid" nullable="true" originalLength="200" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="200" name="filesequenceid" nullable="true" originalLength="200" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -1825,7 +1826,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_name = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;System.out.println(&quot;context.file_name:- &quot;+context.file_name);&#10;&#10;context.batch_process_date = context.file_name.substring(30,context.file_name.indexOf(&quot;.csv&quot;));&#10;&#10;System.out.println(&quot;context.batch_process_date:- &quot;+context.batch_process_date);&#10;&#10;context.target_object_name = context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot; ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;context.snapshotdate = TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;, context.file_name.substring(12,26)));&#10;&#10;&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_name = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;System.out.println(&quot;context.file_name:- &quot;+context.file_name);&#10;&#10;context.batch_process_date = context.file_name.substring(30,context.file_name.indexOf(&quot;.csv&quot;));&#10;&#10;System.out.println(&quot;context.batch_process_date:- &quot;+context.batch_process_date);&#10;&#10;context.target_object_name = context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot; ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;context.snapshotdate = TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;, context.file_name.substring(12,26)));&#10;&#10;context.filesequenceid =context.file_name.substring(27,30);&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_5"/>
@@ -2863,13 +2864,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2c2f1251-54cb-4143-adc0-19ebf4cbe9f2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+FfxuJowdIOjnsuVsfqWc+PEyaJAwVikaCLjEuIgUTz5JxIu7ZKNtP1QJ7FQkJYAzTtuWcksRUJI&#13;
-OE9+MJhmfg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c40051f4-02e1-4ed1-b784-bf6f4142d2b6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>xSAF3SN7OgqzSsiqVR1PUEUuqo2xF643KnFePSIN1+beTwdTb1lsL6xpGj4g6eH8EjLilWcM6vXI&#13;
-icvDWOw2mg==</DigestValue></Reference></SignedInfo><SignatureValue>Ejyft/3z6Uf8ZkgCht/ehkcevT25MSJMWQVh9gL1C9mOoeqGvTj7uhYLG08sVFKMnmwI/14SRSxQ&#13;
-n2ewKtX24t8RuEKlfal773Pt3fWSsA+f7B40a9e0tyIvJ0WoYCvM3PZKlvSgAmVclPNeNLvuURUs&#13;
-qa7G5T7G6pH2hj6+uObNFHpyCT+NN8ZzKPGhyRlp+PQLF8+fwLk08Nbo+hMSj6wPI1q9P0j9Svmg&#13;
-leizm9zegsLad1zmt71SP8cd3Lv2ltjYp421BQVLyGEJe8M6+VSzaubpYwVNnCP3LNMLrnusZ4yX&#13;
-puFF5YKWRFWQ0h2QLjeH7yNT1dof504K9lbVhA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_bce4326c-b65b-403c-9d88-d6ab0f7865d7"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>CUGoaiH3EkZHteGFSPhH3b8YnXkqCIsipPHOcDYb2I2v1E3r4HiCGYODtJ7qRl3vgrMhro6wpDcb&#13;
+mUAGQ2jOjA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5555eeba-c1f4-4166-87b9-b5c99fd2c73b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VHTS7qIFMOJKVbU+iARVs3//zgD/VdwWo+7WM0b3/482Kt4eRXkT1/52lJDwJAPn7xgK1zt5lGGU&#13;
+K3c/ye7F+A==</DigestValue></Reference></SignedInfo><SignatureValue>XTwmLOemI6ahApFdKwOpe8Jt2Njg4WXaeHWXUfxBME2d+9KiybJl0UEv4WmVc18panr3Sm6BWsrt&#13;
+CeT4u0rvauu972PtxQo2W+A9htoqHn0+GaIrtvepXr9J05q+6bk2tV7IYyVNIje83s1dkXovu/1m&#13;
+H7VinzRN71FmNO0QEGHiC82EEDBXh4YFiIyTmxAPxX/+Weo/zZ3b37CFpIzdhcWUZwiFyuED0B8A&#13;
+QGhGv5wxfXvCXGGuqPQyKJsqyeochtrtwWKTY4BcTN0PHsSTpJ99pkL6aUmweOV9SUxpSzObMVKs&#13;
+Ze246JxPd9s+Wvmnz+oplxVAiPfPyipJdeDDwg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2891,4 +2892,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c40051f4-02e1-4ed1-b784-bf6f4142d2b6" Target="#_2c2f1251-54cb-4143-adc0-19ebf4cbe9f2"><Timestamp>2023-08-16 11:49:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5555eeba-c1f4-4166-87b9-b5c99fd2c73b" Target="#_bce4326c-b65b-403c-9d88-d6ab0f7865d7"><Timestamp>2023-08-16 11:54:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
