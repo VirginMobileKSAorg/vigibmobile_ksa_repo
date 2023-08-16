@@ -4,7 +4,7 @@
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="32"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
@@ -250,9 +250,8 @@
       <column comment="" key="false" length="-1" name="event_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="640" posY="96">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/VirginMobile/test/event_20230728.json&quot;"/>
     <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
@@ -301,9 +300,8 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tExtractJSONFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="96">
+  <node componentName="tExtractJSONFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="768" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tExtractJSONFields_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="READ_BY" value="JSONPATH"/>
     <elementParameter field="CLOSED_LIST" name="JSON_PATH_VERSION" value="2_1_0"/>
     <elementParameter field="PREV_COLUMN_LIST" name="JSONFIELD" value="json"/>
@@ -345,9 +343,8 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="96">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="992" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_3"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -373,7 +370,7 @@
       <column comment="" key="false" length="-1" name="event_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="96">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="32" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
@@ -424,7 +421,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="96">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="class JsonToCsvConverter {&#10;&#10;    public void main(String[] args) {&#10;        long startTime = System.currentTimeMillis();&#10;&#10;        String inputPath = &quot;D:/VirginMobile/test&quot;;&#10;        String outputPath = createOutputPath(inputPath);&#10;&#10;        File folder = new File(inputPath);&#10;        File[] jsonFiles = folder.listFiles((dir, name) -&gt; name.endsWith(&quot;.json&quot;));&#10;&#10;        for (File file : jsonFiles) {&#10;            System.out.println(&quot;Reading: &quot; + file.getName());&#10;&#10;            JSONArray jsonArray = readingJson(file);&#10;&#10;            // Preprocessing of data for Date and Time&#10;            JSONArray processedArray = timeAndDate(jsonArray);&#10;&#10;            // Generating CSV filename based on the input date&#10;            String date = file.getName().split(&quot;_&quot;)[file.getName().split(&quot;_&quot;).length - 1].replace(&quot;.json&quot;, &quot;&quot;);&#10;            String csvFilename = &quot;event_&quot; + date + &quot;.csv&quot;;&#10;            String csvPath = outputPath + File.separator + csvFilename;&#10;&#10;            writeCsv(processedArray, csvPath);&#10;&#10;            System.out.println(&quot;Successfully converted: &quot; + csvFilename);&#10;        }&#10;&#10;        long endTime = System.currentTimeMillis();&#10;        long totalTime = endTime - startTime;&#10;        System.out.println(&quot;Total execution time: &quot; + totalTime + &quot; milliseconds&quot;);&#10;    }&#10;&#10;    private JSONArray readingJson(File file) {&#10;        String jsonString;&#10;        try {&#10;            jsonString = FileUtils.readFileToString(file, &quot;UTF-8&quot;);&#10;        } catch (IOException e) {&#10;            e.printStackTrace();&#10;            return new JSONArray();&#10;        }&#10;&#10;        JSONObject jsonData = new JSONObject(jsonString);&#10;        JSONArray dataArray = jsonData.getJSONArray(&quot;data&quot;);&#10;&#10;        JSONArray flatJsonArray = new JSONArray();&#10;        for (int i = 0; i &lt; dataArray.length(); i++) {&#10;            JSONObject jsonObject = dataArray.getJSONObject(i);&#10;            JSONObject rawJson = new JSONObject(jsonObject.getString(&quot;json_output&quot;));&#10;&#10;            JSONObject flatJson = flattenJson(rawJson);&#10;            flatJsonArray.put(flatJson);&#10;        }&#10;&#10;        return flatJsonArray;&#10;    }&#10;&#10;    private JSONArray timeAndDate(JSONArray jsonArray) {&#10;        // Implementation of timeAndDate method would involve timestamp and date manipulation.&#10;        // You would need to convert timestamps and dates, and perform the required operations.&#10;        // You can use libraries like java.time.*, SimpleDateFormat, or Joda-Time for these tasks.&#10;        return jsonArray;&#10;    }&#10;&#10;    private String createOutputPath(String inputPath) {&#10;        String outputPath = inputPath + File.separator + &quot;output_files&quot;;&#10;        File outputFolder = new File(outputPath);&#10;        if (!outputFolder.exists()) {&#10;            outputFolder.mkdir();&#10;        }&#10;        return outputPath;&#10;    }&#10;&#10;    private void writeCsv(JSONArray jsonArray, String csvPath) {&#10;        try {&#10;            // Creating a new CSV file and writing the JSON data to it&#10;            Files.write(Paths.get(csvPath), jsonArray.toString().getBytes());&#10;            System.out.println(&quot;CSV file written at: &quot; + csvPath);&#10;        } catch (IOException e) {&#10;            e.printStackTrace();&#10;        }&#10;    }&#10;&#10;    private JSONObject flattenJson(JSONObject json) {&#10;        // Implementation of flattenJson method would involve flattening the JSONObject.&#10;        // You can iterate through the keys and values, processing nested JSON objects and arrays if necessary.&#10;        return new JSONObject(); // Replace with actual implementation&#10;    }&#10;}"/>
@@ -432,7 +429,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1"/>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="96">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
@@ -486,20 +483,10 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
   </connection>
   <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tExtractJSONFields_2" offsetLabelX="0" offsetLabelY="0" source="tExtractJSONFields_2" target="tLogRow_3">
-    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="event_name"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="ga_session_number"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row6"/>
   </connection>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tJavaRow_1">
@@ -537,13 +524,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b7003265-e45c-44e0-bf12-59ee647ccfad"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>iE+LPsmcjQZaqbS01R6arIT9eNb5cHrUkL29OTxbl5AlnzQoWYNxj3ltJNcvzqx04eGhd0DHwAo7&#13;
-ItddaJORqg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c6affa3e-8e35-4e71-ad2a-2b6d144d62e3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>AVsnCPN9vfH1U6Xm6lhA9XqP59Ipw1CAsYrD3ylJTPH3BGKwmHLUmHPSaGLlykRvkwaQOi8hUvzR&#13;
-2An3R9QJuQ==</DigestValue></Reference></SignedInfo><SignatureValue>AYsRr0xpYR38QtwJaQQ634Oke4LhLed4nX2VhW2WsLpErJjpQKyZJqCEEfyorkaZVtHIaurwRz0v&#13;
-EDsMmzOZfPPv826nqtQDuj+9CsnR+EnjBNQnNzMNaLx2O6XqJeuM9P6Tl6valYia/RB6U+0O/k3I&#13;
-kNL66n7/mrsr/hyrRzNBvXmbVx0bunC7im0S696wqnJY1K72NQ6+PtRkD0SfV0DUD+Hm+bj/Cb+P&#13;
-8M+06quJvolwj1KRGEvHwrez/eU/M91oJD1Rdj08uYdBwegC4RISzGVr2b7DyjKYAh0HTxtZyN6L&#13;
-H6kVAkSLD6BVAFCkaHfuiBomMk26V8NqqGk1Hw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_796edf88-1e55-4749-b757-6ef3f30b4d25"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>MQ9InGC+x4uDefWsocBRug4FsYO7DBLBPNU0TAdpnr7XELd7TED4RuyPLTFWaPI6AdqDe6ZtKPZs&#13;
+xtHCs4wvwg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_901d084e-252a-413f-9c9c-c1cd729d74df"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Cc31RCIUSLi9tcdTsON6uDOuayTrAA6oLw+O5IvLd3h8t7jBMOMzz6qYGZlOB51S6L6XIw/C+kwM&#13;
+UxMMnGeacw==</DigestValue></Reference></SignedInfo><SignatureValue>XciZh6Ehqh8ywLo96eLawltf2ceM7uaSZujvV/OdiXjO3gXpNNoBD+gW0cE6xCe5owyluugZPs5O&#13;
+xRNw/8XsoMT3C9fwdK/sdT7LA5X19dyh4CzgzeeRTf9si4GsnVAhZP5W2Jk7KWjZXWUlr52c2ftg&#13;
+GEYTUxJIqIEQ3o+7tv0k5Gm/5TAlphoapgNcIXr+5O8cYzFG6aTw83b/+zry7KD1fKk35mp50jF0&#13;
+MXf8yYH68UnLEPmMg9NWJz7xFgrhCPAKsKKLLTuzN8uc7r1WDmJbF4dv5jP+wBpOuCNwKZxpcgA3&#13;
+oC42hUyfHWnCC5NkZ46a8iZqFndoDhZWsHZpHg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -565,4 +552,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c6affa3e-8e35-4e71-ad2a-2b6d144d62e3" Target="#_b7003265-e45c-44e0-bf12-59ee647ccfad"><Timestamp>2023-08-15 09:57:38</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_901d084e-252a-413f-9c9c-c1cd729d74df" Target="#_796edf88-1e55-4749-b757-6ef3f30b4d25"><Timestamp>2023-08-16 07:00:22</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
