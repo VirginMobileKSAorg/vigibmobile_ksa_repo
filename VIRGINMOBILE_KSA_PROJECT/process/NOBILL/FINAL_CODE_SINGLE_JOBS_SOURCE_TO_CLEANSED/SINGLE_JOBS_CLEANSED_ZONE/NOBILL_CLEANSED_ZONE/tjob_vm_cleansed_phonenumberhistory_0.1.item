@@ -485,7 +485,7 @@
     <metadata connector="FLOW" label="metadata" name="tFileInputDelimited_2">
       <column comment="1" key="false" length="36" name="uuid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="255" name="historytypekey" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="3" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="3" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="255" name="username" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="5" key="false" length="19" name="e164" nullable="true" originalLength="19" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
       <column comment="6" key="false" length="19" name="subscriptionnum" nullable="true" originalLength="19" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
@@ -498,7 +498,7 @@
     <metadata connector="REJECT" label="metadata" name="REJECT">
       <column comment="1" key="false" length="36" name="uuid" nullable="false" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="2" key="false" length="255" name="historytypekey" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="3" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="3" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="4" key="false" length="255" name="username" nullable="true" pattern="" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="5" key="false" length="19" name="e164" nullable="true" originalLength="19" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
       <column comment="6" key="false" length="19" name="subscriptionnum" nullable="true" originalLength="19" pattern="" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
@@ -532,7 +532,7 @@
       <column comment="" key="false" length="255" name="historytypekey" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="255" name="username" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -559,7 +559,7 @@
       <column comment="" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="26" name="localtstamp" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="26" name="localtstamp" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="1000" name="batch_process_date" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -575,7 +575,7 @@
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.uuid" name="uuid" type="id_String"/>
         <mapperTableEntries expression="row4.historytypekey" name="historytypekey" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row4.tstamp== null || String.valueOf(row4.tstamp)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,row4.tstamp)) " name="tstamp" type="id_Date"/>
+        <mapperTableEntries expression="row4.tstamp== null || String.valueOf(row4.tstamp)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;,row4.tstamp)) " name="tstamp" type="id_String"/>
         <mapperTableEntries expression="row4.username" name="username" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.e164" name="e164" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.subscriptionnum" name="subscriptionnum" nullable="true" type="id_Long"/>
@@ -584,14 +584,14 @@
         <mapperTableEntries expression="row4.additionalinfo" name="additionalinfo" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.lastinrange" name="lastinrange" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.subscriptionproperty" name="subscriptionproperty" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row4.tstamp== null || String.valueOf(row4.tstamp)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,row4.tstamp)) " name="localtstamp" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="row4.tstamp== null || String.valueOf(row4.tstamp)== &quot;&quot;? &quot;&quot; : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;,row4.tstamp)) " name="localtstamp" nullable="true" type="id_String"/>
         <mapperTableEntries expression="context.batch_process_date " name="batch_process_date" nullable="true" type="id_String"/>
         <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1))); " name="filesequenceid" nullable="true" type="id_Long"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
         <mapperTableEntries name="uuid" type="id_String"/>
         <mapperTableEntries name="historytypekey" nullable="true" type="id_String"/>
-        <mapperTableEntries name="tstamp" type="id_Date"/>
+        <mapperTableEntries name="tstamp" type="id_String"/>
         <mapperTableEntries name="username" nullable="true" type="id_String"/>
         <mapperTableEntries name="e164" nullable="true" type="id_Long"/>
         <mapperTableEntries name="subscriptionnum" nullable="true" type="id_Long"/>
@@ -721,7 +721,7 @@
       <column comment="" key="false" length="255" name="historytypekey" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="255" name="username" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -748,7 +748,7 @@
       <column comment="" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="26" name="localtstamp" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="26" name="localtstamp" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="1000" name="batch_process_date" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -765,7 +765,7 @@
       <column comment="" key="false" length="255" name="historytypekey" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="26" name="tstamp" nullable="false" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="255" name="username" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -792,7 +792,7 @@
       <column comment="" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="26" name="localtstamp" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="26" name="localtstamp" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="6" sourceType="TIMESTAMP" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="1000" name="batch_process_date" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -1473,13 +1473,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_211d6c44-16eb-4697-9560-614740136edf"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>H5tnjKcNfwbZQ3CeJ5d/h0fZ6l/QvQdrDuqtuImyPzEybIydeJT5a6mEU7rzjWnM0hMR6cNGBfaA&#13;
-1MRvuGLbCw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_87ee8bfc-cc21-4679-bdf5-f6951a44f0b5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Q+srDQlxHFmTD3WYXIUjtx0iQBDZQ7kax0spe63kBNIS0RdkD8nf4nDs1Qz42nlrDmlzIvL2bVxQ&#13;
-iaxN18CR7g==</DigestValue></Reference></SignedInfo><SignatureValue>cSLsi3LZ3pE0ZrZpRgnE9GgbWDHhZsCDepVlfE6fuLiCc/10j8RNUMd4DXKbg7pwJB8vyMTOnLEC&#13;
-tVdrMb26IEbmgyfUdTCa7XaOlrCa/AP4eY+ao1xBhhz1hHPhE/03UxzNqok1eUAxoD3LefOOj/ZU&#13;
-j5sELDSJL4ix+K/BOnALthaO+AODPNnmNoXxoSN3piGYmzI4EfZTLW5gb58weBdoZBTAvvH+2WqO&#13;
-oHLC4bMXV7HgN2SGn791V1YkchIFXpQXU8gm8F4IcW2fC9v5bBtVC1OkACxG6//FuxfKMby155dI&#13;
-HgI9L331i+EF6lbQzRu3hWyE0rUPQgenc3uAoA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7b062121-e8ca-403a-94b5-1cc28a3a44b1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kXJaZ4nyZMiJnQ2FJxTX2d8dACaKPDQPT6t8PZzvKs9xKpKk2h4TxBIV9A7yrhfreAmH9AhGe5kx&#13;
+WnqQP3lasA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_83d13ece-b1f2-4f64-b09f-8b190f7bbe1e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DhNfPwwIZex+82j2jBwy3nQNAHJENir2U2Sov/+WhfqUjCGM89u2k/kga4jZYYM7mb00kCv5dLrd&#13;
+PRJywrFPag==</DigestValue></Reference></SignedInfo><SignatureValue>DPmd56+JxxV+ZMNh/89fOe3NEgULHJ1HYdjcUX5jkyHm52fSccD1qf8KmAQ7QnSdae+WlCCM4d6Z&#13;
+xeT5mgMCg/yD3iJe9hj7IvzSuHCLPTHVDckVj5NlDaKRv5k5+i/w2jiofnNXqSRYj8XP9YZoD9b6&#13;
+JpVWlU/w0niduplyLSF2hh2BKhCXbG22qT0MGdWHhtfVfUp0IHEAUbn29qQPsg9KeMPsErR1+hLL&#13;
+yycoNBlBcZyv64HjmgTadqdJQox7zF45KOePpiGE3wdMv+aAcXjdXCljcCQTxJKY2k5BFn9EuQVd&#13;
+bLjc0F+Ee0rA9alOhaAt4rvbBGoEBae4xMIhIw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1501,4 +1501,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_87ee8bfc-cc21-4679-bdf5-f6951a44f0b5" Target="#_211d6c44-16eb-4697-9560-614740136edf"><Timestamp>2023-08-17 06:11:21</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_83d13ece-b1f2-4f64-b09f-8b190f7bbe1e" Target="#_7b062121-e8ca-403a-94b5-1cc28a3a44b1"><Timestamp>2023-08-17 06:14:16</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
