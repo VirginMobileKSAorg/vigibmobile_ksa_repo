@@ -131,6 +131,13 @@
     <contextParameter comment="" internalId="_kBavkBDNEe6AsMI7ePoh5A" name="landing_zone" prompt="landing_zone?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/home/om/landing_zone"/>
     <contextParameter comment="" internalId="_kM38wBsBEe65IOU4IOObkA" name="cleansed_archival_zone" prompt="cleansed_archival_zone?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value="/opt/s3_uploads/hydrated/cleansed_archival_zone"/>
     <contextParameter comment="" internalId="_kM38wRsBEe65IOU4IOObkA" name="batch_process_date" prompt="batch_process_date?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_nfG1QDz9Ee6iC-qXsFBP7g" name="nobill_username" prompt="nobill_username?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="dbadmin"/>
+    <contextParameter comment="" internalId="_nfG1QTz9Ee6iC-qXsFBP7g" name="nobill_schema" prompt="nobill_schema?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="vm_cleansed"/>
+    <contextParameter comment="" internalId="_nfG1Qjz9Ee6iC-qXsFBP7g" name="nobill_host" prompt="nobill_host?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="10.51.15.14"/>
+    <contextParameter comment="" internalId="_nfG1Qzz9Ee6iC-qXsFBP7g" name="nobill_port" prompt="nobill_port?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="_nfG1RDz9Ee6iC-qXsFBP7g" name="nobill_database" prompt="nobill_database?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="ksa_db_dev"/>
+    <contextParameter comment="" internalId="_nfG1RTz9Ee6iC-qXsFBP7g" name="nobill_password" prompt="nobill_password?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="Dbadmin@123!@#"/>
+    <contextParameter comment="" internalId="_nfG1Rjz9Ee6iC-qXsFBP7g" name="cleansed_table" prompt="cleansed_table?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="nobill_tx_smsrecord"/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -975,7 +982,7 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_cleansed&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:6XyUHP+QDLME8Nhe8ZkU9ZMVgJxwwhRjxQcj/8PSt+5YrCLQdrAgfJqrpzo="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nobill_tx_smsrecord&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="context.cleansed_table"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
@@ -1218,7 +1225,7 @@
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
+    <elementParameter field="TEXT" name="LABEL" value="nobill_tx_smsrecord"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="nobill_tx_smsrecord" name="tDBOutput_2">
       <column comment="" key="false" length="36" name="internalreferenceid" nullable="true" pattern="" precision="0" sourceType="UUID" type="id_String" usefulColumn="true">
@@ -1542,7 +1549,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_6"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_name = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;System.out.println(&quot;context.file_name:- &quot;+context.file_name);&#10;&#10;context.batch_process_date = context.file_name.substring(17,context.file_name.indexOf(&quot;.csv&quot;));&#10;&#10;System.out.println(&quot;context.batch_process_date:- &quot;+context.batch_process_date);&#10;&#10;context.target_object_name = context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot; ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;&#10;&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_name = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;System.out.println(&quot;context.file_name:- &quot;+context.file_name);&#10;&#10;context.batch_process_date = context.file_name.substring(17,context.file_name.indexOf(&quot;.csv&quot;));&#10;&#10;System.out.println(&quot;context.batch_process_date:- &quot;+context.batch_process_date);&#10;&#10;context.target_object_name = context.cleansed_table ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_6"/>
@@ -2410,13 +2417,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_41a6d29e-ca18-4b12-ad01-9f3aeff9b4f7"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>y/LLl8YpB/lumtGVX6eMMXEdkKG3TFEkpnoTGBhXkJcv/zbSlUKNy6FQFUTvqnWXNmzsW0DZ19tU&#13;
-fyX0gXG8Rg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dee3e01e-4ae4-4f90-964e-5c2cff68a38c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Dn0eKQGBjpC4QgepUX4od94Y1vp4y96LYfQmzfDJW/aPRLWLMP1q7epalGNqecsiYN6dPzRPnp49&#13;
-YpEEIhQqnQ==</DigestValue></Reference></SignedInfo><SignatureValue>JZuuxp77QUTZh/MDkiVHFwzLHhXXwQSCrrCSpgi8jzPeCm2jK107n/KJQQnkFF9XrgbB+9fO+BUb&#13;
-hn6nFDEO/dnRoZ8AOsG/8oMtSI9qyV3YZtxjZ7QOVRLDhfKAaNpIvaf4izLsh0Ns/hBv0hCOzLUH&#13;
-E7vDxUFqbh0B0DsDL0AJdkAFqmjkNhp6ORUGMVIkOhMPUregWC+krBl31clr4FzSSTbZRYoOJ2Xt&#13;
-xf693hlEIXckcNK2KjInxyfG20CXpJ9DvTR8EXs8nLaL/Z37c/LxVEsh38sDrPoSxgmLkH9zfh1v&#13;
-6JNT870Fn46u7W+zrgCL/yQdUNT0kiMrdt7pmA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6260b280-d7c4-4d89-877a-0b458451006c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kZpXJ0B4QPSdVuPCfcG2ouLnnrfgdybQA99iDZ2GQs8Dfs9GRfvqcZk4lXwHjF1ikegqyCkYy8OH&#13;
+S/NcILO8oQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1c65407e-f5a9-4142-b237-36edc33108f4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nwSC7jixG5lA9ThaY2rEn03WVLz+My6znMURAX0BqQiz+d/A80ToEioTHi9HPId+M2L8pLM3LiSF&#13;
+zotItiZHOw==</DigestValue></Reference></SignedInfo><SignatureValue>Q2nOE7lD+nt5LZoFKLLAkNqj1V6TXeESj/QiDhj4WHr7ggB2Bp6zkcYpMvCVyfzA2Ui241ZZ60k6&#13;
+qzsF1UNse6HpA2NwX5RV1Msd/yBHdIQwbnyHoxMx4jsq/csu0agq+jMEhO6pc6nARH6ku9ZPvOtC&#13;
+VdYR8spjWO0vcydvlhXwt4LINJ0oLYfP5ImPG9ABYGg00UTH902ftBNeD+fWTkChUrNqG2tF5V1u&#13;
+RvWhBZcQrl/Up9j8Fzgzp8Cjd62BY03jkwzYJ5ZJ3pq620dVZ6VyshzUh3bHgxP5JQb4T/vvV/Yk&#13;
+e8QudoMS4dRU+kFlodbpDQMknLcSNVhn5DAodw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2438,4 +2445,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dee3e01e-4ae4-4f90-964e-5c2cff68a38c" Target="#_41a6d29e-ca18-4b12-ad01-9f3aeff9b4f7"><Timestamp>2023-08-17 12:54:44</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1c65407e-f5a9-4142-b237-36edc33108f4" Target="#_6260b280-d7c4-4d89-877a-0b458451006c"><Timestamp>2023-08-17 12:57:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
