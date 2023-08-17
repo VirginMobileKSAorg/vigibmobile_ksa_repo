@@ -1171,13 +1171,15 @@
     <elementParameter field="CHECK" name="AUTO_COMMIT" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="832">
+  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPostjob_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TEXT" name="LABEL" value="run at the end"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="832">
+  <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
     <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Completed execution of Object and inserting into RESTART INDICATOR if success: &quot;+context.object_name"/>
@@ -1188,6 +1190,7 @@
   </node>
   <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value="tDBConnection_1"/>
@@ -1223,6 +1226,7 @@
   </node>
   <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="928" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value="tDBConnection_1"/>
@@ -1518,13 +1522,16 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk15"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPostjob_1" offsetLabelX="0" offsetLabelY="0" source="tPostjob_1" target="tJobLog_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tJobLog_1" offsetLabelX="0" offsetLabelY="0" source="tJobLog_1" target="tDBRow_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.task_status.equals(context.task_status_success)"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBRow_1" offsetLabelX="0" offsetLabelY="0" source="tDBRow_1" target="tDBRow_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk10"/>
   </connection>
   <subjob>
@@ -1615,13 +1622,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_778e1360-b1a1-4a68-9f17-2b0770264804"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>t/l5iQV/caJSW79YK3tCxo6b3z7S+FuPsFMkbaXxqoKfI/3IycunEm0zYoL89jYyF2QM32wjk3zN&#13;
-/cBuegW97g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d2ceb80c-1698-43b6-ae30-24078270797c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>V9hIi3pD8T5EUdvXhK9X4R9/ImNuwwpmBz+d25Q+Y7rrnok/vWkGHuof+l+kwR9oEBLWA3X67oKK&#13;
-Pus7vVEG5Q==</DigestValue></Reference></SignedInfo><SignatureValue>jg56EzB4d+BFcZuy6daiJr89gjwAHI5GW1TAQb9MGoTLj09uO2uu116GFZ/MdSt4tcmZAxKjy58n&#13;
-YHPDRl9m6/rONtklF6SK3jCDaQHvU+ix8PvgeEeFlEcnCrZpD4GaCemLlKqslmGT3rQ9shhyU9Co&#13;
-bh6Dsa6AEsTOIsSO2e17VBdovvtW4jzeEKQBDsrvfpttTzf65YRGxW+7x8ckyGTHiJRyMBWn8yQR&#13;
-KtVxihS0Bw4qyTaATd5SP9JJYmVSb3QlQfuOeyfZxef1eoW0RnFB9xxBstrOgU3SmGIeSiiSLNRt&#13;
-GNYczPQT58EhjqcCXY+EkeLZG9ijtIs4l01qAg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d86f79bc-a511-454b-9a28-27cba1836033"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>oZ4QYI5SabWT0CTJKpLhXric32oxfAsMIX1odOBz8H/qtqZCJrDlt7O36NyjdePtjoIX9RxscxHR&#13;
+Sf1+tTHc2g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_793df382-f8b0-488b-8fab-cf3a82426f2e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>r8e7ixZf10FGJQ+uCt5uf134v5MEETizm4OTHWzGXVp9Kf/7A9oWILLHmRO9dWCQsDJdPpy6Wbvn&#13;
+ZMijXFzkDw==</DigestValue></Reference></SignedInfo><SignatureValue>oEy27uiktCi9Q1eEvqknba1DhebR9h+q9Xj/SRYkmusbujp3jzkOhZNfhz47o9DbaU4G9pWCIdRx&#13;
+t/Ixw77h8+pca6qHEk+KLkGhgZBnyf+2WjZMHga+Ujr0MAolvdcBI2eNKtMvu6sByeWsrH+6DRTv&#13;
+7UYNsSd/xzwzezePdbEiH3Sf404WSQyGw0GY36+BsWODSc+BaXwBKxMtLUc1jCjSCHBCSjX1gdRF&#13;
+hLUy6Mgp1Iq1jbJ5jRNlMueeQdc96sQYf5+0g9zPYOJKGAs6UncrUfoUo3T97ANGY/fI2p3o8xoC&#13;
+ZvLUSFwaXLz113Iyz68V1oIHDWApqeWWDHJHyQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1643,4 +1650,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d2ceb80c-1698-43b6-ae30-24078270797c" Target="#_778e1360-b1a1-4a68-9f17-2b0770264804"><Timestamp>2023-08-16 05:54:29</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_793df382-f8b0-488b-8fab-cf3a82426f2e" Target="#_d86f79bc-a511-454b-9a28-27cba1836033"><Timestamp>2023-08-17 05:47:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
