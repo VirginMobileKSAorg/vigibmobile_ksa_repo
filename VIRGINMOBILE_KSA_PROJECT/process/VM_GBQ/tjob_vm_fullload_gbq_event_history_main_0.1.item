@@ -264,6 +264,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="-320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;********** PreJob Execution in SubJob ***********&quot;);&#10;&#10;context.talend_jobname = jobName ;&#10;&#10;context.start_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;&#10;System.out.println(&quot;start_time: &quot;+context.start_time);&#10;&#10;context.auditkey = TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_etl&quot;;&#10;System.out.println(&quot;------ALL CONTEXT AND VALUES SET ---&quot;);&#10;context.source_system=&quot;gbq&quot;;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set context values"/>
@@ -272,6 +273,7 @@
   </node>
   <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="-160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
     <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_start_audit_dync"/>
@@ -299,6 +301,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.start_time_main_job=TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;);&#10;&#10;context.target_object_name =context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.json&quot;;&#10;System.out.println(&quot;context.target_object_name  &quot;+ context.target_object_name );&#10;System.out.println(context.talend_jobname +&quot; started at&quot;+ context.start_time_main_job);&#10;System.out.println(&quot;SOURCE SYSTEM Name is &quot;+ context.source_system );&#10;System.out.println(&quot;TABLE LOADED  is &quot;+ context.object_name );&#10;System.out.println(&quot;RAWDATA PATH is &quot;+ context.rawdata_path );&#10;&#10;context.year=TalendDate.formatDate(&quot;yyyy&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.year :&quot;+context.year);&#10;context.month=TalendDate.formatDate(&quot;MM&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.month :&quot;+context.month);&#10;context.yearmonth=TalendDate.formatDate(&quot;YYYYMM&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.yearmonth :&quot;+context.yearmonth);&#10;context.yearmonthdate=TalendDate.formatDate(&quot;yyyyMMdd&quot;, TalendDate.getCurrentDate());&#10;System.out.println(&quot;context.yearmonthdate :&quot;+context.yearmonthdate);&#10;&#10;System.out.println(&quot;RAW PATH FULL: &quot;+context.rawdata_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.year+&quot;/&quot;+context.yearmonth+&quot;/&quot;+context.yearmonthdate+&quot;/&quot;+context.object_name+&quot;_&quot;+context.start_time_main_job+&quot;.json&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="Extract Start Time"/>
@@ -307,6 +310,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="768">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_size = context.to_be_calculated;&#10;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;); &#10;context.source_count = new Long(context.gbq_source_cnt);&#10;context.target_count = new Long(context.gbq_target_count);&#10;context.insert_count = new Long(context.gbq_target_count);&#10;context.update_count = new Long(0);&#10;System.out.println(&quot;context.source_count is &quot;+ context.source_count);&#10;System.out.println(&quot;context.target_countis &quot;+ context.target_count );&#10;System.out.println(&quot;context.target_object_name  is ---------- &quot;+ context.target_object_name );&#10;if(context.source_count.equals(context.target_count)) {&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_success ;&#10;&#9;context.error_msg = context.error_msg_success;&#10;}&#10;else {&#10;&#9;context.task_status = context.task_status_failed;&#10;&#9;context.error_code = context.error_code_validation ;&#10;&#9;context.error_msg = context.error_msg_validation;&#10;}&#10;if(context.source_count.equals(new Long(0))){&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_extractzero ;&#10;&#9;context.error_msg = context.error_msg_extractzero;&#10;}&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set final context values"/>
@@ -315,6 +319,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="768">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_size = context.to_be_calculated;&#10;context.task_status = context.task_status_failed;&#10;context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;); &#10;&#10;//Error Message&#9;&#10;if(!context.gbq_source_cnt.equals(null)||context.gbq_source_cnt.equals(&quot;&quot;)){&#10;&#9;context.error_msg = context.error_msg_extract; &#10;&#9;context.error_code = context.error_code_extract;&#10;&#9;&#10;}&#10;else if(!context.gbq_target_count.equals(null)||context.gbq_target_count.equals(&quot;&quot;)){&#10;&#9;context.error_msg = context.error_msg_load; &#10;&#9;context.error_code = context.error_code_load;&#10;}&#9;&#10;else{&#10;&#9;context.error_msg = context.error_msg_extractload;&#10;&#9;context.error_code = context.error_code_extractload;&#10;}&#9;&#10;//Source Count&#9;&#10;if(!context.gbq_source_cnt.equals(null))&#9;&#9;&#10;&#9;context.source_count =  new Long(context.gbq_source_cnt);&#10;else&#10;&#9;context.source_count =  new Long(0);&#10;//Target Count&#9;&#10;if(context.gbq_target_count!=null)&#9;&#10;&#9;context.target_count = new Long(context.gbq_target_count);&#10;else&#10;context.target_count = new Long(0);&#9;&#10;context.insert_count = new Long(0);&#10;context.update_count = new Long(0);&#10;context.reject_count = new Long(0);&#10;context.delete_count = new Long(0);&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set final context values"/>
@@ -713,12 +718,15 @@
     </metadata>
   </node>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tRunJob_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_2" offsetLabelX="0" offsetLabelY="0" source="tRunJob_2" target="tJava_3">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tJava_6">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk7"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_4" offsetLabelX="0" offsetLabelY="0" source="tJava_4" target="tRunJob_1">
@@ -782,9 +790,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSleep_1" offsetLabelX="0" offsetLabelY="0" source="tSleep_1" target="tJava_4">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk9"/>
   </connection>
   <connection connectorName="SUBJOB_ERROR" label="OnSubjobError" lineStyle="4" metaname="tSleep_1" offsetLabelX="0" offsetLabelY="0" source="tSleep_1" target="tJava_5">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobError1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSystem_1" offsetLabelX="0" offsetLabelY="0" source="tSystem_1" target="tJava_8">
@@ -956,13 +966,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_afcbf3b0-66fc-4a59-9f3f-e01aa5cb6483"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PdW//+cukUDh0N87Z5tDznRenEd++Nq07d02SSp2ZLW4k8XjNOjfzNs3Scx5PnFF54X+TEE1Ot4v&#13;
-b/TACD250A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fafa5ba6-34c7-4fbd-a2a3-fb08c60b267e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kZ2xPlSCybM/VJY9PH6nAuSEc+vEXSCR8OBYNHGCG1UKd8Lc0NsHXp2oBpIi+XvQriM/LLeFit9F&#13;
-EMYZ/dBr/A==</DigestValue></Reference></SignedInfo><SignatureValue>EHET4nYF85J2aXJMO/vVvPxEH2/MbSEzNChZ9ZAolRBB551GvNWYN3mw57MsTmou1SQ529ip7CXT&#13;
-kZ/DfY2Xv2gmHsBmGQFhyTNCxpBfWTOaecBy1iS2Xyru8dn0F0kY12FjZm4zNe0HYQhjyTG1/MJQ&#13;
-JxVo44ArLHHjV7BDPBDaIRXl1GnPWITO5bHInS3S0BA+3ID2kafePU2i6n7r9SyQksLCqtBtngDR&#13;
-yQdpwqrGzq0whRSgtJI7BAdqF+8Wo8Sj3RIhT2rKIGX2GP3+2/A49oGBqLk+9kj4GaDruKky5+pP&#13;
-+Fnl5CognqiRnXXSzKz4x2w/Ex4rcfQ6sjZFPw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7d31d406-56a2-4e24-afb1-db39bb913e9c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ywGGy75Kz40d5IR3o2/UH1NpK+vB5i/8qhu0IiqB6JTvMFV+ZKNacPnmQpiwgYb2U46YTzeLYaf0&#13;
+fSEBEdOoVw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b5e4ef3f-0d67-4fe3-82b5-c9066edf9ad5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>YfC71gGNRseBJrpxq4O+2g1JkdqNTeCnU5s/w6TZfILPigOF7BtrCMBEWH+tsfsIjyWsLmwhuvli&#13;
+7MBcEIGhBg==</DigestValue></Reference></SignedInfo><SignatureValue>TFoOW45DnRqDfdQrN9EXVc8KZR+Jz0RDw1scu0cFwwxrpsQUh8EMW77Rq95Hrh8nh6cBLl16flcR&#13;
+CWuykDTY3vM32ePmkuovljOOsdwq4hWXte1KezTER0Xbb+9Wzvqpjt2ONxQ+8Ms2yyCdl18mVWxK&#13;
+9WM9ImNSr5EeUvGoQFm0UHgQUP0iWaEdWU8swxli9GWZbo0q0TdPhhX85NDxggLnv+JX6Vc5qLMt&#13;
+TxNXyrs5/L6j8Ux/l09Px3C4H482PgHbaEw+EY59qV3DgHbM4jZ8vKroRQDFz+c4LcnE8TZnL3Jz&#13;
+x2uEQc1OueKm68kBZZcLZYpO8O85nrN8u+U69w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -984,4 +994,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fafa5ba6-34c7-4fbd-a2a3-fb08c60b267e" Target="#_afcbf3b0-66fc-4a59-9f3f-e01aa5cb6483"><Timestamp>2023-08-18 14:20:30</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b5e4ef3f-0d67-4fe3-82b5-c9066edf9ad5" Target="#_7d31d406-56a2-4e24-afb1-db39bb913e9c"><Timestamp>2023-08-18 14:23:17</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
