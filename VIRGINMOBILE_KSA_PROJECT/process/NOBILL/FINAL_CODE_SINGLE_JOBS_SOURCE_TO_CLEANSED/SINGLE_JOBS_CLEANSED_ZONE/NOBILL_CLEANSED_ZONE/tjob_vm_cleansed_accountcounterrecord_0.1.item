@@ -131,6 +131,13 @@
     <contextParameter comment="" internalId="_kBavkBDNEe6AsMI7ePoh5A" name="landing_zone" prompt="landing_zone?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="/home/om/landing_zone"/>
     <contextParameter comment="" internalId="_RKkfkBr4Ee65IOU4IOObkA" name="cleansed_archival_zone" prompt="cleansed_archival_zone?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value="/opt/s3_uploads/hydrated/cleansed_archival_zone"/>
     <contextParameter comment="" internalId="_RKkfkRr4Ee65IOU4IOObkA" name="batch_process_date" prompt="batch_process_date?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value=""/>
+    <contextParameter comment="" internalId="__ccE4Dv8Ee60KqsJxh42jQ" name="nobill_username" prompt="nobill_username?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="dbadmin"/>
+    <contextParameter comment="" internalId="__ccE4Tv8Ee60KqsJxh42jQ" name="nobill_schema" prompt="nobill_schema?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="vm_cleansed"/>
+    <contextParameter comment="" internalId="__ccE4jv8Ee60KqsJxh42jQ" name="nobill_host" prompt="nobill_host?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="10.51.15.14"/>
+    <contextParameter comment="" internalId="__ccE4zv8Ee60KqsJxh42jQ" name="nobill_port" prompt="nobill_port?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="__ccE5Dv8Ee60KqsJxh42jQ" name="nobill_database" prompt="nobill_database?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="ksa_db_dev"/>
+    <contextParameter comment="" internalId="__ccE5Tv8Ee60KqsJxh42jQ" name="nobill_password" prompt="nobill_password?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="Dbadmin@123!@#"/>
+    <contextParameter comment="" internalId="__ccE5jv8Ee60KqsJxh42jQ" name="cleansed_table" prompt="cleansed_table?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="nobill_tx_accountcounterrecord"/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -678,7 +685,7 @@
       <column comment="23" key="false" length="-1" name="localcreationtime" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.parentreferenceid" name="parentreferenceid" type="id_String"/>
@@ -701,11 +708,11 @@
         <mapperTableEntries expression="row4.delegatedrecordreferenceid" name="delegatedrecordreferenceid" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.subscriptionproperty" name="subscriptionproperty" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row4.recordtags" name="recordtags" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="TalendDate.getDate(&quot;yyyyMMdd_HH_mm_ss_SSS&quot;)+&quot;_&quot;+context.object_name+&quot;_ETL&quot;; " name="batch_process_date" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="context.batch_process_date " name="batch_process_date" nullable="true" type="id_String"/>
         <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1)));" name="filesequenceid" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row4.creationtime== null || String.valueOf(row4.creationtime)== &quot;&quot;? null : TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMddHHmmss&quot;,row4.creationtime)) " name="localcreationtime" nullable="true" type="id_String"/>
       </outputTables>
-      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
+      <inputTables columnNameFilter="" lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
         <mapperTableEntries name="parentreferenceid" type="id_String"/>
         <mapperTableEntries name="seqno" type="id_Long"/>
         <mapperTableEntries name="exportseqno" nullable="true" type="id_Long"/>
@@ -815,23 +822,22 @@
       <column comment="19" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="20" key="false" length="1023" name="recordtags" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="21" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="22" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
-      <column comment="23" key="false" length="-1" name="localcreationtime" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="22" key="false" length="50" name="filesequenceid" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="23" key="false" length="100" name="localcreationtime" nullable="true" originalLength="100" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="960" posY="608">
+  <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="992" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_2"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.14&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
-    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_dev&quot;"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_cleansed&quot;"/>
-    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Vo49MTpwZuUifcNiJEqYUAD3DdRXvm4MqK1OfeMYeRihwWgo81LZ068f2W0="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nobill_tx_accountcounterrecord&quot;"/>
+    <elementParameter field="TEXT" name="HOST" value="context.nobill_host"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nobill_port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nobill_database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nobill_schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.nobill_username"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:WbpqV3s3z/r8kGQzeTkSMGaMrQl1Oxd8aXjDehbRieendCSoh61HYonOt9Bb71sVtDL1"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="context.cleansed_table"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
@@ -977,70 +983,68 @@
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="out1" name="tDBOutput_2">
-      <column comment="1" key="false" length="32" name="parentreferenceid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="2" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="3" key="false" length="19" name="exportseqno" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="4" key="false" length="19" name="msisdn" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="5" key="false" length="255" name="subscriptiontypename" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="6" key="false" length="32" name="counterid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="7" key="false" length="32" name="countertypeid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="8" key="false" length="255" name="countertypename" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="9" key="false" length="255" name="countertypeproductname" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="10" key="false" length="255" name="servicename" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="11" key="false" length="255" name="serviceproductname" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="12" key="false" length="255" name="servicekey" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="13" key="false" length="25" name="valuediff" nullable="true" pattern="" precision="6" type="id_Float" usefulColumn="true"/>
-      <column comment="14" key="false" length="19" name="updatetype" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="15" key="false" length="14" name="creationtime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="16" key="false" length="1023" name="additionalinfo" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="17" key="false" length="25" name="postvalue" nullable="true" pattern="" precision="6" type="id_Float" usefulColumn="true"/>
-      <column comment="18" key="false" length="32" name="delegatedrecordreferenceid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="19" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="20" key="false" length="1023" name="recordtags" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="21" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="22" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
-      <column comment="23" key="false" length="-1" name="localcreationtime" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="1" key="false" length="32" name="parentreferenceid" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="2" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="3" key="false" length="19" name="exportseqno" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="4" key="false" length="19" name="msisdn" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="5" key="false" length="255" name="subscriptiontypename" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="6" key="false" length="32" name="counterid" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="7" key="false" length="32" name="countertypeid" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="8" key="false" length="255" name="countertypename" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="9" key="false" length="255" name="countertypeproductname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="10" key="false" length="255" name="servicename" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="11" key="false" length="255" name="serviceproductname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="12" key="false" length="255" name="servicekey" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="13" key="false" length="25" name="valuediff" nullable="true" pattern="" precision="6" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="14" key="false" length="19" name="updatetype" nullable="false" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="15" key="false" length="14" name="creationtime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="16" key="false" length="1023" name="additionalinfo" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="17" key="false" length="25" name="postvalue" nullable="true" pattern="" precision="6" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="18" key="false" length="32" name="delegatedrecordreferenceid" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="19" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="20" key="false" length="1023" name="recordtags" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="21" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="22" key="false" length="50" name="filesequenceid" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="23" key="false" length="100" name="localcreationtime" nullable="true" originalLength="100" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="out1" name="REJECT">
-      <column comment="1" key="false" length="32" name="parentreferenceid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="2" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="3" key="false" length="19" name="exportseqno" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="4" key="false" length="19" name="msisdn" nullable="true" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="5" key="false" length="255" name="subscriptiontypename" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="6" key="false" length="32" name="counterid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="7" key="false" length="32" name="countertypeid" nullable="false" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="8" key="false" length="255" name="countertypename" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="9" key="false" length="255" name="countertypeproductname" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="10" key="false" length="255" name="servicename" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="11" key="false" length="255" name="serviceproductname" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="12" key="false" length="255" name="servicekey" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="13" key="false" length="25" name="valuediff" nullable="true" pattern="" precision="6" type="id_Float" usefulColumn="true"/>
-      <column comment="14" key="false" length="19" name="updatetype" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
-      <column comment="15" key="false" length="14" name="creationtime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="16" key="false" length="1023" name="additionalinfo" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="17" key="false" length="25" name="postvalue" nullable="true" pattern="" precision="6" type="id_Float" usefulColumn="true"/>
-      <column comment="18" key="false" length="32" name="delegatedrecordreferenceid" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="19" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="20" key="false" length="1023" name="recordtags" nullable="true" pattern="" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="21" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
-      <column comment="22" key="false" length="-1" name="filesequenceid" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
-      <column comment="23" key="false" length="-1" name="localcreationtime" nullable="true" originalLength="-1" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="1" key="false" length="32" name="parentreferenceid" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="2" key="false" length="19" name="seqno" nullable="false" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="3" key="false" length="19" name="exportseqno" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="4" key="false" length="19" name="msisdn" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="5" key="false" length="255" name="subscriptiontypename" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="6" key="false" length="32" name="counterid" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="7" key="false" length="32" name="countertypeid" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="8" key="false" length="255" name="countertypename" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="9" key="false" length="255" name="countertypeproductname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="10" key="false" length="255" name="servicename" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="11" key="false" length="255" name="serviceproductname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="12" key="false" length="255" name="servicekey" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="13" key="false" length="25" name="valuediff" nullable="true" pattern="" precision="6" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="14" key="false" length="19" name="updatetype" nullable="false" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="15" key="false" length="14" name="creationtime" nullable="false" pattern="&quot;yyyyMMddHHmmss&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="16" key="false" length="1023" name="additionalinfo" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="17" key="false" length="25" name="postvalue" nullable="true" pattern="" precision="6" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="18" key="false" length="32" name="delegatedrecordreferenceid" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="19" key="false" length="255" name="subscriptionproperty" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="20" key="false" length="1023" name="recordtags" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="21" key="false" length="100" name="batch_process_date" nullable="true" originalLength="100" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="22" key="false" length="50" name="filesequenceid" nullable="true" originalLength="50" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="23" key="false" length="100" name="localcreationtime" nullable="true" originalLength="100" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="1056">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="800">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;); &#10;&#10;&#10;System.out.println(&quot;context.source_count : &quot;+context.source_count);&#10;System.out.println(&quot;context.target_count : &quot;+context.target_count);&#10;&#10;context.insert_count = new Long(0);&#10;&#10;context.update_count = new Long(0);&#10;//context.reject_count = new Long(((Integer)globalMap.get(&quot;tFileOutputDelimited_1_NB_LINE&quot;)));&#10;&#10;if(context.source_count.equals(context.target_count)) {&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_success ;&#10;&#9;context.error_msg = context.error_msg_success;&#10;}&#10;else {&#10;&#9;context.task_status = context.task_status_failed;&#10;&#9;context.error_code = context.error_code_validation ;&#10;&#9;context.error_msg = context.error_msg_validation;&#10;}&#10;if(context.source_count.equals(new Long(0))){&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_extractzero ;&#10;&#9;context.error_msg = context.error_msg_extractzero;&#10;}&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="Set dynamic value for main job"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_2"/>
   </node>
-  <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="960" posY="1056">
+  <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="960" posY="800">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
     <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
@@ -1066,9 +1070,8 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tRunJob_2"/>
   </node>
-  <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="1056">
+  <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="800">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="context.cleansed_temp_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot;"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" show="false" value="&quot;C:/Talend Data Fabric V2/Talend-Studio-20211109_1610-V8.0.1/Talend-Studio-20211109_1610-V8.0.1/workspace/delete_folder&quot;"/>
     <elementParameter field="TEXT" name="PATH" show="false" value="&quot;C:/Talend Data Fabric V2/Talend-Studio-20211109_1610-V8.0.1/Talend-Studio-20211109_1610-V8.0.1/workspace/delete_folder or delete_file&quot;"/>
@@ -1087,9 +1090,8 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_3"/>
   </node>
-  <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="1056">
+  <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="800">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" show="false" value="context.cleansed_temp_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.yearmonthdate+&quot;.csv&quot;"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="context.cleansed_landing_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;"/>
     <elementParameter field="TEXT" name="PATH" show="false" value="&quot;C:/Talend Data Fabric V2/Talend-Studio-20211109_1610-V8.0.1/Talend-Studio-20211109_1610-V8.0.1/workspace/delete_folder or delete_file&quot;"/>
@@ -1264,7 +1266,6 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tJava_2">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk5"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tFileInputDelimited_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_2" target="tMap_1">
@@ -1419,15 +1420,12 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tFileDelete_1">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk7"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_2" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_2" target="tRunJob_2">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk6"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_1" target="tFileDelete_2">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk8"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_3" offsetLabelX="0" offsetLabelY="0" source="tFileList_3" target="tFileInputRaw_3">
@@ -1550,13 +1548,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_906b2fd6-e308-4a83-a31c-3dfda3a4e7be"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BrirblCo4wqFQ8mckov2VO9B75du2vfvucMgb4h3IzrxJj4lUZstx5u0Rg6SNQeKuFUtBJc7+FHQ&#13;
-9UXpmc6GAg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_cb3397d5-2023-4667-a82c-ac729aae8242"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2a8Y8owuwLxyQaYd7/5XJOUkUniaPWZ5wZs1d76UFHOc4x9wJ5NjdkKDAYepZcu0Me0xvEKP5sFE&#13;
-H7wp6GLb/w==</DigestValue></Reference></SignedInfo><SignatureValue>nEJUmPYNbdJRWfLuQ0cxDILsiteShAeLJwaj8JkTxas9uAmMvQ+Q9JhdIicY85XWWb1Z8+1flihk&#13;
-ezJEG0buK0APA1zDuDTxnZtztlUuy0ILCMTCOqvytV2uK96SjbIVfp+GusHgpJgvcUuroXP71vog&#13;
-2f+Z2gJDzEDqmzOGaiAxOVvEsuGHX6pKVU2Ey3Lt1b4wrGDiCGGdlTyqUpYEe8oIIz5kA7kyyoI0&#13;
-WXhHpczLp7+M1FekOZfq8KUoXeQdAQHOJyq1QWCcdkaWZxm5nyIpUf3tuU09NMafhfelA22miu3o&#13;
-p1avP6P0RpjGpmIG74rZ7t54zTZ+mOGeCUmLHA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_cfb9259e-1762-4082-bd05-b010819835f8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lH35Q5e0QkNZYFqdaGoCn7eNJj2+Qbgsn7A8oBmU4NLC9bPt1yLAPARfRQY60EzWDLjnGz+h/l+o&#13;
+pG6LQdyB7Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_42d25cdd-71ff-4bbf-b202-51900c44cc98"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+dLtiRxdQkBgRUPslyar59RfR0z+EgtWq7/uklFZ2MZ3z1VtvJl4yVPBoM+Fr2h53O0hBbEDT3QW&#13;
+bKKcSKQWig==</DigestValue></Reference></SignedInfo><SignatureValue>R66ZNKri73w9Lhhcn0/G7Np/eUELVi/3C5suACPk3D1KwR9ChkiHg4fFW4KDhsJ1pJNbWEBoLtaz&#13;
+NklO49aLFzJVR35SrLNCtiqvNHSx4ym4ZhXKo3Ygoe3P83vHbbT4hgTfbLmtOslWuo7UZWqZCr7F&#13;
+OMpJGDxf5IXs8RpiHJ1cGtthYiCidTOyVyueVz1uutnhgBry6w5eXFOBJ9nhd2yk5/Qv3kNn1rtq&#13;
+EkCSfCuJxV+Fc8xuzn+daIcq0Zvcm6j5kK53J8Syqt4LILVx11eCQRQ4jsKK6g4GEOa7+dVD75Js&#13;
+gkuJmySMJ0+FhdZXuRFSHj3ZaIjJ8hTkyZ2FqQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1578,4 +1576,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_cb3397d5-2023-4667-a82c-ac729aae8242" Target="#_906b2fd6-e308-4a83-a31c-3dfda3a4e7be"><Timestamp>2023-08-16 12:10:51</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_42d25cdd-71ff-4bbf-b202-51900c44cc98" Target="#_cfb9259e-1762-4082-bd05-b010819835f8"><Timestamp>2023-08-18 08:11:52</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
