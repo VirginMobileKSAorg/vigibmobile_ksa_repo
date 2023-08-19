@@ -624,6 +624,7 @@
   </node>
   <node componentName="tFileInputJSON" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputJSON_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="READ_BY" value="JSONPATH"/>
     <elementParameter field="CLOSED_LIST" name="JSON_PATH_VERSION" value="2_1_0"/>
     <elementParameter field="CHECK" name="USEURL" value="false"/>
@@ -1138,6 +1139,7 @@
   </node>
   <node componentName="tExtractJSONFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tExtractJSONFields_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="READ_BY" value="JSONPATH"/>
     <elementParameter field="CLOSED_LIST" name="JSON_PATH_VERSION" value="2_1_0"/>
     <elementParameter field="PREV_COLUMN_LIST" name="JSONFIELD" value="event_params"/>
@@ -1605,6 +1607,7 @@
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="544" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
     <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
@@ -1792,6 +1795,7 @@
   </node>
   <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputDelimited_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" show="false" value="outputStream"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/VirginMobile/SampleJson/test/event_20230801_out.csv&quot;"/>
@@ -2060,6 +2064,13 @@
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.io.BufferedReader;&#10;import java.io.FileReader;&#10;import java.io.IOException;&#10;import java.io.File;&#10;import java.io.FileWriter;&#10;import java.util.ArrayList;&#10;import java.util.List;&#10;import java.util.Map;&#10;import java.util.HashMap;&#10;import java.util.Iterator;&#10;import java.util.Date;&#10;import java.text.SimpleDateFormat;&#10;import java.text.ParseException;&#10;import org.json.simple.JSONArray;&#10;import org.json.simple.JSONObject;&#10;import org.json.simple.parser.JSONParser;&#10;import org.json.simple.parser.*;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="416">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="public class JsonProcessing {&#10;&#10;    public static void main(String[] args) {&#10;        long startTime = System.currentTimeMillis();&#10;        String ipPath = &quot;D:\VirginMobile\SampleJson\test\event_20230728.json&quot;;&#10;        File[] jsonFiles = getJsonFiles(ipPath);&#10;&#10;        for (File file : jsonFiles) {&#10;            System.out.println(&quot;Reading: &quot; + file.getName());&#10;&#10;            JSONArray jsonArray = readJsonFile(file);&#10;            List&lt;Map&lt;String, Object&gt;&gt; flatJsonList = new ArrayList&lt;&gt;();&#10;            for (Object obj : jsonArray) {&#10;                JSONObject jsonObject = (JSONObject) obj;&#10;                Map&lt;String, Object&gt; flatJson = flattenJson(jsonObject);&#10;                flatJsonList.add(flatJson);&#10;            }&#10;&#10;            JSONArray jsonArrayNew = timeAndDate(flatJsonList);&#10;            fillNullValues(jsonArrayNew);&#10;            String opPath = createOutputPath(ipPath);&#10;            String date = file.getName().split(&quot;_&quot;)[file.getName().split(&quot;_&quot;).length - 1].split(&quot;\\.&quot;)[0];&#10;            writeCsv(jsonArrayNew, opPath, date);&#10;        }&#10;&#10;        long endTime = System.currentTimeMillis();&#10;        long totalTime = endTime - startTime;&#10;        System.out.println(&quot;Total execution time: &quot; + totalTime + &quot; milliseconds&quot;);&#10;    }&#10;&#10;    public static File[] getJsonFiles(String path) {&#10;        File folder = new File(path);&#10;        return folder.listFiles((dir, name) -&gt; name.endsWith(&quot;.json&quot;));&#10;    }&#10;&#10;    public static JSONArray readJsonFile(File file) {&#10;        JSONParser jsonParser = new JSONParser();&#10;        try (FileReader reader = new FileReader(file)) {&#10;            JSONObject data = (JSONObject) jsonParser.parse(reader);&#10;            return (JSONArray) data.get(&quot;data&quot;);&#10;        } catch (IOException | ParseException e) {&#10;            e.printStackTrace();&#10;        }&#10;        return null;&#10;    }&#10;&#10;    public static Map&lt;String, Object&gt; flattenJson(JSONObject jsonObj) {&#10;        Map&lt;String, Object&gt; items = new HashMap&lt;&gt;();&#10;        for (Object keyObj : jsonObj.keySet()) {&#10;            String key = (String) keyObj;&#10;            Object value = jsonObj.get(key);&#10;            if (value instanceof JSONObject) {&#10;                Map&lt;String, Object&gt; subItems = flattenJson((JSONObject) value);&#10;                for (String subKey : subItems.keySet()) {&#10;                    items.put(key + &quot;_&quot; + subKey, subItems.get(subKey));&#10;                }&#10;            } else if (value instanceof JSONArray) {&#10;                // Handle JSONArray&#10;            } else {&#10;                items.put(key, value);&#10;            }&#10;        }&#10;        return items;&#10;    }&#10;&#10;    public static JSONArray timeAndDate(List&lt;Map&lt;String, Object&gt;&gt; flatJsonList) {&#10;        JSONArray jsonArrayNew = new JSONArray();&#10;        for (Map&lt;String, Object&gt; flatJson : flatJsonList) {&#10;            // Handle timestamp conversion and date formatting&#10;        }&#10;        return jsonArrayNew;&#10;    }&#10;&#10;    public static void fillNullValues(JSONArray jsonArray) {&#10;        // Fill null values with &quot;NULL&quot;&#10;    }&#10;&#10;    public static String createOutputPath(String ipPath) {&#10;        String opPath = ipPath + &quot;/output_files&quot;;&#10;        File opDir = new File(opPath);&#10;        if (!opDir.exists()) {&#10;            opDir.mkdirs();&#10;        }&#10;        return opPath;&#10;    }&#10;&#10;    public static void writeCsv(JSONArray jsonArray, String opPath, String date) {&#10;        String csvFileName = &quot;event_&quot; + date + &quot;.csv&quot;;&#10;        String csvPath = opPath + &quot;/&quot; + csvFileName;&#10;        try (FileWriter writer = new FileWriter(csvPath)) {&#10;            // Write CSV content&#10;        } catch (IOException e) {&#10;            e.printStackTrace();&#10;        }&#10;        System.out.println(&quot;Successfully converted &quot; + csvFileName);&#10;    }&#10;}"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_1"/>
+  </node>
   <connection connectorName="FLOW" label="row8" lineStyle="0" metaname="tFileInputDelimited_3" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_3" target="tJavaRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
@@ -2159,6 +2170,7 @@
   </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputJSON_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputJSON_2" target="tExtractJSONFields_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tExtractJSONFields_2" offsetLabelX="0" offsetLabelY="0" source="tExtractJSONFields_2" target="tMap_2">
@@ -2288,11 +2300,16 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
   <connection connectorName="FLOW" label="event_param_out" lineStyle="0" metaname="event_param_out" offsetLabelX="0" offsetLabelY="0" source="tMap_2" target="tFileOutputDelimited_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="event_param_out"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tLibraryLoad_1" offsetLabelX="0" offsetLabelY="0" source="tLibraryLoad_1" target="tJava_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_3"/>
@@ -2319,13 +2336,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3cb5ede8-e225-4370-95cc-c4a70473199b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hNnfXtMPhp2Im9Hz0O20hHE3xbmvJPyRM6r08OhZzm92EW4Qf5CY1PJg0XTV0lAOYXLjqqxF21Tb&#13;
-HG4Qwzl7Bw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_cd8f700d-402e-479e-82ca-bbcc530be68d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RTmzEap3GCSoFLc5OaL66c74MHHNnK2EoyU+b7+Z0VRjSSeYxILgb9IQeBU0Ki/ZRsUegL1HH3/3&#13;
-oeSzmY5NMA==</DigestValue></Reference></SignedInfo><SignatureValue>h0MuiuhAUpLVmPkDDJ0q+8BcDAv+dKPbPUdiwDusjmqAkOgsP6Y+vE9d96F/Lk0shhUVFXqBET3i&#13;
-SbjVRuCFCrN/hEZpKTE4oYpwpTsjvs6wkSwKnKYUtPaWY//g7QK3YZznv7w+txU44WqcaYYVZpFX&#13;
-WruwdKDGB7yCNY5+1URi2Xw1Lgu7/4AA23l272CDnRPBscjhdJ+B7HeOwum36GZNxpZpAi2Q3SsZ&#13;
-9uzXgqiKgScBnP7PKI60Sca2Vqx6ILGg20xBxwuOyezvvT4u2JsBp7MtOUj5JyczXqtqRDj4/CdN&#13;
-IGkOayqQL9kU/qyFELxlOCGlqZvfp/qPJRn1EQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5c886379-70f9-4292-b1fc-5f671315d978"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6uETRUC3t2fhqXv1O0o7RKp0/5uj9a+74BjIRcxKRcXtsHLFpGvQyQCrlzrCzQ6/z3MNNmjecCuQ&#13;
+okRSslrN4g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ffcabb53-34b2-46fd-a9b1-35161434955b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RrNd8uiAKQfH+J5C/9Rk6eXpUssIvIy3risNb9lXg43ifKfK9iyYcthcNvsyjOdhC2ZizgAKCfHR&#13;
+F65KuDLtpQ==</DigestValue></Reference></SignedInfo><SignatureValue>A9syk8EtSGpEYaG9b4QKYtQde/tQxRrJVEGDvn8C0WOXJ6FHM6yMaZwUjfltLMtAYM25i0/rtyL6&#13;
+CXQvsjRCTQbB6jEeJ79RjQe8lM9UwF3TA/3U8b815DdsL42HZI3MFIc9Rvuer1C3foNtkbwlExXn&#13;
+TVitbvcZQ91tOW/iaqKt0odovmZkZ3qmvZ41YW9PFEuM94gBKYQl3VWysRobHKYbn0IDtOenbNYk&#13;
+p3JOYUcBFb6fHWixk5lwKCg6pRDCWPK3M54yNxNTJ1s5aYktjWLGzF5g/btsc0Z4YFfeze6Fe0gN&#13;
+h98Cp+F2lmzBKdNKQBQnDHWyeUEQ5leCUARaRQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2347,4 +2369,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_cd8f700d-402e-479e-82ca-bbcc530be68d" Target="#_3cb5ede8-e225-4370-95cc-c4a70473199b"><Timestamp>2023-08-19 05:59:56</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ffcabb53-34b2-46fd-a9b1-35161434955b" Target="#_5c886379-70f9-4292-b1fc-5f671315d978"><Timestamp>2023-08-19 06:02:39</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
