@@ -128,6 +128,7 @@
   </parameters>
   <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_5"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
@@ -160,6 +161,7 @@
   </node>
   <node componentName="tFileOutputJSON" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputJSON_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/VirginMobile/SampleJson/event_&quot;+TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;)+&quot;.json&quot;"/>
     <elementParameter field="CHECK" name="GENERATE_JSON_ARRAY" value="false"/>
     <elementParameter field="TEXT" name="DATABLOCKNAME" value="&quot;data&quot;"/>
@@ -172,14 +174,16 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="64" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="if(context.v_startDate.equals(null) || context.v_startDate.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;context.v_startDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;if(context.v_endDate.equals(null) || context.v_endDate.equals(&quot;&quot;))&#10;{&#9;&#10;context.v_endDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;&#10;&#10;System.out.println(context.v_startDate);&#10;System.out.println(context.v_endDate);&#10;&#10;&#10;context.v_Days = TalendDate.diffDateIgnoreDST(TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.v_endDate),TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.v_startDate) , &quot;dd&quot;);&#10;&#10;System.out.println(&quot;No:of Days : &quot; + context.v_Days);&#10;&#10;System.out.println(TalendDate.getDate(&quot;yyyyMMdd HH:MM:SS&quot;));&#10;&#10;/*if(context.v_startDate.equals(context.v_endDate))&#10;{&#10;&#9;context.v_loadDate=context.v_startDate;&#10;}&#10;&#10;System.out.println(context.v_loadDate);*/"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set context"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_2"/>
   </node>
-  <node componentName="tLoop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="192">
+  <node componentName="tLoop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="FORLOOP" value="true"/>
     <elementParameter field="RADIO" name="WHILELOOP" value="false"/>
     <elementParameter field="TEXT" name="FROM" value="0"/>
@@ -194,6 +198,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.v_loadDate = TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;);&#10;&#10;&#10;System.out.println(context.v_loadDate);&#10;&#10;context.delete_date = &quot;'&quot;+context.v_loadDate.substring(6,8)+&quot;/&quot;+context.v_loadDate.substring(4,6)+&quot;/&quot;+context.v_loadDate.substring(0,4)+&quot;'&quot;;&#10;&#10;System.out.println(context.delete_date);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="to set v_loadDate"/>
@@ -202,12 +207,14 @@
   </node>
   <node componentName="tFileExist" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileExist_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILE_NAME" value="&quot;D:/VirginMobile/SampleJson/event_&quot;+TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;)+&quot;.json&quot;"/>
     <elementParameter field="TEXT" name="LABEL" value="To check the file if already exists"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <node componentName="tSystem" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="ROOTDIR" value="true"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;D:/VirginMobile/PythonCode&quot;"/>
     <elementParameter field="RADIO" name="USE_SINGLE_COMMAND" value="true"/>
@@ -225,12 +232,14 @@
   </node>
   <node componentName="tSleep" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSleep_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TEXT" name="PAUSE" value="2"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tSleep_1"/>
   </node>
   <node componentName="tJobLog" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="928" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJobLog_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="DEV_LOG" value="true"/>
     <elementParameter field="RADIO" name="BUSINESS_LOG" value="false"/>
     <elementParameter field="TEXT" name="MESSAGE" value="&quot;Name of Files Deleted and Started Reloading :&quot;+&quot;event_&quot;+TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;)+&quot;.json&quot;"/>
@@ -241,6 +250,7 @@
   </node>
   <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" show="false" value="&quot;C:/Talend_Studio/Talend-Studio-20230428_0423-V8.0.1/workspace/in.csv&quot;"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" show="false" value="&quot;C:/Talend_Studio/Talend-Studio-20230428_0423-V8.0.1/workspace/delete_folder&quot;"/>
     <elementParameter field="TEXT" name="PATH" value="&quot;D:/VirginMobile/SampleJson/event_&quot;+TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;)+&quot;.json&quot;"/>
@@ -254,6 +264,7 @@
   </node>
   <node componentName="tLoop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="FORLOOP" value="true"/>
     <elementParameter field="RADIO" name="WHILELOOP" value="false"/>
     <elementParameter field="TEXT" name="FROM" value="0"/>
@@ -268,6 +279,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="672" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.v_loadDate = TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_2_CURRENT_VALUE&quot;)), &quot;dd&quot;);&#10;&#10;&#10;System.out.println(context.v_loadDate);&#10;&#10;System.out.println(TalendDate.getDate(&quot;yyyyMMdd HH:MM:SS&quot;));"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="to set v_loadDate"/>
@@ -276,8 +288,10 @@
   </node>
   <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="896" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value="tDBConnection_1"/>
     <elementParameter field="TEXT" name="HOST" value="context.vertica_target_database_Server"/>
@@ -311,6 +325,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="608">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="if(context.v_startDate.equals(null) || context.v_startDate.equals(&quot;&quot;))&#10;{&#9;&#10;&#9;context.v_startDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;if(context.v_endDate.equals(null) || context.v_endDate.equals(&quot;&quot;))&#10;{&#9;&#10;context.v_endDate = TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd&quot;), &quot;yyyyMMdd&quot;, -1, &quot;dd&quot;);&#10;}&#10;&#10;&#10;System.out.println(context.v_startDate);&#10;System.out.println(context.v_endDate);&#10;&#10;&#10;context.v_Days = TalendDate.diffDateIgnoreDST(TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.v_endDate),TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.v_startDate) , &quot;dd&quot;);&#10;&#10;System.out.println(&quot;No:of Days : &quot; + context.v_Days);&#10;&#10;/*if(context.v_startDate.equals(context.v_endDate))&#10;{&#10;&#9;context.v_loadDate=context.v_startDate;&#10;}&#10;&#10;System.out.println(context.v_loadDate);*/"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set context"/>
@@ -319,12 +334,14 @@
   </node>
   <node componentName="tFileExist" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileExist_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILE_NAME" value="&quot;D:/VirginMobile/SampleJson/output_files/event_&quot;+TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;)+&quot;.csv&quot;"/>
     <elementParameter field="TEXT" name="LABEL" value="To check if flatten file already exist"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_5"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;event_&quot;+TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;)+&quot;.csv&quot;+&quot; already exist. Deleting the file from Vertica&quot;);&#13;&#10;&#13;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -332,8 +349,10 @@
   </node>
   <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="928" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_kIq0gC0QEe6YhMTxVrC2Xw"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="VERTICA_9_0"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value="tDBConnection_1"/>
     <elementParameter field="TEXT" name="HOST" value="context.vertica_target_database_Server"/>
@@ -367,77 +386,126 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="512">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_6"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;event_&quot;+TalendDate.addDate(context.v_startDate, &quot;yyyyMMdd&quot;, ((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)), &quot;dd&quot;)+&quot;.csv&quot;+&quot; does not exits. Inserting the file in Vertica in next subjob&quot;);&#13;&#10;&#13;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_6"/>
   </node>
+  <node componentName="tInfiniteLoop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tInfiniteLoop_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="TEXT" name="WAIT_MS" value="900000"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tSystem" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="800">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_2"/>
+    <elementParameter field="CHECK" name="ROOTDIR" value="false"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" show="false" value="&quot;C:/Talend_Studio/Talend-Studio-20230428_0423-V8.0.1/workspace&quot;"/>
+    <elementParameter field="RADIO" name="USE_SINGLE_COMMAND" value="true"/>
+    <elementParameter field="MEMO_JAVA" name="COMMAND" value="&quot;python --version&quot;"/>
+    <elementParameter field="RADIO" name="USE_ARRAY_COMMAND" value="false"/>
+    <elementParameter field="TABLE" name="ARRAY_COMMAND" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="OUTPUT" value="OUTPUT_TO_CONSOLE"/>
+    <elementParameter field="CLOSED_LIST" name="ERROROUTPUT" value="OUTPUT_TO_CONSOLE"/>
+    <elementParameter field="TABLE" name="PARAMS"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tSystem_2"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="768">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_7"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value=""/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_7"/>
+  </node>
   <connection connectorName="FLOW" label="row8" lineStyle="0" metaname="tBigQueryInput_5" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_5" target="tFileOutputJSON_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row8"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileOutputJSON_2" offsetLabelX="0" offsetLabelY="0" source="tFileOutputJSON_2" target="tFileExist_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk8"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tLoop_1">
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tInfiniteLoop_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tSleep_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tJava_4">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_4" offsetLabelX="0" offsetLabelY="0" source="tJava_4" target="tFileExist_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate2"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tFileExist_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileExist_1" target="tFileDelete_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Boolean)globalMap.get(&quot;tFileExist_1_EXISTS&quot;))==true"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If1"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tFileExist_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileExist_1" target="tBigQueryInput_5">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="!((Boolean)globalMap.get(&quot;tFileExist_1_EXISTS&quot;))==true"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If2"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSystem_1" offsetLabelX="0" offsetLabelY="0" source="tSystem_1" target="tJava_3">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tSleep_1" offsetLabelX="0" offsetLabelY="0" source="tSleep_1" target="tSystem_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileDelete_1" target="tJobLog_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk3"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileDelete_1" target="tBigQueryInput_5">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk4"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tLoop_2" offsetLabelX="0" offsetLabelY="0" source="tLoop_2" target="tJava_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate3"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tDBRow_2">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate4"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_3" offsetLabelX="0" offsetLabelY="0" source="tJava_3" target="tLoop_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tFileExist_2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFileExist_2" target="tJava_5">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="((Boolean)globalMap.get(&quot;tFileExist_2_EXISTS&quot;))==true"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If3"/>
   </connection>
   <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tFileExist_2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFileExist_2" target="tJava_6">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="!((Boolean)globalMap.get(&quot;tFileExist_2_EXISTS&quot;))==true"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="If4"/>
   </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_5" offsetLabelX="0" offsetLabelY="0" source="tJava_5" target="tDBRow_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk9"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSystem_2" offsetLabelX="0" offsetLabelY="0" source="tSystem_2" target="tJava_7">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_5"/>
@@ -504,13 +572,28 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_528da5dd-8f65-4464-ae20-da06e1a5b2d0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Dj2E3WvMWAOX1HdEf6l7XMyg5fNAH+0bLAYg07j2tEpYWOc3DiCHlTecyC9Jyu7rZ6IwCjr5NFwo&#13;
-Ro5NncLEuw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6301a967-babd-4caa-8f54-e49f9abc10b1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>MuKBmQlYoW3w16+hPbc3l/phx+wr03Dr2Nu6bN8q6HCQy73MrbfAlVXWGgcvJNVW+kGvrjNozUz0&#13;
-FROcbrFvtw==</DigestValue></Reference></SignedInfo><SignatureValue>As1GGl6nNhBApWlBZPRNbu9+pMP83yF3VxFDAB9x/nC3mGbUGQ/4M/jJMKGAxJ4dKzMOCc0dIk+i&#13;
-rT9nd3JtnpvgARViujaALKgHBevGx0mAUl3Nf2RdzqAZ3p83B2BXOZ6to0i4AH7+jwVWYYuO//8E&#13;
-3REBGX29NGFgLzO5d2Cys3DZ4IatV8T0pcs/+05JFOjXi7eWYRjEdPepPWsa1SJSBYmXEJRoUbiC&#13;
-JVvBYsEdr5kwc0E1tVpgcziSERNd4s3TwRwU7AYe+3Ea+FlEDjKJeykpmLntdRERZLiinNW56n2k&#13;
-baUsrsSQ/cQElm1X/itahL0Pkg6weG9p4fha+w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tInfiniteLoop_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_7"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ff38262a-c308-4385-885b-01477656e681"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QawaSiL3gjgZtWQpIpE5mxHfzepGpROnwpICCrYX3Xd+lgOT4FtKBuesOUpoucIqILFpyazCVN6T&#13;
+wB/1Cjs8PA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ab9ed23a-0b23-4e19-9087-5296cb59b009"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>3pAYzs1v1Tka0F8cY8LadYLPf3/Ce/9+P+a31flDdmAlRerCEreSgqFkC+s0x+QcRnLRhVxIC2+v&#13;
+I2z9EqySDQ==</DigestValue></Reference></SignedInfo><SignatureValue>JyjFH0cso475+Lo1LQXmMhvYmzvB3o5MNVDvDqNFKwUH7OB4981t9prLgfNZ4U+6mmbs48LmCrjZ&#13;
++iVtbS+5LuGfbhjNYI4ShJKYHwbrlffQ/N1ALf08UTSliRl/c1o/sYsScgR079R4Qqv4WzyW4us3&#13;
+O+KOakfji+12QrH0JEB1D2V61+BeeTzLn0/ZySDYsnaF66cnCHCz6HIhS00as+8OObFS69c4XFbL&#13;
+qeRRYD5rNKJLqT2giRWo2q83XEHHxub/IJToYk88iOT4oR9PdnKikcQw7t02q64siJd5e4XSEnp5&#13;
+5sdwCnFrDZpldUF/ZctOKWevlo4E7DMwAwB6DA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -532,4 +615,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6301a967-babd-4caa-8f54-e49f9abc10b1" Target="#_528da5dd-8f65-4464-ae20-da06e1a5b2d0"><Timestamp>2023-08-21 09:18:12</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ab9ed23a-0b23-4e19-9087-5296cb59b009" Target="#_ff38262a-c308-4385-885b-01477656e681"><Timestamp>2023-08-21 09:56:00</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
