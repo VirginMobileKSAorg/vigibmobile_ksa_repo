@@ -7,7 +7,7 @@
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="56"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
@@ -138,7 +138,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_2"/>
   </node>
-  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="96" posY="96">
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="0" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.v_startDate=TalendDate.addDate(TalendDate.getDate(&quot;yyyyMMdd HH:mm:ss&quot;), &quot;yyyyMMdd HH:mm:ss&quot;, 15,&quot;mm&quot;);&#10;System.out.println(context.v_startDate);&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -147,6 +147,7 @@
   </node>
   <node componentName="tBigQuerySQLRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQuerySQLRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
     <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:keSJiNbvU5T1wiJaayj4otPO5UiE4nQX0ncWGUU+"/>
     <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
@@ -174,6 +175,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="992" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -181,8 +183,9 @@
       <column comment="" key="false" length="-1" name="gbq_infra_cnt" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="96">
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
@@ -215,6 +218,7 @@
   </node>
   <node componentName="tFileOutputJSON" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputJSON_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/VirginMobile/SampleJson/event_infra_20230822&quot;+&quot;.json&quot;"/>
     <elementParameter field="CHECK" name="GENERATE_JSON_ARRAY" value="false"/>
     <elementParameter field="TEXT" name="DATABLOCKNAME" value="&quot;data&quot;"/>
@@ -225,11 +229,61 @@
       <column comment="" key="false" length="-1" name="dynamicColumn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="STRING" type="id_Dynamic" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tSleep" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="0" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSleep_1"/>
+    <elementParameter field="TEXT" name="PAUSE" value="10"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tSleep_1"/>
+  </node>
+  <node componentName="tSystem" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_2"/>
+    <elementParameter field="CHECK" name="ROOTDIR" value="false"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" show="false" value="&quot;C:/Talend_Studio/Talend-Studio-20230428_0423-V8.0.1/workspace&quot;"/>
+    <elementParameter field="RADIO" name="USE_SINGLE_COMMAND" value="true"/>
+    <elementParameter field="MEMO_JAVA" name="COMMAND" value="&quot;cmd /c echo HELLO&quot;"/>
+    <elementParameter field="RADIO" name="USE_ARRAY_COMMAND" value="false"/>
+    <elementParameter field="TABLE" name="ARRAY_COMMAND" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="OUTPUT" value="OUTPUT_TO_CONSOLE"/>
+    <elementParameter field="CLOSED_LIST" name="ERROROUTPUT" value="OUTPUT_TO_CONSOLE"/>
+    <elementParameter field="TABLE" name="PARAMS"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tSystem_2"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="((String)globalMap.get(&quot;tSystem_1_OUTPUT&quot;))"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_4"/>
+  </node>
+  <node componentName="tLoop" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_1"/>
+    <elementParameter field="RADIO" name="FORLOOP" value="true"/>
+    <elementParameter field="RADIO" name="WHILELOOP" value="false"/>
+    <elementParameter field="TEXT" name="FROM" value="1"/>
+    <elementParameter field="TEXT" name="TO" value="System.out.println(context.v_startDate);"/>
+    <elementParameter field="TEXT" name="STEP" value="1"/>
+    <elementParameter field="CHECK" name="INCREASE" value="true"/>
+    <elementParameter field="TEXT" name="DECLARATION" show="false" value="int i=0"/>
+    <elementParameter field="TEXT" name="CONDITION" show="false" value="i&lt;10"/>
+    <elementParameter field="TEXT" name="ITERATION" show="false" value="i++"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="tSystem.out.println(((Integer)globalMap.get(&quot;tLoop_1_CURRENT_VALUE&quot;)));"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_3"/>
+  </node>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSystem_1" offsetLabelX="0" offsetLabelY="0" source="tSystem_1" target="tJava_2">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tBigQueryInput_1">
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_1" target="tSleep_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk4"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_1" target="tLoop_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tBigQuerySQLRow_1" offsetLabelX="0" offsetLabelY="0" source="tBigQuerySQLRow_1" target="tJavaRow_1">
@@ -239,14 +293,28 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tFileOutputJSON_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tBigQuerySQLRow_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk3"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tSleep_1" offsetLabelX="0" offsetLabelY="0" source="tSleep_1" target="tSystem_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk2"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tSystem_2" offsetLabelX="0" offsetLabelY="0" source="tSystem_2" target="tJava_4">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk5"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tLoop_1" offsetLabelX="0" offsetLabelY="0" source="tLoop_1" target="tJava_3">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate1"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_1"/>
@@ -273,13 +341,33 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d3def724-d2c8-48d9-ad90-7f229e869ff0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>v5haoe1uT5DrPa24AfBTNxE7wZFlsN0ML8T7IheTQ0T/inPe2IafHPm8owgHE4lg7VCJKRCNUwi5&#13;
-ItLo3hVMaw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e7990d8a-e3db-4718-894f-befe6ddd4d07"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>20JzeZsVzLXPr7Ue1cCvJko2l5zBKLbK45NyZ1eQudjV70fG158GIf/gAUOEUZj23mIBYDual7uC&#13;
-ENd+ck79Eg==</DigestValue></Reference></SignedInfo><SignatureValue>F2sNdOduEowABLJAj5brBqTR075VJEnbAlY7b6oPkYi6MuhRBlci9Nu6tiHQoRvu3Tcn5jGHQqXd&#13;
-gSwnPOYgyT6jtJIgQcPuD+kJNluZIOFU131/EVYpKksstPYPp4hwTt0DfA/u4tozAnIL919bmaHX&#13;
-sFTjpn6ZlkngIpZUzWl4i08BXq3s+zKtz/L0loWVToQvi1eEIziANSDvNpqNiWt1yJoSSMYT+sak&#13;
-gGuB/gSOBBcB2aEmLCDQj5S7MyA2xi590YvrSSihRUitvw80Alo9Gl0hG1Akn0yHCw02f+CNdQAI&#13;
-3iaBj/U+IWTcUcmG9rJU63+IRdRLKXqpyWnikg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSleep_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tSystem_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLoop_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ecf93459-4404-499f-9333-d39e8337bdca"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7tvCgf+61g6A0FXPOT0uEHqs0ed4Tp//2ZcqhSpVfnksu5lP5dSPbc+C7V9FQ5zAl5vhI2W4ODNk&#13;
+ssq8alzubQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a4dbc04c-adb3-4ef5-994f-1e7f27f24b30"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fbyI5DYQcc5N/qtjtMO7GEp/Jsx7w4NKT5V5EQiynuNmtYygmjSKCyDAwIBQe+AUZmqOYPnyojXS&#13;
+gx+kLGQB0Q==</DigestValue></Reference></SignedInfo><SignatureValue>gYnmOL7ptsJSrwd3KobZh/EnzeARYW+Of5jQn1zrv73/8Tp4ynT/Mx3ONvOnWvaKcd+BsRXVnp2l&#13;
+aM0nOePbnrv2bVSeV94AQJfWxJ/40IgddPgaZMcvgvd5EnT6fK5kL00fxVn73M4C4zcZFBPL+dUk&#13;
+vIP2FTY4Et1vspKzrborjITJM0g18pNhx0a+ccjpDfEAsqnJZc20cebz7B4noZ6O4Tz/aGcoCrpQ&#13;
+YG2Fcjcxuz47Tw37aHMB23SYIvg7ZyEJjxhQVaGJMrjJ+ZKXfYnINdwB9lH5XbKzxXf0XBjXT+0M&#13;
+dtCbIw8sTJ/7eHaRKqPt9/22HRZ3SKj1J5/vGA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -301,4 +389,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e7990d8a-e3db-4718-894f-befe6ddd4d07" Target="#_d3def724-d2c8-48d9-ad90-7f229e869ff0"><Timestamp>2023-08-24 10:02:20</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a4dbc04c-adb3-4ef5-994f-1e7f27f24b30" Target="#_ecf93459-4404-499f-9333-d39e8337bdca"><Timestamp>2023-08-24 14:07:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
