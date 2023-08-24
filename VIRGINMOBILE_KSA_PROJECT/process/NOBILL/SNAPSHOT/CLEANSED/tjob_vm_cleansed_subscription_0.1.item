@@ -139,7 +139,7 @@
     <contextParameter comment="" internalId="_O8d9xEJfEe6gE4DAm7iRDw" name="nobill_database" prompt="nobill_database?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="ksa_db_dev"/>
     <contextParameter comment="" internalId="_O8d9xUJfEe6gE4DAm7iRDw" name="nobill_password" prompt="nobill_password?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="Dbadmin@123!@#"/>
     <contextParameter comment="" internalId="_O8d9xkJfEe6gE4DAm7iRDw" name="cleansed_table" prompt="cleansed_table?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="nobill_tx_subscription"/>
-    <contextParameter comment="" internalId="_9M2aAEJhEe6gE4DAm7iRDw" name="filesequenceid" prompt="filesequenceid?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_9M2aAEJhEe6gE4DAm7iRDw" name="filesequenceid" prompt="filesequenceid?" promptNeeded="false" repositoryContextId="built-in" type="id_Long" value=""/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
@@ -381,7 +381,6 @@
   </node>
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileList_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="context.transient_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
@@ -404,7 +403,6 @@
   </node>
   <node componentName="tFileInputRaw" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputRaw_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="RADIO" name="AS_STRING" value="true"/>
     <elementParameter field="RADIO" name="AS_BYTEARRAY" value="false"/>
@@ -420,7 +418,6 @@
   </node>
   <node componentName="tFileOutputRaw" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileOutputRaw_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" value="context.cleansed_landing_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;))"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
@@ -710,7 +707,7 @@
         <mapperTableEntries expression="row4.loginblockeduntil== null || String.valueOf(row4.loginblockeduntil).isEmpty()? &quot;&quot; :  TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;,TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;,row4.loginblockeduntil)) " name="loginblockeduntil" nullable="true" type="id_String"/>
         <mapperTableEntries expression="context.snapshotdate" name="snapshotdate" nullable="true" type="id_String"/>
         <mapperTableEntries expression="context.batch_process_date " name="batch_process_date" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="Long.parseLong(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).substring(((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;, ((String)globalMap.get(&quot;tFileList_2_CURRENT_FILE&quot;)).indexOf(&quot;_&quot;) + 1))); " name="filesequenceid" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="context.filesequenceid" name="filesequenceid" nullable="true" type="id_Long"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
         <mapperTableEntries name="num" type="id_String"/>
@@ -1071,7 +1068,6 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="512">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_name = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;System.out.println(&quot;context.file_name:- &quot;+context.file_name);&#10;&#10;context.batch_process_date = context.file_name.substring(35,49);&#10;&#10;System.out.println(&quot;context.batch_process_date:- &quot;+context.batch_process_date);&#10;&#10;context.target_object_name = context.cleansed_table ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;context.snapshotdate = TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, TalendDate.parseDate(&quot;yyyyMMddHHmmss&quot;, context.file_name.substring(17,30)));&#10;System.out.println(&quot;snapshotdate : &quot;+context.snapshotdate);&#10;&#10;&#10;context.filesequenceid =context.file_name.substring(32,34);&#10;&#10;System.out.println(&quot;filesequenceid : &quot;+context.filesequenceid);&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -1117,22 +1113,19 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tRunJob_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk13"/>
   </connection>
-  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tFileList_2">
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tFileList_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk10"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileInputRaw_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" show="false" value="2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate3"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_1" offsetLabelX="18" offsetLabelY="-17" source="tFileList_1" target="tJava_4">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk15"/>
   </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tFileInputRaw_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputRaw_1" target="tFileOutputRaw_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tFileInputDelimited_2">
@@ -1478,6 +1471,9 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_1" target="tRunJob_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk16"/>
   </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_4" offsetLabelX="0" offsetLabelY="0" source="tJava_4" target="tFileList_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk14"/>
+  </connection>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_2" offsetLabelX="0" offsetLabelY="0" source="tPrejob_2" target="tFileTouch_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk11"/>
   </connection>
@@ -1573,13 +1569,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e4d28867-49c5-4562-87d5-316003a105a0"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6Adaxt8fKKgr3n0+CRYrrGxnRomLVtCQbljmWOMMlGQBmLlU1I170RF8O4Yjhv15SH4T34YhpuTl&#13;
-MzHHEYcp/Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_013697a5-d7b6-4771-8298-c59e793142c2"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>pkv8jE+WIhdZQWKNAfZ8kfHf8KfhfXpZ6K98WbuTDaMy6HtGKxQsdMJcRgo17CzYT5l88hZcO9cS&#13;
-VkheZR4a9g==</DigestValue></Reference></SignedInfo><SignatureValue>ZxhoFfoZs5dXVesRlZwY5ZMD8qrtiaB55qRaeZltkhkR8y7l5oo4GoEs3UQI9rTrx3QBG6MYH8ci&#13;
-+DWSspGCkk6qVydAPvZGTHLHEPWKknRsW9ixGNIIya0PuMDyO/9MmBuSxI1m1SBuQsFKgdNqXqFc&#13;
-0oIXFjSQaNuMNdFzTp23diyoap2bxnGXsPcB2JSDN62NMMWZiOWpVXWW8XkCjmM3aoBwjuegJZl7&#13;
-ltBTL+AdXzE5tUZfLE5EnbB7otp7DEw5CdqktVTRNwY/vfcEoLwril4j9lm+J5F8FSMvlZszdAr7&#13;
-LyHHTWhgArdInDXuGElOIUPWaZRBx/M71z/I+w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_23ad9374-34b0-481b-9176-6d31874609f3"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>F4jibQ58hvd15lyspl3BP6cD3JW+BfpNuj2/nVmPj/4GcabwqA4bFvP3tY0wbk5CgCurbqWqryx9&#13;
+BKpY4gUQnA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_21fcc945-58f1-4e68-b1db-e8f1ab6859b3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>JIjxBmWr9MVcReml2IpJXU780nUqSrtNb0mxnCT5h3qLT+vWPeLR0g8rLlDTlSM7/K+C9b8ui7Fg&#13;
+XFAIH5hEGg==</DigestValue></Reference></SignedInfo><SignatureValue>hDEKBd9sZmtkNgbzFMysszPRpVv5sM6j1NYU7QiOtsiXQKY9DceSeS50sscVgRze4eL4qwn14F1h&#13;
+8Hk/zdQIQ+m+93QjSsZoGmMlkHNJ6PuP/d1BdboxwzWFMBAc6gDSXDLpTtyc6cs9jY2HD+2IQDi4&#13;
+3XObk4qyHroUOxrsxW8eM24vY7RIpX239ZwCcbL0nxp/9hrFmDC706dKrcwaSXIWs12j8DoTF9PZ&#13;
+n0y+RND4ctuCsnZGh6MGZ5rdKEXrZHsKsq0hw/b+8ox9PIQbrsdWLSDKGHY3GIrEUy7pQZ0BAais&#13;
+qa7epcOCrvnRc8DRuuCPMdLwBgFx/QCQyB7L4A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1601,4 +1597,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_013697a5-d7b6-4771-8298-c59e793142c2" Target="#_e4d28867-49c5-4562-87d5-316003a105a0"><Timestamp>2023-08-24 13:56:50</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_21fcc945-58f1-4e68-b1db-e8f1ab6859b3" Target="#_23ad9374-34b0-481b-9176-6d31874609f3"><Timestamp>2023-08-24 14:06:41</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
