@@ -132,11 +132,18 @@
     <contextParameter comment="" internalId="__mgAUBsBEe65IOU4IOObkA" name="cleansed_archival_zone" prompt="cleansed_archival_zone?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value="/opt/s3_uploads/hydrated/cleansed_archival_zone"/>
     <contextParameter comment="" internalId="__mgAURsBEe65IOU4IOObkA" name="batch_process_date" prompt="batch_process_date?" promptNeeded="false" repositoryContextId="_saPX8AkHEe6_U5AZC_1q2A" type="id_String" value=""/>
     <contextParameter comment="" internalId="_fCtGgDXzEe6R25bvXKEcVw" name="snapshotdate" prompt="snapshotdate?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_O8d9wEJfEe6gE4DAm7iRDw" name="nobill_username" prompt="nobill_username?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="dbadmin"/>
+    <contextParameter comment="" internalId="_O8d9wUJfEe6gE4DAm7iRDw" name="nobill_schema" prompt="nobill_schema?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="vm_cleansed"/>
+    <contextParameter comment="" internalId="_O8d9wkJfEe6gE4DAm7iRDw" name="nobill_host" prompt="nobill_host?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="10.51.15.14"/>
+    <contextParameter comment="" internalId="_O8d9w0JfEe6gE4DAm7iRDw" name="nobill_port" prompt="nobill_port?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="5433"/>
+    <contextParameter comment="" internalId="_O8d9xEJfEe6gE4DAm7iRDw" name="nobill_database" prompt="nobill_database?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="ksa_db_dev"/>
+    <contextParameter comment="" internalId="_O8d9xUJfEe6gE4DAm7iRDw" name="nobill_password" prompt="nobill_password?" promptNeeded="false" repositoryContextId="_caVp0DqYEe6FcJjXQr-GFA" type="id_String" value="Dbadmin@123!@#"/>
+    <contextParameter comment="" internalId="_O8d9xkJfEe6gE4DAm7iRDw" name="cleansed_table" prompt="cleansed_table?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="nobill_tx_subscription"/>
   </context>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="0"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="342"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="256"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" show="false" value=""/>
@@ -683,18 +690,16 @@
   </node>
   <node componentName="tVerticaOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="640">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_NUsucDHnEe6tvqJWfwIuTA"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
     <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;10.51.15.14&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;5433&quot;"/>
-    <elementParameter field="TEXT" name="DBNAME" value="&quot;ksa_db_dev&quot;"/>
-    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;vm_cleansed&quot;"/>
-    <elementParameter field="TEXT" name="USER" value="&quot;dbadmin&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:7oDfE2I4iC5vY6HIKixnly0uI/sd7PSo4ZPUJycYoIw0EQLgXqcsU0j8t2s="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nobill_tx_subscription&quot;"/>
+    <elementParameter field="TEXT" name="HOST" value="context.nobill_host"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nobill_port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nobill_database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nobill_schema"/>
+    <elementParameter field="TEXT" name="USER" value="context.nobill_username"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:dwV9mkPMUi/I+Zf6lEDWi6jNaa8luHmuu0BzhL2jtjcEYvP9p1MTEKQ5BaJZnx/ZabhJ"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="context.cleansed_table"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CHECK" name="USE_CASCADE" show="false" value="true"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
@@ -827,7 +832,7 @@
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="CHECK" name="CREATE_PROJECTION" show="false" value="true"/>
-    <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
+    <elementParameter field="TEXT" name="LABEL" value="nobill_tx_subscription"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBOutput_1">
       <column comment="1" key="false" length="19" name="num" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
@@ -928,7 +933,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="640">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_3"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;&#10;context.source_count = context.source_count+((Integer)globalMap.get(&quot;tFileInputDelimited_2_NB_LINE&quot;));&#10;&#10;//System.out.println(&quot;context.source_count :- &quot;+context.source_count);&#10;&#10;&#10;context.target_count = context.target_count+((Integer)globalMap.get(&quot;tFileOutputDelimited_1_NB_LINE&quot;));&#10;&#10;//System.out.println(&quot;context.target_count :- &quot;+context.target_count);&#10;&#10;&#10;&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;&#10;context.source_count = context.source_count+((Integer)globalMap.get(&quot;tFileInputDelimited_2_NB_LINE&quot;));&#10;&#10;//System.out.println(&quot;context.source_count :- &quot;+context.source_count);&#10;&#10;&#10;context.target_count = context.target_count+((Integer)globalMap.get(&quot;tDBOutput_1_NB_LINE&quot;));&#10;&#10;//System.out.println(&quot;context.target_count :- &quot;+context.target_count);&#10;&#10;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_3"/>
@@ -948,7 +953,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="512">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_4"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_name = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;System.out.println(&quot;context.file_name:- &quot;+context.file_name);&#10;&#10;context.batch_process_date = context.file_name.substring(20,context.file_name.indexOf(&quot;.csv&quot;));&#10;&#10;System.out.println(&quot;context.batch_process_date:- &quot;+context.batch_process_date);&#10;&#10;context.target_object_name = context.object_name+&quot;_&quot;+context.batch_process_date+&quot;.csv&quot; ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;context.snapshotdate = TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.sourceFileName.substring(17,31)));&#10;&#10;&#10;&#10;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.file_name = ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;));&#10;System.out.println(&quot;context.file_name:- &quot;+context.file_name);&#10;&#10;context.batch_process_date = context.file_name.substring(35,context.file_name.indexOf(&quot;.csv&quot;));&#10;&#10;System.out.println(&quot;context.batch_process_date:- &quot;+context.batch_process_date);&#10;&#10;context.target_object_name = context.cleansed_table ;&#10;System.out.println(&quot;context.target_object_name : &quot;+ context.target_object_name);&#10;&#10;context.snapshotdate = TalendDate.formatDate(&quot;yyyy-MM-dd&quot;, TalendDate.parseDate(&quot;yyyyMMdd&quot;, context.file_name.substring(17,30)));&#10;&#10;&#10;context.filesequenceid =context.file_name.substring(32,34);&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_4"/>
@@ -1533,11 +1538,11 @@
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
-  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tParallelize_1" target="tFileInputRaw_4">
+  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tParallelize_1" target="tFileInputRaw_3">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="Parallelize"/>
   </connection>
-  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tParallelize_1" target="tFileInputRaw_3">
+  <connection connectorName="PARALLELIZE" label="Parallelize" lineStyle="13" metaname="tParallelize_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tParallelize_1" target="tFileInputRaw_4">
     <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="Parallelize"/>
   </connection>
@@ -1676,7 +1681,7 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
   <subjob>
-    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPrejob_2"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
@@ -1696,13 +1701,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_61128396-c0f5-4a06-ab96-f35171e94bdb"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PT4HRKG1AhzNcE9EgLq6j09zCnp0mCbZcVem6h3jjHtRewTCA0adPilO4vXzy5WEnClkfcXiDysq&#13;
-IX+q3gdRcg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fa51f63f-01f7-4e36-9ea1-dae0a09874e3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>iFVpVyWDVVM7bApO0aoLcNTE+zD55qSQfJYcljTCQdTEFf6H3nGsZoZwitb4KXV4OqoYRA25aIvg&#13;
-5WdUHySJ1A==</DigestValue></Reference></SignedInfo><SignatureValue>n4s/mdJrP92aDjDyLqULpNYhq0mATB5j+3yy76Bs2VlU0ALXbhuKKOi2kyF8EVQRtrxzoerdWMVA&#13;
-Xr5Nft5wRvJG+UpRURgp57FzlwC7lVP1inLQ+Mh6eAD6PgkS4safQcQG1rsbQedOQRvsrvXDYXYd&#13;
-per1thARZlhUeqXBjDs272m1iwhJe8mLsw9nD0XU8bjBuAOLw5Nk0WhjrlX86LTlY1HogNjC6Eb0&#13;
-uGMbI8DA5E+y2kQnwDNm1X34ogdc/aCThIzaprgczognHouNi+SZ1Y+zw+NGFCTI2+njBFqYk4Vf&#13;
-3fDn4Eogh+cpe0iibLraH6F3Txy82BdGzdsg9g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b83c4a1c-82fd-4780-a5ae-51afbdd757a3"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ta3YBFkXslEcudCyDTbkwN8H4CgnpyDDN3cgZIpE7PbHHJzK7XVq3MeZMazEfCCptXh1GsYUgPgW&#13;
+bv7Bw1j3ug==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5ac1f0ec-2911-4e40-847d-b6203e480898"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>MWwiBYdh6lDZQf61UueZZQEHUFCZkG5QQwOUehfDoW7qNKVtHyFBDyKT3a2nLkUF6MS3NthN2oUp&#13;
+gfI89NdA/w==</DigestValue></Reference></SignedInfo><SignatureValue>NHsimlGnY8TWFyZmOWdJrc2TcxvfETlQnw74Z0ZazoNw0UO60LX7wS2DrZxAUrxg+nXUT50AJw19&#13;
+G1Fim71mTCtmiVbJOQDXwuiaOoLo8fCCn0kQH01F9YxLM/kB36ZhdFBn6MX+xWym1xWeSdeapqYI&#13;
+lgrqup0WcCpMCW1raaB/ohoMJzfw2KrZXnCO/ObirdIirHmnlczyx4exeJfLVjFn7nhcVxNOfgJg&#13;
+EfbexmbANQ9OkneKjPYLM/za5jjZT61t2k/x//9q8WJruoBTeSnI9BtfNUSyCOIzq47T7WYTXtvg&#13;
+ClzGXrVvEknobxlcr8f7OvhkoctR5t0PSWb7dQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1724,4 +1729,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fa51f63f-01f7-4e36-9ea1-dae0a09874e3" Target="#_61128396-c0f5-4a06-ab96-f35171e94bdb"><Timestamp>2023-08-22 05:28:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5ac1f0ec-2911-4e40-847d-b6203e480898" Target="#_b83c4a1c-82fd-4780-a5ae-51afbdd757a3"><Timestamp>2023-08-24 09:18:48</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
