@@ -907,7 +907,7 @@
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;DELETE FROM vm_cleansed.nobill_tx_accounthistory&#13;&#10;WHERE (uuid,accountnum,tstamp) IN (&#13;&#10;    SELECT uuid,accountnum,tstamp&#13;&#10;    FROM vm_cleansed.nobill_tx_accounthistory_temp&#13;&#10;    GROUP BY uuid,accountnum,tstamp&#13;&#10;    HAVING COUNT(*) &gt; 1&#13;&#10;);&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;DELETE FROM vm_cleansed.nobill_tx_accounthistory&#13;&#10;WHERE (uuid,accountnum,tstamp) IN (&#13;&#10;    SELECT uuid,accountnum,tstamp&#13;&#10;    FROM vm_cleansed.nobill_tx_accounthistory_dup&#13;&#10;    GROUP BY uuid,accountnum,tstamp&#13;&#10;    HAVING COUNT(*) &gt; 1&#13;&#10;);&#13;&#10;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="USE_NB_LINE" value="NONE"/>
     <elementParameter field="LABEL" name="USE_NB_LINE_NOTE" value="* Only used if the query is an insert, an update or a delete."/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
@@ -926,7 +926,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="2496" posY="640">
+  <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="2304" posY="640">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_4"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
@@ -941,7 +941,7 @@
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;insert into  vm_cleansed.nobill_tx_accounthistory&#13;&#10;select distinct  * from vm_cleansed.nobill_tx_accounthistory_temp;&#13;&#10;&quot;&#13;&#10;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;insert into  vm_cleansed.nobill_tx_accounthistory&#13;&#10;select distinct  * from vm_cleansed.nobill_tx_accounthistory_dup;&#13;&#10;&quot;&#13;&#10;"/>
     <elementParameter field="CLOSED_LIST" name="USE_NB_LINE" value="NONE"/>
     <elementParameter field="LABEL" name="USE_NB_LINE_NOTE" value="* Only used if the query is an insert, an update or a delete."/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
@@ -955,6 +955,40 @@
     <elementParameter field="TEXT" name="LABEL" value="Insert Distinct records in target"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBRow_4"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tVerticaRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="2560" posY="640">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_5"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="HOST" value="context.nobill_host"/>
+    <elementParameter field="TEXT" name="PORT" value="context.nobill_port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.nobill_database"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="context.nobill_schema"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="VERTICA"/>
+    <elementParameter field="TEXT" name="USER" value="context.nobill_username"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:NM4X1x+USckk9Us7OIo+B4gPsTBIWM/HQjGiRkkYtup3RQ9l0LKy/Z9Wy/hMs01DZr3y"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#13;&#10;DROP TABLE vm_cleansed.nobill_tx_accounthistory_dup casade;&#13;&#10;&quot;&#13;&#10;"/>
+    <elementParameter field="CLOSED_LIST" name="USE_NB_LINE" value="NONE"/>
+    <elementParameter field="LABEL" name="USE_NB_LINE_NOTE" value="* Only used if the query is an insert, an update or a delete."/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" show="false" value=""/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="TEXT" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="100"/>
+    <elementParameter field="TEXT" name="LABEL" value="drop dup table"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tDBRow_5"/>
     <metadata connector="REJECT" name="REJECT">
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -1084,6 +1118,9 @@
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBRow_3" offsetLabelX="0" offsetLabelY="0" source="tDBRow_3" target="tDBRow_4">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk6"/>
   </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tDBRow_4" offsetLabelX="0" offsetLabelY="0" source="tDBRow_4" target="tDBRow_5">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk10"/>
+  </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
@@ -1201,13 +1238,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c6a785ff-266a-4d61-a88d-22f6cfa9f300"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>C8JVHTGT5S4srK7KCgNHPQyVvXVPakD5X/CVq73mYD+ev0vth3isZCF9MKBbq4qOAbrGgrhQ0Tek&#13;
-UgYkVxfMGA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_32059941-fba6-46c1-b1e4-9dc8ed381054"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Y9NJwJipvMWpYh6AKp5s3gZ26ZscUUu9FNaKXkpOtxhJmXeHOsYlxfBL5o7F+gRTmvfFM6HUBUv2&#13;
-Z7+/78SS+w==</DigestValue></Reference></SignedInfo><SignatureValue>WRsRTTxEzw2tvpTmaan7dBn8TTpIVkKgLuJ01oNdYqEJmvh+BNwlwgzwtbY7+1Gti43As4NjEB1f&#13;
-xexf6P9JHaEp1ihQp8UgQNhfD/9+2ob1Gq+HpT60BaRnYwCed5QSbpuS1w22jo14/spIVmhpJ03H&#13;
-GsjD8yL+0SPCOql2nfyMUxpltYD6a78y588/rc2jIw5AtbIB0mCzby+SRhhuRPsQaZg2u8P46c20&#13;
-HKtbc3JPuWRe0yqU7HdQNnwfuvgCOW5Tg1k+XmcASkpVuxfz6+NEepc9BF8Db2S1yk+3/RlqcvOM&#13;
-dnqY/ewvh6R/M78jsKPZu73YmuNCdvg0AU5seg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBRow_5"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e596a8dc-3ae6-4b99-a08c-facb3d7e74e1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ESLIoSYh5PxjGfmuMjBhE023LIaLxfg+hc+dEDQxqCY5+PEVAvYKu2Q9x4IkFI1nIufX5j8DNubg&#13;
+EpFhZw0ylA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ad6f132a-b16b-459b-8034-a24b51f748f7"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ot2fe0N9rnjEQp7kuIwtbSizlArBJHVXkgOQ3mqXtsjc6Z/njS3hWVcn99cmDszqSkH+isNr7oTZ&#13;
+Rz9e/7+QMQ==</DigestValue></Reference></SignedInfo><SignatureValue>dP7pPhmip1LqmC5if4lrMHUvjIoBnHg0fToO9nXtJ3WM+9Vt0qg2+GAd+uykPAtEhooe6NJPHya7&#13;
+jRGOAiPx4GPTn9cgrhymW2fQijUcyETB6dk+D03paCto2ruUPcN3PK7u95dzQJQg/piryw4ih7cX&#13;
+9k83c0i+O5q8hXPK+/twy4l7stRtUvvIy4/8Tuw2zhU3lvl03jA0iyGxlWnvY6mzfvdekWC/v5AK&#13;
+8n0wDtkhBpN7d+FZHSLCgwOHpLxwcsbCSblXHBFYq1cYZlEHcWE8rUFq2afP/Wec3d2E6K8KH4SM&#13;
+VVQoqyHJA3Tb4N5AHxvXGs71bU36vqXV5c0LWw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1229,4 +1271,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_32059941-fba6-46c1-b1e4-9dc8ed381054" Target="#_c6a785ff-266a-4d61-a88d-22f6cfa9f300"><Timestamp>2023-08-28 09:47:41</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ad6f132a-b16b-459b-8034-a24b51f748f7" Target="#_e596a8dc-3ae6-4b99-a08c-facb3d7e74e1"><Timestamp>2023-08-28 09:49:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
