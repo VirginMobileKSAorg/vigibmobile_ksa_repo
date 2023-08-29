@@ -685,6 +685,16 @@
     </metadata>
     <metadata connector="FLOW" name="out2">
       <column comment="1" key="false" length="19" name="num" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="2" key="false" length="19" name="accountnum" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="4" key="false" length="19" name="imsi" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="5" key="false" length="5000" name="subscriptiontype" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="6" key="false" length="19" name="status" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="13" key="false" length="1" name="sendpostcallbalance" nullable="false" originalLength="1" pattern="" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
@@ -715,6 +725,10 @@
       </outputTables>
       <outputTables name="out2" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.num == null || row4.num .equals(&quot;&quot;) ? null : Long.parseLong(row4.num ) " name="num" type="id_Long"/>
+        <mapperTableEntries expression="row4.accountnum == null || row4.accountnum.equals(&quot;&quot;) ? null : Long.parseLong(row4.accountnum) " name="accountnum" type="id_Long"/>
+        <mapperTableEntries expression="row4.imsi  == null || row4.imsi .equals(&quot;&quot;) ? null : Long.parseLong(row4.imsi) " name="imsi" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row4.subscriptiontype" name="subscriptiontype" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row4.status" name="status" nullable="true" type="id_Integer"/>
         <mapperTableEntries expression="row4.sendpostcallbalance " name="sendpostcallbalance" type="id_Boolean"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row4" sizeState="INTERMEDIATE">
@@ -755,6 +769,14 @@
     <elementParameter field="TABLE" name="LENGTHS" show="false">
       <elementValue elementRef="SCHEMA_COLUMN" value="num"/>
       <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="accountnum"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="imsi"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="subscriptiontype"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
+      <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="sendpostcallbalance"/>
       <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
@@ -763,6 +785,16 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_1">
       <column comment="1" key="false" length="19" name="num" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="2" key="false" length="19" name="accountnum" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="4" key="false" length="19" name="imsi" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="5" key="false" length="5000" name="subscriptiontype" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="6" key="false" length="19" name="status" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="13" key="false" length="1" name="sendpostcallbalance" nullable="false" originalLength="1" pattern="" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
     </metadata>
   </node>
@@ -806,6 +838,26 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="accountnum"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="imsi"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="subscriptiontype"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="sendpostcallbalance"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
@@ -819,10 +871,30 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBOutput_1">
       <column comment="1" key="false" length="19" name="num" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="2" key="false" length="19" name="accountnum" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="4" key="false" length="19" name="imsi" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="5" key="false" length="5000" name="subscriptiontype" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="6" key="false" length="19" name="status" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="13" key="false" length="1" name="sendpostcallbalance" nullable="false" originalLength="1" pattern="" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column comment="1" key="false" length="19" name="num" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="2" key="false" length="19" name="accountnum" nullable="false" pattern="" precision="0" type="id_Long" usefulColumn="true"/>
+      <column comment="4" key="false" length="19" name="imsi" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="5" key="false" length="5000" name="subscriptiontype" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="6" key="false" length="19" name="status" nullable="true" pattern="" precision="0" sourceType="INTEGER" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="13" key="false" length="1" name="sendpostcallbalance" nullable="false" originalLength="1" pattern="" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -967,6 +1039,18 @@
       <elementValue elementRef="TRACE_COLUMN" value="sendpostcallbalance"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="subscriptiontype"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="accountnum"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="imsi"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="status"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out2"/>
@@ -1085,13 +1169,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_32f80658-d532-4b23-9cd3-4ad8a2cd7812"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ZTFSpKuagLhQ1U3DHaujz63nbdiM7kC9OtY5nmcqg0xOf59wa2498TicwIereDLTJQKKqulXFnO1&#13;
-UeNODhsvxA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b4ff4164-3f7b-4d4a-a975-f863c77728a3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>iELG5U/PzNsg+RimxyXMAeW0xLMMyLXXy1HItWESb4WE7miVaENoCIraUPY6hGMoUCckRoKGTex9&#13;
-rDRh/gX/og==</DigestValue></Reference></SignedInfo><SignatureValue>gbRybx32f1VHWwjejPXN7j8fIF+pY3hr5So+BHyEZ80GIAgNw/ZgEssd6wqObmVI07XgWbzczIKg&#13;
-7cwwIdM152e41QnRmSTdnqjH6wEFnYKkMlmr8lG/Yb+F1jP0uLGcsDxk/kmjgckyLdcrVny+ioD4&#13;
-xjxgni+jIB7PoohTIYHH7jwTMC+//BI8MhRUx/R7F/xfWE/64Wv5UtIm58jADHWnNWF5zh+7tiBp&#13;
-Isq8iDgCrVPNnW/oesWR1bfXtgnbPVv2wa3mrCDRzPs94zsbdW8XUtqXL5PWPXNmVrF9+3JKoRpG&#13;
-SkdZwThtpP7+Bwhu4UoiGRhuW5ZwuveW6oUOQw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_464b6db2-5375-4e70-aaa4-1bcf3fc7f6d1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rI6tJJ6aUIlmPgYBBSIG9WY3sWDydBkWYMNyXMOeoivy9sSW/Sd03CFEMIJpLqDayjPY+719Vm1Q&#13;
+R/tom36B7Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c4ef687d-0420-41f9-9620-572a2545f633"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>tXsEaaFiH7yPTLsh0LTTjhNFKAfyfU5LPo9gmh/lrkymjRJ2Y6IvalrqXKwsB0FRZMRM9f+JRnGJ&#13;
+gQo61vrM5g==</DigestValue></Reference></SignedInfo><SignatureValue>bCZCZ741IY8F4U45dGz1mKM4sjy2aJyL0NUW1gsMgYwAwIhGNOGPZjt0OmJ5jflRhyTzm2mSfjJc&#13;
+qBlIpA8lcYP96viKMIe6puGj9wTa87wF2dkwhzKCmEp/Cd2NlcfpvWsxl/K+D3ueoGPuNXWF487y&#13;
+r1V2Kv3im16LYdsM1GSt/9jrik+uiJv4XES8D4o8FCiWUNI5rZOj4Z8b9EhTJbFv+f7EhRwUt0n2&#13;
+8/ouUksPCMivyvVRDGSWFVwTXHkrKerVoeYhDy1/tFcJjt8jIMTGwTeHu+Ag7duUYd7itfk4LygP&#13;
+5H/SbkoYrNdl4x0FC4p/zAzhzmfPmS0nJ8JVfg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1113,4 +1197,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b4ff4164-3f7b-4d4a-a975-f863c77728a3" Target="#_32f80658-d532-4b23-9cd3-4ad8a2cd7812"><Timestamp>2023-08-29 14:51:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c4ef687d-0420-41f9-9620-572a2545f633" Target="#_464b6db2-5375-4e70-aaa4-1bcf3fc7f6d1"><Timestamp>2023-08-29 15:00:38</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
