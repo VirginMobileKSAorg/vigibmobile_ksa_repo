@@ -1012,6 +1012,7 @@
   </node>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJava_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.end_time = TalendDate.getDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;context.duration_millisecond = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;SSS&quot;); &#10;context.duration_second = TalendDate.diffDate(TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.end_time), TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, context.start_time), &quot;ss&quot;); &#10;&#10;&#10;System.out.println(&quot;context.source_count : &quot;+context.source_count);&#10;System.out.println(&quot;context.target_count : &quot;+context.target_count);&#10;&#10;context.insert_count = new Long(0);&#10;&#10;context.update_count = new Long(0);&#10;//context.reject_count = new Long(((Integer)globalMap.get(&quot;tFileOutputDelimited_1_NB_LINE&quot;)));&#10;&#10;if(context.source_count.equals(context.target_count)) {&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_success ;&#10;&#9;context.error_msg = context.error_msg_success;&#10;}&#10;else {&#10;&#9;context.task_status = context.task_status_failed;&#10;&#9;context.error_code = context.error_code_validation ;&#10;&#9;context.error_msg = context.error_msg_validation;&#10;}&#10;if(context.source_count.equals(new Long(0))){&#10;&#9;context.task_status = context.task_status_success;&#10;&#9;context.error_code = context.error_code_extractzero ;&#10;&#9;context.error_msg = context.error_msg_extractzero;&#10;}&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="Set dynamic value for main job"/>
@@ -1020,6 +1021,7 @@
   </node>
   <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
     <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
@@ -1055,6 +1057,7 @@
   </node>
   <node componentName="tFileDelete" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="832">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileDelete_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="FILE" name="FILENAME" show="false" value="context.cleansed_temp_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;+context.object_name+&quot;_&quot;+context.yearmonthdate+&quot;.csv&quot;"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="context.cleansed_landing_path+&quot;/&quot;+context.source_system+&quot;/&quot;+context.object_name+&quot;/&quot;"/>
     <elementParameter field="TEXT" name="PATH" show="false" value="&quot;C:/Talend Data Fabric V2/Talend-Studio-20211109_1610-V8.0.1/Talend-Studio-20211109_1610-V8.0.1/workspace/delete_folder or delete_file&quot;"/>
@@ -1134,6 +1137,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="iterate4"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileList_2" offsetLabelX="0" offsetLabelY="0" source="tFileList_2" target="tJava_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk11"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tFileInputDelimited_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_2" target="tMap_1">
@@ -1466,9 +1470,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk5"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tFileDelete_1">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk18"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileDelete_1" offsetLabelX="0" offsetLabelY="0" source="tFileDelete_1" target="tRunJob_2">
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk16"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_4" offsetLabelX="0" offsetLabelY="0" source="tJava_4" target="tFileList_2">
@@ -1569,13 +1575,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_54e24c93-f0b6-4c98-a64e-b5fb4a27aa8a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Q4YEBvy23Zs8M76v2qkXzklMkd2HTK+3tw3TEVQSjHAknbWM//ArIbEDSO7rD2jLopXNI8Uz1ex5&#13;
-RYdEPl0Oeg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dcc99bb2-82e0-4d63-8de6-abfec754539c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fseloZKOgkifJYiMco9joDBJYpB2wE0G8+AL3B4ahV5oTG/K7zq8bOy3JTiKSSzjswBQjd8ZPoje&#13;
-hQIaiEU+ZQ==</DigestValue></Reference></SignedInfo><SignatureValue>Ux52NOlYhuHBqJ9+q3N2qQ+BhdGTmRWuJ9s+N8NrpVI8b4rp6MQFyjRh6Ag04a9oLx/+CDcVldju&#13;
-UL37ouyFjkVMPyDmQ9pUAwrjUY0p0I8fsRLeSALMF1rIVpiY9BeH83lMWqoUHzWMCtE+CgeI6SIN&#13;
-15pczwU20X09apS0XP42cvSFP82DlZ3ghsNpZqeZJ5hvIZiqCZ2LDLTN/LDEmeHmzigsQnf4XsQ8&#13;
-E8vhm53PKSGQLOIYFtenektdUyUhqBHqbSI/aU8iLpdRPqnjOI9U0PmVkh6A+MCEueSOp78DiYap&#13;
-qMr4zje9gz08KakUR8Su2bxbaudf57oT9rys9w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0a8713ff-85d0-42dc-a15a-4857d2b6f701"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Jk2UTrA1mblzpGRPPovEhGQ2R2lhUDnBJDBmu5Xq+yNxFVqT2OWR7X+hUeKkywe60XXDIZfYU6e2&#13;
+7DeM2b+wnw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_096542d8-8d4e-430a-959f-332fb53f1235"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>posNVd+jlW1Dj87Er+f2jMZZFGPqk1Ebv6TWFD0NPIo4htLre7EzfyeXJ1ycRTfTMmDLYFR3tj60&#13;
+XGnc5qyyhw==</DigestValue></Reference></SignedInfo><SignatureValue>P0Rp9WE+/jp7GjtiZCqiFhoM2XfjO/GVtwr3+HCEahDSf9li2zBZWUqBfTnzlHeEhl98s/uZ1mLj&#13;
+36DYenavXWr/J9iEVsK9EAjW3la9+pOdGvY8aBotXeChCsYz4TemWhHdq4cceMkcJXH1Cw1Gvv0u&#13;
+HYAYDQOGWlZDjW9KL9Cye2xelraSksGNby5UOHB5JbH7fecsxrJh2h/g8RsRVEwW9fw64+LwaGma&#13;
+n1zsJNnUMlK+36GYxr+AkwqNuSBUo3YQmkuIvXxxU8j757mY3SwmMnYYy/a1+ucQRtFUkd/4hSb/&#13;
+gyWLBSf/M6T1gT/jSokPshJq2HQD84RX4VID6w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1597,4 +1603,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dcc99bb2-82e0-4d63-8de6-abfec754539c" Target="#_54e24c93-f0b6-4c98-a64e-b5fb4a27aa8a"><Timestamp>2023-08-29 11:36:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_096542d8-8d4e-430a-959f-332fb53f1235" Target="#_0a8713ff-85d0-42dc-a15a-4857d2b6f701"><Timestamp>2023-08-29 12:29:05</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
