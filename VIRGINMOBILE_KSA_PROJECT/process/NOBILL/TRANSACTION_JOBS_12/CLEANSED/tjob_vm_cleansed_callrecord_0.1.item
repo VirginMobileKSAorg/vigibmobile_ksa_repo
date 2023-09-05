@@ -59,7 +59,7 @@
     <contextParameter comment="" internalId="_tJuJAAjsEe6_U5AZC_1q2A" name="year" prompt="year?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_tJuJAQjsEe6_U5AZC_1q2A" name="transient_path" prompt="transient_path?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_tJuJAgjsEe6_U5AZC_1q2A" name="load_area" prompt="load_area?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
-    <contextParameter comment="" internalId="_tJuJAwjsEe6_U5AZC_1q2A" name="target_table_name" prompt="target_table_name?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_tJuJAwjsEe6_U5AZC_1q2A" name="target_table_name" prompt="target_table_name?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value="country"/>
     <contextParameter comment="" internalId="_tJuJBAjsEe6_U5AZC_1q2A" name="rownum" prompt="rownum?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_tJuJBQjsEe6_U5AZC_1q2A" name="print_operations_audit" prompt="print_operations_audit?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_Boolean" value=""/>
     <contextParameter comment="" internalId="_tJuJBgjsEe6_U5AZC_1q2A" name="audit_table_task" prompt="audit_table_task?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
@@ -248,9 +248,16 @@
     <routinesParameter id="_ND7IUPI9Ee2OWpcH6cGz6w" name="TalendStringUtil"/>
     <routinesParameter id="_NDzMgPI9Ee2OWpcH6cGz6w" name="TalendString"/>
     <routinesParameter id="_WkwwoDTPEeyClv2ll0VUqA" name="date"/>
+    <routinesParameter id="_qvKwYPSGEe2I7rFocvFw0g" name="DataQualityDependencies"/>
+    <routinesParameter id="_qvdrUPSGEe2I7rFocvFw0g" name="DqStringHandling"/>
+    <routinesParameter id="_qvncUPSGEe2I7rFocvFw0g" name="DQTechnical"/>
+    <routinesParameter id="_qvA_YPSGEe2I7rFocvFw0g" name="DataQuality"/>
+    <routinesParameter id="_qsczkPSGEe2I7rFocvFw0g" name="DataMasking"/>
   </parameters>
   <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="0">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_1"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_DYNAMIC" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="DYNAMIC" show="false" value=""/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="context.context_file_path_main"/>
     <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
@@ -291,6 +298,7 @@
       <elementValue elementRef="DECODE" value="false"/>
     </elementParameter>
     <elementParameter field="TEXT" name="DESTINATION" show="false" value=""/>
+    <elementParameter field="CHECK" name="USE_HEADER_AS_IS" value="false"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="LABEL" value="main_audit_vertica.txt"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -355,7 +363,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_1"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
-    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_start_audit_dync"/>
+    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_start_audit"/>
     <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_CONTEXT" value="Default"/>
     <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_PROCESS" value="VIRGINMOBILE_KSA_PROJECT:_yCE_IAViEe6ShOVCpvOVVA"/>
     <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_VERSION" value="Latest"/>
@@ -451,6 +459,8 @@
   </node>
   <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="736">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFileInputDelimited_2"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_DYNAMIC" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="DYNAMIC" show="false" value=""/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="((String)globalMap.get(&quot;tFileList_2_CURRENT_FILEPATH&quot;))"/>
     <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
@@ -701,6 +711,7 @@
       <elementValue elementRef="DECODE" value="false"/>
     </elementParameter>
     <elementParameter field="TEXT" name="DESTINATION" show="false" value=""/>
+    <elementParameter field="CHECK" name="USE_HEADER_AS_IS" value="false"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="LABEL" value="transient file"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -893,7 +904,7 @@
       <column comment="57" key="false" length="-1" name="localcreationtime" nullable="true" originalLength="5000" pattern="&quot;yyyyMMddHHmmss&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row4.internalreferenceid" name="internalreferenceid" type="id_String"/>
@@ -1471,7 +1482,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tRunJob_2"/>
     <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
     <elementParameter field="TEXT" name="CONTEXT_JOB" show="false" value=""/>
-    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit_dync"/>
+    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="tjob_vm_end_audit"/>
     <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_CONTEXT" value="Default"/>
     <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_PROCESS" value="VIRGINMOBILE_KSA_PROJECT:_x6gXgAViEe6ShOVCpvOVVA"/>
     <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_VERSION" value="Latest"/>
@@ -2492,13 +2503,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_47d99ea7-bf09-468b-9390-d922e7bbd2b2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nDwgUmV0zTgZOE1cq4EiYbFRGMX8f3HaLAbIdGUafhsZWkA1H6AhQtzT1qR3R+xyQZZrBgRFGyuK&#13;
-fb3auIB+0Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a5bbfca9-c8e5-4924-b356-641d0796dc65"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LWX+npd5Koud1mrHS/Gc/r9KE5Sh/XdmuRxe8fvLXxtJKVuAJOkbOy5y1+lFNvfjATL2CWtBnPAU&#13;
-GudFWb9jgg==</DigestValue></Reference></SignedInfo><SignatureValue>l2AInABjKABtZQ4H0BIJYmT7BWntQ82wf1Tc3sHbdtn1TIH9wXK2YEIgXUt9s6+rhoTXx5G+Wo6I&#13;
-jVIZkw4W5Hl3afxa6Hidf097HH8mOeAVEkQNj9WYh/Kb7xwD05nBEV+tuKOUTS0M9OG85KU2G4L+&#13;
-WpRMu/EDjP55jW3NVkBla9MuU1D7oM/3TIlxUjCT9m2WTmdmc3E/eZrnlcEjhIEZNdPOZIGC29/t&#13;
-hKD2w/KL2TniQjMmA0hJIvdETXV7St4VeBSzZ5iHBWRpZRLVQ/o4xELPS6OGN4c7kai/xyFfQptE&#13;
-4m3lKCXut7Ed7I1KQLHnvOc6HYZzfmgnROc0Bg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_99074711-6f09-4dfa-8738-aa9ad5d35768"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Tuqa504oQr3Se6uRSDeORE2xP7hq7jiXfr2sF0tfz9Jno3XucMmPUJ2hobt9F/ENL4d31uBNQOHo&#13;
+8wY5v5WAUQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e64b8a6b-7281-4dbc-bb29-a2678a164310"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nQ/3CpSWmSYur1nBFPtEjnVNQGFFF0frkD82LKN17KQIo5OaPGvGkHUzjQYL9tsqrdTxQpJM3uHz&#13;
+7O4Jww3o8g==</DigestValue></Reference></SignedInfo><SignatureValue>DVNh38QKtZR6lBez3ZqepDGFn6ZNqcj0a+dJAmNvbmDDwbyAYog7kdNBxJqt22hfF6NoJoH88La6&#13;
+6dOXmoGZIb0mmSdfU7T3b/p76uklm4Gn3g0S0aueTPk5f0W5eB7xr9f7pGrKzkrvdm1DEUBmVIza&#13;
+03Z11NCWxV+R6dPesX4oi0KlOu7SktHWns9Xk5SKDkEgVGWdxAzjs8uyg420StotPkKCXDnX9rEh&#13;
+d1K4VxrsxZRl211x3axfs0WMBctp70Cjc7O0EHTE4Twc2Aah02+BYi+8xiOHDplHHVRza4Qn7Fkl&#13;
+P3lImBzDpedSXzxJ29SNH3D8NqdSqRIc5q14nw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2520,4 +2531,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a5bbfca9-c8e5-4924-b356-641d0796dc65" Target="#_47d99ea7-bf09-468b-9390-d922e7bbd2b2"><Timestamp>2023-08-29 11:36:24</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e64b8a6b-7281-4dbc-bb29-a2678a164310" Target="#_99074711-6f09-4dfa-8738-aa9ad5d35768"><Timestamp>2023-09-05 09:22:00</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
