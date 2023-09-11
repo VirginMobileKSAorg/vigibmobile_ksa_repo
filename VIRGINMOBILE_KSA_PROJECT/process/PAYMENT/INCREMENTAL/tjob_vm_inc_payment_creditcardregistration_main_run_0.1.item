@@ -44,7 +44,7 @@
     <contextParameter comment="" internalId="_0rPzZw6CEe6adP95Y9Kxaw" name="object_name_loop" prompt="object_name_loop?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_0rPzaA6CEe6adP95Y9Kxaw" name="refresh_period" prompt="refresh_period?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_Integer" value=""/>
     <contextParameter comment="" internalId="_0rPzaQ6CEe6adP95Y9Kxaw" name="source_count" prompt="source_count?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_Long" value=""/>
-    <contextParameter comment="" internalId="_0rPzag6CEe6adP95Y9Kxaw" name="target_table_name" prompt="target_table_name?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_0rPzag6CEe6adP95Y9Kxaw" name="target_table_name" prompt="target_table_name?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value="country"/>
     <contextParameter comment="" internalId="_0rPzaw6CEe6adP95Y9Kxaw" name="error_msg_extractload" prompt="error_msg_extractload?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_0rPzbA6CEe6adP95Y9Kxaw" name="delete_count" prompt="delete_count?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_Long" value=""/>
     <contextParameter comment="" internalId="_0rPzbQ6CEe6adP95Y9Kxaw" name="incremental_date_column" prompt="incremental_date_column?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
@@ -334,7 +334,7 @@
     <contextParameter comment="" internalId="_0rP0KQ6CEe6adP95Y9Kxaw" name="object_name_loop" prompt="object_name_loop?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_0rP0Kg6CEe6adP95Y9Kxaw" name="refresh_period" prompt="refresh_period?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_Integer" value=""/>
     <contextParameter comment="" internalId="_0rP0Kw6CEe6adP95Y9Kxaw" name="source_count" prompt="source_count?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_Long" value=""/>
-    <contextParameter comment="" internalId="_0rP0LA6CEe6adP95Y9Kxaw" name="target_table_name" prompt="target_table_name?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
+    <contextParameter comment="" internalId="_0rP0LA6CEe6adP95Y9Kxaw" name="target_table_name" prompt="target_table_name?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value="country"/>
     <contextParameter comment="" internalId="_0rP0LQ6CEe6adP95Y9Kxaw" name="error_msg_extractload" prompt="error_msg_extractload?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
     <contextParameter comment="" internalId="_0rP0Lg6CEe6adP95Y9Kxaw" name="delete_count" prompt="delete_count?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_Long" value=""/>
     <contextParameter comment="" internalId="_0rP0Lw6CEe6adP95Y9Kxaw" name="incremental_date_column" prompt="incremental_date_column?" promptNeeded="false" repositoryContextId="_gTAsAPwEEe2SUr_mCINuVA" type="id_String" value=""/>
@@ -918,7 +918,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT TOP 100 ID, ALIAS, CARDNO, CardType, HolderName, ExpiryDate, &#13;&#10;PaymentTransactionsId, CheckPaymentDate, CreationDate, [Limit], LimitDurationID,&#13;&#10; Uid, NoOfSuccessfulTransactions, IsRemoved, PaymentToken&#13;&#10;, PaymentChannelID, IsRecurringRestricted, ExtraData&#13;&#10;FROM Payment.dbo.CreditCardRegistration WHERE  CreationDate &gt;  '2023-08-31 00:00:00'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT  ID, ALIAS, CARDNO, CardType, HolderName, ExpiryDate, &#13;&#10;PaymentTransactionsId, CheckPaymentDate, CreationDate, [Limit], LimitDurationID,&#13;&#10; Uid, NoOfSuccessfulTransactions, IsRemoved, PaymentToken&#13;&#10;, PaymentChannelID, IsRecurringRestricted, ExtraData&#13;&#10;FROM Payment.dbo.CreditCardRegistration WHERE  CreationDate &gt;  '&quot;+context.replace_start_incr_value+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" show="false" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1153,7 +1153,7 @@
       </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="raw" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.ID" name="ID" type="id_Long"/>
@@ -2436,13 +2436,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_588634c0-6b24-426d-9b76-e8fb62b29368"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>umMf8C0oNHgnO3+YRE0rekiuadsdUGmQplegB5aiDO7xp53m63HX1deubk7q8qaL/+2MM54gkTH4&#13;
-6YU6Vs44gQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3cb36bf4-71bc-43a3-9cc4-75bf5a3c159f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9JZ38b91iY3SE7EpFydLm6b/7VOBSh+kT5Q30OvVLX1EyGWBzXFBZGvkTc31FJ/1fkq55wGcTU9a&#13;
-dXo1/Ww+IQ==</DigestValue></Reference></SignedInfo><SignatureValue>Q/RjxQdBu7WccVFy3jiqw/Sf4ZSzkeJkvOUYjtjVUzOK56l6aaBFv+GrtAKNXkNWDTO+30/ozNC6&#13;
-acr1S7nUfDXvdcPfNokwg8g6hbZPAAF8cvF916HtnpoS+Gan9YQnEZMF1wbtKn8u7BqCh2Ov6h9a&#13;
-cgetbYrtGf+Y+1iF7FyRFHxAS4XNla6XuEm4qvBvJ3l3nvEiFqnhkfl+R1hCvUHaQEa+Lz6BHzX1&#13;
-57L72OBYMvInDHAhiFtQG5h/2uKkbUaYl96VXc8SLG9wHxXYjkxE5dTM4nobGcaO3AOpaCPFGBIk&#13;
-LWKuVFt9YI5myMdfYprDy8x8ReoEr+3uIia9pw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f11b4e0f-4d81-4733-a4d2-187b7899cb24"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8A0o9HPJCV9uQouIjtcERCR9rUymLoIr/9085ToGl9HjBjeNeFUK9VoUHA2HyriXpJ3GhGdKN+cR&#13;
+fv2BkxrRdQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2a9954ff-78bf-4573-9cdc-e66a662cca7a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dH9qJjXJFV3CfFOCYHtPQGkkLmybsCwcY6k4dNCLpdNrm7Un7cuAUQ3Qx3tYpLXEdHHCBdUwBrXs&#13;
+jD7XwwqVaA==</DigestValue></Reference></SignedInfo><SignatureValue>gGQQ4plVhS9i0rw9jetsgzHxlMVASYdjBfgiYnVnba1Lst/8DCrGuqztBS7RrIpRA/RwkAcWC4zi&#13;
+0aBcE9SmnM/596vvVNhJc/hHfMzGtoCrnEkckc0V8rlP3mPDQIbRA5IFm2vL/hCx9t98A5WS+7/i&#13;
+xNkqC6Oj5dKrM22JzBWVCz/9rKVQwciu1Y/T4U/qnCNQ3qk2Wfp6eKxB2MwmOZLjt/8f58JxeIqO&#13;
+uF2k3RaUWmBCrfA5zhzOosYIhy79DTrnfzg37kvFWb8uyBi0vjHzg6g7JZGk/K6E2LZI18dIl56E&#13;
+nek2E5A0avwdE6+vkpSXpy0kgFMUCHDMzJDKig==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -2464,4 +2464,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3cb36bf4-71bc-43a3-9cc4-75bf5a3c159f" Target="#_588634c0-6b24-426d-9b76-e8fb62b29368"><Timestamp>2023-09-01 06:17:01</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2a9954ff-78bf-4573-9cdc-e66a662cca7a" Target="#_f11b4e0f-4d81-4733-a4d2-187b7899cb24"><Timestamp>2023-09-11 10:52:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
